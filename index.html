@@ -140,6 +140,13 @@ button,input,select,textarea{font:inherit} button{cursor:pointer}.hidden{display
 <script>
 'use strict';
 
+const DEFAULT_API_URL =
+  'https://script.google.com/macros/s/AKfycbxbmwurIBzFp668MIfbjVGQWMjQsRlpej3QKxt2bceoQPUhWGfYdLGwkVJKy8_0mGis/exec';
+
+const DEFAULT_API_TOKEN =
+  '307495ecc2cb4553acd4e54aba28a67f4c67610124104f78bf093a16a5712fa2';
+
+
 const APP={
   apiUrl:localStorage.getItem('pkpj_api_url')||'',
   token:localStorage.getItem('pkpj_api_token')||'',
