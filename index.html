@@ -1947,11 +1947,22 @@ BAKI SMS
 
 </div>
 
+<div class="row-actions">
+
 <span
 class="pill normal"
 id="smsInfoStatus">
 NORMAL
 </span>
+
+<button
+class="mini-icon"
+type="button"
+id="openSmsTotal"
+title="Betulkan jumlah SMS semasa"
+aria-label="Betulkan jumlah SMS semasa">✎</button>
+
+</div>
 
 </div>
 
@@ -5539,7 +5550,10 @@ $('#subForm')
    SET TOTAL SMS
 ========================================================== */
 
-$('#openSmsTotal').onclick =
+const openSmsTotalBtn = $('#openSmsTotal');
+
+if (openSmsTotalBtn) {
+openSmsTotalBtn.onclick =
   () => {
     if (
       APP.data &&
@@ -5553,6 +5567,7 @@ $('#openSmsTotal').onclick =
       .classList
       .remove('hidden');
   };
+}
 
 
 $('#closeSmsTotal').onclick =
