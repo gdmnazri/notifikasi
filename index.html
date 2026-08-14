@@ -276,6 +276,37 @@ button{
 ============================ */
 
 @media(max-width:760px){
+  .sms-infographic{
+    grid-template-columns:1fr;
+    padding:15px;
+  }
+
+  .sms-gauge{
+    width:138px;
+    height:138px;
+  }
+
+  .sms-gauge-inner strong{
+    font-size:25px;
+  }
+
+  .sms-big-balance{
+    align-items:flex-start;
+  }
+
+  .sms-big-balance strong{
+    font-size:28px;
+  }
+
+  .sms-big-balance .remaining{
+    text-align:left;
+    font-size:18px;
+  }
+
+  .sms-stat-strip{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
   .row-actions{
     flex-wrap:nowrap;
   }
@@ -425,6 +456,187 @@ button{
   margin-top:3px;
   color:var(--muted);
   overflow-wrap:anywhere;
+}
+
+/* ============================
+   DASHBOARD COLOUR
+============================ */
+
+.dashboard-cards .card{
+  position:relative;
+  overflow:hidden;
+}
+
+.dashboard-cards .card::after{
+  content:"";
+  position:absolute;
+  width:86px;
+  height:86px;
+  border-radius:50%;
+  right:-28px;
+  top:-32px;
+  opacity:.16;
+  background:currentColor;
+}
+
+.dashboard-cards .card:nth-child(1){
+  background:linear-gradient(135deg,#fff1f2,#ffffff);
+  border-color:#fecdd3;
+  color:#b91c1c;
+}
+
+.dashboard-cards .card:nth-child(2){
+  background:linear-gradient(135deg,#fff7ed,#ffffff);
+  border-color:#fed7aa;
+  color:#c2410c;
+}
+
+.dashboard-cards .card:nth-child(3){
+  background:linear-gradient(135deg,#eff6ff,#ffffff);
+  border-color:#bfdbfe;
+  color:#1d4ed8;
+}
+
+.dashboard-cards .card:nth-child(4){
+  background:linear-gradient(135deg,#ecfdf5,#ffffff);
+  border-color:#bbf7d0;
+  color:#15803d;
+}
+
+.dashboard-cards .label{
+  color:inherit;
+  opacity:.75;
+}
+
+.dashboard-cards .metric{
+  color:inherit!important;
+}
+
+/* ============================
+   SMS INFOGRAPHIC
+============================ */
+
+.sms-infographic{
+  display:grid;
+  grid-template-columns:210px minmax(0,1fr);
+  gap:24px;
+  align-items:center;
+  margin-bottom:16px;
+  padding:20px;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(37,99,235,.10),transparent 34%),
+    radial-gradient(circle at 92% 20%,rgba(34,197,94,.10),transparent 30%),
+    #fff;
+}
+
+.sms-gauge-box{
+  display:grid;
+  place-items:center;
+  gap:10px;
+}
+
+.sms-gauge{
+  --pct:100%;
+  --gauge:#22c55e;
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  background:
+    conic-gradient(
+      var(--gauge) var(--pct),
+      #e8edf5 0
+    );
+  display:grid;
+  place-items:center;
+  box-shadow:
+    inset 0 0 0 1px rgba(15,23,42,.04),
+    0 15px 35px rgba(15,23,42,.08);
+  position:relative;
+}
+
+.sms-gauge::after{
+  content:"";
+  position:absolute;
+  inset:18px;
+  background:#fff;
+  border-radius:50%;
+  box-shadow:inset 0 0 0 1px #eef2f7;
+}
+
+.sms-gauge-inner{
+  position:relative;
+  z-index:2;
+  text-align:center;
+}
+
+.sms-gauge-inner strong{
+  display:block;
+  font-size:30px;
+  line-height:1;
+}
+
+.sms-gauge-inner span{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.sms-big-balance{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:15px;
+}
+
+.sms-big-balance strong{
+  display:block;
+  font-size:34px;
+  line-height:1.05;
+}
+
+.sms-big-balance .remaining{
+  text-align:right;
+  color:var(--green);
+  font-size:20px;
+  font-weight:800;
+}
+
+.sms-stat-strip{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;
+}
+
+.sms-stat{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px;
+  background:rgba(248,250,252,.86);
+}
+
+.sms-stat span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.sms-stat b{
+  display:block;
+  margin-top:4px;
+  font-size:14px;
+}
+
+.attachment-count{
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  margin-left:6px;
+  font-size:10px;
+  color:#64748b;
+  font-weight:700;
 }
 
 /* ============================
@@ -1038,6 +1250,13 @@ id="checkAlertBtn">
 Semak Alert Sekarang
 </button>
 
+<button
+class="icon-btn"
+id="refreshBtn"
+type="button"
+title="Kemaskini data"
+aria-label="Kemaskini data">↻</button>
+
 </div>
 
 </div>
@@ -1051,21 +1270,8 @@ Semak Alert Sekarang
 class="tabpage active"
 id="page-dashboard">
 
-<div class="tab-toolbar">
-<button
-class="icon-btn tabRefreshBtn"
-type="button"
-title="Kemaskini Dashboard"
-aria-label="Kemaskini Dashboard">↻</button>
 
-<button
-class="icon-btn printBtn"
-type="button"
-title="Print"
-aria-label="Print">⎙</button>
-</div>
-
-<div class="cards">
+<div class="cards dashboard-cards">
 
 <div class="card critical">
 
@@ -1315,26 +1521,6 @@ Renewal Akan Datang
 class="tabpage"
 id="page-tasks">
 
-<div class="tab-toolbar">
-<button
-class="icon-btn tabRefreshBtn"
-type="button"
-title="Kemaskini Tugasan"
-aria-label="Kemaskini Tugasan">↻</button>
-
-<button
-class="icon-btn referenceBtn"
-type="button"
-data-module="tasks"
-title="Rujukan PDF"
-aria-label="Rujukan PDF">📎</button>
-
-<button
-class="icon-btn printBtn"
-type="button"
-title="Print"
-aria-label="Print">⎙</button>
-</div>
 
 <div class="forms">
 
@@ -1428,6 +1614,19 @@ name="notes">
 </textarea>
 </div>
 
+<div class="field">
+<label>
+Lampiran PDF (pilihan)
+</label>
+<input
+name="attachment"
+type="file"
+accept="application/pdf,.pdf">
+<div class="muted">
+PDF ini akan dipautkan terus kepada tugasan yang baru disimpan.
+</div>
+</div>
+
 <button
 class="btn primary"
 type="submit">
@@ -1515,26 +1714,6 @@ Senarai Tugasan
 class="tabpage"
 id="page-subscriptions">
 
-<div class="tab-toolbar">
-<button
-class="icon-btn tabRefreshBtn"
-type="button"
-title="Kemaskini Langganan"
-aria-label="Kemaskini Langganan">↻</button>
-
-<button
-class="icon-btn referenceBtn"
-type="button"
-data-module="subscriptions"
-title="Rujukan PDF"
-aria-label="Rujukan PDF">📎</button>
-
-<button
-class="icon-btn printBtn"
-type="button"
-title="Print"
-aria-label="Print">⎙</button>
-</div>
 
 <div class="forms">
 
@@ -1641,6 +1820,19 @@ Nota
 </textarea>
 </div>
 
+<div class="field">
+<label>
+Lampiran PDF (pilihan)
+</label>
+<input
+name="attachment"
+type="file"
+accept="application/pdf,.pdf">
+<div class="muted">
+Contoh: kontrak, invois atau surat kelulusan.
+</div>
+</div>
+
 <button
 class="btn primary"
 type="submit">
@@ -1732,100 +1924,97 @@ Senarai Langganan
 class="tabpage"
 id="page-sms">
 
-<div class="tab-toolbar">
-<button
-class="icon-btn tabRefreshBtn"
-type="button"
-title="Kemaskini SMS"
-aria-label="Kemaskini SMS">↻</button>
 
-<button
-class="icon-btn"
-type="button"
-id="openSmsTotal"
-title="Tetapkan jumlah SMS semasa"
-aria-label="Tetapkan jumlah SMS semasa">✎</button>
+<div class="card sms-infographic">
 
-<button
-class="icon-btn referenceBtn"
-type="button"
-data-module="sms"
-title="Rujukan PDF"
-aria-label="Rujukan PDF">📎</button>
+<div class="sms-gauge-box">
 
-<button
-class="icon-btn printBtn"
-type="button"
-title="Print"
-aria-label="Print">⎙</button>
+<div
+class="sms-gauge"
+id="smsGauge">
+
+<div class="sms-gauge-inner">
+
+<strong id="smsGaugePct">
+100%
+</strong>
+
+<span>
+BAKI SMS
+</span>
+
 </div>
 
-<div class="cards">
+</div>
 
-<div class="card">
-<span class="label">
-Peruntukan Semasa
+<span
+class="pill normal"
+id="smsInfoStatus">
+NORMAL
 </span>
-<div
-class="metric"
-id="smsCurrentAllocation2">
+
+</div>
+
+
+<div>
+
+<div class="sms-big-balance">
+
+<div>
+<span class="label">
+Baki Kredit Semasa
+</span>
+
+<strong id="smsBalance2">
 RM0.00
-</div>
-</div>
-
-<div class="card">
-<span class="label">
-Kelulusan Baru
-</span>
-<div
-class="metric"
-id="smsNewApproved2">
-RM0.00
-</div>
+</strong>
 </div>
 
-<div class="card">
-<span class="label">
-Jumlah Peruntukan
-</span>
-<div
-class="metric"
-id="smsStart2">
-RM0.00
-</div>
-</div>
-
-<div class="card">
-<span class="label">
-SMS Digunakan
-</span>
-<div
-class="metric"
-id="smsUsed2">
+<div class="remaining">
+<span id="smsRemain2">
 0
-</div>
+</span>
+<br>
+<small>
+SMS masih boleh digunakan
+</small>
 </div>
 
-<div class="card normal">
-<span class="label">
-SMS Tinggal
-</span>
-<div
-class="metric"
-id="smsRemain2">
-0
-</div>
 </div>
 
-<div class="card">
-<span class="label">
-Baki RM
-</span>
-<div
-class="metric"
-id="smsBalance2">
+
+<div class="sms-stat-strip">
+
+<div class="sms-stat">
+<span>Peruntukan Semasa</span>
+<b id="smsCurrentAllocation2">
 RM0.00
+</b>
 </div>
+
+<div class="sms-stat">
+<span>Kelulusan Baru</span>
+<b id="smsNewApproved2">
+RM0.00
+</b>
+</div>
+
+<div class="sms-stat">
+<span>Jumlah Peruntukan</span>
+<b id="smsStart2">
+RM0.00
+</b>
+</div>
+
+<div class="sms-stat">
+<span>SMS Digunakan</span>
+<b id="smsUsed2">
+0
+</b>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -1890,6 +2079,19 @@ name="notes"
 required
 placeholder="Contoh: SMS jemputan kepada peserta program">
 </textarea>
+</div>
+
+<div class="field">
+<label>
+Lampiran PDF (pilihan)
+</label>
+<input
+name="attachment"
+type="file"
+accept="application/pdf,.pdf">
+<div class="muted">
+Contoh: surat arahan, senarai penerima atau kelulusan kempen.
+</div>
 </div>
 
 <button
@@ -2303,8 +2505,10 @@ style="max-width:620px;">
 Rujukan PDF
 </b>
 
-<div class="muted">
-Upload dan urus dokumen rujukan untuk tab ini.
+<div
+class="muted"
+id="referenceModalSubtitle">
+Lampiran untuk rekod ini.
 </div>
 </div>
 
@@ -3077,6 +3281,55 @@ function renderSms(s){
       s.balanceRm
     );
 
+  const gaugePct =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        Number(
+          s.remainingPct || 0
+        )
+      )
+    );
+
+  $('#smsGaugePct')
+    .textContent =
+    Math.round(
+      gaugePct
+    ) +
+    '%';
+
+  const gauge =
+    $('#smsGauge');
+
+  gauge.style.setProperty(
+    '--pct',
+    gaugePct + '%'
+  );
+
+  gauge.style.setProperty(
+    '--gauge',
+    s.level === 'critical'
+      ? '#ef4444'
+      : s.level === 'warning'
+      ? '#f59e0b'
+      : '#22c55e'
+  );
+
+  const smsInfoStatus =
+    $('#smsInfoStatus');
+
+  smsInfoStatus.className =
+    'pill ' +
+    s.level;
+
+  smsInfoStatus.textContent =
+    s.level === 'critical'
+      ? 'KRITIKAL'
+      : s.level === 'warning'
+      ? 'AMARAN'
+      : 'NORMAL';
+
   const st =
     $('#smsStatus');
 
@@ -3190,6 +3443,7 @@ function renderTasks(rows){
         <b>
         ${esc(r.Task)}
         </b>
+        ${attachmentBadge('tasks',r.ID)}
 
         <div class="muted">
         ${esc(r.Notes)}
@@ -3231,6 +3485,20 @@ function renderTasks(rows){
           title="Kemaskini"
           aria-label="Kemaskini"
           onclick="openEditTask('${esc(r.ID)}')">✎</button>
+
+          <button
+          class="mini-icon"
+          type="button"
+          title="Lampiran PDF"
+          aria-label="Lampiran PDF"
+          onclick="openReferenceModal('tasks','${esc(r.ID)}','${esc(r.Task)}')">📎</button>
+
+          <button
+          class="mini-icon"
+          type="button"
+          title="Print"
+          aria-label="Print"
+          onclick="printRecord('task','${esc(r.ID)}')">⎙</button>
 
           ${
             String(r.Status)
@@ -3351,6 +3619,7 @@ function renderSubs(rows){
         <b>
         ${esc(r.Subscription)}
         </b>
+        ${attachmentBadge('subscriptions',r.ID)}
 
         <div class="muted">
         ${esc(r.PIC)}
@@ -3398,6 +3667,20 @@ function renderSubs(rows){
           title="Kemaskini"
           aria-label="Kemaskini"
           onclick="openEditSub('${esc(r.ID)}')">✎</button>
+
+          <button
+          class="mini-icon"
+          type="button"
+          title="Lampiran PDF"
+          aria-label="Lampiran PDF"
+          onclick="openReferenceModal('subscriptions','${esc(r.ID)}','${esc(r.Subscription)}')">📎</button>
+
+          <button
+          class="mini-icon"
+          type="button"
+          title="Print"
+          aria-label="Print"
+          onclick="printRecord('subscription','${esc(r.ID)}')">⎙</button>
 
           <button
           class="mini-icon"
@@ -3452,6 +3735,7 @@ function renderSmsLogs(rows){
 
         <td>
         ${esc(r.Campaign)}
+        ${attachmentBadge('sms',r.ID)}
         </td>
 
         <td>
@@ -3476,6 +3760,20 @@ function renderSmsLogs(rows){
           title="Kemaskini"
           aria-label="Kemaskini"
           onclick="openEditSms('${esc(r.ID)}')">✎</button>
+
+          <button
+          class="mini-icon"
+          type="button"
+          title="Lampiran PDF"
+          aria-label="Lampiran PDF"
+          onclick="openReferenceModal('sms','${esc(r.ID)}','${esc(r.Campaign)}')">📎</button>
+
+          <button
+          class="mini-icon"
+          type="button"
+          title="Print"
+          aria-label="Print"
+          onclick="printRecord('sms','${esc(r.ID)}')">⎙</button>
 
           <button
           class="mini-icon delete"
@@ -3505,36 +3803,102 @@ function renderSmsLogs(rows){
 
 
 /* ==========================================================
-   RUJUKAN PDF - POPUP PER TAB
+   LAMPIRAN PDF - IKUT REKOD
 ========================================================== */
 
 APP.referenceModule = null;
+APP.referenceRecordId = null;
 
 
 function moduleLabel(moduleName){
   return {
-    tasks:
-      'Tugasan',
-    subscriptions:
-      'Langganan',
-    sms:
-      'SMS'
+    tasks:'Tugasan',
+    subscriptions:'Langganan',
+    sms:'SMS'
   }[
     moduleName
-  ] || 'Rujukan';
+  ] || 'Rekod';
 }
 
 
-function openReferenceModal(moduleName){
+function recordRefs(
+  moduleName,
+  recordId
+){
+  return (
+    (
+      APP.data &&
+      APP.data.references
+    ) || []
+  )
+  .filter(
+    r =>
+    String(
+      r.Module || ''
+    ).toLowerCase() ===
+    String(
+      moduleName || ''
+    ).toLowerCase()
+    &&
+    String(
+      r.RecordID || ''
+    ) ===
+    String(
+      recordId || ''
+    )
+  );
+}
+
+
+function attachmentCount(
+  moduleName,
+  recordId
+){
+  return recordRefs(
+    moduleName,
+    recordId
+  ).length;
+}
+
+
+function attachmentBadge(
+  moduleName,
+  recordId
+){
+  const count =
+    attachmentCount(
+      moduleName,
+      recordId
+    );
+
+  return count
+    ? `<span class="attachment-count">📎 ${count}</span>`
+    : '';
+}
+
+
+function openReferenceModal(
+  moduleName,
+  recordId,
+  recordTitle
+){
   APP.referenceModule =
     moduleName;
 
+  APP.referenceRecordId =
+    recordId;
+
   $('#referenceModalTitle')
     .textContent =
-    'Rujukan PDF — ' +
+    'Lampiran PDF — ' +
     moduleLabel(
       moduleName
     );
+
+  $('#referenceModalSubtitle')
+    .textContent =
+    recordTitle ||
+    'Lampiran untuk rekod ini.';
 
   $('#referenceForm')
     .reset();
@@ -3543,16 +3907,23 @@ function openReferenceModal(moduleName){
 
   $('#referenceModal')
     .classList
-    .remove('hidden');
+    .remove(
+      'hidden'
+    );
 }
 
 
 function closeReferenceModal(){
   $('#referenceModal')
     .classList
-    .add('hidden');
+    .add(
+      'hidden'
+    );
 
   APP.referenceModule =
+    null;
+
+  APP.referenceRecordId =
     null;
 }
 
@@ -3562,38 +3933,30 @@ function renderReferenceModalList(){
     $('#referenceModalList');
 
   if (
-    !APP.referenceModule
+    !APP.referenceModule ||
+    !APP.referenceRecordId
   ){
     el.innerHTML = '';
     return;
   }
 
   const refs =
-    (
-      APP.data &&
-      APP.data.references
-    ) || [];
-
-  const moduleRefs =
-    refs.filter(
-      r =>
-      String(
-        r.Module || ''
-      ).toLowerCase() ===
-      APP.referenceModule
+    recordRefs(
+      APP.referenceModule,
+      APP.referenceRecordId
     );
 
-  if (!moduleRefs.length){
+  if (!refs.length){
     el.innerHTML = `
       <div class="empty">
-      Belum ada rujukan PDF untuk tab ini.
+      Belum ada lampiran PDF untuk rekod ini.
       </div>
     `;
     return;
   }
 
   el.innerHTML =
-    moduleRefs
+    refs
       .map(
         r => `
         <div class="reference-modal-item">
@@ -3648,7 +4011,10 @@ function renderReferenceModalList(){
 
 function fileToBase64(file){
   return new Promise(
-    (resolve, reject) => {
+    (
+      resolve,
+      reject
+    ) => {
       const reader =
         new FileReader();
 
@@ -3682,17 +4048,81 @@ function fileToBase64(file){
 }
 
 
-$$('.referenceBtn')
-  .forEach(
-    btn =>
-    btn.addEventListener(
-      'click',
-      () =>
-      openReferenceModal(
-        btn.dataset.module
-      )
-    )
+async function uploadRecordAttachment(
+  moduleName,
+  recordId,
+  file,
+  title,
+  notes = ''
+){
+  if (
+    !file ||
+    !file.name
+  ){
+    return null;
+  }
+
+  const isPdf =
+    file.type ===
+    'application/pdf'
+    ||
+    file.name
+      .toLowerCase()
+      .endsWith(
+        '.pdf'
+      );
+
+  if (!isPdf){
+    throw new Error(
+      'Hanya fail PDF dibenarkan.'
+    );
+  }
+
+  if (
+    file.size >
+    5 *
+    1024 *
+    1024
+  ){
+    throw new Error(
+      'PDF melebihi 5 MB.'
+    );
+  }
+
+  const base64 =
+    await fileToBase64(
+      file
+    );
+
+  return runPost(
+    'uploadReference',
+    {
+      module:
+        moduleName,
+
+      recordId:
+        recordId,
+
+      title:
+        title ||
+        file.name,
+
+      notes:
+        notes,
+
+      fileName:
+        file.name,
+
+      mimeType:
+        'application/pdf',
+
+      base64:
+        base64
+    },
+    'Lampiran PDF berjaya disimpan.',
+    6500
   );
+}
 
 
 $('#closeReferenceModal').onclick =
@@ -3706,10 +4136,11 @@ $('#referenceForm')
       e.preventDefault();
 
       if (
-        !APP.referenceModule
+        !APP.referenceModule ||
+        !APP.referenceRecordId
       ){
         return showToast(
-          'Kategori rujukan tidak dikenal pasti.'
+          'Rekod untuk lampiran tidak dikenal pasti.'
         );
       }
 
@@ -3719,7 +4150,9 @@ $('#referenceForm')
         );
 
       const file =
-        fd.get('pdf');
+        fd.get(
+          'pdf'
+        );
 
       const title =
         String(
@@ -3732,76 +4165,28 @@ $('#referenceForm')
         );
       }
 
-      if (
-        !file ||
-        !file.name
-      ){
-        return showToast(
-          'Pilih dokumen PDF.'
-        );
-      }
-
-      const isPdf =
-        file.type ===
-        'application/pdf'
-        ||
-        file.name
-          .toLowerCase()
-          .endsWith('.pdf');
-
-      if (!isPdf){
-        return showToast(
-          'Hanya fail PDF dibenarkan.'
-        );
-      }
-
-      if (
-        file.size >
-        5 * 1024 * 1024
-      ){
-        return showToast(
-          'PDF melebihi 5 MB.'
-        );
-      }
-
       try{
-        const base64 =
-          await fileToBase64(
-            file
-          );
-
-        await runPost(
-          'uploadReference',
-          {
-            module:
-              APP.referenceModule,
-
-            title:
-              title,
-
-            notes:
-              String(
-                fd.get('notes') || ''
-              ).trim(),
-
-            fileName:
-              file.name,
-
-            mimeType:
-              'application/pdf',
-
-            base64:
-              base64
-          },
-          'PDF berjaya disimpan.',
-          6500
+        await uploadRecordAttachment(
+          APP.referenceModule,
+          APP.referenceRecordId,
+          file,
+          title,
+          String(
+            fd.get('notes') || ''
+          ).trim()
         );
 
-        e.currentTarget.reset();
+        e.currentTarget
+          .reset();
 
         renderReferenceModalList();
 
-      } catch (_) {}
+      } catch(e){
+        showToast(
+          e.message,
+          5000
+        );
+      }
     }
   );
 
@@ -3810,7 +4195,7 @@ window.deleteReference =
   async id => {
     const ok =
       confirm(
-        'Delete dokumen rujukan ini? Fail dalam Google Drive juga akan dipindahkan ke Trash.'
+        'Delete lampiran PDF ini? Fail dalam Google Drive juga akan dipindahkan ke Trash.'
       );
 
     if (!ok){
@@ -3823,13 +4208,246 @@ window.deleteReference =
         {
           id:id
         },
-        'Rujukan PDF dipadam.'
+        'Lampiran PDF dipadam.'
       );
 
       renderReferenceModalList();
 
     } catch (_) {}
   };
+
+
+/* ==========================================================
+   PRINT SATU REKOD
+========================================================== */
+
+function printRecord(
+  type,
+  id
+){
+  let title = '';
+  let fields = [];
+  let moduleName = '';
+
+  if (
+    type ===
+    'task'
+  ){
+    const r =
+      (
+        APP.data.tasks || []
+      )
+      .find(
+        x =>
+        String(x.ID) ===
+        String(id)
+      );
+
+    if (!r){
+      return showToast(
+        'Tugasan tidak dijumpai.'
+      );
+    }
+
+    title =
+      r.Task;
+
+    moduleName =
+      'tasks';
+
+    fields = [
+      ['Tugasan',r.Task],
+      ['Deadline',r.Deadline],
+      ['Priority',r.Priority],
+      ['Status',r.Status],
+      ['Tindakan Seterusnya',r.NextAction],
+      ['PIC',r.PIC],
+      ['Nota',r.Notes]
+    ];
+  }
+
+  if (
+    type ===
+    'subscription'
+  ){
+    const r =
+      (
+        APP.data.subscriptions || []
+      )
+      .find(
+        x =>
+        String(x.ID) ===
+        String(id)
+      );
+
+    if (!r){
+      return showToast(
+        'Langganan tidak dijumpai.'
+      );
+    }
+
+    title =
+      r.Subscription;
+
+    moduleName =
+      'subscriptions';
+
+    fields = [
+      ['Langganan',r.Subscription],
+      ['Vendor',r.Vendor],
+      ['Tarikh Mula',r.StartDate],
+      ['Tarikh Tamat',r.ExpiryDate],
+      ['Kitaran',r.CycleYears + ' tahun'],
+      ['Kos',money(r.Cost)],
+      ['PIC',r.PIC],
+      ['Status',r.Status],
+      ['Nota',r.Notes]
+    ];
+  }
+
+  if (
+    type ===
+    'sms'
+  ){
+    const r =
+      (
+        APP.data.smsLogs || []
+      )
+      .find(
+        x =>
+        String(x.ID) ===
+        String(id)
+      );
+
+    if (!r){
+      return showToast(
+        'Log SMS tidak dijumpai.'
+      );
+    }
+
+    title =
+      r.Campaign;
+
+    moduleName =
+      'sms';
+
+    fields = [
+      ['Tarikh',r.Date],
+      ['Program / Kempen',r.Campaign],
+      ['Jumlah SMS',num(r.SMSSent)],
+      ['Kos',money(r.Cost)],
+      ['Tujuan / Sebab',r.Notes]
+    ];
+  }
+
+  const refs =
+    recordRefs(
+      moduleName,
+      id
+    );
+
+  const w =
+    window.open(
+      '',
+      '_blank',
+      'width=820,height=720'
+    );
+
+  if (!w){
+    return showToast(
+      'Browser menyekat popup print.'
+    );
+  }
+
+  const fieldHtml =
+    fields
+      .map(
+        f => `
+        <tr>
+          <th>${esc(f[0])}</th>
+          <td>${esc(f[1])}</td>
+        </tr>
+        `
+      )
+      .join('');
+
+  const refHtml =
+    refs.length
+      ?
+      `
+      <h3>Lampiran PDF</h3>
+      <ul>
+      ${
+        refs.map(
+          r =>
+          `<li>${esc(r.RefTitle)} — ${esc(r.FileName)}</li>`
+        ).join('')
+      }
+      </ul>
+      `
+      :
+      '';
+
+  w.document.write(
+    `
+    <!doctype html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>${esc(title)}</title>
+    <style>
+      body{
+        font-family:Arial,sans-serif;
+        padding:28px;
+        color:#172033;
+      }
+      h1{
+        font-size:22px;
+        margin:0 0 18px;
+      }
+      table{
+        width:100%;
+        border-collapse:collapse;
+      }
+      th,td{
+        padding:10px;
+        border:1px solid #dbe1ea;
+        text-align:left;
+        vertical-align:top;
+      }
+      th{
+        width:190px;
+        background:#f5f7fb;
+      }
+      .foot{
+        margin-top:20px;
+        font-size:11px;
+        color:#64748b;
+      }
+    </style>
+    </head>
+    <body>
+    <h1>${esc(title)}</h1>
+    <table>${fieldHtml}</table>
+    ${refHtml}
+    <div class="foot">
+    Dicetak daripada PKPJ Work Monitor
+    </div>
+    </body>
+    </html>
+    `
+  );
+
+  w.document.close();
+
+  setTimeout(
+    () => {
+      w.focus();
+      w.print();
+    },
+    300
+  );
+}
 
 
 /* ==========================================================
@@ -4243,6 +4861,17 @@ window.openEditTask =
       <textarea name="notes">${esc(r.Notes)}</textarea>
       </div>
 
+      <div class="field">
+      <label>Tambah Lampiran PDF (pilihan)</label>
+      <input
+      name="attachment"
+      type="file"
+      accept="application/pdf,.pdf">
+      <div class="muted">
+      Lampiran sedia ada: ${attachmentCount('tasks',r.ID)}
+      </div>
+      </div>
+
       <div class="modal-actions">
       <button
       class="btn ghost"
@@ -4264,12 +4893,22 @@ window.openEditTask =
       async e => {
         e.preventDefault();
 
+        const fd =
+          new FormData(
+            e.currentTarget
+          );
+
+        const file =
+          fd.get(
+            'attachment'
+          );
+
         const d =
           Object.fromEntries(
-            new FormData(
-              e.currentTarget
-            )
+            fd
           );
+
+        delete d.attachment;
 
         try{
           await runPost(
@@ -4277,6 +4916,20 @@ window.openEditTask =
             d,
             'Tugasan dikemas kini.'
           );
+
+          if (
+            file &&
+            file.name
+          ){
+            await uploadRecordAttachment(
+              'tasks',
+              d.id,
+              file,
+              'Lampiran — ' +
+              d.task,
+              d.notes || ''
+            );
+          }
 
           closeEditModal();
         } catch (_) {}
@@ -4418,6 +5071,17 @@ window.openEditSub =
       <textarea name="notes">${esc(r.Notes)}</textarea>
       </div>
 
+      <div class="field">
+      <label>Tambah Lampiran PDF (pilihan)</label>
+      <input
+      name="attachment"
+      type="file"
+      accept="application/pdf,.pdf">
+      <div class="muted">
+      Lampiran sedia ada: ${attachmentCount('subscriptions',r.ID)}
+      </div>
+      </div>
+
       <div class="modal-actions">
       <button
       class="btn ghost"
@@ -4439,12 +5103,22 @@ window.openEditSub =
       async e => {
         e.preventDefault();
 
+        const fd =
+          new FormData(
+            e.currentTarget
+          );
+
+        const file =
+          fd.get(
+            'attachment'
+          );
+
         const d =
           Object.fromEntries(
-            new FormData(
-              e.currentTarget
-            )
+            fd
           );
+
+        delete d.attachment;
 
         try{
           await runPost(
@@ -4452,6 +5126,20 @@ window.openEditSub =
             d,
             'Langganan dikemas kini.'
           );
+
+          if (
+            file &&
+            file.name
+          ){
+            await uploadRecordAttachment(
+              'subscriptions',
+              d.id,
+              file,
+              'Lampiran — ' +
+              d.subscription,
+              d.notes || ''
+            );
+          }
 
           closeEditModal();
         } catch (_) {}
@@ -4548,6 +5236,17 @@ window.openEditSms =
       required>${esc(r.Notes)}</textarea>
       </div>
 
+      <div class="field">
+      <label>Tambah Lampiran PDF (pilihan)</label>
+      <input
+      name="attachment"
+      type="file"
+      accept="application/pdf,.pdf">
+      <div class="muted">
+      Lampiran sedia ada: ${attachmentCount('sms',r.ID)}
+      </div>
+      </div>
+
       <div class="modal-actions">
       <button
       class="btn ghost"
@@ -4569,12 +5268,22 @@ window.openEditSms =
       async e => {
         e.preventDefault();
 
+        const fd =
+          new FormData(
+            e.currentTarget
+          );
+
+        const file =
+          fd.get(
+            'attachment'
+          );
+
         const d =
           Object.fromEntries(
-            new FormData(
-              e.currentTarget
-            )
+            fd
           );
+
+        delete d.attachment;
 
         try{
           await runPost(
@@ -4582,6 +5291,20 @@ window.openEditSms =
             d,
             'Penggunaan SMS dikemas kini.'
           );
+
+          if (
+            file &&
+            file.name
+          ){
+            await uploadRecordAttachment(
+              'sms',
+              d.id,
+              file,
+              'Lampiran — ' +
+              d.campaign,
+              d.notes || ''
+            );
+          }
 
           closeEditModal();
         } catch (_) {}
@@ -4700,21 +5423,52 @@ $('#taskForm')
     async e => {
       e.preventDefault();
 
+      const fd =
+        new FormData(
+          e.target
+        );
+
+      const file =
+        fd.get(
+          'attachment'
+        );
+
       const d =
         Object.fromEntries(
-          new FormData(
-            e.target
-          )
+          fd
         );
+
+      delete d.attachment;
 
       try{
-        await runPost(
-          'addTask',
-          d,
-          'Tugasan disimpan.'
-        );
+        const r =
+          await runPost(
+            'addTask',
+            d,
+            'Tugasan disimpan.'
+          );
+
+        const recordId =
+          r.result &&
+          r.result.id;
+
+        if (
+          file &&
+          file.name &&
+          recordId
+        ){
+          await uploadRecordAttachment(
+            'tasks',
+            recordId,
+            file,
+            'Lampiran — ' +
+            d.task,
+            d.notes || ''
+          );
+        }
 
         e.target.reset();
+
       } catch (_) {}
     }
   );
@@ -4730,21 +5484,52 @@ $('#subForm')
     async e => {
       e.preventDefault();
 
+      const fd =
+        new FormData(
+          e.target
+        );
+
+      const file =
+        fd.get(
+          'attachment'
+        );
+
       const d =
         Object.fromEntries(
-          new FormData(
-            e.target
-          )
+          fd
         );
+
+      delete d.attachment;
 
       try{
-        await runPost(
-          'addSubscription',
-          d,
-          'Langganan disimpan.'
-        );
+        const r =
+          await runPost(
+            'addSubscription',
+            d,
+            'Langganan disimpan.'
+          );
+
+        const recordId =
+          r.result &&
+          r.result.id;
+
+        if (
+          file &&
+          file.name &&
+          recordId
+        ){
+          await uploadRecordAttachment(
+            'subscriptions',
+            recordId,
+            file,
+            'Lampiran — ' +
+            d.subscription,
+            d.notes || ''
+          );
+        }
 
         e.target.reset();
+
       } catch (_) {}
     }
   );
@@ -4854,12 +5639,22 @@ $('#smsUsageForm')
     async e => {
       e.preventDefault();
 
+      const fd =
+        new FormData(
+          e.target
+        );
+
+      const file =
+        fd.get(
+          'attachment'
+        );
+
       const d =
         Object.fromEntries(
-          new FormData(
-            e.target
-          )
+          fd
         );
+
+      delete d.attachment;
 
       if (
         !String(
@@ -4882,13 +5677,34 @@ $('#smsUsageForm')
       }
 
       try{
-        await runPost(
-          'addSmsUsage',
-          d,
-          'Penggunaan SMS ditambah.'
-        );
+        const r =
+          await runPost(
+            'addSmsUsage',
+            d,
+            'Penggunaan SMS ditambah.'
+          );
+
+        const recordId =
+          r.result &&
+          r.result.id;
+
+        if (
+          file &&
+          file.name &&
+          recordId
+        ){
+          await uploadRecordAttachment(
+            'sms',
+            recordId,
+            file,
+            'Lampiran — ' +
+            d.campaign,
+            d.notes || ''
+          );
+        }
 
         e.target.reset();
+
       } catch (_) {}
     }
   );
@@ -5015,21 +5831,6 @@ $('#saveSmsSettings').onclick =
 
 
 /* ==========================================================
-   KEMASKINI SETIAP TAB
-========================================================== */
-
-$$('.tabRefreshBtn')
-  .forEach(
-    btn =>
-    btn.addEventListener(
-      'click',
-      () =>
-      loadDashboard()
-    )
-  );
-
-
-/* ==========================================================
    CHECK ALERT
 ========================================================== */
 
@@ -5040,6 +5841,11 @@ $('#checkAlertBtn').onclick =
     {},
     'Semakan alert dijalankan.'
   );
+
+
+$('#refreshBtn').onclick =
+  () =>
+  loadDashboard();
 
 
 /* ==========================================================
@@ -5161,22 +5967,6 @@ $('#logoutBtn').onclick =
       400
     );
   };
-
-
-/* ==========================================================
-   PRINT TAB SEMASA
-========================================================== */
-
-$$('.printBtn')
-  .forEach(
-    btn =>
-    btn.addEventListener(
-      'click',
-      () => {
-        window.print();
-      }
-    )
-  );
 
 
 /* ==========================================================
