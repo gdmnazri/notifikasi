@@ -14,40 +14,31 @@
 PKPJ Work Monitor
 </title>
 
-
 <style>
 
 :root{
-
   --bg:#f5f7fb;
   --panel:#ffffff;
   --text:#172033;
   --muted:#6b7280;
   --line:#e5e7eb;
   --nav:#0f172a;
-
   --blue:#2563eb;
   --green:#15803d;
   --orange:#d97706;
   --red:#dc2626;
-
   --radius:16px;
-
   --shadow:
   0 8px 30px
   rgba(15,23,42,.06);
 }
 
-
 *{
   box-sizing:border-box;
 }
 
-
 body{
-
   margin:0;
-
   font-family:
   Inter,
   system-ui,
@@ -55,907 +46,548 @@ body{
   BlinkMacSystemFont,
   "Segoe UI",
   sans-serif;
-
-  background:
-  var(--bg);
-
-  color:
-  var(--text);
+  background:var(--bg);
+  color:var(--text);
 }
-
 
 button,
 input,
 select,
 textarea{
-
   font:inherit;
 }
-
 
 button{
   cursor:pointer;
 }
-
 
 /* ============================
    LAYOUT
 ============================ */
 
 .app{
-
   display:grid;
-
   grid-template-columns:
   240px 1fr;
-
   min-height:100vh;
 }
 
-
 .side{
-
-  background:
-  var(--nav);
-
+  background:var(--nav);
   color:#fff;
-
-  padding:
-  24px 18px;
-
+  padding:24px 18px;
   position:sticky;
-
   top:0;
-
   height:100vh;
 }
 
-
 .brand{
-
   font-size:20px;
-
   font-weight:800;
-
   margin-bottom:26px;
 }
 
-
 .brand small{
-
   display:block;
-
   font-size:11px;
-
   font-weight:500;
-
   color:#94a3b8;
-
   margin-top:5px;
 }
 
-
 .navbtn{
-
   width:100%;
-
   border:0;
-
-  background:
-  transparent;
-
+  background:transparent;
   color:#cbd5e1;
-
   text-align:left;
-
-  padding:
-  11px 12px;
-
+  padding:11px 12px;
   border-radius:10px;
-
   margin:3px 0;
 }
 
-
 .navbtn:hover,
 .navbtn.active{
-
   background:#1e293b;
-
   color:#fff;
 }
 
-
 .main{
-
   padding:28px;
-
   min-width:0;
 }
-
 
 /* ============================
    TOP
 ============================ */
 
 .top{
-
   display:flex;
-
   gap:16px;
-
-  justify-content:
-  space-between;
-
+  justify-content:space-between;
   align-items:center;
-
   margin-bottom:22px;
 }
 
-
 .top h1{
-
   margin:0;
-
   font-size:28px;
 }
 
-
 .top p{
-
-  margin:
-  5px 0 0;
-
-  color:
-  var(--muted);
-
+  margin:5px 0 0;
+  color:var(--muted);
   font-size:13px;
 }
 
-
 .actions{
-
   display:flex;
-
   gap:8px;
-
   flex-wrap:wrap;
 }
 
-
 .btn{
-
   border:0;
-
   border-radius:10px;
-
-  padding:
-  10px 14px;
-
+  padding:10px 14px;
   font-weight:700;
 }
 
-
 .primary{
-
-  background:
-  var(--blue);
-
+  background:var(--blue);
   color:#fff;
 }
-
 
 .dark{
-
   background:#111827;
-
   color:#fff;
 }
 
-
 .ghost{
-
   background:#fff;
-
-  border:
-  1px solid var(--line);
-
+  border:1px solid var(--line);
   color:#374151;
 }
 
+.danger{
+  background:#dc2626;
+  color:#fff;
+}
+
+.danger:hover{
+  background:#b91c1c;
+}
 
 /* ============================
    CARDS
 ============================ */
 
 .cards{
-
   display:grid;
-
   grid-template-columns:
-  repeat(
-    4,
-    minmax(0,1fr)
-  );
-
+  repeat(4,minmax(0,1fr));
   gap:14px;
-
   margin-bottom:18px;
 }
 
-
 .card{
-
-  background:
-  var(--panel);
-
-  border:
-  1px solid var(--line);
-
-  border-radius:
-  var(--radius);
-
-  box-shadow:
-  var(--shadow);
-
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
   padding:18px;
 }
 
-
 .metric{
-
   font-size:28px;
-
   font-weight:800;
-
   margin-top:8px;
 }
 
-
 .label{
-
-  color:
-  var(--muted);
-
+  color:var(--muted);
   font-size:12px;
 }
 
-
 .critical .metric{
-
-  color:
-  var(--red);
+  color:var(--red);
 }
-
 
 .warning .metric{
-
-  color:
-  var(--orange);
+  color:var(--orange);
 }
-
 
 .normal .metric{
-
-  color:
-  var(--green);
+  color:var(--green);
 }
-
 
 /* ============================
    GRID
 ============================ */
 
 .grid2{
-
   display:grid;
-
   grid-template-columns:
   1.15fr .85fr;
-
   gap:16px;
-
   margin-bottom:16px;
 }
 
-
 .section-title{
-
   display:flex;
-
   align-items:center;
-
-  justify-content:
-  space-between;
-
+  justify-content:space-between;
   gap:8px;
-
   margin-bottom:12px;
 }
 
-
 .section-title h2{
-
   margin:0;
-
   font-size:17px;
 }
-
 
 /* ============================
    STATUS PILLS
 ============================ */
 
 .pill{
-
   display:inline-flex;
-
   align-items:center;
-
   gap:6px;
-
-  padding:
-  5px 9px;
-
+  padding:5px 9px;
   border-radius:999px;
-
   font-size:11px;
-
   font-weight:800;
 }
 
-
 .pill.critical{
-
   background:#fee2e2;
-
   color:#991b1b;
 }
 
-
 .pill.warning{
-
   background:#ffedd5;
-
   color:#9a3412;
 }
 
-
 .pill.normal{
-
   background:#dcfce7;
-
   color:#166534;
 }
 
-
 .pill.done{
-
   background:#e5e7eb;
-
   color:#374151;
 }
-
 
 /* ============================
    SMS
 ============================ */
 
 .progress{
-
   height:12px;
-
   background:#e5e7eb;
-
   border-radius:999px;
-
   overflow:hidden;
-
-  margin:
-  12px 0;
+  margin:12px 0;
 }
 
-
 .bar{
-
   height:100%;
-
-  background:
-  var(--green);
-
+  background:var(--green);
   width:0;
 }
 
-
 .bar.warning{
-
-  background:
-  var(--orange);
+  background:var(--orange);
 }
-
 
 .bar.critical{
-
-  background:
-  var(--red);
+  background:var(--red);
 }
 
-
 .smsbig{
-
   display:flex;
-
   align-items:end;
-
-  justify-content:
-  space-between;
-
+  justify-content:space-between;
   gap:18px;
 }
 
-
 .smsbig strong{
-
   display:block;
-
   font-size:34px;
 }
 
-
 .smsgrid{
-
   display:grid;
-
   grid-template-columns:
-  repeat(
-    3,
-    1fr
-  );
-
+  repeat(3,1fr);
   gap:8px;
 }
 
-
 .mini{
-
   background:#f8fafc;
-
   border-radius:12px;
-
   padding:10px;
 }
 
-
 .mini b{
-
   display:block;
-
   margin-top:4px;
 }
-
 
 /* ============================
    TABLE
 ============================ */
 
 .tablewrap{
-
   overflow:auto;
-
-  border:
-  1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:12px;
 }
 
-
 table{
-
   width:100%;
-
-  border-collapse:
-  collapse;
-
+  border-collapse:collapse;
   min-width:720px;
-
   background:#fff;
 }
 
-
 th,
 td{
-
-  padding:
-  11px 12px;
-
-  border-bottom:
-  1px solid var(--line);
-
+  padding:11px 12px;
+  border-bottom:1px solid var(--line);
   text-align:left;
-
   font-size:12px;
-
   vertical-align:top;
 }
 
-
 th{
-
   background:#f8fafc;
-
   color:#475569;
-
   position:sticky;
-
   top:0;
 }
-
 
 /* ============================
    ALERTS
 ============================ */
 
 .alerts{
-
   display:grid;
-
   gap:9px;
 }
 
-
 .alert{
-
   padding:12px;
-
   border-radius:12px;
-
-  border:
-  1px solid var(--line);
-
+  border:1px solid var(--line);
   display:flex;
-
-  justify-content:
-  space-between;
-
+  justify-content:space-between;
   gap:12px;
 }
 
-
 .alert.critical{
-
   background:#fff1f2;
-
   border-color:#fecdd3;
 }
 
-
 .alert.warning{
-
   background:#fff7ed;
-
   border-color:#fed7aa;
 }
 
-
 .alert b{
-
   display:block;
 }
 
-
 .alert small{
-
-  color:
-  var(--muted);
+  color:var(--muted);
 }
-
 
 /* ============================
    FORM
 ============================ */
 
 .forms{
-
   display:grid;
-
   grid-template-columns:
-  repeat(
-    2,
-    minmax(0,1fr)
-  );
-
+  repeat(2,minmax(0,1fr));
   gap:16px;
 }
 
-
 .form{
-
   display:grid;
-
   gap:10px;
 }
-
 
 .form-row{
-
   display:grid;
-
   grid-template-columns:
-  repeat(
-    2,
-    minmax(0,1fr)
-  );
-
+  repeat(2,minmax(0,1fr));
   gap:10px;
 }
 
-
 .field{
-
   display:grid;
-
   gap:5px;
 }
 
-
 .field label{
-
   font-size:11px;
-
   color:#475569;
-
   font-weight:700;
 }
-
 
 .field input,
 .field select,
 .field textarea{
-
   width:100%;
-
-  border:
-  1px solid #cbd5e1;
-
+  border:1px solid #cbd5e1;
   border-radius:9px;
-
-  padding:
-  9px 10px;
-
+  padding:9px 10px;
   background:#fff;
 }
 
-
 .field textarea{
-
   min-height:70px;
-
   resize:vertical;
 }
 
-
 .muted{
-
-  color:
-  var(--muted);
-
+  color:var(--muted);
   font-size:12px;
 }
-
 
 /* ============================
    SMS PLANNER
 ============================ */
 
 .planner-result{
-
   margin-top:10px;
-
   background:#f8fafc;
-
   border-radius:12px;
-
   padding:12px;
-
   display:grid;
-
   grid-template-columns:
-  repeat(
-    3,
-    1fr
-  );
-
+  repeat(3,1fr);
   gap:10px;
 }
 
-
 .planner-result b{
-
   display:block;
-
   margin-top:4px;
 }
 
-
 .statusline{
-
   font-size:12px;
-
   margin-top:10px;
 }
-
 
 /* ============================
    MODAL
 ============================ */
 
 .hidden{
-
   display:none!important;
 }
 
-
 .modal{
-
   position:fixed;
-
   inset:0;
-
-  background:
-  rgba(15,23,42,.62);
-
+  background:rgba(15,23,42,.62);
   display:grid;
-
   place-items:center;
-
   padding:20px;
-
   z-index:99;
+  overflow:auto;
 }
 
-
 .modalbox{
-
   background:#fff;
-
   border-radius:18px;
-
-  max-width:560px;
-
+  max-width:620px;
   width:100%;
-
   padding:22px;
-
   box-shadow:
   0 30px 80px
   rgba(0,0,0,.24);
+  max-height:90vh;
+  overflow:auto;
 }
 
-
 .modalbox h2{
-
   margin-top:0;
 }
 
-
 .toast{
-
   position:fixed;
-
   right:18px;
-
   bottom:18px;
-
   background:#111827;
-
   color:#fff;
-
-  padding:
-  12px 14px;
-
+  padding:12px 14px;
   border-radius:10px;
-
   z-index:120;
-
   max-width:380px;
 }
 
-
 .tabpage{
-
   display:none;
 }
 
-
 .tabpage.active{
-
   display:block;
 }
 
-
 .empty{
-
   text-align:center;
-
-  color:
-  var(--muted);
-
+  color:var(--muted);
   padding:24px;
 }
-
 
 /* ============================
    RESPONSIVE
 ============================ */
 
-@media(
-  max-width:1050px
-){
-
+@media(max-width:1050px){
   .cards{
-
     grid-template-columns:
-    repeat(
-      2,
-      1fr
-    );
+    repeat(2,1fr);
   }
-
 
   .grid2,
   .forms{
-
-    grid-template-columns:
-    1fr;
+    grid-template-columns:1fr;
   }
 }
 
-
-@media(
-  max-width:760px
-){
-
+@media(max-width:760px){
   .app{
-
-    grid-template-columns:
-    1fr;
+    grid-template-columns:1fr;
   }
 
-
   .side{
-
     position:relative;
-
     height:auto;
   }
 
-
   .main{
-
     padding:16px;
   }
 
-
   .cards{
-
-    grid-template-columns:
-    1fr;
+    grid-template-columns:1fr;
   }
-
 
   .form-row,
   .smsgrid,
   .planner-result{
-
-    grid-template-columns:
-    1fr;
+    grid-template-columns:1fr;
   }
 
-
   .top{
-
     align-items:flex-start;
-
     flex-direction:column;
   }
 }
@@ -967,11 +599,7 @@ th{
 
 <body>
 
-
 <div class="app">
-
-
-<!-- SIDEBAR -->
 
 <aside class="side">
 
@@ -985,68 +613,46 @@ Task • Renewal • SMS
 
 </div>
 
-
 <button
 class="navbtn active"
 data-page="dashboard">
-
 Dashboard
-
 </button>
-
 
 <button
 class="navbtn"
 data-page="tasks">
-
 Tugasan
-
 </button>
-
 
 <button
 class="navbtn"
 data-page="subscriptions">
-
 Langganan
-
 </button>
-
 
 <button
 class="navbtn"
 data-page="sms">
-
 SMS Monitor
-
 </button>
-
 
 <button
 class="navbtn"
 id="openSheet">
-
 Buka Google Sheet
-
 </button>
-
 
 <button
 class="navbtn"
 id="openConfig">
-
-Tetapan Sambungan
-
+Tetapan
 </button>
 
 </aside>
 
 
-
-<!-- MAIN -->
-
 <main class="main">
-
 
 <div class="top">
 
@@ -1062,30 +668,23 @@ Belum disambungkan
 
 </div>
 
-
 <div class="actions">
 
 <button
 class="btn ghost"
 id="refreshBtn">
-
 ↻ Refresh
-
 </button>
-
 
 <button
 class="btn primary"
 id="checkAlertBtn">
-
 Semak Alert Sekarang
-
 </button>
 
 </div>
 
 </div>
-
 
 
 <!-- ==================================================
@@ -1096,9 +695,7 @@ Semak Alert Sekarang
 class="tabpage active"
 id="page-dashboard">
 
-
 <div class="cards">
-
 
 <div class="card critical">
 
@@ -1109,13 +706,10 @@ Tindakan Kritikal
 <div
 class="metric"
 id="mCritical">
-
 0
-
 </div>
 
 </div>
-
 
 
 <div class="card warning">
@@ -1127,13 +721,10 @@ Amaran
 <div
 class="metric"
 id="mWarning">
-
 0
-
 </div>
 
 </div>
-
 
 
 <div class="card">
@@ -1145,13 +736,10 @@ Task Selesai
 <div
 class="metric"
 id="mDone">
-
 0
-
 </div>
 
 </div>
-
 
 
 <div class="card normal">
@@ -1163,23 +751,17 @@ SMS Masih Boleh Guna
 <div
 class="metric"
 id="mSmsRemaining">
-
 0
-
 </div>
 
 </div>
 
-
 </div>
-
 
 
 <div class="grid2">
 
-
 <div class="card">
-
 
 <div class="section-title">
 
@@ -1190,26 +772,20 @@ Alert Semasa
 <span
 class="pill critical"
 id="alertCountPill">
-
 0 kritikal
-
 </span>
 
 </div>
-
 
 <div
 class="alerts"
 id="alertsList">
 </div>
 
-
 </div>
 
 
-
 <div class="card">
-
 
 <div class="section-title">
 
@@ -1220,16 +796,12 @@ Baki SMS
 <span
 class="pill normal"
 id="smsStatus">
-
 NORMAL
-
 </span>
 
 </div>
 
-
 <div class="smsbig">
-
 
 <div>
 
@@ -1243,18 +815,13 @@ RM0.00
 
 </div>
 
-
 <div
 class="muted"
 id="smsPct">
-
 0%
-
 </div>
 
-
 </div>
-
 
 <div class="progress">
 
@@ -1265,87 +832,63 @@ id="smsBar">
 
 </div>
 
-
 <div class="smsgrid">
 
-
 <div class="mini">
-
 <span class="label">
 Digunakan
 </span>
-
 <b id="smsUsed">
 0 SMS
 </b>
-
 </div>
 
-
 <div class="mini">
-
 <span class="label">
 Kos digunakan
 </span>
-
 <b id="smsUsedCost">
 RM0.00
 </b>
-
 </div>
 
-
 <div class="mini">
-
 <span class="label">
 Kos / SMS
 </span>
-
 <b id="smsCost">
 RM0.15
 </b>
-
-</div>
-
-
 </div>
 
 </div>
 
 </div>
 
+</div>
 
 
 <div class="grid2">
 
-
 <div class="card">
 
-
 <div class="section-title">
-
 <h2>
 Tugasan Perlu Perhatian
 </h2>
-
 </div>
-
 
 <div class="tablewrap">
 
 <table>
 
 <thead>
-
 <tr>
-
 <th>Tugasan</th>
 <th>Deadline</th>
 <th>Status</th>
 <th>PIC</th>
-
 </tr>
-
 </thead>
 
 <tbody id="dashTasks">
@@ -1358,34 +901,25 @@ Tugasan Perlu Perhatian
 </div>
 
 
-
 <div class="card">
 
-
 <div class="section-title">
-
 <h2>
 Renewal Akan Datang
 </h2>
-
 </div>
-
 
 <div class="tablewrap">
 
 <table>
 
 <thead>
-
 <tr>
-
 <th>Langganan</th>
 <th>Tamat</th>
 <th>Status</th>
 <th>Kitaran</th>
-
 </tr>
-
 </thead>
 
 <tbody id="dashSubs">
@@ -1397,11 +931,9 @@ Renewal Akan Datang
 
 </div>
 
-
 </div>
 
 </section>
-
 
 
 <!-- ==================================================
@@ -1412,176 +944,107 @@ Renewal Akan Datang
 class="tabpage"
 id="page-tasks">
 
-
 <div class="forms">
-
 
 <div class="card">
 
-
 <div class="section-title">
-
 <h2>
 Tambah Tugasan
 </h2>
-
 </div>
-
 
 <form
 class="form"
 id="taskForm">
 
-
 <div class="field">
-
 <label>
 Nama tugasan
 </label>
-
 <input
 name="task"
 required
 placeholder="Contoh: Sediakan kenyataan media">
-
 </div>
-
-
 
 <div class="form-row">
 
-
 <div class="field">
-
 <label>
 Deadline
 </label>
-
 <input
 name="deadline"
 type="date"
 required>
-
 </div>
 
-
 <div class="field">
-
 <label>
 Priority
 </label>
-
 <select name="priority">
-
-<option>
-Normal
-</option>
-
-<option>
-Tinggi
-</option>
-
-<option>
-Urgent
-</option>
-
+<option>Normal</option>
+<option>Tinggi</option>
+<option>Urgent</option>
 </select>
-
 </div>
 
-
 </div>
-
-
 
 <div class="form-row">
 
-
 <div class="field">
-
 <label>
 Status
 </label>
-
 <select name="status">
-
-<option>
-Belum Mula
-</option>
-
-<option>
-Dalam Proses
-</option>
-
-<option>
-Menunggu
-</option>
-
-<option>
-Selesai
-</option>
-
+<option>Belum Mula</option>
+<option>Dalam Proses</option>
+<option>Menunggu</option>
+<option>Selesai</option>
 </select>
-
 </div>
 
-
 <div class="field">
-
 <label>
 PIC
 </label>
-
 <input
 name="pic"
 placeholder="Nama PIC">
-
 </div>
 
 </div>
-
-
 
 <div class="field">
-
 <label>
 Tindakan seterusnya
 </label>
-
 <input
 name="nextAction"
 placeholder="Contoh: Dapatkan kelulusan">
-
 </div>
 
-
-
 <div class="field">
-
 <label>
 Nota
 </label>
-
 <textarea
 name="notes">
 </textarea>
-
 </div>
-
 
 <button
 class="btn primary"
 type="submit">
-
 Simpan Tugasan
-
 </button>
-
 
 </form>
 
 </div>
-
 
 
 <div class="card">
@@ -1610,34 +1073,25 @@ dimasukkan ke Google Calendar.
 
 </div>
 
-
 </div>
-
 
 
 <div
 class="card"
 style="margin-top:16px">
 
-
 <div class="section-title">
-
 <h2>
 Senarai Tugasan
 </h2>
-
 </div>
 
-
 <div class="tablewrap">
-
 
 <table>
 
 <thead>
-
 <tr>
-
 <th>Tugasan</th>
 <th>Deadline</th>
 <th>Priority</th>
@@ -1645,15 +1099,11 @@ Senarai Tugasan
 <th>Tindakan</th>
 <th>PIC</th>
 <th>Aksi</th>
-
 </tr>
-
 </thead>
-
 
 <tbody id="taskRows">
 </tbody>
-
 
 </table>
 
@@ -1664,7 +1114,6 @@ Senarai Tugasan
 </section>
 
 
-
 <!-- ==================================================
      SUBSCRIPTION
 ================================================== -->
@@ -1673,178 +1122,120 @@ Senarai Tugasan
 class="tabpage"
 id="page-subscriptions">
 
-
 <div class="forms">
-
 
 <div class="card">
 
-
 <div class="section-title">
-
 <h2>
 Tambah Langganan / Renewal
 </h2>
-
 </div>
-
 
 <form
 class="form"
 id="subForm">
 
-
 <div class="field">
-
 <label>
 Nama langganan
 </label>
-
 <input
 name="subscription"
 required
 placeholder="Contoh: Adobe Creative Cloud">
-
 </div>
-
-
 
 <div class="form-row">
 
-
 <div class="field">
-
 <label>
 Vendor
 </label>
-
 <input name="vendor">
-
 </div>
 
-
 <div class="field">
-
 <label>
 PIC
 </label>
-
 <input name="pic">
-
 </div>
 
-
 </div>
-
-
 
 <div class="form-row">
 
-
 <div class="field">
-
 <label>
 Tarikh mula
 </label>
-
 <input
 name="startDate"
 type="date">
-
 </div>
 
-
 <div class="field">
-
 <label>
 Tarikh tamat
 </label>
-
 <input
 name="expiryDate"
 type="date"
 required>
-
 </div>
 
-
 </div>
-
-
 
 <div class="form-row">
 
-
 <div class="field">
-
 <label>
 Kitaran renewal
 </label>
-
 <select name="cycleYears">
-
 <option value="1">
 1 tahun
 </option>
-
 <option value="2">
 2 tahun
 </option>
-
 <option value="3">
 3 tahun
 </option>
-
 </select>
-
 </div>
 
-
-
 <div class="field">
-
 <label>
 Kos renewal (RM)
 </label>
-
 <input
 name="cost"
 type="number"
 step="0.01"
 min="0">
-
 </div>
 
-
 </div>
-
-
 
 <div class="field">
-
 <label>
 Nota
 </label>
-
 <textarea name="notes">
 </textarea>
-
 </div>
-
 
 <button
 class="btn primary"
 type="submit">
-
 Simpan Langganan
-
 </button>
-
 
 </form>
 
 </div>
-
 
 
 <div class="card">
@@ -1877,33 +1268,25 @@ langganan diperbaharui.
 
 </div>
 
-
 </div>
-
 
 
 <div
 class="card"
 style="margin-top:16px">
 
-
 <div class="section-title">
-
 <h2>
 Senarai Langganan
 </h2>
-
 </div>
-
 
 <div class="tablewrap">
 
 <table>
 
 <thead>
-
 <tr>
-
 <th>Langganan</th>
 <th>Vendor</th>
 <th>Tamat</th>
@@ -1911,15 +1294,11 @@ Senarai Langganan
 <th>Kos</th>
 <th>Status</th>
 <th>Aksi</th>
-
 </tr>
-
 </thead>
-
 
 <tbody id="subRows">
 </tbody>
-
 
 </table>
 
@@ -1928,7 +1307,6 @@ Senarai Langganan
 </div>
 
 </section>
-
 
 
 <!-- ==================================================
@@ -1939,132 +1317,99 @@ Senarai Langganan
 class="tabpage"
 id="page-sms">
 
-
 <div class="cards">
 
-
 <div class="card">
-
 <span class="label">
-Baki Asal
+Peruntukan / Baki Asal
 </span>
-
 <div
 class="metric"
 id="smsStart2">
-
-RM4,940.22
-
+RM0.00
 </div>
-
 </div>
-
-
 
 <div class="card">
-
 <span class="label">
 SMS Digunakan
 </span>
-
 <div
 class="metric"
 id="smsUsed2">
-
 0
-
 </div>
-
 </div>
-
-
 
 <div class="card normal">
-
 <span class="label">
 SMS Tinggal
 </span>
-
 <div
 class="metric"
 id="smsRemain2">
-
 0
-
 </div>
-
 </div>
-
-
 
 <div class="card">
-
 <span class="label">
 Baki RM
 </span>
-
 <div
 class="metric"
 id="smsBalance2">
-
 RM0.00
-
+</div>
 </div>
 
 </div>
-
-
-</div>
-
 
 
 <div class="forms">
 
-
 <div class="card">
 
-
 <div class="section-title">
-
 <h2>
 Masukkan Jumlah SMS Semasa
 </h2>
-
 </div>
-
 
 <form
 class="form"
 id="smsTotalForm">
 
-
 <div class="field">
-
 <label>
 Jumlah SMS telah digunakan setakat ini
 </label>
-
 <input
 name="total"
 type="number"
 min="0"
 step="1"
 required>
-
 </div>
-
 
 <button
 class="btn primary"
 type="submit">
-
 Tetapkan Jumlah
-
 </button>
 
+<button
+class="btn danger"
+type="button"
+id="resetSmsBtn">
+↺ Reset ke Baki / Peruntukan Asal
+</button>
+
+<p class="muted">
+Reset akan menetapkan SMS digunakan kepada 0 dan mengosongkan log penggunaan SMS. Nilai peruntukan dan harga SMS dalam Tetapan tidak akan dipadam.
+</p>
+
 </form>
-
-
 
 <hr
 style="
@@ -2073,218 +1418,161 @@ border-top:1px solid var(--line);
 margin:18px 0;
 ">
 
-
-
 <div class="section-title">
-
 <h2>
 Tambah Penggunaan Kempen
 </h2>
-
 </div>
-
-
 
 <form
 class="form"
 id="smsUsageForm">
 
-
 <div class="form-row">
 
-
 <div class="field">
-
 <label>
 Tarikh
 </label>
-
 <input
 name="date"
-type="date">
-
+type="date"
+required>
 </div>
 
-
 <div class="field">
-
 <label>
 Jumlah SMS
 </label>
-
 <input
 name="smsSent"
 type="number"
 min="1"
 step="1"
 required>
-
 </div>
 
-
 </div>
-
 
 <div class="field">
-
 <label>
-Program / Kempen
+Program / Kempen *
 </label>
-
-<input name="campaign">
-
+<input
+name="campaign"
+required
+placeholder="Contoh: Hebahan Program Hari Kebangsaan">
 </div>
-
 
 <div class="field">
-
 <label>
-Nota
+Tujuan / Sebab Penggunaan SMS *
 </label>
-
-<input name="notes">
-
+<textarea
+name="notes"
+required
+placeholder="Contoh: SMS jemputan kepada peserta program">
+</textarea>
 </div>
-
 
 <button
 class="btn dark"
 type="submit">
-
 Tambah Penggunaan
-
 </button>
 
 </form>
 
-
 </div>
-
 
 
 <div class="card">
 
-
 <div class="section-title">
-
 <h2>
 SMS Campaign Planner
 </h2>
-
 </div>
 
-
 <div class="field">
-
 <label>
 Berapa SMS dirancang?
 </label>
-
 <input
 id="plannedSms"
 type="number"
 min="0"
 step="1"
 placeholder="Contoh: 8000">
-
 </div>
-
-
 
 <div class="planner-result">
 
-
 <div>
-
 <span class="label">
 Kos kempen
 </span>
-
 <b id="planCost">
 RM0.00
 </b>
-
 </div>
 
-
 <div>
-
 <span class="label">
 Baki selepas
 </span>
-
 <b id="planBalance">
 RM0.00
 </b>
-
 </div>
 
-
 <div>
-
 <span class="label">
 SMS selepas
 </span>
-
 <b id="planRemaining">
 0
 </b>
-
 </div>
 
-
 </div>
-
 
 <div
 class="statusline"
 id="planStatus">
 </div>
 
-
 </div>
 
-
 </div>
-
 
 
 <div
 class="card"
 style="margin-top:16px">
 
-
 <div class="section-title">
-
 <h2>
 Log Penggunaan SMS
 </h2>
-
 </div>
-
 
 <div class="tablewrap">
 
 <table>
 
 <thead>
-
 <tr>
-
 <th>Tarikh</th>
 <th>Kempen</th>
 <th>SMS</th>
 <th>Kos</th>
-<th>Nota</th>
-
+<th>Tujuan / Sebab</th>
 </tr>
-
 </thead>
-
 
 <tbody id="smsLogRows">
 </tbody>
-
 
 </table>
 
@@ -2294,11 +1582,9 @@ Log Penggunaan SMS
 
 </section>
 
-
 </main>
 
 </div>
-
 
 
 <!-- ==================================================
@@ -2309,92 +1595,149 @@ Log Penggunaan SMS
 class="modal hidden"
 id="configModal">
 
-
 <div class="modalbox">
-
 
 <h2>
 Tetapan Sambungan
 </h2>
-
 
 <p class="muted">
 
 Masukkan Apps Script
 Web App URL yang
 berakhir dengan
-
 <b>/exec</b>
-
 dan API token daripada
 fungsi
-
 <b>getSetupInfo()</b>.
 
 </p>
 
-
-
 <div class="form">
 
-
 <div class="field">
-
 <label>
 Apps Script Web App URL
 </label>
-
 <input
 id="apiUrl"
 placeholder="https://script.google.com/macros/s/...../exec">
-
 </div>
 
-
 <div class="field">
-
 <label>
 API Token
 </label>
-
 <input
 id="apiToken"
 type="password"
 placeholder="API token">
-
 </div>
 
-
 <div class="actions">
-
 
 <button
 class="btn primary"
 id="saveConfig">
-
-Simpan & Sambung
-
+Simpan Sambungan
 </button>
-
 
 <button
 class="btn ghost"
 id="closeConfig">
-
 Tutup
-
 </button>
 
-
-</div>
-
-
 </div>
 
 </div>
 
+
+<hr
+style="
+border:0;
+border-top:1px solid var(--line);
+margin:24px 0;
+">
+
+<h2>
+Tetapan SMS
+</h2>
+
+<p class="muted">
+
+Tetapkan jumlah peruntukan kredit SMS dan harga semasa bagi satu SMS. Sistem akan mengira kapasiti SMS secara automatik.
+
+</p>
+
+<div class="form">
+
+<div class="field">
+<label>
+Jumlah Peruntukan SMS (RM)
+</label>
+<input
+id="smsAllocationSetting"
+type="number"
+min="0.01"
+step="0.01"
+placeholder="Contoh: 4940.22">
 </div>
 
+<div class="field">
+<label>
+Harga 1 SMS (RM)
+</label>
+<input
+id="smsCostSetting"
+type="number"
+min="0.001"
+step="0.001"
+placeholder="Contoh: 0.15">
+</div>
+
+<div
+style="
+background:#f8fafc;
+border:1px solid var(--line);
+padding:12px;
+border-radius:12px;
+">
+
+<span class="label">
+Anggaran Kapasiti SMS
+</span>
+
+<div
+style="
+font-size:25px;
+font-weight:800;
+margin-top:4px;
+"
+id="smsCapacitySetting">
+0 SMS
+</div>
+
+<div
+class="muted"
+id="smsSettingInfo">
+Masukkan jumlah peruntukan dan harga SMS.
+</div>
+
+</div>
+
+<button
+class="btn primary"
+type="button"
+id="saveSmsSettings">
+Simpan Tetapan SMS
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 
 <iframe
@@ -2402,12 +1745,10 @@ name="postTarget"
 class="hidden">
 </iframe>
 
-
 <div
 class="toast hidden"
 id="toast">
 </div>
-
 
 
 <script>
@@ -2417,35 +1758,23 @@ id="toast">
 ========================================================== */
 
 const APP = {
-
   apiUrl:
-
     localStorage.getItem(
       'pkpj_api_url'
     ) || '',
 
-
   token:
-
     localStorage.getItem(
       'pkpj_api_token'
     ) || '',
 
-
-  data:
-    null,
-
-
-  blinkTimer:
-    null
+  data: null,
+  blinkTimer: null
 };
-
-
 
 const $ =
   s =>
   document.querySelector(s);
-
 
 const $$ =
   s =>
@@ -2454,118 +1783,102 @@ const $$ =
   ];
 
 
-
 function money(n){
-
   return (
     'RM' +
-    Number(
-      n || 0
-    )
-    .toLocaleString(
-      'en-MY',
-      {
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-      }
-    )
+    Number(n || 0)
+      .toLocaleString(
+        'en-MY',
+        {
+          minimumFractionDigits:2,
+          maximumFractionDigits:2
+        }
+      )
   );
 }
 
+
+function moneySms(n){
+  return (
+    'RM' +
+    Number(n || 0)
+      .toLocaleString(
+        'en-MY',
+        {
+          minimumFractionDigits:2,
+          maximumFractionDigits:4
+        }
+      )
+  );
+}
 
 
 function num(n){
-
-  return Number(
-    n || 0
-  )
-  .toLocaleString(
-    'en-MY'
-  );
+  return Number(n || 0)
+    .toLocaleString('en-MY');
 }
-
 
 
 function esc(v){
-
-  return String(
-    v ?? ''
-  )
-  .replace(
-    /[&<>'"]/g,
-    c => (
-      {
-        '&':'&amp;',
-        '<':'&lt;',
-        '>':'&gt;',
-        "'":'&#39;',
-        '"':'&quot;'
-      }[c]
-    )
-  );
+  return String(v ?? '')
+    .replace(
+      /[&<>'"]/g,
+      c => (
+        {
+          '&':'&amp;',
+          '<':'&lt;',
+          '>':'&gt;',
+          "'":'&#39;',
+          '"':'&quot;'
+        }[c]
+      )
+    );
 }
-
 
 
 function showToast(
   msg,
   ms = 2600
 ){
-
   const t =
     $('#toast');
 
-
   t.textContent =
     msg;
-
 
   t.classList.remove(
     'hidden'
   );
 
-
   clearTimeout(
     t._tm
   );
 
-
   t._tm =
     setTimeout(
-
       () =>
-
       t.classList.add(
         'hidden'
       ),
-
       ms
     );
 }
-
 
 
 function levelPill(
   level,
   text
 ){
-
   return `
-
   <span
   class="pill ${esc(level)}">
-
   ${esc(text)}
-
   </span>
-
   `;
 }
 
 
-
 function configReady(){
-
   return (
     APP.apiUrl &&
     APP.token
@@ -2578,31 +1891,35 @@ function configReady(){
 ========================================================== */
 
 function openConfig(){
-
   $('#apiUrl').value =
     APP.apiUrl;
-
 
   $('#apiToken').value =
     APP.token;
 
+  if (
+    APP.data &&
+    APP.data.sms
+  ){
+    $('#smsAllocationSetting').value =
+      APP.data.sms.startBalance;
+
+    $('#smsCostSetting').value =
+      APP.data.sms.costPerSms;
+
+    calculateSmsSettingCapacity();
+  }
 
   $('#configModal')
     .classList
-    .remove(
-      'hidden'
-    );
+    .remove('hidden');
 }
 
 
-
 function closeConfig(){
-
   $('#configModal')
     .classList
-    .add(
-      'hidden'
-    );
+    .add('hidden');
 }
 
 
@@ -2611,19 +1928,13 @@ function closeConfig(){
 ========================================================== */
 
 function jsonp(action){
-
   return new Promise(
-
     (
       resolve,
       reject
     ) => {
 
-
-      if (
-        !configReady()
-      ){
-
+      if (!configReady()){
         return reject(
           new Error(
             'Tetapan sambungan belum lengkap.'
@@ -2631,149 +1942,100 @@ function jsonp(action){
         );
       }
 
-
       const cb =
-
         'pkpj_cb_' +
-
         Date.now() +
-
         '_' +
-
         Math.random()
           .toString(36)
           .slice(2);
-
 
       const script =
         document.createElement(
           'script'
         );
 
-
       const timer =
         setTimeout(
-
           () => {
-
             cleanup();
 
             reject(
-
               new Error(
                 'Sambungan timeout. Semak Web App URL / permission.'
               )
             );
           },
-
           15000
         );
 
-
       function cleanup(){
-
-        clearTimeout(
-          timer
-        );
-
+        clearTimeout(timer);
         delete window[cb];
-
         script.remove();
       }
 
-
       window[cb] =
-
         res => {
-
-
           cleanup();
-
 
           if (
             res &&
             res.ok
           ){
-
-            resolve(
-              res
-            );
-          }
-
-          else{
-
+            resolve(res);
+          } else{
             reject(
-
               new Error(
-
                 (
                   res &&
                   res.error
-                )
-
-                ||
-
+                ) ||
                 'Ralat API'
               )
             );
           }
         };
 
-
       const u =
-        new URL(
-          APP.apiUrl
-        );
-
+        new URL(APP.apiUrl);
 
       u.searchParams.set(
         'action',
         action
       );
 
-
       u.searchParams.set(
         'token',
         APP.token
       );
-
 
       u.searchParams.set(
         'callback',
         cb
       );
 
-
       u.searchParams.set(
         '_',
         Date.now()
       );
 
-
       script.onerror =
         () => {
-
-
           cleanup();
 
-
           reject(
-
             new Error(
               'Tidak dapat sambung ke Apps Script.'
             )
           );
         };
 
-
       script.src =
         u.toString();
 
-
       document.head
-        .appendChild(
-          script
-        );
+        .appendChild(script);
     }
   );
 }
@@ -2787,19 +2049,13 @@ function post(
   action,
   payload = {}
 ){
-
   return new Promise(
-
     (
       resolve,
       reject
     ) => {
 
-
-      if (
-        !configReady()
-      ){
-
+      if (!configReady()){
         return reject(
           new Error(
             'Tetapan sambungan belum lengkap.'
@@ -2807,115 +2063,64 @@ function post(
         );
       }
 
-
       const form =
         document.createElement(
           'form'
         );
 
-
       form.method =
         'POST';
-
 
       form.action =
         APP.apiUrl;
 
-
       form.target =
         'postTarget';
-
 
       form.className =
         'hidden';
 
-
       const fields = {
-
-        action:
-          action,
-
-        token:
-          APP.token,
-
+        action: action,
+        token: APP.token,
         payload:
-          JSON.stringify(
-            payload
-          )
+          JSON.stringify(payload)
       };
 
+      Object.entries(fields)
+        .forEach(
+          ([k,v]) => {
+            const i =
+              document.createElement(
+                'input'
+              );
 
-      Object.entries(
-        fields
-      )
-      .forEach(
-        ([k,v]) => {
+            i.name = k;
+            i.value = v;
 
-
-          const i =
-            document.createElement(
-              'input'
-            );
-
-
-          i.name =
-            k;
-
-
-          i.value =
-            v;
-
-
-          form.appendChild(
-            i
-          );
-        }
-      );
-
-
-      document.body
-        .appendChild(
-          form
+            form.appendChild(i);
+          }
         );
 
+      document.body
+        .appendChild(form);
 
       form.submit();
-
-
       form.remove();
 
-
       setTimeout(
-
         async () => {
-
-
           try{
-
-
             const r =
               await jsonp(
                 'dashboard'
               );
 
-
-            resolve(
-              r
-            );
-
+            resolve(r);
+          } catch(e){
+            reject(e);
           }
-
-          catch(e){
-
-
-            reject(
-              e
-            );
-
-          }
-
         },
-
         1300
       );
     }
@@ -2930,55 +2135,37 @@ function post(
 async function loadDashboard(
   silent = false
 ){
-
-  if (
-    !configReady()
-  ){
-
+  if (!configReady()){
     openConfig();
-
     return;
   }
 
-
   try{
-
-
     if (!silent){
-
       $('#lastUpdate')
         .textContent =
         'Memuat data...';
     }
-
 
     const res =
       await jsonp(
         'dashboard'
       );
 
-
     APP.data =
       res.data;
 
-
     renderAll();
 
-  }
-
-  catch(e){
-
-
+  } catch(e){
     $('#lastUpdate')
       .textContent =
       'Ralat sambungan';
-
 
     showToast(
       e.message,
       4500
     );
-
   }
 }
 
@@ -2988,78 +2175,58 @@ async function loadDashboard(
 ========================================================== */
 
 function renderAll(){
-
-
   const d =
     APP.data;
 
-
   if (!d){
-
     return;
   }
 
-
   $('#lastUpdate')
     .textContent =
-
     'Dikemas kini: ' +
     d.now;
 
-
   $('#mCritical')
     .textContent =
-
     d.summary
       .criticalCount;
 
-
   $('#mWarning')
     .textContent =
-
     d.summary
       .warningCount;
 
-
   $('#mDone')
     .textContent =
-
     d.summary
       .taskDone;
 
-
   $('#mSmsRemaining')
     .textContent =
-
     num(
       d.sms.remaining
     );
-
 
   renderAlerts(
     d.alerts
   );
 
-
   renderSms(
     d.sms
   );
-
 
   renderTasks(
     d.tasks
   );
 
-
   renderSubs(
     d.subscriptions
   );
 
-
   renderSmsLogs(
     d.smsLogs
   );
-
 
   $('#openSheet').onclick =
     () =>
@@ -3068,9 +2235,7 @@ function renderAll(){
       '_blank'
     );
 
-
   handleTabAlert(
-
     d.summary
       .criticalCount
   );
@@ -3081,62 +2246,37 @@ function renderAll(){
    ALERT
 ========================================================== */
 
-function renderAlerts(
-  alerts
-){
-
-
+function renderAlerts(alerts){
   $('#alertCountPill')
     .textContent =
-
     (
       alerts.filter(
         a =>
         a.level ===
         'critical'
       ).length
-    )
-
-    +
-
+    ) +
     ' kritikal';
-
 
   const el =
     $('#alertsList');
 
-
-  if (
-    !alerts.length
-  ){
-
-
+  if (!alerts.length){
     el.innerHTML = `
-
     <div class="empty">
-
     ✅ Tiada alert.
     Semua terkawal.
-
     </div>
-
     `;
-
 
     return;
   }
 
-
   el.innerHTML =
-
     alerts
-      .slice(
-        0,
-        8
-      )
+      .slice(0, 8)
       .map(
         a => `
-
         <div
         class="alert ${esc(a.level)}">
 
@@ -3160,20 +2300,15 @@ function renderAlerts(
 
         ${
           levelPill(
-
             a.level,
-
             a.level ===
             'critical'
-
-            ? 'KRITIKAL'
-
-            : 'AMARAN'
+              ? 'KRITIKAL'
+              : 'AMARAN'
           )
         }
 
         </div>
-
         `
       )
       .join('');
@@ -3185,33 +2320,23 @@ function renderAlerts(
 ========================================================== */
 
 function renderSms(s){
-
-
   $('#smsBalance')
     .textContent =
     money(
       s.balanceRm
     );
 
-
   $('#smsPct')
     .textContent =
-
     s.remainingPct +
     '% berbaki';
 
-
   $('#smsUsed')
     .textContent =
-
     num(
       s.used
-    )
-
-    +
-
+    ) +
     ' SMS';
-
 
   $('#smsUsedCost')
     .textContent =
@@ -3219,13 +2344,11 @@ function renderSms(s){
       s.usedCost
     );
 
-
   $('#smsCost')
     .textContent =
-    money(
+    moneySms(
       s.costPerSms
     );
-
 
   $('#smsStart2')
     .textContent =
@@ -3233,13 +2356,11 @@ function renderSms(s){
       s.startBalance
     );
 
-
   $('#smsUsed2')
     .textContent =
     num(
       s.used
     );
-
 
   $('#smsRemain2')
     .textContent =
@@ -3247,74 +2368,46 @@ function renderSms(s){
       s.remaining
     );
 
-
   $('#smsBalance2')
     .textContent =
     money(
       s.balanceRm
     );
 
-
   const st =
     $('#smsStatus');
-
 
   st.className =
     'pill ' +
     s.level;
 
-
   st.textContent =
-
-    s.level ===
-    'critical'
-
-    ? 'KRITIKAL'
-
-    :
-
-    s.level ===
-    'warning'
-
-    ? 'AMARAN'
-
-    : 'NORMAL';
-
+    s.level === 'critical'
+      ? 'KRITIKAL'
+      : s.level === 'warning'
+      ? 'AMARAN'
+      : 'NORMAL';
 
   const bar =
     $('#smsBar');
 
-
   bar.style.width =
-
     Math.max(
-
       0,
-
       Math.min(
         100,
         s.remainingPct
       )
-    )
-
-    +
-
+    ) +
     '%';
 
-
   bar.className =
-
     'bar ' +
-
     (
-      s.level ===
-      'normal'
-
-      ? ''
-
-      : s.level
+      s.level === 'normal'
+        ? ''
+        : s.level
     );
-
 
   calculatePlan();
 }
@@ -3325,212 +2418,138 @@ function renderSms(s){
 ========================================================== */
 
 function renderTasks(rows){
-
-
   const dash =
-
     rows
       .filter(
-
         r =>
-
         r._level ===
-        'critical'
-
-        ||
-
+        'critical' ||
         r._level ===
         'warning'
       )
-      .slice(
-        0,
-        6
-      );
-
+      .slice(0, 6);
 
   $('#dashTasks')
     .innerHTML =
-
     dash.length
+      ?
+      dash.map(
+        r => `
+        <tr>
 
-    ?
+        <td>
+        <b>${esc(r.Task)}</b>
+        </td>
 
-    dash.map(
-      r => `
+        <td>
+        ${esc(r.Deadline)}
+        </td>
 
-      <tr>
+        <td>
+        ${
+          levelPill(
+            r._level,
+            r._level ===
+            'critical'
+              ? 'SEGERA'
+              : 'AMARAN'
+          )
+        }
+        </td>
 
-      <td>
-      <b>${esc(r.Task)}</b>
-      </td>
+        <td>
+        ${esc(r.PIC)}
+        </td>
 
-      <td>
-      ${esc(r.Deadline)}
-      </td>
-
-      <td>
-
-      ${
-        levelPill(
-
-          r._level,
-
-          r._level ===
-          'critical'
-
-          ? 'SEGERA'
-
-          : 'AMARAN'
-        )
-      }
-
-      </td>
-
-      <td>
-      ${esc(r.PIC)}
-      </td>
-
-      </tr>
-
+        </tr>
+        `
+      ).join('')
+      :
       `
-    )
-    .join('')
-
-    :
-
-    `
-
-    <tr>
-
-    <td
-    colspan="4"
-    class="empty">
-
-    Tiada task mendesak.
-
-    </td>
-
-    </tr>
-
-    `;
-
+      <tr>
+      <td
+      colspan="4"
+      class="empty">
+      Tiada task mendesak.
+      </td>
+      </tr>
+      `;
 
   $('#taskRows')
     .innerHTML =
-
     rows.length
+      ?
+      rows.map(
+        r => `
+        <tr>
 
-    ?
+        <td>
+        <b>
+        ${esc(r.Task)}
+        </b>
 
-    rows.map(
-      r => `
+        <div class="muted">
+        ${esc(r.Notes)}
+        </div>
+        </td>
 
-      <tr>
+        <td>
+        ${esc(r.Deadline)}
+        </td>
 
-      <td>
+        <td>
+        ${esc(r.Priority)}
+        </td>
 
-      <b>
-      ${esc(r.Task)}
-      </b>
+        <td>
+        ${
+          levelPill(
+            r._level,
+            r.Status ||
+            r._level
+          )
+        }
+        </td>
 
-      <div class="muted">
-      ${esc(r.Notes)}
-      </div>
+        <td>
+        ${esc(r.NextAction)}
+        </td>
 
-      </td>
+        <td>
+        ${esc(r.PIC)}
+        </td>
 
+        <td>
+        ${
+          String(r.Status)
+            .toLowerCase() ===
+          'selesai'
+          ?
+          '—'
+          :
+          `
+          <button
+          class="btn ghost"
+          onclick="markTaskDone('${esc(r.ID)}')">
+          Selesai
+          </button>
+          `
+        }
+        </td>
 
-      <td>
-      ${esc(r.Deadline)}
-      </td>
-
-
-      <td>
-      ${esc(r.Priority)}
-      </td>
-
-
-      <td>
-
-      ${
-        levelPill(
-
-          r._level,
-
-          r.Status ||
-          r._level
-        )
-      }
-
-      </td>
-
-
-      <td>
-      ${esc(r.NextAction)}
-      </td>
-
-
-      <td>
-      ${esc(r.PIC)}
-      </td>
-
-
-      <td>
-
-      ${
-        String(
-          r.Status
-        )
-        .toLowerCase()
-
-        ===
-
-        'selesai'
-
-        ?
-
-        '—'
-
-        :
-
+        </tr>
         `
-
-        <button
-        class="btn ghost"
-        onclick="markTaskDone('${esc(r.ID)}')">
-
-        Selesai
-
-        </button>
-
-        `
-      }
-
-      </td>
-
-      </tr>
-
+      ).join('')
+      :
       `
-    )
-    .join('')
-
-    :
-
-    `
-
-    <tr>
-
-    <td
-    colspan="7"
-    class="empty">
-
-    Belum ada tugasan.
-
-    </td>
-
-    </tr>
-
-    `;
+      <tr>
+      <td
+      colspan="7"
+      class="empty">
+      Belum ada tugasan.
+      </td>
+      </tr>
+      `;
 }
 
 
@@ -3539,204 +2558,135 @@ function renderTasks(rows){
 ========================================================== */
 
 function renderSubs(rows){
-
-
   const dash =
-
     rows
       .filter(
-
         r =>
-
         r._level ===
-        'critical'
-
-        ||
-
+        'critical' ||
         r._level ===
         'warning'
       )
-      .slice(
-        0,
-        6
-      );
-
+      .slice(0, 6);
 
   $('#dashSubs')
     .innerHTML =
-
     dash.length
+      ?
+      dash.map(
+        r => `
+        <tr>
 
-    ?
+        <td>
+        <b>
+        ${esc(r.Subscription)}
+        </b>
+        </td>
 
-    dash.map(
-      r => `
+        <td>
+        ${esc(r.ExpiryDate)}
+        </td>
 
-      <tr>
+        <td>
+        ${
+          levelPill(
+            r._level,
+            r._level ===
+            'critical'
+              ? 'TINDAKAN'
+              : 'AMARAN'
+          )
+        }
+        </td>
 
-      <td>
-      <b>
-      ${esc(r.Subscription)}
-      </b>
-      </td>
+        <td>
+        ${esc(r.CycleYears)} tahun
+        </td>
 
-      <td>
-      ${esc(r.ExpiryDate)}
-      </td>
-
-      <td>
-
-      ${
-        levelPill(
-
-          r._level,
-
-          r._level ===
-          'critical'
-
-          ? 'TINDAKAN'
-
-          : 'AMARAN'
-        )
-      }
-
-      </td>
-
-      <td>
-      ${esc(r.CycleYears)} tahun
-      </td>
-
-      </tr>
-
+        </tr>
+        `
+      ).join('')
+      :
       `
-    )
-    .join('')
-
-    :
-
-    `
-
-    <tr>
-
-    <td
-    colspan="4"
-    class="empty">
-
-    Tiada renewal mendesak.
-
-    </td>
-
-    </tr>
-
-    `;
-
+      <tr>
+      <td
+      colspan="4"
+      class="empty">
+      Tiada renewal mendesak.
+      </td>
+      </tr>
+      `;
 
   $('#subRows')
     .innerHTML =
-
     rows.length
+      ?
+      rows.map(
+        r => `
+        <tr>
 
-    ?
+        <td>
+        <b>
+        ${esc(r.Subscription)}
+        </b>
 
-    rows.map(
-      r => `
+        <div class="muted">
+        ${esc(r.PIC)}
+        </div>
+        </td>
 
-      <tr>
+        <td>
+        ${esc(r.Vendor)}
+        </td>
 
-      <td>
+        <td>
+        ${esc(r.ExpiryDate)}
+        </td>
 
-      <b>
-      ${esc(r.Subscription)}
-      </b>
+        <td>
+        ${esc(r.CycleYears)} tahun
+        </td>
 
-      <div class="muted">
-      ${esc(r.PIC)}
-      </div>
+        <td>
+        ${money(r.Cost)}
+        </td>
 
-      </td>
+        <td>
+        ${
+          levelPill(
+            r._level,
+            r._level ===
+            'critical'
+              ? 'KRITIKAL'
+              : r._level ===
+                'warning'
+              ? 'AMARAN'
+              : 'AKTIF'
+          )
+        }
+        </td>
 
+        <td>
+        <button
+        class="btn ghost"
+        onclick="renewSub('${esc(r.ID)}')">
+        Renew
+        </button>
+        </td>
 
-      <td>
-      ${esc(r.Vendor)}
-      </td>
-
-
-      <td>
-      ${esc(r.ExpiryDate)}
-      </td>
-
-
-      <td>
-      ${esc(r.CycleYears)} tahun
-      </td>
-
-
-      <td>
-      ${money(r.Cost)}
-      </td>
-
-
-      <td>
-
-      ${
-        levelPill(
-
-          r._level,
-
-          r._level ===
-          'critical'
-
-          ? 'KRITIKAL'
-
-          :
-
-          r._level ===
-          'warning'
-
-          ? 'AMARAN'
-
-          : 'AKTIF'
-        )
-      }
-
-      </td>
-
-
-      <td>
-
-      <button
-      class="btn ghost"
-      onclick="renewSub('${esc(r.ID)}')">
-
-      Renew
-
-      </button>
-
-      </td>
-
-      </tr>
-
+        </tr>
+        `
+      ).join('')
+      :
       `
-    )
-    .join('')
-
-    :
-
-    `
-
-    <tr>
-
-    <td
-    colspan="7"
-    class="empty">
-
-    Belum ada langganan.
-
-    </td>
-
-    </tr>
-
-    `;
+      <tr>
+      <td
+      colspan="7"
+      class="empty">
+      Belum ada langganan.
+      </td>
+      </tr>
+      `;
 }
 
 
@@ -3745,63 +2695,47 @@ function renderSubs(rows){
 ========================================================== */
 
 function renderSmsLogs(rows){
-
-
   $('#smsLogRows')
     .innerHTML =
-
     rows.length
+      ?
+      rows.map(
+        r => `
+        <tr>
 
-    ?
+        <td>
+        ${esc(r.Date)}
+        </td>
 
-    rows.map(
-      r => `
+        <td>
+        ${esc(r.Campaign)}
+        </td>
 
-      <tr>
+        <td>
+        ${num(r.SMSSent)}
+        </td>
 
-      <td>
-      ${esc(r.Date)}
-      </td>
+        <td>
+        ${money(r.Cost)}
+        </td>
 
-      <td>
-      ${esc(r.Campaign)}
-      </td>
+        <td>
+        ${esc(r.Notes)}
+        </td>
 
-      <td>
-      ${num(r.SMSSent)}
-      </td>
-
-      <td>
-      ${money(r.Cost)}
-      </td>
-
-      <td>
-      ${esc(r.Notes)}
-      </td>
-
-      </tr>
-
+        </tr>
+        `
+      ).join('')
+      :
       `
-    )
-    .join('')
-
-    :
-
-    `
-
-    <tr>
-
-    <td
-    colspan="5"
-    class="empty">
-
-    Belum ada log penggunaan.
-
-    </td>
-
-    </tr>
-
-    `;
+      <tr>
+      <td
+      colspan="5"
+      class="empty">
+      Belum ada log penggunaan.
+      </td>
+      </tr>
+      `;
 }
 
 
@@ -3810,132 +2744,85 @@ function renderSmsLogs(rows){
 ========================================================== */
 
 function calculatePlan(){
-
-
-  if (
-    !APP.data
-  ){
-
+  if (!APP.data){
     return;
   }
-
 
   const s =
     APP.data.sms;
 
-
   const planned =
-
     Math.max(
-
       0,
-
       Number(
         $('#plannedSms')
-          .value ||
-        0
+          .value || 0
       )
     );
 
-
   const cost =
-
     planned *
     s.costPerSms;
 
-
   const bal =
-
     Math.max(
-
       0,
-
       s.balanceRm -
       cost
     );
 
-
   const remain =
-
     Math.max(
-
       0,
-
       Math.floor(
-
         bal /
         s.costPerSms
       )
     );
 
-
   const pct =
-
     s.capacity
-
-    ?
-
-    remain /
-    s.capacity *
-    100
-
-    :
-
-    0;
-
+      ?
+      remain /
+      s.capacity *
+      100
+      :
+      0;
 
   $('#planCost')
     .textContent =
     money(cost);
 
-
   $('#planBalance')
     .textContent =
     money(bal);
-
 
   $('#planRemaining')
     .textContent =
     num(remain);
 
-
   let msg =
-
     '🟢 Baki masih terkawal selepas kempen.';
-
 
   if (
     planned >
     s.remaining
   ){
-
     msg =
-
       '🚨 Baki SMS tidak mencukupi untuk kempen ini.';
-  }
-
-
-  else if (
+  } else if (
     pct <=
     s.criticalPct
   ){
-
     msg =
-
       '🔴 Selepas kempen, baki masuk tahap KRITIKAL.';
-  }
-
-
-  else if (
+  } else if (
     pct <=
     s.warningPct
   ){
-
     msg =
-
       '🟠 Selepas kempen, baki masuk tahap AMARAN.';
   }
-
 
   $('#planStatus')
     .textContent =
@@ -3944,91 +2831,106 @@ function calculatePlan(){
 
 
 /* ==========================================================
+   SMS SETTINGS CALCULATOR
+========================================================== */
+
+function calculateSmsSettingCapacity(){
+  const allocation =
+    Math.max(
+      0,
+      Number(
+        $('#smsAllocationSetting')
+          .value || 0
+      )
+    );
+
+  const cost =
+    Math.max(
+      0,
+      Number(
+        $('#smsCostSetting')
+          .value || 0
+      )
+    );
+
+  const capacity =
+    cost > 0
+      ? Math.floor(
+          allocation / cost
+        )
+      : 0;
+
+  $('#smsCapacitySetting')
+    .textContent =
+    num(capacity) +
+    ' SMS';
+
+  if (
+    allocation > 0 &&
+    cost > 0
+  ){
+    $('#smsSettingInfo')
+      .textContent =
+      money(allocation) +
+      ' ÷ ' +
+      moneySms(cost) +
+      ' = ' +
+      num(capacity) +
+      ' SMS';
+  } else{
+    $('#smsSettingInfo')
+      .textContent =
+      'Masukkan jumlah peruntukan dan harga SMS.';
+  }
+}
+
+
+/* ==========================================================
    TAB BLINK
 ========================================================== */
 
-function handleTabAlert(
-  count
-){
-
-
+function handleTabAlert(count){
   clearInterval(
     APP.blinkTimer
   );
 
-
-  APP.blinkTimer =
-    null;
-
+  APP.blinkTimer = null;
 
   if (!count){
-
-
     document.title =
       '🟢 PKPJ Work Monitor';
 
-
-    setFavicon(
-      '🟢'
-    );
-
-
+    setFavicon('🟢');
     return;
   }
 
-
   let n = 0;
 
-
   APP.blinkTimer =
-
     setInterval(
-
       () => {
-
-
         document.title =
-
           n % 2 === 0
-
-          ?
-
-          `🔴 (${count}) TINDAKAN SEGERA`
-
-          :
-
-          'PKPJ Work Monitor';
-
+            ?
+            `🔴 (${count}) TINDAKAN SEGERA`
+            :
+            'PKPJ Work Monitor';
 
         n++;
 
-
-        if (
-          n >= 8
-        ){
-
-
+        if (n >= 8){
           clearInterval(
             APP.blinkTimer
           );
 
-
-          APP.blinkTimer =
-            null;
-
+          APP.blinkTimer = null;
 
           document.title =
-
             `🔴 (${count}) TINDAKAN SEGERA`;
 
-
-          setFavicon(
-            '🔴'
-          );
+          setFavicon('🔴');
         }
-
       },
-
       650
     );
 }
@@ -4038,44 +2940,28 @@ function handleTabAlert(
    FAVICON STATUS
 ========================================================== */
 
-function setFavicon(
-  emoji
-){
-
-
+function setFavicon(emoji){
   let l =
-
     document.querySelector(
       "link[rel~='icon']"
     );
 
-
   if (!l){
-
-
     l =
       document.createElement(
         'link'
       );
 
-
     l.rel =
       'icon';
 
-
     document.head
-      .appendChild(
-        l
-      );
+      .appendChild(l);
   }
 
-
   l.href =
-
     'data:image/svg+xml,' +
-
     encodeURIComponent(
-
       `<svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 100">
@@ -4083,9 +2969,7 @@ function setFavicon(
       <text
       y=".9em"
       font-size="90">
-
       ${emoji}
-
       </text>
 
       </svg>`
@@ -4102,46 +2986,32 @@ async function runPost(
   payload,
   msg
 ){
-
-
   try{
-
-
     showToast(
       'Menyimpan...'
     );
 
-
     const r =
       await post(
-
         action,
-
         payload
       );
-
 
     APP.data =
       r.data;
 
-
     renderAll();
 
+    showToast(msg);
 
-    showToast(
-      msg
-    );
-
-  }
-
-  catch(e){
-
-
+    return r;
+  } catch(e){
     showToast(
       e.message,
       4500
     );
 
+    throw e;
   }
 }
 
@@ -4151,18 +3021,13 @@ async function runPost(
 ========================================================== */
 
 window.markTaskDone =
-
   id =>
-
   runPost(
-
     'updateTaskStatus',
-
     {
       id:id,
       status:'Selesai'
     },
-
     'Task ditanda selesai.'
   );
 
@@ -4172,27 +3037,17 @@ window.markTaskDone =
 ========================================================== */
 
 window.renewSub =
-
   id => {
-
-
     if (
-
       confirm(
-
         'Tandakan langganan ini sebagai renewed dan kira tarikh tamat seterusnya?'
       )
     ){
-
-
       runPost(
-
         'renewSubscription',
-
         {
           id:id
         },
-
         'Renewal dikemas kini.'
       );
     }
@@ -4205,38 +3060,26 @@ window.renewSub =
 
 $('#taskForm')
   .addEventListener(
-
     'submit',
-
-    e => {
-
-
+    async e => {
       e.preventDefault();
 
-
       const d =
-
         Object.fromEntries(
-
           new FormData(
             e.target
           )
         );
 
+      try{
+        await runPost(
+          'addTask',
+          d,
+          'Tugasan disimpan.'
+        );
 
-      runPost(
-
-        'addTask',
-
-        d,
-
-        'Tugasan disimpan.'
-      )
-      .then(
-
-        () =>
-        e.target.reset()
-      );
+        e.target.reset();
+      } catch (_) {}
     }
   );
 
@@ -4247,38 +3090,26 @@ $('#taskForm')
 
 $('#subForm')
   .addEventListener(
-
     'submit',
-
-    e => {
-
-
+    async e => {
       e.preventDefault();
 
-
       const d =
-
         Object.fromEntries(
-
           new FormData(
             e.target
           )
         );
 
+      try{
+        await runPost(
+          'addSubscription',
+          d,
+          'Langganan disimpan.'
+        );
 
-      runPost(
-
-        'addSubscription',
-
-        d,
-
-        'Langganan disimpan.'
-      )
-      .then(
-
-        () =>
-        e.target.reset()
-      );
+        e.target.reset();
+      } catch (_) {}
     }
   );
 
@@ -4289,35 +3120,64 @@ $('#subForm')
 
 $('#smsTotalForm')
   .addEventListener(
-
     'submit',
-
-    e => {
-
-
+    async e => {
       e.preventDefault();
 
-
       const d =
-
         Object.fromEntries(
-
           new FormData(
             e.target
           )
         );
 
-
-      runPost(
-
-        'setSmsUsedTotal',
-
-        d,
-
-        'Jumlah SMS semasa dikemas kini.'
-      );
+      try{
+        await runPost(
+          'setSmsUsedTotal',
+          d,
+          'Jumlah SMS semasa dikemas kini.'
+        );
+      } catch (_) {}
     }
   );
+
+
+/* ==========================================================
+   RESET SMS
+========================================================== */
+
+$('#resetSmsBtn').onclick =
+  async () => {
+    const confirmReset =
+      confirm(
+        'Reset semua penggunaan SMS?\n\n' +
+        'Jumlah SMS digunakan akan kembali kepada 0.\n' +
+        'Log penggunaan SMS juga akan dikosongkan.\n\n' +
+        'Peruntukan dan harga 1 SMS dalam Tetapan akan dikekalkan.'
+      );
+
+    if (!confirmReset){
+      return;
+    }
+
+    const secondConfirm =
+      confirm(
+        'Pengesahan terakhir:\n\n' +
+        'Adakah anda pasti mahu reset data penggunaan SMS?'
+      );
+
+    if (!secondConfirm){
+      return;
+    }
+
+    try{
+      await runPost(
+        'resetSms',
+        {},
+        'Penggunaan SMS telah direset.'
+      );
+    } catch (_) {}
+  };
 
 
 /* ==========================================================
@@ -4326,38 +3186,46 @@ $('#smsTotalForm')
 
 $('#smsUsageForm')
   .addEventListener(
-
     'submit',
-
-    e => {
-
-
+    async e => {
       e.preventDefault();
 
-
       const d =
-
         Object.fromEntries(
-
           new FormData(
             e.target
           )
         );
 
+      if (
+        !String(
+          d.campaign || ''
+        ).trim()
+      ){
+        return showToast(
+          'Program / Kempen wajib diisi.'
+        );
+      }
 
-      runPost(
+      if (
+        !String(
+          d.notes || ''
+        ).trim()
+      ){
+        return showToast(
+          'Tujuan / Sebab penggunaan SMS wajib diisi.'
+        );
+      }
 
-        'addSmsUsage',
+      try{
+        await runPost(
+          'addSmsUsage',
+          d,
+          'Penggunaan SMS ditambah.'
+        );
 
-        d,
-
-        'Penggunaan SMS ditambah.'
-      )
-      .then(
-
-        () =>
-        e.target.reset()
-      );
+        e.target.reset();
+      } catch (_) {}
     }
   );
 
@@ -4368,11 +3236,91 @@ $('#smsUsageForm')
 
 $('#plannedSms')
   .addEventListener(
-
     'input',
-
     calculatePlan
   );
+
+
+/* ==========================================================
+   SMS SETTINGS INPUT
+========================================================== */
+
+$('#smsAllocationSetting')
+  .addEventListener(
+    'input',
+    calculateSmsSettingCapacity
+  );
+
+$('#smsCostSetting')
+  .addEventListener(
+    'input',
+    calculateSmsSettingCapacity
+  );
+
+
+/* ==========================================================
+   SAVE SMS SETTINGS
+========================================================== */
+
+$('#saveSmsSettings').onclick =
+  async () => {
+    const allocation =
+      Number(
+        $('#smsAllocationSetting')
+          .value || 0
+      );
+
+    const costPerSms =
+      Number(
+        $('#smsCostSetting')
+          .value || 0
+      );
+
+    if (
+      allocation <= 0
+    ){
+      return showToast(
+        'Masukkan jumlah peruntukan SMS yang sah.'
+      );
+    }
+
+    if (
+      costPerSms <= 0
+    ){
+      return showToast(
+        'Masukkan harga bagi 1 SMS yang sah.'
+      );
+    }
+
+    const ok =
+      confirm(
+        'Simpan tetapan SMS baru?\n\n' +
+        'Peruntukan: ' +
+        money(allocation) +
+        '\n' +
+        'Harga 1 SMS: ' +
+        moneySms(costPerSms)
+      );
+
+    if (!ok){
+      return;
+    }
+
+    try{
+      await runPost(
+        'updateSmsSettings',
+        {
+          allocation:
+            allocation,
+          costPerSms:
+            costPerSms
+        },
+        'Tetapan SMS berjaya dikemas kini.'
+      );
+
+      calculateSmsSettingCapacity();
+    } catch (_) {}
+  };
 
 
 /* ==========================================================
@@ -4380,7 +3328,6 @@ $('#plannedSms')
 ========================================================== */
 
 $('#refreshBtn').onclick =
-
   () =>
   loadDashboard();
 
@@ -4390,15 +3337,10 @@ $('#refreshBtn').onclick =
 ========================================================== */
 
 $('#checkAlertBtn').onclick =
-
   () =>
-
   runPost(
-
     'checkAlertsNow',
-
     {},
-
     'Semakan alert dijalankan.'
   );
 
@@ -4410,69 +3352,44 @@ $('#checkAlertBtn').onclick =
 $('#openConfig').onclick =
   openConfig;
 
-
 $('#closeConfig').onclick =
   closeConfig;
 
-
 $('#saveConfig').onclick =
-
   () => {
-
-
     const u =
-
       $('#apiUrl')
         .value
         .trim();
 
-
     const t =
-
       $('#apiToken')
         .value
         .trim();
-
 
     if (
       !u ||
       !t
     ){
-
-
       return showToast(
         'Masukkan URL dan token.'
       );
     }
 
-
-    APP.apiUrl =
-      u;
-
-
-    APP.token =
-      t;
-
+    APP.apiUrl = u;
+    APP.token = t;
 
     localStorage.setItem(
-
       'pkpj_api_url',
-
       u
     );
 
-
     localStorage.setItem(
-
       'pkpj_api_token',
-
       t
     );
 
-
     closeConfig();
-
-
     loadDashboard();
   };
 
@@ -4485,44 +3402,33 @@ $$(
   '.navbtn[data-page]'
 )
 .forEach(
-
   b =>
-
   b.addEventListener(
-
     'click',
-
     () => {
-
-
       $$(
         '.navbtn[data-page]'
       )
       .forEach(
-
         x =>
         x.classList.remove(
           'active'
         )
       );
-
 
       b.classList.add(
         'active'
       );
 
-
       $$(
         '.tabpage'
       )
       .forEach(
-
         x =>
         x.classList.remove(
           'active'
         )
       );
-
 
       $(
         '#page-' +
@@ -4532,24 +3438,17 @@ $$(
         'active'
       );
 
-
       $('#pageTitle')
         .textContent =
-
         {
-
           dashboard:
             'Dashboard',
-
           tasks:
             'Tugasan',
-
           subscriptions:
             'Langganan & Renewal',
-
           sms:
             'SMS Monitor'
-
         }[
           b.dataset.page
         ];
@@ -4562,15 +3461,9 @@ $$(
    START APP
 ========================================================== */
 
-if (
-  !configReady()
-){
-
+if (!configReady()){
   openConfig();
-}
-
-else{
-
+} else{
   loadDashboard();
 }
 
@@ -4580,27 +3473,17 @@ else{
 ========================================================== */
 
 setInterval(
-
   () => {
-
-    if (
-      configReady()
-    ){
-
-      loadDashboard(
-        true
-      );
+    if (configReady()){
+      loadDashboard(true);
     }
-
   },
-
   5 *
   60 *
   1000
 );
 
 </script>
-
 
 </body>
 
