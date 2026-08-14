@@ -14,6 +14,11 @@
 PKPJ Work Monitor
 </title>
 
+<link
+id="statusFavicon"
+rel="icon"
+href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='%2322c55e'/%3E%3C/svg%3E">
+
 <style>
 
 :root{
@@ -236,62 +241,6 @@ button{
 }
 
 /* ============================
-   PDF REFERENCES
-============================ */
-
-.reference-card{
-  margin-top:16px;
-}
-
-.reference-layout{
-  display:grid;
-  grid-template-columns:minmax(280px,.75fr) minmax(0,1.25fr);
-  gap:16px;
-}
-
-.reference-upload{
-  display:grid;
-  gap:9px;
-  background:#f8fafc;
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:12px;
-}
-
-.reference-list{
-  display:grid;
-  gap:8px;
-}
-
-.reference-item{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:12px;
-  align-items:center;
-  border:1px solid var(--line);
-  border-radius:11px;
-  padding:10px 12px;
-  background:#fff;
-}
-
-.reference-item b{
-  display:block;
-  overflow-wrap:anywhere;
-}
-
-.reference-item small{
-  display:block;
-  color:var(--muted);
-  margin-top:3px;
-  overflow-wrap:anywhere;
-}
-
-.ref-link{
-  white-space:nowrap;
-  text-decoration:none;
-}
-
-/* ============================
    SETTINGS ICON TABS
 ============================ */
 
@@ -325,6 +274,32 @@ button{
 /* ============================
    PRINT
 ============================ */
+
+@media(max-width:760px){
+  .row-actions{
+    flex-wrap:nowrap;
+  }
+
+  .mini-icon{
+    width:30px;
+    height:30px;
+  }
+
+  .reference-modal-item{
+    grid-template-columns:1fr;
+  }
+
+  .reference-modal-item .row-actions{
+    justify-content:flex-end;
+  }
+
+  .modal-actions{
+    position:sticky;
+    bottom:0;
+    background:#fff;
+    padding-top:8px;
+  }
+}
 
 @media print{
   body{
@@ -370,6 +345,86 @@ button{
   table{
     min-width:0!important;
   }
+}
+
+/* ============================
+   ROW ACTION ICONS
+============================ */
+
+.row-actions{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.mini-icon{
+  width:31px;
+  height:31px;
+  padding:0;
+  border-radius:8px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:#334155;
+  display:inline-grid;
+  place-items:center;
+  font-size:15px;
+  font-weight:800;
+}
+
+.mini-icon:hover{
+  background:#f8fafc;
+}
+
+.mini-icon.delete{
+  color:var(--red);
+  border-color:#fecdd3;
+  background:#fff7f7;
+}
+
+/* ============================
+   EDIT MODAL
+============================ */
+
+.edit-grid{
+  display:grid;
+  gap:10px;
+}
+
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:14px;
+}
+
+/* ============================
+   REFERENCE POPUP
+============================ */
+
+.reference-modal-list{
+  display:grid;
+  gap:8px;
+  margin-top:15px;
+  max-height:280px;
+  overflow:auto;
+}
+
+.reference-modal-item{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:center;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#f8fafc;
+}
+
+.reference-modal-item small{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  overflow-wrap:anywhere;
 }
 
 /* ============================
@@ -1249,12 +1304,6 @@ Renewal Akan Datang
 </div>
 
 
-<div
-class="referenceMount"
-data-module="dashboard">
-</div>
-
-
 </section>
 
 
@@ -1272,6 +1321,13 @@ class="icon-btn tabRefreshBtn"
 type="button"
 title="Kemaskini Tugasan"
 aria-label="Kemaskini Tugasan">↻</button>
+
+<button
+class="icon-btn referenceBtn"
+type="button"
+data-module="tasks"
+title="Rujukan PDF"
+aria-label="Rujukan PDF">📎</button>
 
 <button
 class="icon-btn printBtn"
@@ -1448,12 +1504,6 @@ Senarai Tugasan
 </div>
 
 
-<div
-class="referenceMount"
-data-module="tasks">
-</div>
-
-
 </section>
 
 
@@ -1471,6 +1521,13 @@ class="icon-btn tabRefreshBtn"
 type="button"
 title="Kemaskini Langganan"
 aria-label="Kemaskini Langganan">↻</button>
+
+<button
+class="icon-btn referenceBtn"
+type="button"
+data-module="subscriptions"
+title="Rujukan PDF"
+aria-label="Rujukan PDF">📎</button>
 
 <button
 class="icon-btn printBtn"
@@ -1664,12 +1721,6 @@ Senarai Langganan
 </div>
 
 
-<div
-class="referenceMount"
-data-module="subscriptions">
-</div>
-
-
 </section>
 
 
@@ -1696,6 +1747,13 @@ title="Tetapkan jumlah SMS semasa"
 aria-label="Tetapkan jumlah SMS semasa">✎</button>
 
 <button
+class="icon-btn referenceBtn"
+type="button"
+data-module="sms"
+title="Rujukan PDF"
+aria-label="Rujukan PDF">📎</button>
+
+<button
 class="icon-btn printBtn"
 type="button"
 title="Print"
@@ -1706,7 +1764,29 @@ aria-label="Print">⎙</button>
 
 <div class="card">
 <span class="label">
-Peruntukan / Baki Asal
+Peruntukan Semasa
+</span>
+<div
+class="metric"
+id="smsCurrentAllocation2">
+RM0.00
+</div>
+</div>
+
+<div class="card">
+<span class="label">
+Kelulusan Baru
+</span>
+<div
+class="metric"
+id="smsNewApproved2">
+RM0.00
+</div>
+</div>
+
+<div class="card">
+<span class="label">
+Jumlah Peruntukan
 </span>
 <div
 class="metric"
@@ -1905,6 +1985,7 @@ Log Penggunaan SMS
 <th>SMS</th>
 <th>Kos</th>
 <th>Tujuan / Sebab</th>
+<th>Aksi</th>
 </tr>
 </thead>
 
@@ -1915,12 +1996,6 @@ Log Penggunaan SMS
 
 </div>
 
-</div>
-
-
-<div
-class="referenceMount"
-data-module="sms">
 </div>
 
 
@@ -2034,21 +2109,33 @@ class="settings-pane"
 data-settings-pane="smssettings">
 
 <p class="muted">
-Tetapkan jumlah peruntukan kredit SMS dan harga semasa bagi satu SMS.
+Asingkan peruntukan semasa dengan peruntukan baru yang telah diluluskan. Sistem akan campurkan kedua-duanya untuk mengira kapasiti dan baki.
 </p>
 
 <div class="form">
 
 <div class="field">
 <label>
-Jumlah Peruntukan SMS (RM)
+Peruntukan SMS Semasa / Sedia Ada (RM)
 </label>
 <input
-id="smsAllocationSetting"
+id="smsCurrentAllocationSetting"
 type="number"
-min="0.01"
+min="0"
 step="0.01"
 placeholder="Contoh: 4940.22">
+</div>
+
+<div class="field">
+<label>
+Peruntukan SMS Baru Diluluskan (RM)
+</label>
+<input
+id="smsNewApprovedSetting"
+type="number"
+min="0"
+step="0.01"
+placeholder="Contoh: 2000.00">
 </div>
 
 <div class="field">
@@ -2194,6 +2281,131 @@ Reset Penggunaan SMS
 Reset akan menetapkan SMS digunakan kepada 0 dan mengosongkan log penggunaan. Peruntukan dan harga SMS kekal.
 </p>
 
+</form>
+
+</div>
+
+</div>
+
+
+
+<div
+class="modal hidden"
+id="referenceModal">
+
+<div class="modalbox"
+style="max-width:620px;">
+
+<div class="settings-top">
+
+<div>
+<b id="referenceModalTitle">
+Rujukan PDF
+</b>
+
+<div class="muted">
+Upload dan urus dokumen rujukan untuk tab ini.
+</div>
+</div>
+
+<button
+class="icon-btn"
+type="button"
+id="closeReferenceModal"
+title="Tutup"
+aria-label="Tutup">×</button>
+
+</div>
+
+<form
+class="form"
+id="referenceForm">
+
+<div class="field">
+<label>
+Tajuk Rujukan *
+</label>
+<input
+name="title"
+required
+placeholder="Contoh: Surat kelulusan / kontrak / invois">
+</div>
+
+<div class="field">
+<label>
+Nota
+</label>
+<input
+name="notes"
+placeholder="Catatan ringkas">
+</div>
+
+<div class="field">
+<label>
+Dokumen PDF *
+</label>
+<input
+name="pdf"
+type="file"
+accept="application/pdf,.pdf"
+required>
+</div>
+
+<button
+class="btn primary"
+type="submit">
+Upload PDF
+</button>
+
+<div class="muted">
+Maksimum 5 MB setiap fail.
+</div>
+
+</form>
+
+<div
+class="reference-modal-list"
+id="referenceModalList">
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="modal hidden"
+id="editModal">
+
+<div class="modalbox"
+style="max-width:620px;">
+
+<div class="settings-top">
+
+<div>
+<b id="editModalTitle">
+Kemaskini
+</b>
+
+<div
+class="muted"
+id="editModalSubtitle">
+Ubah maklumat dan simpan.
+</div>
+</div>
+
+<button
+class="icon-btn"
+type="button"
+id="closeEditModal"
+title="Tutup"
+aria-label="Tutup">×</button>
+
+</div>
+
+<form
+class="edit-grid"
+id="editForm">
 </form>
 
 </div>
@@ -2383,8 +2595,11 @@ function openConfig(){
     APP.data &&
     APP.data.sms
   ){
-    $('#smsAllocationSetting').value =
-      APP.data.sms.startBalance;
+    $('#smsCurrentAllocationSetting').value =
+      APP.data.sms.currentAllocation;
+
+    $('#smsNewApprovedSetting').value =
+      APP.data.sms.newApprovedAllocation;
 
     $('#smsCostSetting').value =
       APP.data.sms.costPerSms;
@@ -2711,8 +2926,6 @@ function renderAll(){
     d.smsLogs
   );
 
-  renderReferencePanels();
-
   handleTabAlert(
     d.summary.criticalCount,
     d.summary.warningCount
@@ -2828,10 +3041,22 @@ function renderSms(s){
       s.costPerSms
     );
 
+  $('#smsCurrentAllocation2')
+    .textContent =
+    money(
+      s.currentAllocation
+    );
+
+  $('#smsNewApproved2')
+    .textContent =
+    money(
+      s.newApprovedAllocation
+    );
+
   $('#smsStart2')
     .textContent =
     money(
-      s.startBalance
+      s.totalAllocation
     );
 
   $('#smsUsed2')
@@ -2998,21 +3223,40 @@ function renderTasks(rows){
         </td>
 
         <td>
-        ${
-          String(r.Status)
-            .toLowerCase() ===
-          'selesai'
-          ?
-          '—'
-          :
-          `
+        <div class="row-actions">
+
           <button
-          class="btn ghost"
-          onclick="markTaskDone('${esc(r.ID)}')">
-          Selesai
-          </button>
-          `
-        }
+          class="mini-icon"
+          type="button"
+          title="Kemaskini"
+          aria-label="Kemaskini"
+          onclick="openEditTask('${esc(r.ID)}')">✎</button>
+
+          ${
+            String(r.Status)
+              .toLowerCase() ===
+            'selesai'
+            ?
+            ''
+            :
+            `
+            <button
+            class="mini-icon"
+            type="button"
+            title="Tanda selesai"
+            aria-label="Tanda selesai"
+            onclick="markTaskDone('${esc(r.ID)}')">✓</button>
+            `
+          }
+
+          <button
+          class="mini-icon delete"
+          type="button"
+          title="Delete"
+          aria-label="Delete"
+          onclick="deleteTask('${esc(r.ID)}')">×</button>
+
+        </div>
         </td>
 
         </tr>
@@ -3145,11 +3389,32 @@ function renderSubs(rows){
         </td>
 
         <td>
-        <button
-        class="btn ghost"
-        onclick="renewSub('${esc(r.ID)}')">
-        Renew
-        </button>
+
+        <div class="row-actions">
+
+          <button
+          class="mini-icon"
+          type="button"
+          title="Kemaskini"
+          aria-label="Kemaskini"
+          onclick="openEditSub('${esc(r.ID)}')">✎</button>
+
+          <button
+          class="mini-icon"
+          type="button"
+          title="Renew"
+          aria-label="Renew"
+          onclick="renewSub('${esc(r.ID)}')">↻</button>
+
+          <button
+          class="mini-icon delete"
+          type="button"
+          title="Delete"
+          aria-label="Delete"
+          onclick="deleteSub('${esc(r.ID)}')">×</button>
+
+        </div>
+
         </td>
 
         </tr>
@@ -3201,6 +3466,28 @@ function renderSmsLogs(rows){
         ${esc(r.Notes)}
         </td>
 
+        <td>
+
+        <div class="row-actions">
+
+          <button
+          class="mini-icon"
+          type="button"
+          title="Kemaskini"
+          aria-label="Kemaskini"
+          onclick="openEditSms('${esc(r.ID)}')">✎</button>
+
+          <button
+          class="mini-icon delete"
+          type="button"
+          title="Delete"
+          aria-label="Delete"
+          onclick="deleteSms('${esc(r.ID)}')">×</button>
+
+        </div>
+
+        </td>
+
         </tr>
         `
       ).join('')
@@ -3208,7 +3495,7 @@ function renderSmsLogs(rows){
       `
       <tr>
       <td
-      colspan="5"
+      colspan="6"
       class="empty">
       Belum ada log penggunaan.
       </td>
@@ -3218,150 +3505,144 @@ function renderSmsLogs(rows){
 
 
 /* ==========================================================
-   RUJUKAN PDF
+   RUJUKAN PDF - POPUP PER TAB
 ========================================================== */
 
-function renderReferencePanels(){
+APP.referenceModule = null;
+
+
+function moduleLabel(moduleName){
+  return {
+    tasks:
+      'Tugasan',
+    subscriptions:
+      'Langganan',
+    sms:
+      'SMS'
+  }[
+    moduleName
+  ] || 'Rujukan';
+}
+
+
+function openReferenceModal(moduleName){
+  APP.referenceModule =
+    moduleName;
+
+  $('#referenceModalTitle')
+    .textContent =
+    'Rujukan PDF — ' +
+    moduleLabel(
+      moduleName
+    );
+
+  $('#referenceForm')
+    .reset();
+
+  renderReferenceModalList();
+
+  $('#referenceModal')
+    .classList
+    .remove('hidden');
+}
+
+
+function closeReferenceModal(){
+  $('#referenceModal')
+    .classList
+    .add('hidden');
+
+  APP.referenceModule =
+    null;
+}
+
+
+function renderReferenceModalList(){
+  const el =
+    $('#referenceModalList');
+
+  if (
+    !APP.referenceModule
+  ){
+    el.innerHTML = '';
+    return;
+  }
+
   const refs =
     (
       APP.data &&
       APP.data.references
     ) || [];
 
-  $$('.referenceMount')
-    .forEach(
-      mount => {
-        const moduleName =
-          mount.dataset.module;
+  const moduleRefs =
+    refs.filter(
+      r =>
+      String(
+        r.Module || ''
+      ).toLowerCase() ===
+      APP.referenceModule
+    );
 
-        const moduleRefs =
-          refs.filter(
-            r =>
-            String(
-              r.Module || ''
-            ).toLowerCase() ===
-            moduleName
-          );
+  if (!moduleRefs.length){
+    el.innerHTML = `
+      <div class="empty">
+      Belum ada rujukan PDF untuk tab ini.
+      </div>
+    `;
+    return;
+  }
 
-        mount.innerHTML = `
-        <div class="card reference-card">
+  el.innerHTML =
+    moduleRefs
+      .map(
+        r => `
+        <div class="reference-modal-item">
 
-          <div class="section-title">
-            <h2>Rujukan PDF</h2>
-            <span class="pill normal">
-              ${moduleRefs.length} fail
-            </span>
+          <div>
+            <b>
+            ${esc(r.RefTitle)}
+            </b>
+
+            <small>
+            ${esc(r.FileName)}
+            ${
+              r.Notes
+              ? ' • ' +
+                esc(r.Notes)
+              : ''
+            }
+            ${
+              r.CreatedAt
+              ? ' • ' +
+                esc(r.CreatedAt)
+              : ''
+            }
+            </small>
           </div>
 
-          <div class="reference-layout">
+          <div class="row-actions">
 
-            <form
-            class="reference-upload"
-            data-ref-form="${esc(moduleName)}">
+            <a
+            class="mini-icon"
+            href="${esc(r.DriveUrl)}"
+            target="_blank"
+            rel="noopener"
+            title="Buka PDF"
+            aria-label="Buka PDF">↗</a>
 
-              <div class="field">
-                <label>Tajuk Rujukan *</label>
-                <input
-                name="title"
-                required
-                placeholder="Contoh: Surat kelulusan / invois / kontrak">
-              </div>
-
-              <div class="field">
-                <label>Nota</label>
-                <input
-                name="notes"
-                placeholder="Catatan ringkas">
-              </div>
-
-              <div class="field">
-                <label>Dokumen PDF *</label>
-                <input
-                name="pdf"
-                type="file"
-                accept="application/pdf,.pdf"
-                required>
-              </div>
-
-              <button
-              class="btn primary"
-              type="submit">
-              Upload PDF
-              </button>
-
-              <div class="muted">
-                Maksimum 5 MB setiap fail.
-              </div>
-
-            </form>
-
-            <div class="reference-list">
-
-              ${
-                moduleRefs.length
-                ?
-                moduleRefs
-                  .map(
-                    r => `
-                    <div class="reference-item">
-
-                      <div>
-                        <b>
-                        ${esc(r.RefTitle)}
-                        </b>
-
-                        <small>
-                        ${esc(r.FileName)}
-                        ${
-                          r.Notes
-                          ? ' • ' + esc(r.Notes)
-                          : ''
-                        }
-                        ${
-                          r.CreatedAt
-                          ? ' • ' + esc(r.CreatedAt)
-                          : ''
-                        }
-                        </small>
-                      </div>
-
-                      <a
-                      class="btn ghost ref-link"
-                      href="${esc(r.DriveUrl)}"
-                      target="_blank"
-                      rel="noopener">
-                      Buka
-                      </a>
-
-                    </div>
-                    `
-                  )
-                  .join('')
-                :
-                `
-                <div class="empty">
-                Belum ada rujukan PDF.
-                </div>
-                `
-              }
-
-            </div>
+            <button
+            class="mini-icon delete"
+            type="button"
+            title="Delete PDF"
+            aria-label="Delete PDF"
+            onclick="deleteReference('${esc(r.ID)}')">×</button>
 
           </div>
 
         </div>
-        `;
-      }
-    );
-
-  $$('[data-ref-form]')
-    .forEach(
-      form =>
-      form.addEventListener(
-        'submit',
-        handleReferenceUpload
+        `
       )
-    );
+      .join('');
 }
 
 
@@ -3401,104 +3682,154 @@ function fileToBase64(file){
 }
 
 
-async function handleReferenceUpload(e){
-  e.preventDefault();
+$$('.referenceBtn')
+  .forEach(
+    btn =>
+    btn.addEventListener(
+      'click',
+      () =>
+      openReferenceModal(
+        btn.dataset.module
+      )
+    )
+  );
 
-  const form =
-    e.currentTarget;
 
-  const moduleName =
-    form.dataset.refForm;
+$('#closeReferenceModal').onclick =
+  closeReferenceModal;
 
-  const fd =
-    new FormData(form);
 
-  const file =
-    fd.get('pdf');
+$('#referenceForm')
+  .addEventListener(
+    'submit',
+    async e => {
+      e.preventDefault();
 
-  if (
-    !file ||
-    !file.name
-  ){
-    return showToast(
-      'Pilih dokumen PDF.'
-    );
-  }
+      if (
+        !APP.referenceModule
+      ){
+        return showToast(
+          'Kategori rujukan tidak dikenal pasti.'
+        );
+      }
 
-  const isPdf =
-    file.type ===
-    'application/pdf'
-    ||
-    file.name
-      .toLowerCase()
-      .endsWith('.pdf');
+      const fd =
+        new FormData(
+          e.currentTarget
+        );
 
-  if (!isPdf){
-    return showToast(
-      'Hanya fail PDF dibenarkan.'
-    );
-  }
+      const file =
+        fd.get('pdf');
 
-  if (
-    file.size >
-    5 * 1024 * 1024
-  ){
-    return showToast(
-      'PDF melebihi 5 MB.'
-    );
-  }
+      const title =
+        String(
+          fd.get('title') || ''
+        ).trim();
 
-  const title =
-    String(
-      fd.get('title') || ''
-    ).trim();
+      if (!title){
+        return showToast(
+          'Tajuk rujukan wajib diisi.'
+        );
+      }
 
-  if (!title){
-    return showToast(
-      'Tajuk rujukan wajib diisi.'
-    );
-  }
+      if (
+        !file ||
+        !file.name
+      ){
+        return showToast(
+          'Pilih dokumen PDF.'
+        );
+      }
 
-  try{
-    showToast(
-      'Sedang upload PDF...',
-      6000
-    );
+      const isPdf =
+        file.type ===
+        'application/pdf'
+        ||
+        file.name
+          .toLowerCase()
+          .endsWith('.pdf');
 
-    const base64 =
-      await fileToBase64(
-        file
+      if (!isPdf){
+        return showToast(
+          'Hanya fail PDF dibenarkan.'
+        );
+      }
+
+      if (
+        file.size >
+        5 * 1024 * 1024
+      ){
+        return showToast(
+          'PDF melebihi 5 MB.'
+        );
+      }
+
+      try{
+        const base64 =
+          await fileToBase64(
+            file
+          );
+
+        await runPost(
+          'uploadReference',
+          {
+            module:
+              APP.referenceModule,
+
+            title:
+              title,
+
+            notes:
+              String(
+                fd.get('notes') || ''
+              ).trim(),
+
+            fileName:
+              file.name,
+
+            mimeType:
+              'application/pdf',
+
+            base64:
+              base64
+          },
+          'PDF berjaya disimpan.',
+          6500
+        );
+
+        e.currentTarget.reset();
+
+        renderReferenceModalList();
+
+      } catch (_) {}
+    }
+  );
+
+
+window.deleteReference =
+  async id => {
+    const ok =
+      confirm(
+        'Delete dokumen rujukan ini? Fail dalam Google Drive juga akan dipindahkan ke Trash.'
       );
 
-    await runPost(
-      'uploadReference',
-      {
-        module: moduleName,
-        title: title,
-        notes:
-          String(
-            fd.get('notes') || ''
-          ).trim(),
-        fileName:
-          file.name,
-        mimeType:
-          'application/pdf',
-        base64:
-          base64
-      },
-      'PDF berjaya disimpan.',
-      6500
-    );
+    if (!ok){
+      return;
+    }
 
-    form.reset();
+    try{
+      await runPost(
+        'deleteReference',
+        {
+          id:id
+        },
+        'Rujukan PDF dipadam.'
+      );
 
-  } catch(e){
-    showToast(
-      e.message,
-      5000
-    );
-  }
-}
+      renderReferenceModalList();
+
+    } catch (_) {}
+  };
 
 
 /* ==========================================================
@@ -3597,14 +3928,27 @@ function calculatePlan(){
 ========================================================== */
 
 function calculateSmsSettingCapacity(){
-  const allocation =
+  const current =
     Math.max(
       0,
       Number(
-        $('#smsAllocationSetting')
+        $('#smsCurrentAllocationSetting')
           .value || 0
       )
     );
+
+  const approved =
+    Math.max(
+      0,
+      Number(
+        $('#smsNewApprovedSetting')
+          .value || 0
+      )
+    );
+
+  const allocation =
+    current +
+    approved;
 
   const cost =
     Math.max(
@@ -3628,21 +3972,23 @@ function calculateSmsSettingCapacity(){
     ' SMS';
 
   if (
-    allocation > 0 &&
+    allocation >= 0 &&
     cost > 0
   ){
     $('#smsSettingInfo')
       .textContent =
-      money(allocation) +
-      ' ÷ ' +
-      moneySms(cost) +
+      money(current) +
+      ' + ' +
+      money(approved) +
       ' = ' +
+      money(allocation) +
+      ' • ' +
       num(capacity) +
       ' SMS';
   } else{
     $('#smsSettingInfo')
       .textContent =
-      'Masukkan jumlah peruntukan dan harga SMS.';
+      'Masukkan peruntukan dan harga SMS.';
   }
 }
 
@@ -3738,21 +4084,15 @@ function setFaviconStatus(status){
     colours.normal;
 
   let l =
-    document.querySelector(
-      "link[rel~='icon']"
+    document.getElementById(
+      'statusFavicon'
     );
 
   if (!l){
     l =
-      document.createElement(
-        'link'
+      document.querySelector(
+        "link[rel~='icon']"
       );
-
-    l.rel =
-      'icon';
-
-    document.head
-      .appendChild(l);
   }
 
   const svg =
@@ -3764,6 +4104,511 @@ function setFaviconStatus(status){
     'data:image/svg+xml,' +
     encodeURIComponent(svg);
 }
+
+
+/* ==========================================================
+   EDIT / DELETE REKOD
+========================================================== */
+
+function isoDate(value){
+  if (!value){
+    return '';
+  }
+
+  return String(value)
+    .slice(0,10);
+}
+
+
+function openEditModal(
+  title,
+  htmlContent
+){
+  $('#editModalTitle')
+    .textContent =
+    title;
+
+  $('#editForm')
+    .innerHTML =
+    htmlContent;
+
+  $('#editModal')
+    .classList
+    .remove('hidden');
+}
+
+
+window.closeEditModal = function closeEditModal(){
+  $('#editModal')
+    .classList
+    .add('hidden');
+
+  $('#editForm')
+    .innerHTML = '';
+}
+
+
+$('#closeEditModal').onclick =
+  closeEditModal;
+
+
+/* ---------- TASK ---------- */
+
+window.openEditTask =
+  id => {
+    const r =
+      (
+        APP.data.tasks || []
+      )
+      .find(
+        x =>
+        String(x.ID) ===
+        String(id)
+      );
+
+    if (!r){
+      return showToast(
+        'Task tidak dijumpai.'
+      );
+    }
+
+    openEditModal(
+      'Kemaskini Tugasan',
+      `
+      <input
+      type="hidden"
+      name="id"
+      value="${esc(r.ID)}">
+
+      <div class="field">
+      <label>Nama Tugasan</label>
+      <input
+      name="task"
+      required
+      value="${esc(r.Task)}">
+      </div>
+
+      <div class="form-row">
+
+      <div class="field">
+      <label>Deadline</label>
+      <input
+      name="deadline"
+      type="date"
+      required
+      value="${esc(isoDate(r.Deadline))}">
+      </div>
+
+      <div class="field">
+      <label>Priority</label>
+      <select name="priority">
+      <option ${r.Priority === 'Normal' ? 'selected' : ''}>Normal</option>
+      <option ${r.Priority === 'Tinggi' ? 'selected' : ''}>Tinggi</option>
+      <option ${r.Priority === 'Urgent' ? 'selected' : ''}>Urgent</option>
+      </select>
+      </div>
+
+      </div>
+
+      <div class="form-row">
+
+      <div class="field">
+      <label>Status</label>
+      <select name="status">
+      <option ${r.Status === 'Belum Mula' ? 'selected' : ''}>Belum Mula</option>
+      <option ${r.Status === 'Dalam Proses' ? 'selected' : ''}>Dalam Proses</option>
+      <option ${r.Status === 'Menunggu' ? 'selected' : ''}>Menunggu</option>
+      <option ${r.Status === 'Selesai' ? 'selected' : ''}>Selesai</option>
+      </select>
+      </div>
+
+      <div class="field">
+      <label>PIC</label>
+      <input
+      name="pic"
+      value="${esc(r.PIC)}">
+      </div>
+
+      </div>
+
+      <div class="field">
+      <label>Tindakan Seterusnya</label>
+      <input
+      name="nextAction"
+      value="${esc(r.NextAction)}">
+      </div>
+
+      <div class="field">
+      <label>Nota</label>
+      <textarea name="notes">${esc(r.Notes)}</textarea>
+      </div>
+
+      <div class="modal-actions">
+      <button
+      class="btn ghost"
+      type="button"
+      onclick="closeEditModal()">
+      Batal
+      </button>
+
+      <button
+      class="btn primary"
+      type="submit">
+      Simpan Perubahan
+      </button>
+      </div>
+      `
+    );
+
+    $('#editForm').onsubmit =
+      async e => {
+        e.preventDefault();
+
+        const d =
+          Object.fromEntries(
+            new FormData(
+              e.currentTarget
+            )
+          );
+
+        try{
+          await runPost(
+            'updateTask',
+            d,
+            'Tugasan dikemas kini.'
+          );
+
+          closeEditModal();
+        } catch (_) {}
+      };
+  };
+
+
+window.deleteTask =
+  async id => {
+    if (
+      !confirm(
+        'Delete tugasan ini?'
+      )
+    ){
+      return;
+    }
+
+    try{
+      await runPost(
+        'deleteTask',
+        {
+          id:id
+        },
+        'Tugasan dipadam.'
+      );
+    } catch (_) {}
+  };
+
+
+/* ---------- SUBSCRIPTION ---------- */
+
+window.openEditSub =
+  id => {
+    const r =
+      (
+        APP.data.subscriptions || []
+      )
+      .find(
+        x =>
+        String(x.ID) ===
+        String(id)
+      );
+
+    if (!r){
+      return showToast(
+        'Langganan tidak dijumpai.'
+      );
+    }
+
+    openEditModal(
+      'Kemaskini Langganan',
+      `
+      <input
+      type="hidden"
+      name="id"
+      value="${esc(r.ID)}">
+
+      <div class="field">
+      <label>Nama Langganan</label>
+      <input
+      name="subscription"
+      required
+      value="${esc(r.Subscription)}">
+      </div>
+
+      <div class="form-row">
+
+      <div class="field">
+      <label>Vendor</label>
+      <input
+      name="vendor"
+      value="${esc(r.Vendor)}">
+      </div>
+
+      <div class="field">
+      <label>PIC</label>
+      <input
+      name="pic"
+      value="${esc(r.PIC)}">
+      </div>
+
+      </div>
+
+      <div class="form-row">
+
+      <div class="field">
+      <label>Tarikh Mula</label>
+      <input
+      name="startDate"
+      type="date"
+      value="${esc(isoDate(r.StartDate))}">
+      </div>
+
+      <div class="field">
+      <label>Tarikh Tamat</label>
+      <input
+      name="expiryDate"
+      type="date"
+      required
+      value="${esc(isoDate(r.ExpiryDate))}">
+      </div>
+
+      </div>
+
+      <div class="form-row">
+
+      <div class="field">
+      <label>Kitaran</label>
+      <select name="cycleYears">
+      <option value="1" ${Number(r.CycleYears) === 1 ? 'selected' : ''}>1 tahun</option>
+      <option value="2" ${Number(r.CycleYears) === 2 ? 'selected' : ''}>2 tahun</option>
+      <option value="3" ${Number(r.CycleYears) === 3 ? 'selected' : ''}>3 tahun</option>
+      </select>
+      </div>
+
+      <div class="field">
+      <label>Kos Renewal (RM)</label>
+      <input
+      name="cost"
+      type="number"
+      min="0"
+      step="0.01"
+      value="${esc(r.Cost)}">
+      </div>
+
+      </div>
+
+      <div class="field">
+      <label>Status</label>
+      <select name="status">
+      <option ${r.Status === 'Aktif' ? 'selected' : ''}>Aktif</option>
+      <option ${r.Status === 'Menunggu' ? 'selected' : ''}>Menunggu</option>
+      <option ${r.Status === 'Tidak Aktif' ? 'selected' : ''}>Tidak Aktif</option>
+      </select>
+      </div>
+
+      <div class="field">
+      <label>Nota</label>
+      <textarea name="notes">${esc(r.Notes)}</textarea>
+      </div>
+
+      <div class="modal-actions">
+      <button
+      class="btn ghost"
+      type="button"
+      onclick="closeEditModal()">
+      Batal
+      </button>
+
+      <button
+      class="btn primary"
+      type="submit">
+      Simpan Perubahan
+      </button>
+      </div>
+      `
+    );
+
+    $('#editForm').onsubmit =
+      async e => {
+        e.preventDefault();
+
+        const d =
+          Object.fromEntries(
+            new FormData(
+              e.currentTarget
+            )
+          );
+
+        try{
+          await runPost(
+            'updateSubscription',
+            d,
+            'Langganan dikemas kini.'
+          );
+
+          closeEditModal();
+        } catch (_) {}
+      };
+  };
+
+
+window.deleteSub =
+  async id => {
+    if (
+      !confirm(
+        'Delete langganan ini?'
+      )
+    ){
+      return;
+    }
+
+    try{
+      await runPost(
+        'deleteSubscription',
+        {
+          id:id
+        },
+        'Langganan dipadam.'
+      );
+    } catch (_) {}
+  };
+
+
+/* ---------- SMS ---------- */
+
+window.openEditSms =
+  id => {
+    const r =
+      (
+        APP.data.smsLogs || []
+      )
+      .find(
+        x =>
+        String(x.ID) ===
+        String(id)
+      );
+
+    if (!r){
+      return showToast(
+        'Log SMS tidak dijumpai.'
+      );
+    }
+
+    openEditModal(
+      'Kemaskini Penggunaan SMS',
+      `
+      <input
+      type="hidden"
+      name="id"
+      value="${esc(r.ID)}">
+
+      <div class="form-row">
+
+      <div class="field">
+      <label>Tarikh</label>
+      <input
+      name="date"
+      type="date"
+      required
+      value="${esc(isoDate(r.Date))}">
+      </div>
+
+      <div class="field">
+      <label>Jumlah SMS</label>
+      <input
+      name="smsSent"
+      type="number"
+      min="1"
+      step="1"
+      required
+      value="${esc(r.SMSSent)}">
+      </div>
+
+      </div>
+
+      <div class="field">
+      <label>Program / Kempen</label>
+      <input
+      name="campaign"
+      required
+      value="${esc(r.Campaign)}">
+      </div>
+
+      <div class="field">
+      <label>Tujuan / Sebab</label>
+      <textarea
+      name="notes"
+      required>${esc(r.Notes)}</textarea>
+      </div>
+
+      <div class="modal-actions">
+      <button
+      class="btn ghost"
+      type="button"
+      onclick="closeEditModal()">
+      Batal
+      </button>
+
+      <button
+      class="btn primary"
+      type="submit">
+      Simpan Perubahan
+      </button>
+      </div>
+      `
+    );
+
+    $('#editForm').onsubmit =
+      async e => {
+        e.preventDefault();
+
+        const d =
+          Object.fromEntries(
+            new FormData(
+              e.currentTarget
+            )
+          );
+
+        try{
+          await runPost(
+            'updateSmsUsage',
+            d,
+            'Penggunaan SMS dikemas kini.'
+          );
+
+          closeEditModal();
+        } catch (_) {}
+      };
+  };
+
+
+window.deleteSms =
+  async id => {
+    if (
+      !confirm(
+        'Delete rekod penggunaan SMS ini? Jumlah SMS digunakan akan dikira semula.'
+      )
+    ){
+      return;
+    }
+
+    try{
+      await runPost(
+        'deleteSmsUsage',
+        {
+          id:id
+        },
+        'Rekod SMS dipadam.'
+      );
+    } catch (_) {}
+  };
 
 
 /* ==========================================================
@@ -4064,7 +4909,13 @@ $('#plannedSms')
    SMS SETTINGS INPUT
 ========================================================== */
 
-$('#smsAllocationSetting')
+$('#smsCurrentAllocationSetting')
+  .addEventListener(
+    'input',
+    calculateSmsSettingCapacity
+  );
+
+$('#smsNewApprovedSetting')
   .addEventListener(
     'input',
     calculateSmsSettingCapacity
@@ -4083,9 +4934,15 @@ $('#smsCostSetting')
 
 $('#saveSmsSettings').onclick =
   async () => {
-    const allocation =
+    const currentAllocation =
       Number(
-        $('#smsAllocationSetting')
+        $('#smsCurrentAllocationSetting')
+          .value || 0
+      );
+
+    const newApprovedAllocation =
+      Number(
+        $('#smsNewApprovedSetting')
           .value || 0
       );
 
@@ -4096,10 +4953,12 @@ $('#saveSmsSettings').onclick =
       );
 
     if (
-      allocation <= 0
+      currentAllocation < 0
+      ||
+      newApprovedAllocation < 0
     ){
       return showToast(
-        'Masukkan jumlah peruntukan SMS yang sah.'
+        'Jumlah peruntukan tidak sah.'
       );
     }
 
@@ -4114,8 +4973,17 @@ $('#saveSmsSettings').onclick =
     const ok =
       confirm(
         'Simpan tetapan SMS baru?\n\n' +
-        'Peruntukan: ' +
-        money(allocation) +
+        'Peruntukan semasa: ' +
+        money(currentAllocation) +
+        '\n' +
+        'Kelulusan baru: ' +
+        money(newApprovedAllocation) +
+        '\n' +
+        'Jumlah: ' +
+        money(
+          currentAllocation +
+          newApprovedAllocation
+        ) +
         '\n' +
         'Harga 1 SMS: ' +
         moneySms(costPerSms)
@@ -4129,8 +4997,12 @@ $('#saveSmsSettings').onclick =
       await runPost(
         'updateSmsSettings',
         {
-          allocation:
-            allocation,
+          currentAllocation:
+            currentAllocation,
+
+          newApprovedAllocation:
+            newApprovedAllocation,
+
           costPerSms:
             costPerSms
         },
@@ -4422,6 +5294,13 @@ $$(
 /* ==========================================================
    START APP
 ========================================================== */
+
+document.title =
+  'PKPJ Work Monitor';
+
+setFaviconStatus(
+  'normal'
+);
 
 if (!configReady()){
   openConfig();
