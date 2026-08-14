@@ -179,6 +179,200 @@ button{
 }
 
 /* ============================
+   TAB TOOLBAR
+============================ */
+
+.tab-toolbar{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:8px;
+  margin-bottom:14px;
+}
+
+/* ============================
+   ICON BUTTON
+============================ */
+
+.icon-btn{
+  width:40px;
+  height:40px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:#334155;
+  border-radius:11px;
+  display:inline-grid;
+  place-items:center;
+  padding:0;
+  font-size:19px;
+  font-weight:800;
+}
+
+.icon-btn:hover{
+  background:#f8fafc;
+}
+
+.icon-btn.primary-icon{
+  background:var(--blue);
+  color:#fff;
+  border-color:var(--blue);
+}
+
+.icon-btn.danger-icon{
+  background:#fff1f2;
+  color:var(--red);
+  border-color:#fecdd3;
+}
+
+.nav-icon{
+  display:inline-grid;
+  place-items:center;
+  width:22px;
+  font-size:17px;
+}
+
+.nav-label{
+  margin-left:7px;
+}
+
+/* ============================
+   PDF REFERENCES
+============================ */
+
+.reference-card{
+  margin-top:16px;
+}
+
+.reference-layout{
+  display:grid;
+  grid-template-columns:minmax(280px,.75fr) minmax(0,1.25fr);
+  gap:16px;
+}
+
+.reference-upload{
+  display:grid;
+  gap:9px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px;
+}
+
+.reference-list{
+  display:grid;
+  gap:8px;
+}
+
+.reference-item{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:12px;
+  align-items:center;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:10px 12px;
+  background:#fff;
+}
+
+.reference-item b{
+  display:block;
+  overflow-wrap:anywhere;
+}
+
+.reference-item small{
+  display:block;
+  color:var(--muted);
+  margin-top:3px;
+  overflow-wrap:anywhere;
+}
+
+.ref-link{
+  white-space:nowrap;
+  text-decoration:none;
+}
+
+/* ============================
+   SETTINGS ICON TABS
+============================ */
+
+.settings-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.settings-tabs{
+  display:flex;
+  gap:8px;
+}
+
+.settingsTab.active{
+  background:#111827;
+  color:#fff;
+  border-color:#111827;
+}
+
+.settings-pane{
+  display:none;
+}
+
+.settings-pane.active{
+  display:block;
+}
+
+/* ============================
+   PRINT
+============================ */
+
+@media print{
+  body{
+    background:#fff!important;
+  }
+
+  .side,
+  .top,
+  .tab-toolbar,
+  .reference-upload,
+  .btn,
+  .icon-btn,
+  .modal,
+  .toast{
+    display:none!important;
+  }
+
+  .app{
+    display:block!important;
+  }
+
+  .main{
+    padding:0!important;
+  }
+
+  .tabpage{
+    display:none!important;
+  }
+
+  .tabpage.active{
+    display:block!important;
+  }
+
+  .card{
+    box-shadow:none!important;
+    break-inside:avoid;
+  }
+
+  .tablewrap{
+    overflow:visible!important;
+  }
+
+  table{
+    min-width:0!important;
+  }
+}
+
+/* ============================
    CARDS
 ============================ */
 
@@ -563,20 +757,91 @@ th{
 }
 
 @media(max-width:760px){
+  body{
+    padding-bottom:72px;
+  }
+
   .app{
-    grid-template-columns:1fr;
+    display:block;
   }
 
   .side{
-    position:relative;
-    height:auto;
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    top:auto;
+    height:64px;
+    z-index:80;
+    padding:7px 8px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:5px;
+    border-top:1px solid #334155;
+  }
+
+  .brand{
+    display:none;
+  }
+
+  .navbtn{
+    margin:0;
+    padding:7px 4px;
+    text-align:center;
+    display:grid;
+    place-items:center;
+    min-width:0;
+  }
+
+  .nav-icon{
+    width:auto;
+    font-size:20px;
+  }
+
+  .nav-label{
+    display:none;
   }
 
   .main{
-    padding:16px;
+    padding:14px;
+  }
+
+  .top{
+    align-items:flex-start;
+    flex-direction:column;
+    margin-bottom:12px;
+  }
+
+  .top h1{
+    font-size:22px;
+  }
+
+  .top .actions{
+    width:100%;
+  }
+
+  .top .actions .btn{
+    width:100%;
   }
 
   .cards{
+    grid-template-columns:
+    repeat(2,minmax(0,1fr));
+    gap:9px;
+  }
+
+  .card{
+    padding:13px;
+    border-radius:13px;
+  }
+
+  .metric{
+    font-size:22px;
+  }
+
+  .grid2,
+  .forms,
+  .reference-layout{
     grid-template-columns:1fr;
   }
 
@@ -586,9 +851,42 @@ th{
     grid-template-columns:1fr;
   }
 
-  .top{
-    align-items:flex-start;
-    flex-direction:column;
+  .tab-toolbar{
+    position:sticky;
+    top:0;
+    z-index:20;
+    padding:6px 0;
+    background:var(--bg);
+    margin-bottom:8px;
+  }
+
+  .icon-btn{
+    width:38px;
+    height:38px;
+  }
+
+  .modal{
+    padding:10px;
+    align-items:end;
+  }
+
+  .modalbox{
+    max-height:88vh;
+    border-radius:18px 18px 0 0;
+    padding:17px;
+  }
+
+  .reference-item{
+    grid-template-columns:1fr;
+  }
+
+  .reference-item .ref-link{
+    width:100%;
+    text-align:center;
+  }
+
+  table{
+    min-width:650px;
   }
 }
 
@@ -615,38 +913,47 @@ Task • Renewal • SMS
 
 <button
 class="navbtn active"
-data-page="dashboard">
-Dashboard
+data-page="dashboard"
+title="Dashboard"
+aria-label="Dashboard">
+<span class="nav-icon">⌂</span>
+<span class="nav-label">Dashboard</span>
 </button>
 
 <button
 class="navbtn"
-data-page="tasks">
-Tugasan
+data-page="tasks"
+title="Tugasan"
+aria-label="Tugasan">
+<span class="nav-icon">✓</span>
+<span class="nav-label">Tugasan</span>
 </button>
 
 <button
 class="navbtn"
-data-page="subscriptions">
-Langganan
+data-page="subscriptions"
+title="Langganan"
+aria-label="Langganan">
+<span class="nav-icon">↻</span>
+<span class="nav-label">Langganan</span>
 </button>
 
 <button
 class="navbtn"
-data-page="sms">
-SMS Monitor
+data-page="sms"
+title="SMS Monitor"
+aria-label="SMS Monitor">
+<span class="nav-icon">✉</span>
+<span class="nav-label">SMS</span>
 </button>
 
 <button
 class="navbtn"
-id="openSheet">
-Buka Google Sheet
-</button>
-
-<button
-class="navbtn"
-id="openConfig">
-Tetapan
+id="openConfig"
+title="Tetapan"
+aria-label="Tetapan">
+<span class="nav-icon">⚙</span>
+<span class="nav-label">Tetapan</span>
 </button>
 
 </aside>
@@ -671,12 +978,6 @@ Belum disambungkan
 <div class="actions">
 
 <button
-class="btn ghost"
-id="refreshBtn">
-↻ Refresh
-</button>
-
-<button
 class="btn primary"
 id="checkAlertBtn">
 Semak Alert Sekarang
@@ -694,6 +995,20 @@ Semak Alert Sekarang
 <section
 class="tabpage active"
 id="page-dashboard">
+
+<div class="tab-toolbar">
+<button
+class="icon-btn tabRefreshBtn"
+type="button"
+title="Kemaskini Dashboard"
+aria-label="Kemaskini Dashboard">↻</button>
+
+<button
+class="icon-btn printBtn"
+type="button"
+title="Print"
+aria-label="Print">⎙</button>
+</div>
 
 <div class="cards">
 
@@ -933,6 +1248,13 @@ Renewal Akan Datang
 
 </div>
 
+
+<div
+class="referenceMount"
+data-module="dashboard">
+</div>
+
+
 </section>
 
 
@@ -943,6 +1265,20 @@ Renewal Akan Datang
 <section
 class="tabpage"
 id="page-tasks">
+
+<div class="tab-toolbar">
+<button
+class="icon-btn tabRefreshBtn"
+type="button"
+title="Kemaskini Tugasan"
+aria-label="Kemaskini Tugasan">↻</button>
+
+<button
+class="icon-btn printBtn"
+type="button"
+title="Print"
+aria-label="Print">⎙</button>
+</div>
 
 <div class="forms">
 
@@ -1111,6 +1447,13 @@ Senarai Tugasan
 
 </div>
 
+
+<div
+class="referenceMount"
+data-module="tasks">
+</div>
+
+
 </section>
 
 
@@ -1121,6 +1464,20 @@ Senarai Tugasan
 <section
 class="tabpage"
 id="page-subscriptions">
+
+<div class="tab-toolbar">
+<button
+class="icon-btn tabRefreshBtn"
+type="button"
+title="Kemaskini Langganan"
+aria-label="Kemaskini Langganan">↻</button>
+
+<button
+class="icon-btn printBtn"
+type="button"
+title="Print"
+aria-label="Print">⎙</button>
+</div>
 
 <div class="forms">
 
@@ -1306,6 +1663,13 @@ Senarai Langganan
 
 </div>
 
+
+<div
+class="referenceMount"
+data-module="subscriptions">
+</div>
+
+
 </section>
 
 
@@ -1316,6 +1680,27 @@ Senarai Langganan
 <section
 class="tabpage"
 id="page-sms">
+
+<div class="tab-toolbar">
+<button
+class="icon-btn tabRefreshBtn"
+type="button"
+title="Kemaskini SMS"
+aria-label="Kemaskini SMS">↻</button>
+
+<button
+class="icon-btn"
+type="button"
+id="openSmsTotal"
+title="Tetapkan jumlah SMS semasa"
+aria-label="Tetapkan jumlah SMS semasa">✎</button>
+
+<button
+class="icon-btn printBtn"
+type="button"
+title="Print"
+aria-label="Print">⎙</button>
+</div>
 
 <div class="cards">
 
@@ -1369,54 +1754,6 @@ RM0.00
 <div class="forms">
 
 <div class="card">
-
-<div class="section-title">
-<h2>
-Masukkan Jumlah SMS Semasa
-</h2>
-</div>
-
-<form
-class="form"
-id="smsTotalForm">
-
-<div class="field">
-<label>
-Jumlah SMS telah digunakan setakat ini
-</label>
-<input
-name="total"
-type="number"
-min="0"
-step="1"
-required>
-</div>
-
-<button
-class="btn primary"
-type="submit">
-Tetapkan Jumlah
-</button>
-
-<button
-class="btn danger"
-type="button"
-id="resetSmsBtn">
-↺ Reset ke Baki / Peruntukan Asal
-</button>
-
-<p class="muted">
-Reset akan menetapkan SMS digunakan kepada 0 dan mengosongkan log penggunaan SMS. Nilai peruntukan dan harga SMS dalam Tetapan tidak akan dipadam.
-</p>
-
-</form>
-
-<hr
-style="
-border:0;
-border-top:1px solid var(--line);
-margin:18px 0;
-">
 
 <div class="section-title">
 <h2>
@@ -1580,6 +1917,13 @@ Log Penggunaan SMS
 
 </div>
 
+
+<div
+class="referenceMount"
+data-module="sms">
+</div>
+
+
 </section>
 
 </main>
@@ -1597,20 +1941,60 @@ id="configModal">
 
 <div class="modalbox">
 
-<h2>
-Tetapan Sambungan
-</h2>
+<div class="settings-top">
+
+<div class="settings-tabs">
+
+<button
+class="icon-btn settingsTab active"
+type="button"
+data-settings="connection"
+title="Sambungan"
+aria-label="Sambungan">↔</button>
+
+<button
+class="icon-btn settingsTab"
+type="button"
+data-settings="smssettings"
+title="Tetapan SMS"
+aria-label="Tetapan SMS">✉</button>
+
+<button
+class="icon-btn settingsTab"
+type="button"
+data-settings="calendar"
+title="Google Calendar"
+aria-label="Google Calendar">◷</button>
+
+</div>
+
+<div class="actions">
+
+<button
+class="icon-btn danger-icon"
+type="button"
+id="logoutBtn"
+title="Keluar"
+aria-label="Keluar">↪</button>
+
+<button
+class="icon-btn"
+type="button"
+id="closeConfig"
+title="Tutup"
+aria-label="Tutup">×</button>
+
+</div>
+
+</div>
+
+
+<div
+class="settings-pane active"
+data-settings-pane="connection">
 
 <p class="muted">
-
-Masukkan Apps Script
-Web App URL yang
-berakhir dengan
-<b>/exec</b>
-dan API token daripada
-fungsi
-<b>getSetupInfo()</b>.
-
+Masukkan Apps Script Web App URL yang berakhir dengan <b>/exec</b> dan API token daripada fungsi <b>getSetupInfo()</b>.
 </p>
 
 <div class="form">
@@ -1634,40 +2018,23 @@ type="password"
 placeholder="API token">
 </div>
 
-<div class="actions">
-
 <button
 class="btn primary"
 id="saveConfig">
 Simpan Sambungan
 </button>
 
-<button
-class="btn ghost"
-id="closeConfig">
-Tutup
-</button>
-
 </div>
 
 </div>
 
 
-<hr
-style="
-border:0;
-border-top:1px solid var(--line);
-margin:24px 0;
-">
-
-<h2>
-Tetapan SMS
-</h2>
+<div
+class="settings-pane"
+data-settings-pane="smssettings">
 
 <p class="muted">
-
-Tetapkan jumlah peruntukan kredit SMS dan harga semasa bagi satu SMS. Sistem akan mengira kapasiti SMS secara automatik.
-
+Tetapkan jumlah peruntukan kredit SMS dan harga semasa bagi satu SMS.
 </p>
 
 <div class="form">
@@ -1734,6 +2101,100 @@ Simpan Tetapan SMS
 </button>
 
 </div>
+
+</div>
+
+
+<div
+class="settings-pane"
+data-settings-pane="calendar">
+
+<p class="muted">
+Notifikasi kritikal menggunakan Google Calendar akaun yang memberi kebenaran kepada Apps Script.
+</p>
+
+<button
+class="icon-btn primary-icon"
+type="button"
+id="testCalendarBtn"
+title="Uji Google Calendar"
+aria-label="Uji Google Calendar">🔔</button>
+
+<div
+class="muted"
+id="calendarTestStatus"
+style="margin-top:10px;">
+Belum diuji.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="modal hidden"
+id="smsTotalModal">
+
+<div class="modalbox"
+style="max-width:460px;">
+
+<div class="settings-top">
+
+<div>
+<b>
+Jumlah SMS Semasa
+</b>
+<div class="muted">
+Fungsi kecil untuk pembetulan manual.
+</div>
+</div>
+
+<button
+class="icon-btn"
+type="button"
+id="closeSmsTotal"
+title="Tutup"
+aria-label="Tutup">×</button>
+
+</div>
+
+<form
+class="form"
+id="smsTotalForm">
+
+<div class="field">
+<label>
+Jumlah SMS telah digunakan setakat ini
+</label>
+<input
+name="total"
+type="number"
+min="0"
+step="1"
+required>
+</div>
+
+<button
+class="btn primary"
+type="submit">
+Tetapkan Jumlah
+</button>
+
+<button
+class="btn danger"
+type="button"
+id="resetSmsBtn">
+Reset Penggunaan SMS
+</button>
+
+<p class="muted">
+Reset akan menetapkan SMS digunakan kepada 0 dan mengosongkan log penggunaan. Peruntukan dan harga SMS kekal.
+</p>
+
+</form>
 
 </div>
 
@@ -1894,6 +2355,27 @@ function openConfig(){
   $('#apiUrl').value =
     APP.apiUrl;
 
+  // Paparkan ikon Sambungan dahulu.
+  $$('.settingsTab')
+    .forEach(
+      b =>
+      b.classList.toggle(
+        'active',
+        b.dataset.settings ===
+        'connection'
+      )
+    );
+
+  $$('.settings-pane')
+    .forEach(
+      pane =>
+      pane.classList.toggle(
+        'active',
+        pane.dataset.settingsPane ===
+        'connection'
+      )
+    );
+
   $('#apiToken').value =
     APP.token;
 
@@ -2047,7 +2529,8 @@ function jsonp(action){
 
 function post(
   action,
-  payload = {}
+  payload = {},
+  waitMs = 1300
 ){
   return new Promise(
     (
@@ -2121,7 +2604,7 @@ function post(
             reject(e);
           }
         },
-        1300
+        waitMs
       );
     }
   );
@@ -2228,16 +2711,11 @@ function renderAll(){
     d.smsLogs
   );
 
-  $('#openSheet').onclick =
-    () =>
-    window.open(
-      d.spreadsheetUrl,
-      '_blank'
-    );
+  renderReferencePanels();
 
   handleTabAlert(
-    d.summary
-      .criticalCount
+    d.summary.criticalCount,
+    d.summary.warningCount
   );
 }
 
@@ -2740,6 +3218,290 @@ function renderSmsLogs(rows){
 
 
 /* ==========================================================
+   RUJUKAN PDF
+========================================================== */
+
+function renderReferencePanels(){
+  const refs =
+    (
+      APP.data &&
+      APP.data.references
+    ) || [];
+
+  $$('.referenceMount')
+    .forEach(
+      mount => {
+        const moduleName =
+          mount.dataset.module;
+
+        const moduleRefs =
+          refs.filter(
+            r =>
+            String(
+              r.Module || ''
+            ).toLowerCase() ===
+            moduleName
+          );
+
+        mount.innerHTML = `
+        <div class="card reference-card">
+
+          <div class="section-title">
+            <h2>Rujukan PDF</h2>
+            <span class="pill normal">
+              ${moduleRefs.length} fail
+            </span>
+          </div>
+
+          <div class="reference-layout">
+
+            <form
+            class="reference-upload"
+            data-ref-form="${esc(moduleName)}">
+
+              <div class="field">
+                <label>Tajuk Rujukan *</label>
+                <input
+                name="title"
+                required
+                placeholder="Contoh: Surat kelulusan / invois / kontrak">
+              </div>
+
+              <div class="field">
+                <label>Nota</label>
+                <input
+                name="notes"
+                placeholder="Catatan ringkas">
+              </div>
+
+              <div class="field">
+                <label>Dokumen PDF *</label>
+                <input
+                name="pdf"
+                type="file"
+                accept="application/pdf,.pdf"
+                required>
+              </div>
+
+              <button
+              class="btn primary"
+              type="submit">
+              Upload PDF
+              </button>
+
+              <div class="muted">
+                Maksimum 5 MB setiap fail.
+              </div>
+
+            </form>
+
+            <div class="reference-list">
+
+              ${
+                moduleRefs.length
+                ?
+                moduleRefs
+                  .map(
+                    r => `
+                    <div class="reference-item">
+
+                      <div>
+                        <b>
+                        ${esc(r.RefTitle)}
+                        </b>
+
+                        <small>
+                        ${esc(r.FileName)}
+                        ${
+                          r.Notes
+                          ? ' • ' + esc(r.Notes)
+                          : ''
+                        }
+                        ${
+                          r.CreatedAt
+                          ? ' • ' + esc(r.CreatedAt)
+                          : ''
+                        }
+                        </small>
+                      </div>
+
+                      <a
+                      class="btn ghost ref-link"
+                      href="${esc(r.DriveUrl)}"
+                      target="_blank"
+                      rel="noopener">
+                      Buka
+                      </a>
+
+                    </div>
+                    `
+                  )
+                  .join('')
+                :
+                `
+                <div class="empty">
+                Belum ada rujukan PDF.
+                </div>
+                `
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+        `;
+      }
+    );
+
+  $$('[data-ref-form]')
+    .forEach(
+      form =>
+      form.addEventListener(
+        'submit',
+        handleReferenceUpload
+      )
+    );
+}
+
+
+function fileToBase64(file){
+  return new Promise(
+    (resolve, reject) => {
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        () => {
+          const value =
+            String(
+              reader.result || ''
+            );
+
+          resolve(
+            value.includes(',')
+              ? value.split(',').pop()
+              : value
+          );
+        };
+
+      reader.onerror =
+        () =>
+        reject(
+          new Error(
+            'Fail tidak dapat dibaca.'
+          )
+        );
+
+      reader.readAsDataURL(
+        file
+      );
+    }
+  );
+}
+
+
+async function handleReferenceUpload(e){
+  e.preventDefault();
+
+  const form =
+    e.currentTarget;
+
+  const moduleName =
+    form.dataset.refForm;
+
+  const fd =
+    new FormData(form);
+
+  const file =
+    fd.get('pdf');
+
+  if (
+    !file ||
+    !file.name
+  ){
+    return showToast(
+      'Pilih dokumen PDF.'
+    );
+  }
+
+  const isPdf =
+    file.type ===
+    'application/pdf'
+    ||
+    file.name
+      .toLowerCase()
+      .endsWith('.pdf');
+
+  if (!isPdf){
+    return showToast(
+      'Hanya fail PDF dibenarkan.'
+    );
+  }
+
+  if (
+    file.size >
+    5 * 1024 * 1024
+  ){
+    return showToast(
+      'PDF melebihi 5 MB.'
+    );
+  }
+
+  const title =
+    String(
+      fd.get('title') || ''
+    ).trim();
+
+  if (!title){
+    return showToast(
+      'Tajuk rujukan wajib diisi.'
+    );
+  }
+
+  try{
+    showToast(
+      'Sedang upload PDF...',
+      6000
+    );
+
+    const base64 =
+      await fileToBase64(
+        file
+      );
+
+    await runPost(
+      'uploadReference',
+      {
+        module: moduleName,
+        title: title,
+        notes:
+          String(
+            fd.get('notes') || ''
+          ).trim(),
+        fileName:
+          file.name,
+        mimeType:
+          'application/pdf',
+        base64:
+          base64
+      },
+      'PDF berjaya disimpan.',
+      6500
+    );
+
+    form.reset();
+
+  } catch(e){
+    showToast(
+      e.message,
+      5000
+    );
+  }
+}
+
+
+/* ==========================================================
    SMS PLANNER
 ========================================================== */
 
@@ -2886,61 +3648,95 @@ function calculateSmsSettingCapacity(){
 
 
 /* ==========================================================
-   TAB BLINK
+   STATUS TAB + FAVICON
+   1 BULAT SAHAJA:
+   HIJAU = NORMAL
+   OREN  = AMARAN
+   MERAH = KRITIKAL / DUE
 ========================================================== */
 
-function handleTabAlert(count){
+function handleTabAlert(
+  criticalCount,
+  warningCount
+){
   clearInterval(
     APP.blinkTimer
   );
 
-  APP.blinkTimer = null;
+  APP.blinkTimer =
+    null;
 
-  if (!count){
-    document.title =
-      '🟢 PKPJ Work Monitor';
+  if (criticalCount > 0){
+    setFaviconStatus(
+      'critical'
+    );
 
-    setFavicon('🟢');
+    let n = 0;
+
+    APP.blinkTimer =
+      setInterval(
+        () => {
+          document.title =
+            n % 2 === 0
+              ? `(${criticalCount}) TINDAKAN SEGERA`
+              : 'PKPJ Work Monitor';
+
+          n++;
+
+          // 3 kali blink sahaja
+          if (n >= 6){
+            clearInterval(
+              APP.blinkTimer
+            );
+
+            APP.blinkTimer =
+              null;
+
+            document.title =
+              `(${criticalCount}) TINDAKAN SEGERA - PKPJ Work Monitor`;
+          }
+        },
+        700
+      );
+
     return;
   }
 
-  let n = 0;
-
-  APP.blinkTimer =
-    setInterval(
-      () => {
-        document.title =
-          n % 2 === 0
-            ?
-            `🔴 (${count}) TINDAKAN SEGERA`
-            :
-            'PKPJ Work Monitor';
-
-        n++;
-
-        if (n >= 8){
-          clearInterval(
-            APP.blinkTimer
-          );
-
-          APP.blinkTimer = null;
-
-          document.title =
-            `🔴 (${count}) TINDAKAN SEGERA`;
-
-          setFavicon('🔴');
-        }
-      },
-      650
+  if (warningCount > 0){
+    setFaviconStatus(
+      'warning'
     );
+
+    document.title =
+      `(${warningCount}) AMARAN - PKPJ Work Monitor`;
+
+    return;
+  }
+
+  setFaviconStatus(
+    'normal'
+  );
+
+  document.title =
+    'PKPJ Work Monitor';
 }
 
 
 /* ==========================================================
-   FAVICON STATUS
+   FAVICON STATUS - SATU BULAT WARNA
 ========================================================== */
 
-function setFavicon(emoji){
+function setFaviconStatus(status){
+  const colours = {
+    normal: '#22c55e',
+    warning: '#f59e0b',
+    critical: '#ef4444'
+  };
+
+  const colour =
+    colours[status] ||
+    colours.normal;
+
   let l =
     document.querySelector(
       "link[rel~='icon']"
@@ -2959,21 +3755,14 @@ function setFavicon(emoji){
       .appendChild(l);
   }
 
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="26" fill="${colour}"/>
+    </svg>`;
+
   l.href =
     'data:image/svg+xml,' +
-    encodeURIComponent(
-      `<svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 100 100">
-
-      <text
-      y=".9em"
-      font-size="90">
-      ${emoji}
-      </text>
-
-      </svg>`
-    );
+    encodeURIComponent(svg);
 }
 
 
@@ -2984,7 +3773,8 @@ function setFavicon(emoji){
 async function runPost(
   action,
   payload,
-  msg
+  msg,
+  waitMs = 1300
 ){
   try{
     showToast(
@@ -2994,7 +3784,8 @@ async function runPost(
     const r =
       await post(
         action,
-        payload
+        payload,
+        waitMs
       );
 
     APP.data =
@@ -3118,6 +3909,29 @@ $('#subForm')
    SET TOTAL SMS
 ========================================================== */
 
+$('#openSmsTotal').onclick =
+  () => {
+    if (
+      APP.data &&
+      APP.data.sms
+    ){
+      $('#smsTotalForm [name="total"]').value =
+        APP.data.sms.used;
+    }
+
+    $('#smsTotalModal')
+      .classList
+      .remove('hidden');
+  };
+
+
+$('#closeSmsTotal').onclick =
+  () =>
+  $('#smsTotalModal')
+    .classList
+    .add('hidden');
+
+
 $('#smsTotalForm')
   .addEventListener(
     'submit',
@@ -3137,6 +3951,11 @@ $('#smsTotalForm')
           d,
           'Jumlah SMS semasa dikemas kini.'
         );
+
+        $('#smsTotalModal')
+          .classList
+          .add('hidden');
+
       } catch (_) {}
     }
   );
@@ -3324,12 +4143,18 @@ $('#saveSmsSettings').onclick =
 
 
 /* ==========================================================
-   REFRESH
+   KEMASKINI SETIAP TAB
 ========================================================== */
 
-$('#refreshBtn').onclick =
-  () =>
-  loadDashboard();
+$$('.tabRefreshBtn')
+  .forEach(
+    btn =>
+    btn.addEventListener(
+      'click',
+      () =>
+      loadDashboard()
+    )
+  );
 
 
 /* ==========================================================
@@ -3342,6 +4167,143 @@ $('#checkAlertBtn').onclick =
     'checkAlertsNow',
     {},
     'Semakan alert dijalankan.'
+  );
+
+
+/* ==========================================================
+   UJI GOOGLE CALENDAR
+========================================================== */
+
+$('#testCalendarBtn').onclick =
+  async () => {
+    const status =
+      $('#calendarTestStatus');
+
+    status.textContent =
+      'Sedang mencipta event ujian...';
+
+    try{
+      const r =
+        await runPost(
+          'testCalendar',
+          {},
+          'Ujian Google Calendar berjaya.'
+        );
+
+      const info =
+        r.result || {};
+
+      status.textContent =
+        '✅ Berjaya: ' +
+        (
+          info.calendarName ||
+          'Google Calendar'
+        ) +
+        '. Popup ujian akan dijadualkan kira-kira 1 minit lagi.';
+    } catch(e){
+      status.textContent =
+        '❌ Gagal: ' +
+        e.message;
+    }
+  };
+
+
+/* ==========================================================
+   SETTINGS ICON TABS
+========================================================== */
+
+$$('.settingsTab')
+  .forEach(
+    btn =>
+    btn.addEventListener(
+      'click',
+      () => {
+        const target =
+          btn.dataset.settings;
+
+        $$('.settingsTab')
+          .forEach(
+            b =>
+            b.classList.remove(
+              'active'
+            )
+          );
+
+        btn.classList.add(
+          'active'
+        );
+
+        $$('.settings-pane')
+          .forEach(
+            pane =>
+            pane.classList.toggle(
+              'active',
+              pane.dataset.settingsPane ===
+              target
+            )
+          );
+      }
+    )
+  );
+
+
+/* ==========================================================
+   KELUAR / DISCONNECT
+========================================================== */
+
+$('#logoutBtn').onclick =
+  () => {
+    const ok =
+      confirm(
+        'Keluar daripada dashboard ini pada browser ini?\n\nAPI URL dan token yang disimpan dalam browser akan dipadam.'
+      );
+
+    if (!ok){
+      return;
+    }
+
+    localStorage.removeItem(
+      'pkpj_api_url'
+    );
+
+    localStorage.removeItem(
+      'pkpj_api_token'
+    );
+
+    APP.apiUrl = '';
+    APP.token = '';
+    APP.data = null;
+
+    closeConfig();
+
+    document.title =
+      'PKPJ Work Monitor';
+
+    showToast(
+      'Anda telah keluar.'
+    );
+
+    setTimeout(
+      () =>
+      openConfig(),
+      400
+    );
+  };
+
+
+/* ==========================================================
+   PRINT TAB SEMASA
+========================================================== */
+
+$$('.printBtn')
+  .forEach(
+    btn =>
+    btn.addEventListener(
+      'click',
+      () => {
+        window.print();
+      }
+    )
   );
 
 
