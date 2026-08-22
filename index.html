@@ -109,12 +109,162 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
 .dashboard-blink-label>span{display:inline-block;animation:dashboardTextOnlyBlink .85s ease-in-out infinite}
 @keyframes dashboardTextOnlyBlink{0%,100%{opacity:1;color:#991b1b;text-shadow:none}50%{opacity:.28;color:#ef4444;text-shadow:0 0 8px rgba(239,68,68,.28)}}
 @media(max-width:760px){.process-select-wrap{grid-template-columns:1fr}.latest-single{width:100%}}
+
+/* ===== FINAL MAIN UI PATCH - 22 AUG 2026 ===== */
+
+/* Buang ruang bekas logo/branding di sidebar */
+.side{
+  padding-top:16px!important;
+}
+.brand{
+  display:none!important;
+}
+
+/* Dashboard: hanya TEKS SEGERA/KRITIKAL berkelip, teks kekal putih */
+.focus-item.critical,
+.focus-item.critical.urgent-blink,
+.renew-critical-blink,
+.renew-table tr.renew-critical-blink{
+  animation:none!important;
+}
+
+.dashboard-blink-label,
+.focus-item.critical .pill.critical,
+.renew-table .pill.critical{
+  background:linear-gradient(135deg,#ff2638,#df1630)!important;
+  color:#fff!important;
+  border-color:transparent!important;
+  animation:none!important;
+  box-shadow:none!important;
+}
+
+.dashboard-blink-label > span,
+.focus-item.critical .pill.critical > span,
+.renew-table .pill.critical > span{
+  display:inline-block!important;
+  color:#fff!important;
+  font-weight:950!important;
+  animation:blinkWhiteUrgentText .88s ease-in-out infinite!important;
+  text-shadow:0 0 0 rgba(255,255,255,0);
+}
+
+@keyframes blinkWhiteUrgentText{
+  0%,100%{
+    opacity:1;
+    color:#fff;
+    text-shadow:0 0 0 rgba(255,255,255,0);
+  }
+  50%{
+    opacity:.35;
+    color:#fff;
+    text-shadow:0 0 9px rgba(255,255,255,.8);
+  }
+}
+
+/* Ringkasan SMS: RM + donut BESAR duduk rapat sebelah menyebelah */
+.compact-sms .sms-premium-body{
+  display:grid!important;
+  grid-template-columns:190px 210px!important;
+  grid-template-areas:
+    "balance donut"
+    "stats stats"!important;
+  justify-content:start!important;
+  align-items:center!important;
+  column-gap:14px!important;
+  row-gap:18px!important;
+  padding:20px 22px 22px!important;
+}
+
+.compact-sms .sms-left{
+  grid-area:balance!important;
+  justify-self:start!important;
+  align-self:center!important;
+  min-width:0!important;
+}
+
+.compact-sms .sms-left strong{
+  font-size:40px!important;
+  line-height:1.05!important;
+  letter-spacing:-1px!important;
+  white-space:nowrap!important;
+}
+
+.compact-sms .sms-donut{
+  grid-area:donut!important;
+  width:205px!important;
+  height:205px!important;
+  justify-self:start!important;
+  margin:0!important;
+  box-shadow:0 12px 30px rgba(20,148,71,.18)!important;
+}
+
+.compact-sms .sms-donut::after{
+  inset:25px!important;
+}
+
+.compact-sms .sms-donut-content b{
+  font-size:32px!important;
+}
+
+.compact-sms .sms-donut-content span{
+  font-size:12px!important;
+}
+
+.compact-sms .sms-side-stats{
+  grid-area:stats!important;
+  grid-column:1/-1!important;
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:9px!important;
+}
+
+@media(max-width:1250px){
+  .compact-sms .sms-premium-body{
+    grid-template-columns:180px 185px!important;
+    column-gap:12px!important;
+  }
+  .compact-sms .sms-donut{
+    width:180px!important;
+    height:180px!important;
+  }
+  .compact-sms .sms-donut::after{
+    inset:22px!important;
+  }
+  .compact-sms .sms-left strong{
+    font-size:36px!important;
+  }
+}
+
+@media(max-width:760px){
+  .compact-sms .sms-premium-body{
+    grid-template-columns:minmax(145px,1fr) 150px!important;
+    grid-template-areas:
+      "balance donut"
+      "stats stats"!important;
+    column-gap:10px!important;
+    padding:16px!important;
+  }
+  .compact-sms .sms-donut{
+    width:145px!important;
+    height:145px!important;
+  }
+  .compact-sms .sms-donut::after{
+    inset:18px!important;
+  }
+  .compact-sms .sms-left strong{
+    font-size:29px!important;
+  }
+  .compact-sms .sms-side-stats{
+    grid-template-columns:1fr!important;
+  }
+}
+
 </style>
 </head>
 <body>
 <div class="app">
   <aside class="side">
-    <div class="brand">Unit IT Monitor<small>Selamat datang Nazri!</small></div>
     <button class="navbtn active" data-page="dashboard"><span class="nav-icon">⌂</span><span class="nav-label">Dashboard</span></button>
     <button class="navbtn" data-page="tasks"><span class="nav-icon">✓</span><span class="nav-label">Tugasan</span></button>
     <button class="navbtn" data-page="notes"><span class="nav-icon">✎</span><span class="nav-label">Catatan</span></button>
