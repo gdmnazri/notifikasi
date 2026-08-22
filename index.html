@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PKPJ Work Monitor</title>
+<title>Unit IT Monitor</title>
 <link id="statusFavicon" rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='24' fill='%2322c55e'/%3E%3C/svg%3E">
 <style>
 :root{
@@ -100,7 +100,7 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
 <body>
 <div class="app">
   <aside class="side">
-    <div class="brand">PKPJ Monitor<small>WORK MONITOR</small></div>
+    <div class="brand">Unit IT Monitor<small>Selamat datang Nazri!</small></div>
     <button class="navbtn active" data-page="dashboard"><span class="nav-icon">⌂</span><span class="nav-label">Dashboard</span></button>
     <button class="navbtn" data-page="tasks"><span class="nav-icon">✓</span><span class="nav-label">Tugasan</span></button>
     <button class="navbtn" data-page="notes"><span class="nav-icon">✎</span><span class="nav-label">Catatan</span></button>
@@ -115,7 +115,7 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
 
   <main class="main">
     <div class="top">
-      <div><h1 id="pageTitle">Selamat datang kembali! 👋</h1><p id="lastUpdate">Ringkasan kerja dan status sistem</p></div>
+      <div><h1 id="pageTitle">Selamat datang Nazri! 👋</h1><p id="lastUpdate">Ringkasan kerja dan status sistem</p></div>
       <div class="actions">
         <button class="btn ghost" id="refreshBtn" title="Kemaskini">↻ &nbsp; Refresh</button>
         <button class="icon-btn" id="checkAlertBtn" title="Semak Alert">🔔</button>
@@ -184,7 +184,6 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
             <div class="field"><label>Tajuk / Perkara *</label><input name="title" required placeholder="Contoh: Semak surat sebelum dihantar"></div>
             <div class="field"><label>Catatan *</label><textarea name="instruction" required placeholder="Tulis apa sahaja yang perlu diingat, dibuat atau disemak..."></textarea></div>
             <div class="field"><label>Tarikh Susulan (pilihan)</label><input name="followUpDate" type="date"></div>
-            <div class="field"><label>Dokumen / Gambar (pilihan)</label><input name="attachments" type="file" multiple accept="application/pdf,image/jpeg,image/png,image/webp,.pdf,.jpg,.jpeg,.png,.webp"><div class="muted">PDF, JPG, PNG atau WEBP • maksimum 5 MB setiap fail • sehingga 3 fail sekali simpan.</div></div>
             <button class="btn primary" type="submit">Simpan Catatan</button>
           </form>
         </div>
@@ -275,7 +274,7 @@ function showPage(page){
   $$('.tabpage').forEach(x=>x.classList.remove('active'));
   target.classList.add('active');
   $$('.navbtn[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
-  setText('#pageTitle',{dashboard:'Selamat datang kembali! 👋',tasks:'Tugasan',notes:'Catatan',subscriptions:'Langganan & Renewal',sms:'SMS Monitor'}[page]||'PKPJ Work Monitor');
+  setText('#pageTitle',{dashboard:'Selamat datang Nazri! 👋',tasks:'Tugasan',notes:'Catatan',subscriptions:'Langganan & Renewal',sms:'SMS Monitor'}[page]||'Unit IT Monitor');
 }
 
 document.addEventListener('click',e=>{
@@ -385,7 +384,7 @@ function renderTasks(rows){
   el.innerHTML=rows.length?rows.map(r=>{
     const st=String(r.Status||'Belum Mula');
     const latest=String(r.NextAction||'').trim();
-    return `<tr><td><b>${esc(r.Task)}</b>${attachmentBadge('tasks',r.ID)}<div class="muted">${esc(r.Notes)}</div></td><td>${esc(r.Deadline)}</td><td>${esc(r.Priority)}</td><td>${levelPill(r._level,st)}</td><td>${latest?`<div class="task-latest"><b>Update:</b> ${esc(latest)}</div>`:'<span class="muted">Belum ada update.</span>'}</td><td>${esc(r.PIC)}</td><td><div class="row-actions"><button class="mini-icon" onclick="openEditTask('${esc(r.ID)}')" title="Kemaskini">✎</button><button class="mini-icon" onclick="openReferenceModal('tasks','${esc(r.ID)}','${esc(r.Task)}')" title="Lampiran">📎</button><button class="mini-icon" onclick="printRecord('task','${esc(r.ID)}')" title="Print">⎙</button>${st.toLowerCase()==='selesai'?'':`<button class="mini-icon done" onclick="markTaskDone('${esc(r.ID)}')" title="Selesai">✓</button>`}<button class="mini-icon delete" onclick="deleteTask('${esc(r.ID)}')" title="Delete">×</button></div><div class="task-status-actions">${st==='Dalam Proses'?'':`<button class="status-btn progress" onclick="quickTaskStatus('${esc(r.ID)}','Dalam Proses')">Dalam Proses</button>`}${st==='Proses Penyediaan Surat'?'':`<button class="status-btn letter" onclick="quickTaskStatus('${esc(r.ID)}','Proses Penyediaan Surat')">Penyediaan Surat</button>`}${st==='Proses Menunggu Balasan'?'':`<button class="status-btn waiting" onclick="quickTaskStatus('${esc(r.ID)}','Proses Menunggu Balasan')">Menunggu Balasan</button>`}<button class="status-btn latest" onclick="openTaskLatestStatus('${esc(r.ID)}')">+ Status Terkini</button></div></td></tr>`;
+    return `<tr><td><b>${esc(r.Task)}</b>${attachmentBadge('tasks',r.ID)}<div class="muted">${esc(r.Notes)}</div></td><td>${esc(r.Deadline)}</td><td>${esc(r.Priority)}</td><td>${levelPill(r._level,st)}</td><td>${latest?`<div class="task-latest"><b>Update:</b> ${esc(latest)}</div>`:'<span class="muted">Belum ada update.</span>'}</td><td>${esc(r.PIC)}</td><td><details class="task-action-details"><summary><span>⚙</span><span>Buka Aksi</span></summary><div class="task-action-popup"><div class="action-popup-title">Aksi Cepat</div><div class="action-icon-row"><button class="mini-icon" onclick="openEditTask('${esc(r.ID)}')" title="Kemaskini">✎</button><button class="mini-icon" onclick="openReferenceModal('tasks','${esc(r.ID)}','${esc(r.Task)}')" title="Lampiran">📎</button><button class="mini-icon" onclick="printRecord('task','${esc(r.ID)}')" title="Print">⎙</button>${st.toLowerCase()==='selesai'?'':`<button class="mini-icon done" onclick="markTaskDone('${esc(r.ID)}')" title="Selesai">✓</button>`}<button class="mini-icon delete" onclick="deleteTask('${esc(r.ID)}')" title="Delete">×</button></div><div class="action-popup-title">Status Proses</div><div class="task-status-actions">${st==='Dalam Proses'?'':`<button class="status-btn progress" onclick="quickTaskStatus('${esc(r.ID)}','Dalam Proses')">Dalam Proses</button>`}${st==='Proses Penyediaan Surat'?'':`<button class="status-btn letter" onclick="quickTaskStatus('${esc(r.ID)}','Proses Penyediaan Surat')">Penyediaan Surat</button>`}${st==='Proses Menunggu Balasan'?'':`<button class="status-btn waiting" onclick="quickTaskStatus('${esc(r.ID)}','Proses Menunggu Balasan')">Menunggu Balasan</button>`}<button class="status-btn latest" onclick="openTaskLatestStatus('${esc(r.ID)}')">+ Status Terkini</button></div></div></details></td></tr>`;
   }).join(''):'<tr><td colspan="7" class="empty">Belum ada tugasan.</td></tr>';
 }
 
@@ -404,7 +403,7 @@ function setFaviconStatus(status){
   const colour={normal:'#22c55e',warning:'#f59e0b',critical:'#ef4444'}[status]||'#22c55e';
   const l=$('#statusFavicon');if(!l)return;const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="${colour}"/></svg>`;l.href='data:image/svg+xml,'+encodeURIComponent(svg);
 }
-function handleTabAlert(critical,warning){clearInterval(APP.blinkTimer);APP.blinkTimer=null;if(critical>0){setFaviconStatus('critical');let n=0;APP.blinkTimer=setInterval(()=>{document.title=n%2===0?`(${critical}) TINDAKAN SEGERA`:'PKPJ Work Monitor';if(++n>=6){clearInterval(APP.blinkTimer);document.title=`(${critical}) TINDAKAN SEGERA - PKPJ Work Monitor`}},700)}else if(warning>0){setFaviconStatus('warning');document.title=`(${warning}) AMARAN - PKPJ Work Monitor`}else{setFaviconStatus('normal');document.title='PKPJ Work Monitor'}}
+function handleTabAlert(critical,warning){clearInterval(APP.blinkTimer);APP.blinkTimer=null;if(critical>0){setFaviconStatus('critical');let n=0;APP.blinkTimer=setInterval(()=>{document.title=n%2===0?`(${critical}) TINDAKAN SEGERA`:'Unit IT Monitor';if(++n>=6){clearInterval(APP.blinkTimer);document.title=`(${critical}) TINDAKAN SEGERA - Unit IT Monitor`}},700)}else if(warning>0){setFaviconStatus('warning');document.title=`(${warning}) AMARAN - Unit IT Monitor`}else{setFaviconStatus('normal');document.title='Unit IT Monitor'}}
 
 function fileToBase64(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(String(r.result||'').split(',').pop());r.onerror=()=>reject(new Error('Fail tidak dapat dibaca.'));r.readAsDataURL(file)})}
 async function uploadRecordAttachment(module,recordId,file,title,notes=''){if(!file?.name)return;const okTypes=['application/pdf','image/jpeg','image/png','image/webp'];const ext=(file.name.split('.').pop()||'').toLowerCase();if(!okTypes.includes(file.type)&&!['pdf','jpg','jpeg','png','webp'].includes(ext))throw new Error('Hanya PDF, JPG, PNG atau WEBP dibenarkan.');if(file.size>5*1024*1024)throw new Error('Fail melebihi 5 MB.');const base64=await fileToBase64(file);await runPost('uploadReference',{module,recordId,title:title||file.name,notes,fileName:file.name,mimeType:file.type||({'pdf':'application/pdf','jpg':'image/jpeg','jpeg':'image/jpeg','png':'image/png','webp':'image/webp'}[ext]),base64},'Lampiran disimpan.',4500)}
@@ -456,6 +455,39 @@ window.printRecord=(type,id)=>{let title='',fields=[],module='';if(type==='task'
 @media(max-width:1250px){.dash-main-grid{grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr)}.focus-panel .focus-list{grid-template-columns:1fr}.sms-premium-body{grid-template-columns:minmax(0,1fr) 104px}.sms-donut{width:100px;height:100px}}
 @media(max-width:1050px){.dash-main-grid{grid-template-columns:1fr}.focus-panel .focus-list{grid-template-columns:repeat(2,minmax(0,1fr))}.sms-premium-body{grid-template-columns:minmax(0,1fr) 118px}.sms-donut{width:108px;height:108px}}
 @media(max-width:760px){.focus-panel .focus-list{grid-template-columns:1fr}.focus-item{grid-template-columns:minmax(0,1fr) auto;min-height:86px}.focus-item>:last-child{display:inline-flex}.sms-premium-body{grid-template-columns:minmax(0,1fr) 96px;grid-template-areas:"balance donut" "stats stats"}.sms-donut{width:94px;height:94px}.sms-side-stats{grid-template-columns:1fr}.sms-left strong{font-size:25px}}
+
+
+/* ===== REFINED UI UPDATE: NAZRI + AKSI MINIMIZE ===== */
+.brand{font-size:22px;line-height:1.15}.brand small{font-size:12px;color:#cbd5e1;margin-top:7px;letter-spacing:.2px}
+.top h1{font-size:30px}
+th,td{font-size:13px}
+.task-latest,.muted{font-size:12px}
+.task-action-details{display:block;min-width:190px}
+.task-action-details summary{list-style:none;display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid #d7dfeb;border-radius:12px;background:#fff;color:#0f172a;font-size:13px;font-weight:850;box-shadow:0 4px 12px rgba(15,23,42,.05)}
+.task-action-details summary::-webkit-details-marker{display:none}
+.task-action-details[open] summary{background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8}
+.task-action-popup{margin-top:10px;padding:12px;border:1px solid #e3eaf3;border-radius:14px;background:linear-gradient(180deg,#ffffff,#f8fbff)}
+.action-popup-title{font-size:12px;font-weight:900;color:#334155;margin:2px 0 9px}
+.action-icon-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.action-icon-row .mini-icon{width:38px;height:38px;border-radius:11px;font-size:16px}
+.task-status-actions{gap:8px;margin-top:0}
+.status-btn{padding:9px 12px;font-size:12px;line-height:1.25}
+.focus-panel .focus-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.focus-item{min-height:118px;padding:16px 16px 14px}
+.focus-item b{font-size:15px;line-height:1.45;-webkit-line-clamp:3}
+.focus-item small{font-size:12px;line-height:1.55;margin-top:8px}
+.focus-item>.pill{min-width:84px;font-size:11px;padding:7px 10px}
+.compact-sms .sms-premium-body{display:grid;grid-template-columns:minmax(0,1fr) 148px;grid-template-areas:'balance donut' 'stats stats';align-items:center;gap:18px}
+.compact-sms .sms-left{grid-area:balance}
+.compact-sms .sms-donut{grid-area:donut;width:140px;height:140px;margin-inline:auto}
+.compact-sms .sms-side-stats{grid-area:stats;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
+.compact-sms .sms-side-row{min-height:54px;padding:12px 14px}
+.compact-sms .sms-side-row span{font-size:12px}
+.compact-sms .sms-side-row b{font-size:14px}
+.compact-sms .sms-left strong{font-size:38px;line-height:1.1}
+.compact-sms .sms-left span{font-size:13px}
+@media(max-width:1050px){.compact-sms .sms-premium-body{grid-template-columns:minmax(0,1fr) 132px}.compact-sms .sms-donut{width:128px;height:128px}.focus-panel .focus-list{grid-template-columns:1fr}}
+@media(max-width:760px){.task-action-details{min-width:160px}.task-action-details summary{width:100%;justify-content:center}.compact-sms .sms-premium-body{grid-template-columns:1fr;grid-template-areas:'balance' 'donut' 'stats';}.compact-sms .sms-donut{width:122px;height:122px}.compact-sms .sms-side-stats{grid-template-columns:1fr}.focus-item{min-height:auto}}
 
 </style></head><body><h2>${esc(title)}</h2><table>${fields.map(f=>`<tr><th>${esc(f[0])}</th><td>${esc(f[1])}</td></tr>`).join('')}</table>${refs.length?`<h3>Lampiran</h3><ul>${refs.map(r=>`<li>${esc(r.RefTitle)} — ${esc(r.FileName)}</li>`).join('')}</ul>`:''}</body></html>`);w.document.close();setTimeout(()=>{w.focus();w.print()},250)};
 
