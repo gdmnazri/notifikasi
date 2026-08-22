@@ -30,8 +30,15 @@ button,input,select,textarea{font:inherit} button{cursor:pointer}.hidden{display
 .tablewrap{overflow:auto;border:1px solid var(--line);border-radius:11px}table{width:100%;border-collapse:collapse;min-width:720px;background:#fff}th,td{padding:10px 11px;border-bottom:1px solid var(--line);font-size:12px;text-align:left;vertical-align:top}th{background:#f8fafc;color:#475569}.row-actions{display:flex;gap:5px;align-items:center;white-space:nowrap}.attachment-count{font-size:10px;color:#64748b;font-weight:700;margin-left:5px}
 .sms-infographic{display:grid;grid-template-columns:190px minmax(0,1fr);align-items:center;gap:22px;margin-bottom:15px;background:radial-gradient(circle at 8% 20%,rgba(37,99,235,.12),transparent 36%),radial-gradient(circle at 93% 18%,rgba(34,197,94,.10),transparent 30%),#fff}.sms-gauge-box{display:grid;place-items:center;gap:8px}.sms-gauge{--pct:100%;--gauge:#22c55e;width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--gauge) var(--pct),#e7edf5 0);display:grid;place-items:center;position:relative}.sms-gauge::after{content:"";position:absolute;inset:17px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 1px #eef2f7}.sms-gauge-inner{position:relative;z-index:2;text-align:center}.sms-gauge-inner strong{font-size:28px;display:block}.sms-gauge-inner span{font-size:10px;color:var(--muted)}.sms-big-balance{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:13px}.sms-big-balance strong{display:block;font-size:32px}.sms-big-balance .remaining{text-align:right;font-size:18px;font-weight:850;color:var(--green)}.sms-stat-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.sms-stat{padding:10px;border:1px solid var(--line);border-radius:10px;background:rgba(248,250,252,.9)}.sms-stat span{display:block;font-size:9px;color:var(--muted)}.sms-stat b{display:block;font-size:12px;margin-top:3px}.planner-result{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.planner-result>div{padding:10px;border-radius:10px;background:#f8fafc}.planner-result b{display:block;margin-top:3px}.statusline{font-size:11px;margin-top:10px}
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.62);display:grid;place-items:center;padding:18px;z-index:100;overflow:auto}.modalbox{width:min(620px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:17px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,.24)}.settings-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.settings-tabs{display:flex;gap:7px}.settingsTab.active{background:#111827;color:#fff;border-color:#111827}.settings-pane{display:none}.settings-pane.active{display:block}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}.reference-list{display:grid;gap:8px;margin-top:14px}.reference-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;background:#f8fafc;border:1px solid var(--line);border-radius:10px}.toast{position:fixed;right:16px;bottom:16px;background:#111827;color:#fff;padding:11px 13px;border-radius:10px;z-index:130;max-width:360px}.empty{text-align:center;color:var(--muted);padding:20px}
-@media(max-width:1050px){.cards{grid-template-columns:repeat(2,1fr)}.grid2,.forms{grid-template-columns:1fr}.sms-stat-strip{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:760px){body{padding-bottom:68px}.app{display:block}.side{position:fixed;left:0;right:0;bottom:0;top:auto;height:62px;z-index:90;padding:6px 7px;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.brand{display:none}.navbtn{margin:0;padding:6px 3px;text-align:center}.nav-label{display:none}.nav-icon{font-size:19px;width:auto}.main{padding:13px}.top{align-items:flex-start;flex-direction:column}.top h1{font-size:22px}.top .actions{width:100%}.top .actions .btn{flex:1}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.card{padding:13px}.metric{font-size:22px}.form-row,.smsgrid,.planner-result{grid-template-columns:1fr}.sms-infographic{grid-template-columns:1fr;padding:14px}.sms-gauge{width:132px;height:132px}.sms-big-balance{align-items:flex-start}.sms-big-balance strong{font-size:27px}.sms-big-balance .remaining{text-align:left}.modal{padding:9px;align-items:end}.modalbox{max-height:88vh;border-radius:17px 17px 0 0;padding:16px}.reference-item{grid-template-columns:1fr}.reference-item .row-actions{justify-content:flex-end}table{min-width:650px}}
+
+/* DASHBOARD RINGKAS + CATATAN */
+.focus-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:15px;margin-bottom:15px}
+.focus-list{display:grid;gap:8px}.focus-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px;border:1px solid var(--line);border-radius:11px;background:#fff}.focus-dot{width:10px;height:10px;border-radius:50%;background:#94a3b8}.focus-item.critical .focus-dot{background:var(--red)}.focus-item.warning .focus-dot{background:var(--orange)}.focus-item b{display:block;font-size:12px}.focus-item small{color:var(--muted)}
+.quick-note{padding:11px;border:1px solid var(--line);border-radius:11px;background:#f8fafc}.quick-note+.quick-note{margin-top:8px}.quick-note b{font-size:12px}.quick-note p{margin:5px 0 0;font-size:11px;color:#475569;line-height:1.45}.note-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.note-chip{font-size:9px;font-weight:800;padding:4px 7px;border-radius:999px;background:#e2e8f0;color:#334155}
+.notes-layout{display:grid;grid-template-columns:380px minmax(0,1fr);gap:15px}.notes-list{display:grid;gap:10px}.note-card{border:1px solid var(--line);border-radius:13px;background:#fff;padding:13px}.note-card-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.note-card h3{font-size:14px;margin:0}.note-card p{font-size:12px;line-height:1.5;margin:9px 0;color:#334155;white-space:pre-wrap}.note-card .row-actions{justify-content:flex-end;margin-top:10px}
+.dashboard-compact .metric{font-size:24px}.dashboard-compact .card{padding:14px}.dash-sms{padding:13px}.dash-sms .smsbig strong{font-size:25px}.dash-sms .smsgrid{grid-template-columns:repeat(3,1fr)}
+@media(max-width:1050px){.cards{grid-template-columns:repeat(2,1fr)}.grid2,.forms,.focus-grid,.notes-layout{grid-template-columns:1fr}.sms-stat-strip{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){body{padding-bottom:68px}.app{display:block}.side{position:fixed;left:0;right:0;bottom:0;top:auto;height:62px;z-index:90;padding:6px 7px;display:grid;grid-template-columns:repeat(6,1fr);gap:4px}.brand{display:none}.navbtn{margin:0;padding:6px 3px;text-align:center}.nav-label{display:none}.nav-icon{font-size:19px;width:auto}.main{padding:13px}.top{align-items:flex-start;flex-direction:column}.top h1{font-size:22px}.top .actions{width:100%}.top .actions .btn{flex:1}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.card{padding:13px}.metric{font-size:22px}.form-row,.smsgrid,.planner-result{grid-template-columns:1fr}.sms-infographic{grid-template-columns:1fr;padding:14px}.sms-gauge{width:132px;height:132px}.sms-big-balance{align-items:flex-start}.sms-big-balance strong{font-size:27px}.sms-big-balance .remaining{text-align:left}.modal{padding:9px;align-items:end}.modalbox{max-height:88vh;border-radius:17px 17px 0 0;padding:16px}.reference-item{grid-template-columns:1fr}.reference-item .row-actions{justify-content:flex-end}table{min-width:650px}}
 </style>
 </head>
 <body>
@@ -40,6 +47,7 @@ button,input,select,textarea{font:inherit} button{cursor:pointer}.hidden{display
     <div class="brand">PKPJ Monitor<small>Task • Renewal • SMS</small></div>
     <button class="navbtn active" data-page="dashboard"><span class="nav-icon">⌂</span><span class="nav-label">Dashboard</span></button>
     <button class="navbtn" data-page="tasks"><span class="nav-icon">✓</span><span class="nav-label">Tugasan</span></button>
+    <button class="navbtn" data-page="notes"><span class="nav-icon">✎</span><span class="nav-label">Catatan</span></button>
     <button class="navbtn" data-page="subscriptions"><span class="nav-icon">↻</span><span class="nav-label">Langganan</span></button>
     <button class="navbtn" data-page="sms"><span class="nav-icon">✉</span><span class="nav-label">SMS</span></button>
     <button class="navbtn" id="openConfig"><span class="nav-icon">⚙</span><span class="nav-label">Tetapan</span></button>
@@ -55,20 +63,17 @@ button,input,select,textarea{font:inherit} button{cursor:pointer}.hidden{display
     </div>
 
     <section class="tabpage active" id="page-dashboard">
-      <div class="cards dashboard-cards">
-        <div class="card"><span class="label">Tindakan Kritikal</span><div class="metric" id="mCritical">0</div></div>
-        <div class="card"><span class="label">Amaran</span><div class="metric" id="mWarning">0</div></div>
+      <div class="cards dashboard-cards dashboard-compact">
+        <div class="card"><span class="label">Perlu Tindakan</span><div class="metric" id="mAction">0</div></div>
+        <div class="card"><span class="label">Catatan Aktif</span><div class="metric" id="mNotesOpen">0</div></div>
         <div class="card"><span class="label">Task Selesai</span><div class="metric" id="mDone">0</div></div>
-        <div class="card"><span class="label">SMS Masih Boleh Guna</span><div class="metric" id="mSmsRemaining">0</div></div>
+        <div class="card"><span class="label">Baki SMS</span><div class="metric" id="mSmsRemaining">0</div></div>
       </div>
-      <div class="grid2">
-        <div class="card"><div class="section-title"><h2>Alert Semasa</h2><span class="pill critical" id="alertCountPill">0 kritikal</span></div><div class="alerts" id="alertsList"></div></div>
-        <div class="card"><div class="section-title"><h2>Baki SMS</h2><span class="pill normal" id="smsStatus">NORMAL</span></div><div class="smsbig"><div><span class="label">Baki kredit</span><strong id="smsBalance">RM0.00</strong></div><div class="muted" id="smsPct">0%</div></div><div class="progress"><div class="bar" id="smsBar"></div></div><div class="smsgrid"><div class="mini"><span class="label">Digunakan</span><b id="smsUsed">0 SMS</b></div><div class="mini"><span class="label">Kos digunakan</span><b id="smsUsedCost">RM0.00</b></div><div class="mini"><span class="label">Kos / SMS</span><b id="smsCost">RM0.15</b></div></div></div>
+      <div class="focus-grid">
+        <div class="card"><div class="section-title"><div><h2>Fokus Hari Ini</h2><div class="muted">Hanya perkara yang benar-benar perlukan perhatian.</div></div><span class="pill critical" id="alertCountPill">0 kritikal</span></div><div class="focus-list" id="focusList"></div></div>
+        <div class="card"><div class="section-title"><h2>Catatan Terkini</h2><button class="mini-icon" type="button" onclick="showPage('notes')" title="Buka Catatan">↗</button></div><div id="dashNotes"></div></div>
       </div>
-      <div class="grid2">
-        <div class="card"><div class="section-title"><h2>Tugasan Perlu Perhatian</h2></div><div class="tablewrap"><table><thead><tr><th>Tugasan</th><th>Deadline</th><th>Status</th><th>PIC</th></tr></thead><tbody id="dashTasks"></tbody></table></div></div>
-        <div class="card"><div class="section-title"><h2>Renewal Akan Datang</h2></div><div class="tablewrap"><table><thead><tr><th>Langganan</th><th>Tamat</th><th>Status</th><th>Kitaran</th></tr></thead><tbody id="dashSubs"></tbody></table></div></div>
-      </div>
+      <div class="card dash-sms"><div class="section-title"><h2>Ringkasan SMS</h2><span class="pill normal" id="smsStatus">NORMAL</span></div><div class="smsbig"><div><span class="label">Baki kredit</span><strong id="smsBalance">RM0.00</strong></div><div class="muted" id="smsPct">0%</div></div><div class="progress"><div class="bar" id="smsBar"></div></div><div class="smsgrid"><div class="mini"><span class="label">Digunakan</span><b id="smsUsed">0 SMS</b></div><div class="mini"><span class="label">Kos digunakan</span><b id="smsUsedCost">RM0.00</b></div><div class="mini"><span class="label">Kos / SMS</span><b id="smsCost">RM0.15</b></div></div></div>
     </section>
 
     <section class="tabpage" id="page-tasks">
@@ -87,6 +92,23 @@ button,input,select,textarea{font:inherit} button{cursor:pointer}.hidden{display
         <div class="card"><h2 style="margin-top:0">Rule Notifikasi Task</h2><p class="muted">≤ 3 hari: AMARAN.<br><br>Hari ini, esok atau overdue: KRITIKAL.<br><br>Alert kritikal baru dihantar ke Google Calendar.</p></div>
       </div>
       <div class="card" style="margin-top:15px"><div class="section-title"><h2>Senarai Tugasan</h2></div><div class="tablewrap"><table><thead><tr><th>Tugasan</th><th>Deadline</th><th>Priority</th><th>Status</th><th>Tindakan</th><th>PIC</th><th>Aksi</th></tr></thead><tbody id="taskRows"></tbody></table></div></div>
+    </section>
+
+    <section class="tabpage" id="page-notes">
+      <div class="notes-layout">
+        <div class="card"><div class="section-title"><div><h2>Catatan / Arahan Pegawai</h2><div class="muted">Simpan arahan, isu, susulan dan rujukan dalam satu tempat.</div></div></div>
+          <form class="form" id="noteForm">
+            <div class="form-row"><div class="field"><label>Tarikh</label><input name="date" type="date" required></div><div class="field"><label>Daripada / Pegawai</label><input name="officer" placeholder="Nama pegawai"></div></div>
+            <div class="field"><label>Tajuk *</label><input name="title" required placeholder="Contoh: Arahan kemas kini portal"></div>
+            <div class="field"><label>Arahan / Catatan *</label><textarea name="instruction" required placeholder="Tulis arahan, isu atau perkara yang perlu diambil tindakan..."></textarea></div>
+            <div class="form-row"><div class="field"><label>Keutamaan</label><select name="priority"><option>Normal</option><option>Tinggi</option><option>Urgent</option></select></div><div class="field"><label>Status</label><select name="status"><option>Aktif</option><option>Dalam Tindakan</option><option>Menunggu</option><option>Selesai</option></select></div></div>
+            <div class="field"><label>Tarikh Susulan</label><input name="followUpDate" type="date"></div>
+            <div class="field"><label>Dokumen / Gambar</label><input name="attachments" type="file" multiple accept="application/pdf,image/jpeg,image/png,image/webp,.pdf,.jpg,.jpeg,.png,.webp"><div class="muted">PDF, JPG, PNG atau WEBP • maksimum 5 MB setiap fail • sehingga 3 fail sekali simpan.</div></div>
+            <button class="btn primary" type="submit">Simpan Catatan</button>
+          </form>
+        </div>
+        <div class="card"><div class="section-title"><div><h2>Senarai Catatan</h2><div class="muted">Yang terbaru dipaparkan di atas.</div></div></div><div class="notes-list" id="noteRows"></div></div>
+      </div>
     </section>
 
     <section class="tabpage" id="page-subscriptions">
@@ -172,7 +194,7 @@ function showPage(page){
   $$('.tabpage').forEach(x=>x.classList.remove('active'));
   target.classList.add('active');
   $$('.navbtn[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
-  setText('#pageTitle',{dashboard:'Dashboard',tasks:'Tugasan',subscriptions:'Langganan & Renewal',sms:'SMS Monitor'}[page]||'PKPJ Work Monitor');
+  setText('#pageTitle',{dashboard:'Dashboard',tasks:'Tugasan',notes:'Catatan',subscriptions:'Langganan & Renewal',sms:'SMS Monitor'}[page]||'PKPJ Work Monitor');
 }
 
 document.addEventListener('click',e=>{
@@ -238,9 +260,19 @@ async function loadDashboard(silent=false){
 
 function renderAll(){
   const d=APP.data;if(!d)return;
-  setText('#lastUpdate','Dikemas kini: '+d.now);setText('#mCritical',d.summary.criticalCount);setText('#mWarning',d.summary.warningCount);setText('#mDone',d.summary.taskDone);setText('#mSmsRemaining',num(d.sms.remaining));
-  renderAlerts(d.alerts||[]);renderSms(d.sms||{});renderTasks(d.tasks||[]);renderSubs(d.subscriptions||[]);renderSmsLogs(d.smsLogs||[]);handleTabAlert(d.summary.criticalCount,d.summary.warningCount);
+  setText('#lastUpdate','Dikemas kini: '+d.now);setText('#mAction',Number(d.summary.criticalCount||0)+Number(d.summary.warningCount||0));setText('#mNotesOpen',d.summary.notesOpen||0);setText('#mDone',d.summary.taskDone);setText('#mSmsRemaining',num(d.sms.remaining));
+  renderDashboardFocus(d.alerts||[]);renderDashNotes(d.notes||[]);renderSms(d.sms||{});renderTasks(d.tasks||[]);renderNotes(d.notes||[]);renderSubs(d.subscriptions||[]);renderSmsLogs(d.smsLogs||[]);handleTabAlert(d.summary.criticalCount,d.summary.warningCount);
 }
+
+
+function renderDashboardFocus(alerts){
+  setText('#alertCountPill',alerts.filter(a=>a.level==='critical').length+' kritikal');
+  const el=$('#focusList');if(!el)return;
+  const rows=alerts.slice(0,7);
+  el.innerHTML=rows.length?rows.map(a=>`<div class="focus-item ${esc(a.level)}"><span class="focus-dot"></span><div><b>${esc(a.subject)}</b><small>${esc(a.title)} • ${esc(a.detail)}</small></div>${levelPill(a.level,a.level==='critical'?'SEGERA':'AMARAN')}</div>`).join(''):'<div class="empty">✅ Tiada perkara mendesak. Dashboard bersih.</div>';
+}
+function renderDashNotes(rows){const el=$('#dashNotes');if(!el)return;const items=rows.slice(0,4);el.innerHTML=items.length?items.map(r=>`<div class="quick-note"><b>${esc(r.Title)}</b><p>${esc(r.Instruction)}</p><div class="note-meta"><span class="note-chip">${esc(r.Officer||'Tanpa pegawai')}</span><span class="note-chip">${esc(r.Status||'Aktif')}</span>${r.FollowUpDate?`<span class="note-chip">Susulan ${esc(r.FollowUpDate)}</span>`:''}</div></div>`).join(''):'<div class="empty">Belum ada catatan.</div>'}
+function renderNotes(rows){const el=$('#noteRows');if(!el)return;el.innerHTML=rows.length?rows.map(r=>`<div class="note-card"><div class="note-card-head"><div><h3>${esc(r.Title)}</h3><div class="muted">${esc(r.Date)}${r.Officer?' • '+esc(r.Officer):''}</div></div>${levelPill(String(r.Priority).toLowerCase()==='urgent'?'critical':String(r.Priority).toLowerCase()==='tinggi'?'warning':'normal',r.Priority||'Normal')}</div><p>${esc(r.Instruction)}</p><div class="note-meta"><span class="note-chip">${esc(r.Status||'Aktif')}</span>${r.FollowUpDate?`<span class="note-chip">Susulan: ${esc(r.FollowUpDate)}</span>`:''}${attachmentBadge('notes',r.ID)}</div><div class="row-actions"><button class="mini-icon" onclick="openEditNote('${esc(r.ID)}')" title="Kemaskini">✎</button><button class="mini-icon" onclick="openReferenceModal('notes','${esc(r.ID)}','${esc(r.Title)}')" title="Lampiran">📎</button><button class="mini-icon delete" onclick="deleteNote('${esc(r.ID)}')" title="Delete">×</button></div></div>`).join(''):'<div class="empty">Belum ada catatan.</div>'}
 
 function renderAlerts(alerts){
   setText('#alertCountPill',alerts.filter(a=>a.level==='critical').length+' kritikal');
@@ -284,15 +316,19 @@ function setFaviconStatus(status){
 function handleTabAlert(critical,warning){clearInterval(APP.blinkTimer);APP.blinkTimer=null;if(critical>0){setFaviconStatus('critical');let n=0;APP.blinkTimer=setInterval(()=>{document.title=n%2===0?`(${critical}) TINDAKAN SEGERA`:'PKPJ Work Monitor';if(++n>=6){clearInterval(APP.blinkTimer);document.title=`(${critical}) TINDAKAN SEGERA - PKPJ Work Monitor`}},700)}else if(warning>0){setFaviconStatus('warning');document.title=`(${warning}) AMARAN - PKPJ Work Monitor`}else{setFaviconStatus('normal');document.title='PKPJ Work Monitor'}}
 
 function fileToBase64(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(String(r.result||'').split(',').pop());r.onerror=()=>reject(new Error('Fail tidak dapat dibaca.'));r.readAsDataURL(file)})}
-async function uploadRecordAttachment(module,recordId,file,title,notes=''){if(!file?.name)return;if(!(file.type==='application/pdf'||file.name.toLowerCase().endsWith('.pdf')))throw new Error('Hanya PDF dibenarkan.');if(file.size>5*1024*1024)throw new Error('PDF melebihi 5 MB.');const base64=await fileToBase64(file);await runPost('uploadReference',{module,recordId,title:title||file.name,notes,fileName:file.name,mimeType:'application/pdf',base64},'Lampiran PDF disimpan.',4500)}
+async function uploadRecordAttachment(module,recordId,file,title,notes=''){if(!file?.name)return;const okTypes=['application/pdf','image/jpeg','image/png','image/webp'];const ext=(file.name.split('.').pop()||'').toLowerCase();if(!okTypes.includes(file.type)&&!['pdf','jpg','jpeg','png','webp'].includes(ext))throw new Error('Hanya PDF, JPG, PNG atau WEBP dibenarkan.');if(file.size>5*1024*1024)throw new Error('Fail melebihi 5 MB.');const base64=await fileToBase64(file);await runPost('uploadReference',{module,recordId,title:title||file.name,notes,fileName:file.name,mimeType:file.type||({'pdf':'application/pdf','jpg':'image/jpeg','jpeg':'image/jpeg','png':'image/png','webp':'image/webp'}[ext]),base64},'Lampiran disimpan.',4500)}
 
-function openReferenceModal(module,id,title){APP.referenceModule=module;APP.referenceRecordId=id;setText('#referenceModalTitle','Lampiran PDF');setText('#referenceModalSubtitle',title||'');$('#referenceForm')?.reset();renderReferenceList();$('#referenceModal')?.classList.remove('hidden')}
+function openReferenceModal(module,id,title){APP.referenceModule=module;APP.referenceRecordId=id;setText('#referenceModalTitle','Lampiran Dokumen / Gambar');setText('#referenceModalSubtitle',title||'');$('#referenceForm')?.reset();renderReferenceList();$('#referenceModal')?.classList.remove('hidden')}
 function renderReferenceList(){const el=$('#referenceList');if(!el)return;const refs=(APP.data?.references||[]).filter(r=>String(r.Module||'').toLowerCase()===String(APP.referenceModule||'').toLowerCase()&&String(r.RecordID||'')===String(APP.referenceRecordId||''));el.innerHTML=refs.length?refs.map(r=>`<div class="reference-item"><div><b>${esc(r.RefTitle)}</b><div class="muted">${esc(r.FileName)}${r.Notes?' • '+esc(r.Notes):''}</div></div><div class="row-actions"><a class="mini-icon" href="${esc(r.DriveUrl)}" target="_blank">↗</a><button class="mini-icon delete" onclick="deleteReference('${esc(r.ID)}')">×</button></div></div>`).join(''):'<div class="empty">Belum ada lampiran PDF.</div>'}
 window.deleteReference=async id=>{if(!confirm('Delete lampiran ini?'))return;try{await runPost('deleteReference',{id},'Lampiran dipadam.');renderReferenceList()}catch(_){}};
 
 function openEditModal(title,html,submitHandler){setText('#editModalTitle',title);const f=$('#editForm');if(!f)return;f.innerHTML=html;f.onsubmit=submitHandler;$('#editModal')?.classList.remove('hidden')}
 function closeEditModal(){$('#editModal')?.classList.add('hidden');const f=$('#editForm');if(f){f.innerHTML='';f.onsubmit=null}}
 window.closeEditModal=closeEditModal;
+
+
+window.openEditNote=id=>{const r=(APP.data?.notes||[]).find(x=>String(x.ID)===String(id));if(!r)return;openEditModal('Kemaskini Catatan',`<input type="hidden" name="id" value="${esc(r.ID)}"><div class="form-row"><div class="field"><label>Tarikh</label><input name="date" type="date" required value="${esc(isoDate(r.Date))}"></div><div class="field"><label>Daripada / Pegawai</label><input name="officer" value="${esc(r.Officer)}"></div></div><div class="field"><label>Tajuk</label><input name="title" required value="${esc(r.Title)}"></div><div class="field"><label>Arahan / Catatan</label><textarea name="instruction" required>${esc(r.Instruction)}</textarea></div><div class="form-row"><div class="field"><label>Keutamaan</label><select name="priority"><option ${r.Priority==='Normal'?'selected':''}>Normal</option><option ${r.Priority==='Tinggi'?'selected':''}>Tinggi</option><option ${r.Priority==='Urgent'?'selected':''}>Urgent</option></select></div><div class="field"><label>Status</label><select name="status"><option ${r.Status==='Aktif'?'selected':''}>Aktif</option><option ${r.Status==='Dalam Tindakan'?'selected':''}>Dalam Tindakan</option><option ${r.Status==='Menunggu'?'selected':''}>Menunggu</option><option ${r.Status==='Selesai'?'selected':''}>Selesai</option></select></div></div><div class="field"><label>Tarikh Susulan</label><input name="followUpDate" type="date" value="${esc(isoDate(r.FollowUpDate))}"></div><div class="field"><label>Tambah Dokumen / Gambar</label><input name="attachments" type="file" multiple accept="application/pdf,image/jpeg,image/png,image/webp,.pdf,.jpg,.jpeg,.png,.webp"></div><div class="modal-actions"><button class="btn ghost" type="button" onclick="closeEditModal()">Batal</button><button class="btn primary" type="submit">Simpan</button></div>`,async e=>{e.preventDefault();const fd=new FormData(e.currentTarget),files=Array.from(e.currentTarget.querySelector('[name="attachments"]')?.files||[]).slice(0,3),d=Object.fromEntries(fd);delete d.attachments;try{await runPost('updateNote',d,'Catatan dikemas kini.');for(const f of files)await uploadRecordAttachment('notes',d.id,f,'Lampiran — '+d.title,d.instruction||'');closeEditModal()}catch(_){}})};
+window.deleteNote=async id=>{if(confirm('Delete catatan ini?'))try{await runPost('deleteNote',{id},'Catatan dipadam.')}catch(_){}};
 
 window.openEditTask=id=>{const r=(APP.data?.tasks||[]).find(x=>String(x.ID)===String(id));if(!r)return;openEditModal('Kemaskini Tugasan',`<input type="hidden" name="id" value="${esc(r.ID)}"><div class="field"><label>Nama Tugasan</label><input name="task" required value="${esc(r.Task)}"></div><div class="form-row"><div class="field"><label>Deadline</label><input name="deadline" type="date" required value="${esc(isoDate(r.Deadline))}"></div><div class="field"><label>Priority</label><select name="priority"><option ${r.Priority==='Normal'?'selected':''}>Normal</option><option ${r.Priority==='Tinggi'?'selected':''}>Tinggi</option><option ${r.Priority==='Urgent'?'selected':''}>Urgent</option></select></div></div><div class="form-row"><div class="field"><label>Status</label><select name="status"><option ${r.Status==='Belum Mula'?'selected':''}>Belum Mula</option><option ${r.Status==='Dalam Proses'?'selected':''}>Dalam Proses</option><option ${r.Status==='Menunggu'?'selected':''}>Menunggu</option><option ${r.Status==='Selesai'?'selected':''}>Selesai</option></select></div><div class="field"><label>PIC</label><input name="pic" value="${esc(r.PIC)}"></div></div><div class="field"><label>Tindakan Seterusnya</label><input name="nextAction" value="${esc(r.NextAction)}"></div><div class="field"><label>Nota</label><textarea name="notes">${esc(r.Notes)}</textarea></div><div class="field"><label>Tambah PDF (pilihan)</label><input name="attachment" type="file" accept="application/pdf,.pdf"></div><div class="modal-actions"><button class="btn ghost" type="button" onclick="closeEditModal()">Batal</button><button class="btn primary" type="submit">Simpan</button></div>`,async e=>{e.preventDefault();const fd=new FormData(e.currentTarget),file=fd.get('attachment'),d=Object.fromEntries(fd);delete d.attachment;try{await runPost('updateTask',d,'Tugasan dikemas kini.');if(file?.name)await uploadRecordAttachment('tasks',d.id,file,'Lampiran — '+d.task,d.notes||'');closeEditModal()}catch(_){}})};
 window.deleteTask=async id=>{if(confirm('Delete tugasan ini?'))try{await runPost('deleteTask',{id},'Tugasan dipadam.')}catch(_){}};
@@ -311,7 +347,7 @@ async function handleAddForm(form,module,action,titleKey,successMsg){const fd=ne
 
 function init(){
   // Tab mesti sentiasa berfungsi walaupun API rosak.
-  showPage('dashboard');setFaviconStatus('normal');
+  showPage('dashboard');setFaviconStatus('normal');const nd=$('#noteForm [name="date"]');if(nd&&!nd.value)nd.value=new Date().toISOString().slice(0,10);
 
   safeOn('#openConfig','click',openConfig);safeOn('#closeConfig','click',closeConfig);
   safeOn('#refreshBtn','click',()=>loadDashboard());
@@ -331,6 +367,7 @@ function init(){
   safeOn('#resetSmsBtn','click',async()=>{if(!confirm('Reset semua penggunaan SMS dan kosongkan log?'))return;if(!confirm('Pengesahan terakhir: teruskan reset?'))return;try{await runPost('resetSms',{},'Penggunaan SMS direset.');$('#smsTotalModal')?.classList.add('hidden')}catch(_){}});
   safeOn('#smsTotalForm','submit',async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget));try{await runPost('setSmsUsedTotal',d,'Jumlah SMS dikemas kini.');$('#smsTotalModal')?.classList.add('hidden')}catch(_){}});
 
+  safeOn('#noteForm','submit',async e=>{e.preventDefault();const form=e.currentTarget,fd=new FormData(form),files=Array.from(form.querySelector('[name="attachments"]')?.files||[]);if(files.length>3)return showToast('Maksimum 3 lampiran sekali simpan.');const d=Object.fromEntries(fd);delete d.attachments;d.id=uuid();try{await runPost('addNote',d,'Catatan disimpan.');for(const f of files)await uploadRecordAttachment('notes',d.id,f,'Lampiran — '+d.title,d.instruction||'');form.reset();form.querySelector('[name="date"]').value=new Date().toISOString().slice(0,10)}catch(_){}});
   safeOn('#taskForm','submit',async e=>{e.preventDefault();try{await handleAddForm(e.currentTarget,'tasks','addTask','task','Tugasan disimpan.')}catch(_){}});
   safeOn('#subForm','submit',async e=>{e.preventDefault();try{await handleAddForm(e.currentTarget,'subscriptions','addSubscription','subscription','Langganan disimpan.')}catch(_){}});
   safeOn('#smsUsageForm','submit',async e=>{e.preventDefault();try{await handleAddForm(e.currentTarget,'sms','addSmsUsage','campaign','Penggunaan SMS ditambah.')}catch(_){}});
