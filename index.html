@@ -40,42 +40,103 @@ button,input,select,textarea{font:inherit} button{cursor:pointer}.hidden{display
 .dash-main-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);gap:15px;margin-bottom:15px}.dash-chart{display:grid;gap:12px}.chart-row{display:grid;grid-template-columns:135px minmax(0,1fr) 34px;gap:10px;align-items:center}.chart-label{font-size:11px;font-weight:750;color:#475569}.chart-track{height:12px;background:#eef2f7;border-radius:999px;overflow:hidden}.chart-fill{height:100%;border-radius:999px;transition:width .35s ease}.chart-fill.critical{background:#ef4444}.chart-fill.warning{background:#f59e0b}.chart-fill.info{background:#2563eb}.chart-value{font-size:11px;font-weight:850;text-align:right}.dash-renew-list{display:grid;gap:8px}.dash-renew-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:11px;border:1px solid var(--line);border-radius:11px;background:#fff}.dash-renew-item b{display:block;font-size:12px}.dash-renew-item small{color:var(--muted)}.dash-card-click{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}.dash-card-click:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(15,23,42,.10)}
 @media(max-width:1050px){.cards{grid-template-columns:repeat(2,1fr)}.grid2,.forms,.focus-grid,.notes-layout,.dash-main-grid{grid-template-columns:1fr}.sms-stat-strip{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:760px){body{padding-bottom:68px}.app{display:block}.side{position:fixed;left:0;right:0;bottom:0;top:auto;height:62px;z-index:90;padding:6px 7px;display:grid;grid-template-columns:repeat(6,1fr);gap:4px}.brand{display:none}.navbtn{margin:0;padding:6px 3px;text-align:center}.nav-label{display:none}.nav-icon{font-size:19px;width:auto}.main{padding:13px}.top{align-items:flex-start;flex-direction:column}.top h1{font-size:22px}.top .actions{width:100%}.top .actions .btn{flex:1}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.card{padding:13px}.metric{font-size:22px}.form-row,.smsgrid,.planner-result{grid-template-columns:1fr}.sms-infographic{grid-template-columns:1fr;padding:14px}.sms-gauge{width:132px;height:132px}.sms-big-balance{align-items:flex-start}.sms-big-balance strong{font-size:27px}.sms-big-balance .remaining{text-align:left}.modal{padding:9px;align-items:end}.modalbox{max-height:88vh;border-radius:17px 17px 0 0;padding:16px}.reference-item{grid-template-columns:1fr}.reference-item .row-actions{justify-content:flex-end}table{min-width:650px}}
+
+
+/* ===== PKPJ PREMIUM COLOURFUL DASHBOARD ===== */
+:root{
+  --nav:#071d45;--nav2:#0a2d68;--blue:#0b6ff3;--cyan:#06b6d4;--purple:#7c3aed;
+  --green:#12b76a;--orange:#ff8a00;--red:#ff2638;--pink:#ec4899;--yellow:#f7c948;
+  --bg:#f6f8fc;--panel:#ffffff;--line:#e8edf5;--text:#101828;--muted:#667085;
+  --shadow:0 10px 34px rgba(16,24,40,.07);--shadow-hover:0 18px 45px rgba(16,24,40,.12)
+}
+body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
+.app{grid-template-columns:250px minmax(0,1fr)}
+.side{background:linear-gradient(180deg,#061b42 0%,#082656 55%,#071c42 100%);padding:24px 14px 18px;box-shadow:10px 0 35px rgba(3,20,52,.08)}
+.brand{display:flex;gap:12px;align-items:center;margin:0 8px 28px;font-size:20px;letter-spacing:-.4px}.brand::before{content:"◆";display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#0b74ff,#32c5ff);color:#ffd43b;box-shadow:0 8px 24px rgba(11,116,255,.35)}.brand small{color:#c7d7f3}
+.navbtn{padding:13px 14px;border-radius:11px;color:#d5def0;font-weight:700;margin:5px 0;transition:.18s ease}.navbtn:hover{background:rgba(255,255,255,.08);transform:translateX(2px)}.navbtn.active{background:linear-gradient(135deg,#0b70f4,#1158d4);box-shadow:0 10px 24px rgba(10,100,231,.35);color:#fff}.nav-icon{font-size:17px}
+.side-foot{position:absolute;left:14px;right:14px;bottom:20px;display:grid;gap:10px}.side-mini{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;color:#eaf1ff}.side-mini b{font-size:11px;display:block;margin-bottom:7px}.side-mini span{font-size:11px;color:#cbd7eb;line-height:1.5}.system-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#65db7c;box-shadow:0 0 0 4px rgba(101,219,124,.10);margin-right:7px}
+.main{padding:22px 28px 28px}.top{background:transparent;margin-bottom:20px}.top h1{font-size:28px;letter-spacing:-.7px}.top p{font-size:13px}.top .actions{align-items:center}.top-user{display:flex;align-items:center;gap:9px;border-left:1px solid var(--line);padding-left:13px}.user-avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#113a82,#071d45);color:#fff;font-size:18px}.user-meta b{display:block;font-size:12px}.user-meta span{display:block;font-size:10px;color:var(--muted)}
+.btn,.icon-btn,.mini-icon{transition:.16s ease}.btn:hover,.icon-btn:hover,.mini-icon:hover{transform:translateY(-1px)}.icon-btn{box-shadow:0 3px 10px rgba(16,24,40,.05)}
+.card{border:1px solid var(--line);box-shadow:var(--shadow);border-radius:16px}.card:hover{box-shadow:var(--shadow-hover)}
+.dashboard-cards{gap:16px}.dashboard-cards .card{min-height:136px;padding:18px 18px 16px;display:grid;grid-template-columns:60px 1fr;align-items:center;gap:14px;overflow:hidden}.dashboard-cards .card::after{width:130px;height:130px;right:-55px;top:-60px;opacity:.09}.metric-icon{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font-size:27px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7)}.metric-body .label{font-size:11px;font-weight:800;color:#344054!important;text-transform:uppercase;letter-spacing:.2px}.metric-body .metric{font-size:38px;line-height:1;margin:8px 0 7px}.metric-sub{font-size:11px;color:#667085}.metric-sub b{color:inherit}.dashboard-cards .card:nth-child(1){background:linear-gradient(135deg,#fff7f8,#fff);border-color:#ffc8ce;color:#e11d32}.dashboard-cards .card:nth-child(1) .metric-icon{background:#ffe7ea}.dashboard-cards .card:nth-child(2){background:linear-gradient(135deg,#f4f8ff,#fff);border-color:#b9d6ff;color:#0b6ff3}.dashboard-cards .card:nth-child(2) .metric-icon{background:#e7f0ff}.dashboard-cards .card:nth-child(3){background:linear-gradient(135deg,#fff8ef,#fff);border-color:#ffd4a3;color:#f97316}.dashboard-cards .card:nth-child(3) .metric-icon{background:#fff0df}.dashboard-cards .card:nth-child(4){background:linear-gradient(135deg,#f1fff7,#fff);border-color:#bfe9cf;color:#149447}.dashboard-cards .card:nth-child(4) .metric-icon{background:#e5f8ec}
+.dash-main-grid{grid-template-columns:minmax(0,1.08fr) minmax(420px,.92fr);gap:16px}.dash-panel{padding:0;overflow:hidden}.dash-panel .panel-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 13px;border-bottom:1px solid var(--line)}.panel-title{display:flex;gap:10px;align-items:center}.panel-title .title-icon{font-size:18px}.panel-title h2{margin:0;font-size:15px;letter-spacing:-.2px}.panel-head button{border:0;background:#fff4f5;color:#e11d32;border-radius:9px;padding:8px 11px;font-size:10px;font-weight:800}.panel-body{padding:5px 18px 14px}
+.focus-list{gap:0}.focus-item{border:0;border-bottom:1px solid #edf1f6;border-radius:0;padding:13px 2px;grid-template-columns:86px minmax(0,1fr) auto;background:transparent}.focus-item:last-child{border-bottom:0}.focus-item .focus-dot{display:none}.focus-item b{font-size:12px}.focus-item small{font-size:10px;display:block;margin-top:3px}.focus-item>.pill{justify-self:start;width:74px;justify-content:center}.focus-item.critical>.pill{background:linear-gradient(135deg,#ff2638,#e01d32);color:#fff;box-shadow:0 4px 10px rgba(255,38,56,.22)}.focus-item.warning>.pill{background:linear-gradient(135deg,#ff9b16,#ff7a00);color:#fff;box-shadow:0 4px 10px rgba(255,138,0,.2)}
+.pie-layout{display:grid;grid-template-columns:minmax(240px,1fr) minmax(205px,.8fr);align-items:center;gap:10px;padding:14px 12px 18px}.pie-wrap{position:relative;display:grid;place-items:center;min-height:300px}.status-pie{width:255px;height:255px;border-radius:50%;background:conic-gradient(#ff2638 0 25%,#ff8a00 25% 50%,#0b6ff3 50% 75%,#16b34b 75% 100%);box-shadow:0 18px 34px rgba(16,24,40,.14),0 0 0 7px #fff;position:relative}.status-pie::after{content:"";position:absolute;inset:38%;border-radius:50%;background:#fff;box-shadow:0 0 0 1px #edf2f7}.pie-center{position:absolute;z-index:2;text-align:center}.pie-center strong{display:block;font-size:32px;color:#0b6ff3}.pie-center span{font-size:10px;color:var(--muted);font-weight:700}.pie-legend{display:grid;gap:8px}.legend-row{display:grid;grid-template-columns:12px 1fr auto;gap:9px;align-items:center;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff}.legend-dot{width:11px;height:11px;border-radius:50%}.legend-row span{font-size:11px}.legend-row b{font-size:17px}.legend-total{margin-top:3px;background:linear-gradient(135deg,#f4f8ff,#fff);border-color:#bfd7ff}.legend-total b{color:#0b6ff3;font-size:25px}
+.dashboard-bottom-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(380px,.92fr);gap:16px}.renew-card{padding:0;overflow:hidden}.renew-table{width:100%;border-collapse:collapse;min-width:0}.renew-table th{font-size:10px;text-transform:uppercase;color:#475467;background:#fafbfc;padding:11px 13px}.renew-table td{padding:12px 13px;font-size:11px;border-bottom:1px solid #eef2f6}.renew-table tr:last-child td{border-bottom:0}.days-critical{color:#f1283d;font-weight:800}.days-warning{color:#ff8500;font-weight:800}.days-normal{color:#129447;font-weight:800}
+.sms-premium{padding:0;overflow:hidden}.sms-premium-body{display:grid;grid-template-columns:150px 190px minmax(0,1fr);align-items:center;gap:14px;padding:20px}.sms-left strong{display:block;color:#149447;font-size:30px;line-height:1.05}.sms-left span{font-size:10px;color:var(--muted)}.sms-donut{--pct:50%;--sms:#149447;width:132px;height:132px;border-radius:50%;background:conic-gradient(var(--sms) var(--pct),#e7ebf1 0);display:grid;place-items:center;position:relative}.sms-donut::after{content:"";position:absolute;inset:15px;background:#fff;border-radius:50%}.sms-donut-content{position:relative;z-index:2;text-align:center}.sms-donut-content b{display:block;font-size:20px}.sms-donut-content span{font-size:10px;color:var(--muted)}.sms-side-stats{display:grid;gap:7px}.sms-side-row{display:grid;grid-template-columns:10px 1fr auto;gap:8px;align-items:center;padding-bottom:7px;border-bottom:1px solid #eef2f6}.sms-side-row:last-child{border-bottom:0}.sms-side-row i{width:8px;height:8px;border-radius:50%}.sms-side-row span{font-size:10px;color:#475467}.sms-side-row b{font-size:11px}
+.dashboard-footer{font-size:10px;color:#98a2b3;text-align:center;margin-top:15px}
+/* catatan kekal ringkas */
+.notes-layout{grid-template-columns:360px minmax(0,1fr)}.note-card{border-left:4px solid #0b6ff3}.note-card h3{color:#0f295a}
+@media(max-width:1180px){.dash-main-grid,.dashboard-bottom-grid{grid-template-columns:1fr}.pie-layout{grid-template-columns:1fr 260px}.sms-premium-body{grid-template-columns:150px 160px 1fr}}
+@media(max-width:760px){.app{display:block}.side{grid-template-columns:repeat(6,1fr);height:66px;padding:7px}.side-foot{display:none}.main{padding:13px}.top-user{display:none}.dashboard-cards .card{grid-template-columns:44px 1fr;min-height:112px;padding:13px}.metric-icon{width:42px;height:42px;font-size:20px}.metric-body .metric{font-size:28px}.dash-main-grid,.dashboard-bottom-grid,.pie-layout,.sms-premium-body{grid-template-columns:1fr}.status-pie{width:215px;height:215px}.pie-wrap{min-height:240px}.focus-item{grid-template-columns:76px minmax(0,1fr)}.focus-item>:last-child{display:none}.renew-card{overflow:auto}.renew-table{min-width:610px}}
+
 </style>
 </head>
 <body>
 <div class="app">
   <aside class="side">
-    <div class="brand">PKPJ Monitor<small>Task • Renewal • SMS</small></div>
+    <div class="brand">PKPJ Monitor<small>WORK MONITOR</small></div>
     <button class="navbtn active" data-page="dashboard"><span class="nav-icon">⌂</span><span class="nav-label">Dashboard</span></button>
     <button class="navbtn" data-page="tasks"><span class="nav-icon">✓</span><span class="nav-label">Tugasan</span></button>
     <button class="navbtn" data-page="notes"><span class="nav-icon">✎</span><span class="nav-label">Catatan</span></button>
     <button class="navbtn" data-page="subscriptions"><span class="nav-icon">↻</span><span class="nav-label">Langganan</span></button>
     <button class="navbtn" data-page="sms"><span class="nav-icon">✉</span><span class="nav-label">SMS</span></button>
     <button class="navbtn" id="openConfig"><span class="nav-icon">⚙</span><span class="nav-label">Tetapan</span></button>
+    <div class="side-foot">
+      <div class="side-mini"><b>Masa Sistem</b><span id="sideDate">--</span><br><span id="sideTime">--</span></div>
+      <div class="side-mini"><b>Status Sistem</b><span><i class="system-dot"></i>Sistem OK</span></div>
+    </div>
   </aside>
 
   <main class="main">
     <div class="top">
-      <div><h1 id="pageTitle">Dashboard</h1><p id="lastUpdate">Belum disambungkan</p></div>
+      <div><h1 id="pageTitle">Selamat datang kembali! 👋</h1><p id="lastUpdate">Ringkasan kerja dan status sistem</p></div>
       <div class="actions">
-        <button class="btn primary" id="checkAlertBtn">Semak Alert Sekarang</button>
-        <button class="icon-btn" id="refreshBtn" title="Kemaskini">↻</button>
+        <button class="btn ghost" id="refreshBtn" title="Kemaskini">↻ &nbsp; Refresh</button>
+        <button class="icon-btn" id="checkAlertBtn" title="Semak Alert">🔔</button>
+        <div class="top-user"><div class="user-avatar">👤</div><div class="user-meta"><b>Admin</b><span>Pentadbir Sistem</span></div></div>
       </div>
     </div>
 
     <section class="tabpage active" id="page-dashboard">
       <div class="cards dashboard-cards dashboard-compact">
-        <div class="card dash-card-click" onclick="showPage('tasks')"><span class="label">Perlu Tindakan</span><div class="metric" id="mAction">0</div><div class="muted">Kritikal + amaran</div></div>
-        <div class="card dash-card-click" onclick="showPage('tasks')"><span class="label">Tugasan Aktif</span><div class="metric" id="mTaskActive">0</div><div class="muted">Belum selesai</div></div>
-        <div class="card dash-card-click" onclick="showPage('subscriptions')"><span class="label">Renewal ≤ 90 Hari</span><div class="metric" id="mRenewSoon">0</div><div class="muted">Perlu dipantau</div></div>
-        <div class="card dash-card-click" onclick="showPage('sms')"><span class="label">Baki SMS</span><div class="metric" id="mSmsRemaining">0</div><div class="muted">Masih boleh digunakan</div></div>
+        <div class="card dash-card-click" onclick="showPage('tasks')"><div class="metric-icon">🚨</div><div class="metric-body"><span class="label">Perlu Tindakan</span><div class="metric" id="mAction">0</div><div class="metric-sub">Kritikal: <b id="mCriticalMini">0</b> &nbsp;•&nbsp; Amaran: <b id="mWarningMini">0</b></div></div></div>
+        <div class="card dash-card-click" onclick="showPage('tasks')"><div class="metric-icon">📋</div><div class="metric-body"><span class="label">Tugasan Aktif</span><div class="metric" id="mTaskActive">0</div><div class="metric-sub">Belum selesai</div></div></div>
+        <div class="card dash-card-click" onclick="showPage('subscriptions')"><div class="metric-icon">↻</div><div class="metric-body"><span class="label">Langganan ≤ 90 Hari</span><div class="metric" id="mRenewSoon">0</div><div class="metric-sub">Perlu diperbaharui / dipantau</div></div></div>
+        <div class="card dash-card-click" onclick="showPage('sms')"><div class="metric-icon">✉️</div><div class="metric-body"><span class="label">Baki SMS</span><div class="metric" id="mSmsRemaining">0</div><div class="metric-sub" id="smsCapacityMini">Daripada 0 SMS</div></div></div>
       </div>
+
       <div class="dash-main-grid">
-        <div class="card"><div class="section-title"><div><h2>Fokus Hari Ini</h2><div class="muted">Perkara yang betul-betul perlukan perhatian dahulu.</div></div><span class="pill critical" id="alertCountPill">0 kritikal</span></div><div class="focus-list" id="focusList"></div></div>
-        <div class="card"><div class="section-title"><div><h2>Ringkasan Status</h2><div class="muted">Carta pantauan pantas.</div></div></div><div class="dash-chart" id="dashboardChart"></div></div>
+        <div class="card dash-panel">
+          <div class="panel-head"><div class="panel-title"><span class="title-icon">🚨</span><h2>Fokus Hari Ini</h2></div><button type="button" onclick="showPage('tasks')">Lihat Semua →</button></div>
+          <div class="panel-body"><div class="focus-list" id="focusList"></div></div>
+        </div>
+        <div class="card dash-panel">
+          <div class="panel-head"><div class="panel-title"><span class="title-icon">📊</span><h2>Ringkasan Status</h2></div></div>
+          <div class="pie-layout"><div class="pie-wrap"><div class="status-pie" id="statusPie"></div><div class="pie-center"><strong id="pieTotal">0</strong><span>JUMLAH ISU</span></div></div><div class="pie-legend" id="dashboardChart"></div></div>
+        </div>
       </div>
-      <div class="card" style="margin-bottom:15px"><div class="section-title"><div><h2>Langganan Akan Datang</h2><div class="muted">5 renewal terdekat untuk dipantau.</div></div><button class="mini-icon" type="button" onclick="showPage('subscriptions')" title="Buka Langganan">↗</button></div><div class="dash-renew-list" id="dashRenewals"></div></div>
-      <div class="card dash-sms"><div class="section-title"><h2>Ringkasan SMS</h2><span class="pill normal" id="smsStatus">NORMAL</span></div><div class="smsbig"><div><span class="label">Baki kredit</span><strong id="smsBalance">RM0.00</strong></div><div class="muted" id="smsPct">0%</div></div><div class="progress"><div class="bar" id="smsBar"></div></div><div class="smsgrid"><div class="mini"><span class="label">Digunakan</span><b id="smsUsed">0 SMS</b></div><div class="mini"><span class="label">Kos digunakan</span><b id="smsUsedCost">RM0.00</b></div><div class="mini"><span class="label">Kos / SMS</span><b id="smsCost">RM0.15</b></div></div></div>
+
+      <div class="dashboard-bottom-grid">
+        <div class="card renew-card">
+          <div class="panel-head"><div class="panel-title"><span class="title-icon">🔄</span><h2>Langganan Akan Datang (90 Hari)</h2></div><button type="button" onclick="showPage('subscriptions')">Lihat Semua →</button></div>
+          <div id="dashRenewals"></div>
+        </div>
+        <div class="card sms-premium">
+          <div class="panel-head"><div class="panel-title"><span class="title-icon">✉️</span><h2>Ringkasan SMS</h2></div><span class="pill normal" id="smsStatus">NORMAL</span></div>
+          <div class="sms-premium-body">
+            <div class="sms-left"><span>Baki Kredit</span><strong id="smsBalance">RM0.00</strong><span id="smsRemainText">0 SMS berbaki</span></div>
+            <div class="sms-donut" id="dashSmsDonut"><div class="sms-donut-content"><b id="smsPct">0%</b><span>Baki</span></div></div>
+            <div class="sms-side-stats">
+              <div class="sms-side-row"><i style="background:#94a3b8"></i><span>Digunakan</span><b id="smsUsed">0 SMS</b></div>
+              <div class="sms-side-row"><i style="background:#16a34a"></i><span>Baki</span><b id="smsRemainStat">0 SMS</b></div>
+              <div class="sms-side-row"><i style="background:#ff8a00"></i><span>Kos 1 SMS</span><b id="smsCost">RM0.15</b></div>
+              <div class="sms-side-row"><i style="background:#7c3aed"></i><span>Peruntukan</span><b id="smsAllocationStat">RM0.00</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-footer" id="dashboardFooter">Data belum dikemas kini</div>
     </section>
 
     <section class="tabpage" id="page-tasks">
@@ -194,7 +255,7 @@ function showPage(page){
   $$('.tabpage').forEach(x=>x.classList.remove('active'));
   target.classList.add('active');
   $$('.navbtn[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
-  setText('#pageTitle',{dashboard:'Dashboard',tasks:'Tugasan',notes:'Catatan',subscriptions:'Langganan & Renewal',sms:'SMS Monitor'}[page]||'PKPJ Work Monitor');
+  setText('#pageTitle',{dashboard:'Selamat datang kembali! 👋',tasks:'Tugasan',notes:'Catatan',subscriptions:'Langganan & Renewal',sms:'SMS Monitor'}[page]||'PKPJ Work Monitor');
 }
 
 document.addEventListener('click',e=>{
@@ -260,7 +321,7 @@ async function loadDashboard(silent=false){
 
 function renderAll(){
   const d=APP.data;if(!d)return;
-  const taskActive=(d.tasks||[]).filter(r=>!['selesai','done','completed','complete'].includes(String(r.Status||'').toLowerCase())).length;const renewSoon=(d.subscriptions||[]).filter(r=>Number(r._days)>=0&&Number(r._days)<=90).length;setText('#lastUpdate','Dikemas kini: '+d.now);setText('#mAction',Number(d.summary.criticalCount||0)+Number(d.summary.warningCount||0));setText('#mTaskActive',taskActive);setText('#mRenewSoon',renewSoon);setText('#mSmsRemaining',num(d.sms.remaining));
+  const taskActive=(d.tasks||[]).filter(r=>!['selesai','done','completed','complete'].includes(String(r.Status||'').toLowerCase())).length;const renewSoon=(d.subscriptions||[]).filter(r=>Number(r._days)>=0&&Number(r._days)<=90).length;setText('#lastUpdate','Ringkasan kerja dan status sistem • Dikemas kini '+d.now);setText('#dashboardFooter','Data dikemas kini pada '+d.now);setText('#mAction',Number(d.summary.criticalCount||0)+Number(d.summary.warningCount||0));setText('#mCriticalMini',Number(d.summary.criticalCount||0));setText('#mWarningMini',Number(d.summary.warningCount||0));setText('#mTaskActive',taskActive);setText('#mRenewSoon',renewSoon);setText('#mSmsRemaining',num(d.sms.remaining));setText('#smsCapacityMini','Daripada '+num(d.sms.capacity||0)+' SMS');
   renderDashboardFocus(d.alerts||[]);renderDashboardChart(d);renderDashboardRenewals(d.subscriptions||[]);renderSms(d.sms||{});renderTasks(d.tasks||[]);renderNotes(d.notes||[]);renderSubs(d.subscriptions||[]);renderSmsLogs(d.smsLogs||[]);handleTabAlert(d.summary.criticalCount,d.summary.warningCount);
 }
 
@@ -271,8 +332,26 @@ function renderDashboardFocus(alerts){
   const rows=alerts.slice(0,7);
   el.innerHTML=rows.length?rows.map(a=>`<div class="focus-item ${esc(a.level)}"><span class="focus-dot"></span><div><b>${esc(a.subject)}</b><small>${esc(a.title)} • ${esc(a.detail)}</small></div>${levelPill(a.level,a.level==='critical'?'SEGERA':'AMARAN')}</div>`).join(''):'<div class="empty">✅ Tiada perkara mendesak. Dashboard bersih.</div>';
 }
-function renderDashboardChart(d){const el=$('#dashboardChart');if(!el)return;const rows=[['Task Kritikal',Number(d.summary.taskCritical||0),'critical'],['Task Amaran',Number(d.summary.taskWarning||0),'warning'],['Renewal Kritikal',Number(d.summary.renewCritical||0),'critical'],['Renewal Amaran',Number(d.summary.renewWarning||0),'info']];const max=Math.max(1,...rows.map(r=>r[1]));el.innerHTML=rows.map(([label,value,cls])=>`<div class="chart-row"><div class="chart-label">${esc(label)}</div><div class="chart-track"><div class="chart-fill ${cls}" style="width:${Math.round(value/max*100)}%"></div></div><div class="chart-value">${value}</div></div>`).join('')}
-function renderDashboardRenewals(rows){const el=$('#dashRenewals');if(!el)return;const upcoming=rows.filter(r=>Number.isFinite(Number(r._days))&&Number(r._days)>=0).sort((a,b)=>Number(a._days)-Number(b._days)).slice(0,5);el.innerHTML=upcoming.length?upcoming.map(r=>`<div class="dash-renew-item"><div><b>${esc(r.Subscription)}</b><small>${esc(r.Vendor||'')}${r.Vendor?' • ':''}Tamat ${esc(r.ExpiryDate)}</small></div><span class="pill ${r._level==='critical'?'critical':r._level==='warning'?'warning':'normal'}">${Number(r._days)===0?'HARI INI':Number(r._days)+' hari'}</span><button class="mini-icon" onclick="showPage('subscriptions')" title="Buka">↗</button></div>`).join(''):'<div class="empty">Tiada renewal akan datang.</div>'}
+function renderDashboardChart(d){
+  const el=$('#dashboardChart'), pie=$('#statusPie');if(!el||!pie)return;
+  const rows=[
+    ['Tugasan Kritikal',Number(d.summary.taskCritical||0),'#ff2638'],
+    ['Tugasan Amaran',Number(d.summary.taskWarning||0),'#ff8a00'],
+    ['Langganan Kritikal',Number(d.summary.renewCritical||0),'#0b6ff3'],
+    ['Langganan Amaran',Number(d.summary.renewWarning||0),'#16b34b']
+  ];
+  const total=rows.reduce((s,r)=>s+r[1],0);setText('#pieTotal',total);
+  if(total<=0){pie.style.background='conic-gradient(#e8edf5 0 100%)'}else{
+    let running=0,parts=[];rows.forEach(r=>{const start=running/total*100;running+=r[1];const end=running/total*100;parts.push(`${r[2]} ${start}% ${end}%`)});pie.style.background='conic-gradient('+parts.join(',')+')';
+  }
+  el.innerHTML=rows.map(([label,value,color])=>`<div class="legend-row"><i class="legend-dot" style="background:${color}"></i><span>${esc(label)}</span><b style="color:${color}">${value}</b></div>`).join('')+`<div class="legend-row legend-total"><span></span><span>Jumlah Keseluruhan</span><b>${total}</b></div>`;
+}
+function renderDashboardRenewals(rows){
+  const el=$('#dashRenewals');if(!el)return;
+  const upcoming=rows.filter(r=>Number.isFinite(Number(r._days))&&Number(r._days)>=0&&Number(r._days)<=90).sort((a,b)=>Number(a._days)-Number(b._days)).slice(0,5);
+  if(!upcoming.length){el.innerHTML='<div class="empty">Tiada renewal dalam 90 hari.</div>';return;}
+  el.innerHTML=`<table class="renew-table"><thead><tr><th>Langganan</th><th>Vendor</th><th>Tarikh Tamat</th><th>Baki Hari</th><th>Status</th></tr></thead><tbody>${upcoming.map(r=>{const days=Number(r._days),cls=r._level==='critical'?'days-critical':r._level==='warning'?'days-warning':'days-normal',pill=r._level==='critical'?'critical':r._level==='warning'?'warning':'normal',label=r._level==='critical'?'KRITIKAL':r._level==='warning'?'AMARAN':'NORMAL';return `<tr><td><b>${esc(r.Subscription)}</b></td><td>${esc(r.Vendor||'-')}</td><td>${esc(r.ExpiryDate)}</td><td class="${cls}">${days===0?'Hari ini':days+' hari'}</td><td>${levelPill(pill,label)}</td></tr>`}).join('')}</tbody></table>`;
+}
 function renderNotes(rows){const el=$('#noteRows');if(!el)return;el.innerHTML=rows.length?rows.map(r=>`<div class="note-card"><div class="note-card-head"><div><h3>${esc(r.Title)}</h3><div class="muted">${esc(r.Date||r.CreatedAt||'')}</div></div><span class="pill ${String(r.Status||'Aktif').toLowerCase()==='selesai'?'done':'normal'}">${esc(r.Status||'Aktif')}</span></div><p>${esc(r.Instruction)}</p><div class="note-meta">${r.FollowUpDate?`<span class="note-chip">Susulan: ${esc(r.FollowUpDate)}</span>`:''}${attachmentBadge('notes',r.ID)}</div><div class="row-actions"><button class="mini-icon" onclick="openEditNote('${esc(r.ID)}')" title="Kemaskini">✎</button><button class="mini-icon" onclick="openReferenceModal('notes','${esc(r.ID)}','${esc(r.Title)}')" title="Lampiran">📎</button><button class="mini-icon delete" onclick="deleteNote('${esc(r.ID)}')" title="Delete">×</button></div></div>`).join(''):'<div class="empty">Belum ada catatan.</div>'}
 
 function renderAlerts(alerts){
@@ -284,7 +363,7 @@ function renderAlerts(alerts){
 function renderSms(s){
   setText('#smsBalance',money(s.balanceRm));setText('#smsPct',(s.remainingPct||0)+'% berbaki');setText('#smsUsed',num(s.used)+' SMS');setText('#smsUsedCost',money(s.usedCost));setText('#smsCost',moneySms(s.costPerSms));
   setText('#smsCurrentAllocation2',money(s.currentAllocation));setText('#smsNewApproved2',money(s.newApprovedAllocation));setText('#smsStart2',money(s.totalAllocation));setText('#smsUsed2',num(s.used));setText('#smsRemain2',num(s.remaining));setText('#smsBalance2',money(s.balanceRm));
-  const pct=Math.max(0,Math.min(100,Number(s.remainingPct||0)));setText('#smsGaugePct',Math.round(pct)+'%');
+  const pct=Math.max(0,Math.min(100,Number(s.remainingPct||0)));setText('#smsGaugePct',Math.round(pct)+'%');setText('#smsPct',Math.round(pct)+'%');setText('#smsRemainText',num(s.remaining)+' SMS berbaki');setText('#smsRemainStat',num(s.remaining)+' SMS');setText('#smsAllocationStat',money(s.totalAllocation));const dd=$('#dashSmsDonut');if(dd){dd.style.setProperty('--pct',pct+'%');dd.style.setProperty('--sms',s.level==='critical'?'#ff2638':s.level==='warning'?'#ff8a00':'#149447')};
   const gauge=$('#smsGauge');if(gauge){gauge.style.setProperty('--pct',pct+'%');gauge.style.setProperty('--gauge',s.level==='critical'?'#ef4444':s.level==='warning'?'#f59e0b':'#22c55e')}
   ['#smsStatus','#smsInfoStatus'].forEach(sel=>{const el=$(sel);if(el){el.className='pill '+(s.level||'normal');el.textContent=s.level==='critical'?'KRITIKAL':s.level==='warning'?'AMARAN':'NORMAL'}});
   const bar=$('#smsBar');if(bar){bar.style.width=pct+'%';bar.className='bar '+(s.level==='normal'?'':s.level)}
@@ -346,9 +425,12 @@ window.printRecord=(type,id)=>{let title='',fields=[],module='';if(type==='task'
 
 async function handleAddForm(form,module,action,titleKey,successMsg){const fd=new FormData(form),file=fd.get('attachment'),d=Object.fromEntries(fd);delete d.attachment;d.id=uuid();await runPost(action,d,successMsg);if(file?.name)await uploadRecordAttachment(module,d.id,file,'Lampiran — '+(d[titleKey]||file.name),d.notes||'');form.reset()}
 
+
+function updateSideClock(){const now=new Date();const d=$('#sideDate'),t=$('#sideTime');if(d)d.textContent=now.toLocaleDateString('ms-MY',{day:'2-digit',month:'long',year:'numeric'});if(t)t.textContent=now.toLocaleTimeString('en-MY',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}
+
 function init(){
   // Tab mesti sentiasa berfungsi walaupun API rosak.
-  showPage('dashboard');setFaviconStatus('normal');
+  showPage('dashboard');setFaviconStatus('normal');updateSideClock();setInterval(updateSideClock,1000);
 
   safeOn('#openConfig','click',openConfig);safeOn('#closeConfig','click',closeConfig);
   safeOn('#refreshBtn','click',()=>loadDashboard());
