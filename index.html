@@ -562,6 +562,68 @@ th,td{font-size:13px}
 @keyframes dashboardLabelBlink{0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 0 0 rgba(239,68,68,.15)}50%{opacity:.48;transform:scale(1.06);box-shadow:0 0 0 6px rgba(239,68,68,.08)}}
 @media(max-width:760px){.task-action-popup{min-width:285px;max-width:calc(100vw - 34px)}.task-status-actions{grid-template-columns:1fr}.status-btn.latest{grid-column:auto}}
 
+
+/* ===== PATCH: LABEL SEGERA PUTIH + DONUT SMS BESAR BERSEBELAHAN ===== */
+.focus-item.critical .pill.critical,
+.renew-table .pill.critical,
+.dashboard-blink-label{
+  background:linear-gradient(135deg,#ff2638,#e01d32)!important;
+  color:#ffffff!important;
+  border-color:transparent!important;
+}
+.focus-item.critical .pill.critical span,
+.renew-table .pill.critical span,
+.dashboard-blink-label span{
+  color:#ffffff!important;
+  font-weight:900!important;
+}
+
+/* Ringkasan SMS: jumlah dan donut duduk rapat sebelah-menyebelah */
+.compact-sms .sms-premium-body{
+  grid-template-columns:minmax(175px,215px) 190px!important;
+  grid-template-areas:'balance donut' 'stats stats'!important;
+  justify-content:start!important;
+  align-items:center!important;
+  column-gap:22px!important;
+  row-gap:18px!important;
+  padding:20px 22px 22px!important;
+}
+.compact-sms .sms-left{
+  justify-self:start!important;
+  align-self:center!important;
+}
+.compact-sms .sms-left strong{
+  font-size:40px!important;
+  line-height:1.05!important;
+  letter-spacing:-1px!important;
+}
+.compact-sms .sms-donut{
+  width:180px!important;
+  height:180px!important;
+  justify-self:start!important;
+  margin:0!important;
+  box-shadow:0 12px 30px rgba(20,148,71,.16)!important;
+}
+.compact-sms .sms-donut::after{inset:22px!important}
+.compact-sms .sms-donut-content b{font-size:30px!important}
+.compact-sms .sms-donut-content span{font-size:12px!important}
+.compact-sms .sms-side-stats{
+  grid-column:1/-1!important;
+  width:100%!important;
+}
+@media(max-width:1250px){
+  .compact-sms .sms-premium-body{grid-template-columns:minmax(165px,200px) 170px!important;column-gap:18px!important}
+  .compact-sms .sms-donut{width:165px!important;height:165px!important}
+  .compact-sms .sms-donut::after{inset:20px!important}
+  .compact-sms .sms-left strong{font-size:36px!important}
+}
+@media(max-width:760px){
+  .compact-sms .sms-premium-body{grid-template-columns:minmax(150px,1fr) 145px!important;grid-template-areas:'balance donut' 'stats stats'!important;column-gap:12px!important;padding:16px!important}
+  .compact-sms .sms-donut{width:140px!important;height:140px!important}
+  .compact-sms .sms-donut::after{inset:18px!important}
+  .compact-sms .sms-left strong{font-size:30px!important}
+}
+
 </style></head><body><h2>${esc(title)}</h2><table>${fields.map(f=>`<tr><th>${esc(f[0])}</th><td>${esc(f[1])}</td></tr>`).join('')}</table>${refs.length?`<h3>Lampiran</h3><ul>${refs.map(r=>`<li>${esc(r.RefTitle)} — ${esc(r.FileName)}</li>`).join('')}</ul>`:''}</body></html>`);w.document.close();setTimeout(()=>{w.focus();w.print()},250)};
 
 async function handleAddForm(form,module,action,titleKey,successMsg){const fd=new FormData(form),file=fd.get('attachment'),d=Object.fromEntries(fd);delete d.attachment;d.id=uuid();await runPost(action,d,successMsg);if(file?.name)await uploadRecordAttachment(module,d.id,file,'Lampiran — '+(d[titleKey]||file.name),d.notes||'');form.reset()}
