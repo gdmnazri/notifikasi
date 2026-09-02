@@ -502,10 +502,10 @@ window.openCreateModal=type=>{
   setText('#createModalTitle',item[1]);$('#createModalBody')?.appendChild(card);card.classList.remove('hidden');APP.activeCreateCard=card;$('#createModal')?.classList.remove('hidden');
 };
 
-function notificationIcon(type){return {task:'📋',subscription:'🔄',sms:'✉️',note:'📝'}[type]||'🔔'}
-function notificationPage(type){return {task:'tasks',subscription:'subscriptions',sms:'sms',note:'notes'}[type]||'dashboard'}
+function notificationIcon(type){return {task:'📋',subscription:'🔄',sms:'✉️'}[type]||'🔔'}
+function notificationPage(type){return {task:'tasks',subscription:'subscriptions',sms:'sms'}[type]||'dashboard'}
 function renderNotifications(alerts){
-  const rows=alerts||[],badge=$('#notificationBadge'),list=$('#notificationList');
+  const rows=(alerts||[]).filter(a=>String(a.type||'').toLowerCase()!=='note'),badge=$('#notificationBadge'),list=$('#notificationList');
   if(badge){badge.textContent=rows.length>99?'99+':rows.length;badge.classList.toggle('hidden',!rows.length)}
   if(!list)return;
   list.innerHTML=rows.length?rows.map(a=>`<button type="button" class="notification-item ${esc(a.level)}" onclick="closeNotificationModal();showPage('${notificationPage(a.type)}')"><span class="notification-symbol">${notificationIcon(a.type)}</span><span><b>${esc(a.subject)}</b><p>${esc(a.title)} • ${esc(a.detail)}</p></span>${levelPill(a.level,a.level==='critical'?'SEGERA':'AMARAN')}</button>`).join(''):'<div class="empty">✅ Tiada notifikasi baharu. Semua terkawal.</div>';
@@ -617,8 +617,10 @@ async function loadDashboard(silent=false){
 
 function renderAll(){
   const d=APP.data;if(!d)return;
-  const taskActive=(d.tasks||[]).filter(r=>!['selesai','done','completed','complete'].includes(String(r.Status||'').toLowerCase())).length;const renewSoon=(d.subscriptions||[]).filter(r=>r._level!=='done'&&Number(r._days)>=0&&Number(r._days)<=90).length;setText('#lastUpdate','Ringkasan kerja dan status sistem • Dikemas kini '+d.now);setText('#dashboardFooter','Data dikemas kini pada '+d.now);setText('#mAction',Number(d.summary.criticalCount||0)+Number(d.summary.warningCount||0));setText('#mCriticalMini',Number(d.summary.criticalCount||0));setText('#mWarningMini',Number(d.summary.warningCount||0));setText('#mTaskActive',taskActive);setText('#mRenewSoon',renewSoon);setText('#mSmsRemaining',num(d.sms.remaining));setText('#smsCapacityMini','Daripada '+num(d.sms.capacity||0)+' SMS');
-  renderDashboardFocus(d.alerts||[]);renderDashboardRenewals(d.subscriptions||[]);renderSms(d.sms||{});const hasUrgent=Number(d.summary.criticalCount||0)>0;const hasCriticalRenewal=(d.subscriptions||[]).some(r=>r._level==='critical'&&Number(r._days)>=0&&Number(r._days)<=90);$('#actionCard')?.classList.toggle('urgent-card',hasUrgent);$('#focusPanel')?.classList.toggle('urgent-panel',hasUrgent);$('#renewMetricCard')?.classList.toggle('renew-urgent-card',hasCriticalRenewal);renderTasks(d.tasks||[]);renderNotes(d.notes||[]);renderSubs(d.subscriptions||[]);renderArchive(d.tasks||[],d.subscriptions||[]);renderSmsLogs(d.smsLogs||[]);renderNotifications(d.alerts||[]);handleTabAlert(d.summary.criticalCount,d.summary.warningCount);
+  const alerts=(d.alerts||[]).filter(a=>String(a.type||'').toLowerCase()!=='note');
+  const criticalCount=alerts.filter(a=>a.level==='critical').length,warningCount=alerts.filter(a=>a.level==='warning').length;
+  const taskActive=(d.tasks||[]).filter(r=>!['selesai','done','completed','complete'].includes(String(r.Status||'').toLowerCase())).length;const renewSoon=(d.subscriptions||[]).filter(r=>r._level!=='done'&&Number(r._days)>=0&&Number(r._days)<=90).length;setText('#lastUpdate','Ringkasan kerja dan status sistem • Dikemas kini '+d.now);setText('#dashboardFooter','Data dikemas kini pada '+d.now);setText('#mAction',criticalCount+warningCount);setText('#mCriticalMini',criticalCount);setText('#mWarningMini',warningCount);setText('#mTaskActive',taskActive);setText('#mRenewSoon',renewSoon);setText('#mSmsRemaining',num(d.sms.remaining));setText('#smsCapacityMini','Daripada '+num(d.sms.capacity||0)+' SMS');
+  renderDashboardFocus(alerts);renderDashboardRenewals(d.subscriptions||[]);renderSms(d.sms||{});const hasUrgent=criticalCount>0;const hasCriticalRenewal=(d.subscriptions||[]).some(r=>r._level==='critical'&&Number(r._days)>=0&&Number(r._days)<=90);$('#actionCard')?.classList.toggle('urgent-card',hasUrgent);$('#focusPanel')?.classList.toggle('urgent-panel',hasUrgent);$('#renewMetricCard')?.classList.toggle('renew-urgent-card',hasCriticalRenewal);renderTasks(d.tasks||[]);renderNotes(d.notes||[]);renderSubs(d.subscriptions||[]);renderArchive(d.tasks||[],d.subscriptions||[]);renderSmsLogs(d.smsLogs||[]);renderNotifications(alerts);handleTabAlert(criticalCount,warningCount);
 }
 
 
@@ -637,6 +639,7 @@ function renderDashboardRenewals(rows){
 function renderNotes(rows){const el=$('#noteRows');if(!el)return;el.innerHTML=rows.length?rows.map(r=>`<div class="note-card"><div class="note-card-head"><div><h3>${esc(r.Title)}</h3><div class="muted">${esc(r.Date||r.CreatedAt||'')}</div></div><span class="pill ${String(r.Status||'Aktif').toLowerCase()==='selesai'?'done':'normal'}">${esc(r.Status||'Aktif')}</span></div><p>${esc(r.Instruction)}</p><div class="note-meta">${r.FollowUpDate?`<span class="note-chip">Susulan: ${esc(r.FollowUpDate)}</span>`:''}${attachmentBadge('notes',r.ID)}</div><div class="row-actions"><button class="mini-icon" onclick="openEditNote('${esc(r.ID)}')" title="Kemaskini">✎</button><button class="mini-icon" onclick="openReferenceModal('notes','${esc(r.ID)}','${esc(r.Title)}')" title="Lampiran">📎</button><button class="mini-icon delete" onclick="deleteNote('${esc(r.ID)}')" title="Delete">×</button></div></div>`).join(''):'<div class="empty">Belum ada catatan.</div>'}
 
 function renderAlerts(alerts){
+  alerts=(alerts||[]).filter(a=>String(a.type||'').toLowerCase()!=='note');
   setText('#alertCountPill',alerts.filter(a=>a.level==='critical').length+' kritikal');
   const el=$('#alertsList');if(!el)return;
   el.innerHTML=alerts.length?alerts.slice(0,8).map(a=>`<div class="alert ${esc(a.level)}"><div><b>${esc(a.title)}</b><span>${esc(a.subject)}</span><br><small>${esc(a.detail)}</small></div>${levelPill(a.level,a.level==='critical'?'KRITIKAL':'AMARAN')}</div>`).join(''):'<div class="empty">✅ Tiada alert. Semua terkawal.</div>';
