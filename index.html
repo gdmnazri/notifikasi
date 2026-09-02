@@ -430,7 +430,7 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
 
 <div class="modal hidden" id="notificationModal"><div class="modalbox notification-modalbox"><div class="settings-top"><div><b>Pusat Notifikasi</b><div class="muted">Perkara penting yang memerlukan perhatian anda.</div></div><button class="icon-btn" id="closeNotificationModal">×</button></div><div class="notification-list" id="notificationList"></div><div class="modal-actions"><button class="btn ghost" id="runAlertCheckBtn" type="button">↻ Semak Sekarang</button><button class="btn primary" id="openCalendarSettingsBtn" type="button">⚙ Tetapan Calendar</button></div></div></div>
 
-<div class="modal hidden" id="historyModal"><div class="modalbox history-modalbox"><div class="settings-top"><div><b id="historyModalTitle">Kronologi Status</b><div class="muted" id="historyModalSubtitle">Semua perkembangan disusun daripada yang terkini.</div></div><button class="icon-btn" id="closeHistoryModal">×</button></div><div class="history-compat-warning hidden" id="historyCompatWarning">⚠️ Apps Script yang sedang aktif belum menyokong kronologi. Deploy fail Apps Script V5 dahulu untuk menyimpan status baharu.</div><div id="historyTimeline"></div><form class="form history-add-form" id="historyForm"><input name="module" type="hidden"><input name="recordId" type="hidden"><input name="status" type="hidden"><div class="field"><label>Tambah perkembangan baharu</label><textarea name="detail" required placeholder="Tulis perkembangan terkini di sini..."></textarea></div><div class="modal-actions"><button class="btn ghost" id="cancelHistoryModal" type="button">Tutup</button><button class="btn primary" id="saveHistoryBtn" type="submit">+ Tambah Kronologi</button></div></form></div></div>
+<div class="modal hidden" id="historyModal"><div class="modalbox history-modalbox"><div class="settings-top"><div><b id="historyModalTitle">Kronologi Status</b><div class="muted" id="historyModalSubtitle">Semua perkembangan disusun daripada yang terkini.</div></div><button class="icon-btn" id="closeHistoryModal">×</button></div><div class="history-compat-warning hidden" id="historyCompatWarning">⚠️ Sambungan data belum tersedia. Semak URL Apps Script dan API Token pada Tetapan.</div><div id="historyTimeline"></div><form class="form history-add-form" id="historyForm"><input name="module" type="hidden"><input name="recordId" type="hidden"><input name="status" type="hidden"><div class="field"><label>Tambah perkembangan baharu</label><textarea name="detail" required placeholder="Tulis perkembangan terkini di sini..."></textarea></div><div class="modal-actions"><button class="btn ghost" id="cancelHistoryModal" type="button">Tutup</button><button class="btn primary" id="saveHistoryBtn" type="submit">+ Tambah Kronologi</button></div></form></div></div>
 
 <div class="modal hidden" id="ruleModal"><div class="modalbox rule-modalbox"><div class="settings-top"><div><b id="ruleModalTitle">Rule Sistem</b><div class="muted">Panduan tindakan automatik sistem.</div></div><button class="icon-btn" id="closeRuleModal">×</button></div><div class="rule-popup-content" id="ruleModalBody"></div><div class="modal-actions"><button class="btn primary" id="doneRuleModal" type="button">Faham</button></div></div></div>
 
@@ -517,7 +517,7 @@ window.openHistoryModal=(module,id,title,status)=>{
   setText('#historyModalTitle','Kronologi Status — '+(title||'Rekod'));setText('#historyModalSubtitle','Semua perkembangan disusun daripada yang terkini.');
   const timeline=$('#historyTimeline');if(timeline)timeline.innerHTML=chronologyHtml(module,id);
   const form=$('#historyForm');form?.reset();if(form){form.elements.module.value=module;form.elements.recordId.value=id;form.elements.status.value=status||'';}
-  const supported=Array.isArray(APP.data?.statusHistory);$('#historyCompatWarning')?.classList.toggle('hidden',supported);const save=$('#saveHistoryBtn');if(save)save.disabled=!supported;
+  const ready=configReady()&&Boolean(APP.data);$('#historyCompatWarning')?.classList.toggle('hidden',ready);const save=$('#saveHistoryBtn');if(save)save.disabled=!ready;
   $('#historyModal')?.classList.remove('hidden');
 };
 window.closeHistoryModal=()=>$('#historyModal')?.classList.add('hidden');
@@ -592,6 +592,23 @@ async function runPost(action,payload,msg){
   }catch(e){showToast(e.message,4500);throw e;}
 }
 
+async function saveStatusHistory(data){
+  const before=actualStatusHistoryFor(data.module,data.recordId).length;
+  showToast('Menyimpan kronologi...');
+  await submitPost('addStatusHistory',data);
+  let latestData=null,saved=false;
+  for(let attempt=0;attempt<4;attempt++){
+    await wait(attempt?650:250);
+    const response=await jsonp('dashboard');latestData=response.data||{};applyDashboardData(latestData);
+    if(actualStatusHistoryFor(data.module,data.recordId).length>before){saved=true;break;}
+  }
+  if(!saved){
+    const version=latestData?.apiVersion?String(latestData.apiVersion):'tidak dikenal pasti';
+    throw new Error('Rekod belum diterima oleh Apps Script (API '+version+'). Semak URL Web App yang digunakan pada Tetapan.');
+  }
+  showToast('Kronologi berjaya ditambah.');
+}
+
 async function loadDashboard(silent=false){
   if(!configReady()){if(!silent)openConfig();return;}
   try{if(!silent&&!APP.data)setText('#lastUpdate','Memuat data...');const r=await jsonp('dashboard');applyDashboardData(r.data);}
@@ -638,7 +655,8 @@ function renderSms(s){
 function attachmentCount(module,id){return (APP.data?.references||[]).filter(r=>String(r.Module||'').toLowerCase()===module&&String(r.RecordID||'')===String(id)).length}
 function attachmentBadge(module,id){const c=attachmentCount(module,id);return c?`<span class="attachment-count">📎 ${c}</span>`:''}
 function recordFor(module,id){const rows=String(module).toLowerCase()==='tasks'?(APP.data?.tasks||[]):(APP.data?.subscriptions||[]);return rows.find(r=>String(r.ID)===String(id))||null}
-function statusHistoryFor(module,id){const actual=(APP.data?.statusHistory||[]).filter(r=>String(r.Module||'').toLowerCase()===String(module).toLowerCase()&&String(r.RecordID||'')===String(id)).sort((a,b)=>String(b.CreatedAt||'').localeCompare(String(a.CreatedAt||'')));if(actual.length)return actual;const rec=recordFor(module,id);if(!rec)return[];const detail=String(String(module).toLowerCase()==='tasks'?(rec.NextAction||''):(rec.Notes||'')).trim();return detail?[{ID:'legacy-ui-'+id,Module:module,RecordID:id,Status:rec.Status||'',Detail:detail,CreatedAt:rec.UpdatedAt||rec.LastRenewed||rec.CreatedAt||'Rekod sedia ada',Legacy:true}]:[]}
+function actualStatusHistoryFor(module,id){return (APP.data?.statusHistory||[]).filter(r=>String(r.Module||'').toLowerCase()===String(module).toLowerCase()&&String(r.RecordID||'')===String(id)).sort((a,b)=>String(b.CreatedAt||'').localeCompare(String(a.CreatedAt||'')))}
+function statusHistoryFor(module,id){const actual=actualStatusHistoryFor(module,id);if(actual.length)return actual;const rec=recordFor(module,id);if(!rec)return[];const detail=String(String(module).toLowerCase()==='tasks'?(rec.NextAction||''):(rec.Notes||'')).trim();return detail?[{ID:'legacy-ui-'+id,Module:module,RecordID:id,Status:rec.Status||'',Detail:detail,CreatedAt:rec.UpdatedAt||rec.LastRenewed||rec.CreatedAt||'Rekod sedia ada',Legacy:true}]:[]}
 function historyClockIcon(){return `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2M5 5l-2 2M19 5l2 2"/></svg>`}
 function statusSummaryHtml(module,id){const rows=statusHistoryFor(module,id),rec=recordFor(module,id),title=String(module).toLowerCase()==='tasks'?(rec?.Task||'Tugasan'):(rec?.Subscription||'Langganan'),status=rec?.Status||'';const args=[module,id,title,status].map(v=>esc(JSON.stringify(String(v??'')))).join(',');if(!rows.length)return `<button type="button" class="timeline-preview empty" onclick="openHistoryModal(${args})" title="Buka Kronologi Status"><span class="timeline-preview-icon">${historyClockIcon()}</span><span class="timeline-preview-content"><b>Buka Kronologi</b><span>Belum ada catatan. Tekan untuk tambah.</span></span><span class="timeline-preview-count">0</span></button>`;const latest=rows[0];return `<button type="button" class="timeline-preview" onclick="openHistoryModal(${args})" title="Buka Kronologi Status"><span class="timeline-preview-icon">${historyClockIcon()}</span><span class="timeline-preview-content"><b>${esc(latest.CreatedAt||latest.Status||'Status terkini')}</b><span>${esc(latest.Detail||'')}</span></span><span class="timeline-preview-count">${rows.length}</span></button>`}
 function chronologyHtml(module,id){const rows=statusHistoryFor(module,id);return rows.length?`<div class="status-chronology">${rows.map(r=>`<div class="chronology-item"><b>${esc(r.Status||'Status')}</b><span>${esc(r.Detail||'')}</span><small>${esc(r.CreatedAt||'Tarikh tidak direkodkan')}</small></div>`).join('')}</div>`:'<div class="chronology-empty">Belum ada kronologi. Status baharu yang disimpan akan muncul di sini.</div>'}
@@ -900,7 +918,7 @@ function init(){
   safeOn('#closeCreateModal','click',closeCreateModal);safeOn('#closeNotificationModal','click',closeNotificationModal);
   safeOn('#closeHistoryModal','click',closeHistoryModal);safeOn('#cancelHistoryModal','click',closeHistoryModal);
   safeOn('#closeRuleModal','click',closeRuleModal);safeOn('#doneRuleModal','click',closeRuleModal);
-  safeOn('#historyForm','submit',async e=>{e.preventDefault();const form=e.currentTarget,d=Object.fromEntries(new FormData(form));if(!String(d.detail||'').trim())return showToast('Masukkan perkembangan baharu.');if(!Array.isArray(APP.data?.statusHistory))return showToast('Deploy Apps Script V5 dahulu untuk mengaktifkan kronologi.',4500);try{await runPost('addStatusHistory',d,'Kronologi berjaya ditambah.');const timeline=$('#historyTimeline');if(timeline)timeline.innerHTML=chronologyHtml(d.module,d.recordId);form.elements.detail.value=''}catch(_){}});
+  safeOn('#historyForm','submit',async e=>{e.preventDefault();const form=e.currentTarget,d=Object.fromEntries(new FormData(form));if(!String(d.detail||'').trim())return showToast('Masukkan perkembangan baharu.');if(!configReady()||!APP.data)return showToast('Sambungan data belum tersedia.',4500);try{await saveStatusHistory(d);const timeline=$('#historyTimeline');if(timeline)timeline.innerHTML=chronologyHtml(d.module,d.recordId);form.elements.detail.value=''}catch(err){showToast(err.message,6000)}});
   safeOn('#runAlertCheckBtn','click',async()=>{try{await runPost('checkAlertsNow',{},'Semakan notifikasi selesai.');renderNotifications(APP.data?.alerts||[])}catch(_){}});
   safeOn('#openCalendarSettingsBtn','click',()=>{closeNotificationModal();openConfig();document.querySelector('.settingsTab[data-settings="calendar"]')?.click()});
   safeOn('#plannedSms','input',calculatePlan);
