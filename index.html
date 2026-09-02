@@ -65,7 +65,8 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
 .focus-list{gap:0}.focus-item{border:0;border-bottom:1px solid #edf1f6;border-radius:0;padding:13px 2px;grid-template-columns:86px minmax(0,1fr) auto;background:transparent}.focus-item:last-child{border-bottom:0}.focus-item .focus-dot{display:none}.focus-item b{font-size:12px}.focus-item small{font-size:10px;display:block;margin-top:3px}.focus-item>.pill{justify-self:start;width:74px;justify-content:center}.focus-item.critical>.pill{background:linear-gradient(135deg,#ff2638,#e01d32);color:#fff;box-shadow:0 4px 10px rgba(255,38,56,.22)}.focus-item.warning>.pill{background:linear-gradient(135deg,#ff9b16,#ff7a00);color:#fff;box-shadow:0 4px 10px rgba(255,138,0,.2)}
 .focus-panel .panel-body{padding:0 18px 4px}.focus-panel .focus-list{max-height:none;overflow:visible}.focus-item{min-height:54px;padding:10px 2px}.focus-item.critical.urgent-blink{animation:urgentRowBlink 1.15s ease-in-out infinite}.focus-panel.urgent-panel{border-color:#ffb0b8;box-shadow:0 0 0 1px rgba(255,38,56,.08),0 12px 34px rgba(255,38,56,.12)}.focus-panel.urgent-panel .panel-head{background:linear-gradient(90deg,#fff5f6,#fff)}.dashboard-cards .action-card.urgent-card{animation:urgentCardBlink 1.15s ease-in-out infinite}.dashboard-cards .action-card.urgent-card .metric-icon{animation:urgentIconPulse .8s ease-in-out infinite alternate}@keyframes urgentRowBlink{0%,100%{background:#fff}50%{background:#fff0f2}}@keyframes urgentCardBlink{0%,100%{box-shadow:0 10px 34px rgba(16,24,40,.07)}50%{box-shadow:0 0 0 3px rgba(255,38,56,.16),0 16px 38px rgba(255,38,56,.2)}}@keyframes urgentIconPulse{from{transform:scale(1)}to{transform:scale(1.08)}}@keyframes renewCriticalBlink{0%,100%{background:#fff}50%{background:#fff0f2;box-shadow:inset 4px 0 0 #ff2638}}@keyframes renewCardBlink{0%,100%{box-shadow:0 10px 34px rgba(16,24,40,.07)}50%{box-shadow:0 0 0 3px rgba(249,115,22,.14),0 16px 38px rgba(249,115,22,.18)}}
 .pie-layout{display:grid;grid-template-columns:minmax(240px,1fr) minmax(205px,.8fr);align-items:center;gap:10px;padding:14px 12px 18px}.pie-wrap{position:relative;display:grid;place-items:center;min-height:300px}.status-pie{width:255px;height:255px;border-radius:50%;background:conic-gradient(#ff2638 0 25%,#ff8a00 25% 50%,#0b6ff3 50% 75%,#16b34b 75% 100%);box-shadow:0 18px 34px rgba(16,24,40,.14),0 0 0 7px #fff;position:relative}.status-pie::after{content:"";position:absolute;inset:38%;border-radius:50%;background:#fff;box-shadow:0 0 0 1px #edf2f7}.pie-center{position:absolute;z-index:2;text-align:center}.pie-center strong{display:block;font-size:32px;color:#0b6ff3}.pie-center span{font-size:10px;color:var(--muted);font-weight:700}.pie-legend{display:grid;gap:8px}.legend-row{display:grid;grid-template-columns:12px 1fr auto;gap:9px;align-items:center;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff}.legend-dot{width:11px;height:11px;border-radius:50%}.legend-row span{font-size:11px}.legend-row b{font-size:17px}.legend-total{margin-top:3px;background:linear-gradient(135deg,#f4f8ff,#fff);border-color:#bfd7ff}.legend-total b{color:#0b6ff3;font-size:25px}
-.dashboard-bottom-grid{display:grid;grid-template-columns:1fr;gap:16px}.renew-card{padding:0;overflow:hidden}.renew-table{width:100%;border-collapse:collapse;min-width:0}.renew-table th{font-size:10px;text-transform:uppercase;color:#475467;background:#fafbfc;padding:11px 13px}.renew-table td{padding:12px 13px;font-size:11px;border-bottom:1px solid #eef2f6}.renew-table tr:last-child td{border-bottom:0}.renew-table tr.renew-critical-blink{animation:renewCriticalBlink 1.2s ease-in-out infinite}.dashboard-cards .renew-metric-card.renew-urgent-card{animation:renewCardBlink 1.2s ease-in-out infinite}.dashboard-cards .renew-metric-card.renew-urgent-card .metric-icon{animation:urgentIconPulse .85s ease-in-out infinite alternate}.days-critical{color:#f1283d;font-weight:800}.days-warning{color:#ff8500;font-weight:800}.days-normal{color:#129447;font-weight:800}
+.dashboard-bottom-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(310px,.65fr);gap:16px}.renew-card{padding:0;overflow:hidden}.renew-table{width:100%;border-collapse:collapse;min-width:0}.renew-table th{font-size:10px;text-transform:uppercase;color:#475467;background:#fafbfc;padding:11px 13px}.renew-table td{padding:12px 13px;font-size:11px;border-bottom:1px solid #eef2f6}.renew-table tr:last-child td{border-bottom:0}.renew-table tr.renew-critical-blink{animation:renewCriticalBlink 1.2s ease-in-out infinite}.dashboard-cards .renew-metric-card.renew-urgent-card{animation:renewCardBlink 1.2s ease-in-out infinite}.dashboard-cards .renew-metric-card.renew-urgent-card .metric-icon{animation:urgentIconPulse .85s ease-in-out infinite alternate}.days-critical{color:#f1283d;font-weight:800}.days-warning{color:#ff8500;font-weight:800}.days-normal{color:#129447;font-weight:800}
+.holiday-card{padding:0;overflow:hidden;background:linear-gradient(145deg,#f5fbff,#fff);border-color:#bae6fd}.holiday-card .panel-head{padding:16px 17px 13px;border-bottom:1px solid #dbeafe}.holiday-card .panel-head .pill{background:#e0f2fe;color:#075985}.holiday-list{display:grid;gap:10px;padding:14px 16px 12px}.holiday-item{display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:11px;align-items:center;padding:11px;border:1px solid #dbeafe;border-radius:13px;background:#fff}.holiday-datebox{width:46px;height:46px;border-radius:12px;background:linear-gradient(145deg,#0ea5e9,#2563eb);color:#fff;display:grid;place-items:center;text-align:center;box-shadow:0 7px 16px rgba(37,99,235,.18)}.holiday-datebox b{font-size:18px;line-height:1}.holiday-datebox span{font-size:8px;font-weight:800;text-transform:uppercase}.holiday-info{min-width:0}.holiday-info b{display:block;font-size:12px;color:#0f295a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.holiday-info span{display:block;margin-top:4px;font-size:10px;color:#64748b}.holiday-countdown{font-size:9px;font-weight:850;color:#0369a1;background:#e0f2fe;border-radius:999px;padding:6px 8px;white-space:nowrap}.holiday-source{padding:0 16px 14px;font-size:9px;color:#94a3b8}.holiday-empty{padding:22px 16px;text-align:center;color:#64748b;font-size:11px;line-height:1.5}
 .sms-premium{padding:0;overflow:hidden;align-self:start}.sms-premium.compact-sms{min-height:0}.sms-premium-body{display:grid;grid-template-columns:130px 142px minmax(0,1fr);align-items:center;gap:12px;padding:16px}.sms-left strong{display:block;color:#149447;font-size:27px;line-height:1.05}.sms-left span{font-size:10px;color:var(--muted)}.sms-donut{--pct:50%;--sms:#149447;width:118px;height:118px;border-radius:50%;background:conic-gradient(var(--sms) var(--pct),#e7ebf1 0);display:grid;place-items:center;position:relative}.sms-donut::after{content:"";position:absolute;inset:15px;background:#fff;border-radius:50%}.sms-donut-content{position:relative;z-index:2;text-align:center}.sms-donut-content b{display:block;font-size:20px}.sms-donut-content span{font-size:10px;color:var(--muted)}.sms-side-stats{display:grid;gap:7px}.sms-side-row{display:grid;grid-template-columns:10px 1fr auto;gap:8px;align-items:center;padding-bottom:7px;border-bottom:1px solid #eef2f6}.sms-side-row:last-child{border-bottom:0}.sms-side-row i{width:8px;height:8px;border-radius:50%}.sms-side-row span{font-size:10px;color:#475467}.sms-side-row b{font-size:11px}
 .dashboard-footer{font-size:10px;color:#98a2b3;text-align:center;margin-top:15px}
 /* catatan kekal ringkas */
@@ -161,18 +162,20 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
   }
 }
 
-/* Ringkasan SMS: RM + donut BESAR duduk rapat sebelah menyebelah */
+/* Ringkasan SMS responsif: angka dan donut tidak boleh bertindih */
+.compact-sms{container-type:inline-size}
 .compact-sms .sms-premium-body{
   display:grid!important;
-  grid-template-columns:190px 210px!important;
+  grid-template-columns:minmax(0,1fr) minmax(125px,42%)!important;
   grid-template-areas:
     "balance donut"
     "stats stats"!important;
-  justify-content:start!important;
+  justify-content:stretch!important;
   align-items:center!important;
-  column-gap:14px!important;
-  row-gap:18px!important;
-  padding:20px 22px 22px!important;
+  column-gap:12px!important;
+  row-gap:17px!important;
+  padding:18px!important;
+  overflow:hidden!important;
 }
 
 .compact-sms .sms-left{
@@ -183,23 +186,25 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
 }
 
 .compact-sms .sms-left strong{
-  font-size:40px!important;
+  max-width:100%!important;
+  font-size:clamp(24px,8cqw,34px)!important;
   line-height:1.05!important;
-  letter-spacing:-1px!important;
+  letter-spacing:-.8px!important;
   white-space:nowrap!important;
 }
 
 .compact-sms .sms-donut{
   grid-area:donut!important;
-  width:205px!important;
-  height:205px!important;
-  justify-self:start!important;
+  width:min(100%,160px)!important;
+  height:auto!important;
+  aspect-ratio:1!important;
+  justify-self:end!important;
   margin:0!important;
   box-shadow:0 12px 30px rgba(20,148,71,.18)!important;
 }
 
 .compact-sms .sms-donut::after{
-  inset:25px!important;
+  inset:20px!important;
 }
 
 .compact-sms .sms-donut-content b{
@@ -221,44 +226,59 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
 
 @media(max-width:1250px){
   .compact-sms .sms-premium-body{
-    grid-template-columns:180px 185px!important;
-    column-gap:12px!important;
-  }
-  .compact-sms .sms-donut{
-    width:180px!important;
-    height:180px!important;
-  }
-  .compact-sms .sms-donut::after{
-    inset:22px!important;
-  }
-  .compact-sms .sms-left strong{
-    font-size:36px!important;
-  }
-}
-
-@media(max-width:760px){
-  .compact-sms .sms-premium-body{
-    grid-template-columns:minmax(145px,1fr) 150px!important;
-    grid-template-areas:
-      "balance donut"
-      "stats stats"!important;
-    column-gap:10px!important;
+    grid-template-columns:minmax(0,1fr) minmax(120px,40%)!important;
     padding:16px!important;
   }
   .compact-sms .sms-donut{
-    width:145px!important;
-    height:145px!important;
+    width:min(100%,145px)!important;
+    height:auto!important;
   }
   .compact-sms .sms-donut::after{
     inset:18px!important;
   }
   .compact-sms .sms-left strong{
-    font-size:29px!important;
+    font-size:clamp(24px,8cqw,31px)!important;
+  }
+}
+
+@media(max-width:760px){
+  .compact-sms .sms-premium-body{
+    grid-template-columns:1fr!important;
+    grid-template-areas:
+      "balance"
+      "donut"
+      "stats"!important;
+    padding:16px!important;
+  }
+  .compact-sms .sms-donut{
+    width:145px!important;
+    height:auto!important;
+    justify-self:center!important;
+  }
+  .compact-sms .sms-donut::after{
+    inset:18px!important;
+  }
+  .compact-sms .sms-left strong{
+    font-size:30px!important;
   }
   .compact-sms .sms-side-stats{
     grid-template-columns:1fr!important;
   }
 }
+
+/* Warna Ringkasan SMS */
+.compact-sms{background:radial-gradient(circle at 88% 8%,rgba(34,197,94,.16),transparent 31%),radial-gradient(circle at 10% 96%,rgba(37,99,235,.13),transparent 38%),linear-gradient(145deg,#f8fffb,#f8fbff 58%,#fff)!important;border-color:#bfe8d1!important}
+.compact-sms .panel-head{background:linear-gradient(90deg,rgba(219,234,254,.72),rgba(220,252,231,.72))!important;border-bottom-color:#cce8da!important}
+.compact-sms .panel-title .title-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,#2563eb,#16a34a);box-shadow:0 7px 16px rgba(37,99,235,.18)}
+.compact-sms .panel-head .pill{background:linear-gradient(135deg,#16a34a,#059669)!important;color:#fff!important;border:0!important;box-shadow:0 6px 15px rgba(22,163,74,.2)}
+.compact-sms .sms-left strong{background:linear-gradient(90deg,#0f9f4f,#087f5b,#0b6ff3);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.compact-sms .sms-side-row{border-width:1px!important;border-style:solid!important;box-shadow:0 5px 13px rgba(15,23,42,.035)}
+.compact-sms .sms-side-row:nth-child(1){background:#f4f8ff!important;border-color:#cfe0ff!important;border-left:4px solid #3b82f6!important}
+.compact-sms .sms-side-row:nth-child(2){background:#f0fdf4!important;border-color:#bbf7d0!important;border-left:4px solid #16a34a!important}
+.compact-sms .sms-side-row:nth-child(3){background:#fff7ed!important;border-color:#fed7aa!important;border-left:4px solid #f97316!important}
+.compact-sms .sms-side-row:nth-child(4){background:#faf5ff!important;border-color:#e9d5ff!important;border-left:4px solid #8b5cf6!important}
+.compact-sms .sms-donut{border:7px solid rgba(255,255,255,.82);filter:drop-shadow(0 10px 18px rgba(20,148,71,.12))}
+.holiday-item{transition:transform .16s ease,box-shadow .16s ease}.holiday-item:hover{transform:translateY(-2px);box-shadow:0 9px 20px rgba(37,99,235,.10)}.holiday-item:nth-child(1){background:linear-gradient(145deg,#f0fdf4,#fff);border-color:#bbf7d0}.holiday-item:nth-child(1) .holiday-datebox{background:linear-gradient(145deg,#16a34a,#0ea5e9)}.holiday-item:nth-child(2){background:linear-gradient(145deg,#fff7ed,#fff);border-color:#fed7aa}.holiday-item:nth-child(2) .holiday-datebox{background:linear-gradient(145deg,#f97316,#8b5cf6)}
 
 /* ===== UI V3: TAMBAH POPUP + SIDEBAR + NOTIFIKASI ===== */
 .side{overflow:hidden;padding:20px 14px 112px!important;background:radial-gradient(circle at 20% 0,rgba(46,196,255,.28),transparent 28%),linear-gradient(180deg,#061d4c 0%,#0a3275 52%,#071a3e 100%)!important;border-right:1px solid rgba(255,255,255,.1)}
@@ -339,6 +359,11 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
         <div class="card renew-card">
           <div class="panel-head"><div class="panel-title"><span class="title-icon">🔄</span><h2>Langganan Akan Datang (90 Hari)</h2></div><button type="button" onclick="showPage('subscriptions')">Lihat Semua →</button></div>
           <div id="dashRenewals"></div>
+        </div>
+        <div class="card holiday-card">
+          <div class="panel-head"><div class="panel-title"><span class="title-icon">🌴</span><h2>Cuti Umum Seterusnya</h2></div><span class="pill normal">2 terdekat</span></div>
+          <div class="holiday-list" id="holidayList"><div class="holiday-empty">Memuat maklumat Google Calendar...</div></div>
+          <div class="holiday-source" id="holidaySource">Sumber: Google Calendar</div>
         </div>
       </div>
       <div class="dashboard-footer" id="dashboardFooter">Data belum dikemas kini</div>
@@ -620,7 +645,7 @@ function renderAll(){
   const alerts=(d.alerts||[]).filter(a=>String(a.type||'').toLowerCase()!=='note');
   const criticalCount=alerts.filter(a=>a.level==='critical').length,warningCount=alerts.filter(a=>a.level==='warning').length;
   const taskActive=(d.tasks||[]).filter(r=>!['selesai','done','completed','complete'].includes(String(r.Status||'').toLowerCase())).length;const renewSoon=(d.subscriptions||[]).filter(r=>r._level!=='done'&&Number(r._days)>=0&&Number(r._days)<=90).length;setText('#lastUpdate','Ringkasan kerja dan status sistem • Dikemas kini '+d.now);setText('#dashboardFooter','Data dikemas kini pada '+d.now);setText('#mAction',criticalCount+warningCount);setText('#mCriticalMini',criticalCount);setText('#mWarningMini',warningCount);setText('#mTaskActive',taskActive);setText('#mRenewSoon',renewSoon);setText('#mSmsRemaining',num(d.sms.remaining));setText('#smsCapacityMini','Daripada '+num(d.sms.capacity||0)+' SMS');
-  renderDashboardFocus(alerts);renderDashboardRenewals(d.subscriptions||[]);renderSms(d.sms||{});const hasUrgent=criticalCount>0;const hasCriticalRenewal=(d.subscriptions||[]).some(r=>r._level==='critical'&&Number(r._days)>=0&&Number(r._days)<=90);$('#actionCard')?.classList.toggle('urgent-card',hasUrgent);$('#focusPanel')?.classList.toggle('urgent-panel',hasUrgent);$('#renewMetricCard')?.classList.toggle('renew-urgent-card',hasCriticalRenewal);renderTasks(d.tasks||[]);renderNotes(d.notes||[]);renderSubs(d.subscriptions||[]);renderArchive(d.tasks||[],d.subscriptions||[]);renderSmsLogs(d.smsLogs||[]);renderNotifications(alerts);handleTabAlert(criticalCount,warningCount);
+  renderDashboardFocus(alerts);renderDashboardRenewals(d.subscriptions||[]);renderHolidays(d.holidays||{});renderSms(d.sms||{});const hasUrgent=criticalCount>0;const hasCriticalRenewal=(d.subscriptions||[]).some(r=>r._level==='critical'&&Number(r._days)>=0&&Number(r._days)<=90);$('#actionCard')?.classList.toggle('urgent-card',hasUrgent);$('#focusPanel')?.classList.toggle('urgent-panel',hasUrgent);$('#renewMetricCard')?.classList.toggle('renew-urgent-card',hasCriticalRenewal);renderTasks(d.tasks||[]);renderNotes(d.notes||[]);renderSubs(d.subscriptions||[]);renderArchive(d.tasks||[],d.subscriptions||[]);renderSmsLogs(d.smsLogs||[]);renderNotifications(alerts);handleTabAlert(criticalCount,warningCount);
 }
 
 
@@ -684,6 +709,13 @@ function renderSubs(rows){
     const deadlineLabel=r._level==='critical'?'KRITIKAL':r._level==='warning'?'AMARAN':'TEMPOH OK';
     return `<tr><td><b>${esc(r.Subscription)}</b>${attachmentBadge('subscriptions',r.ID)}<div class="muted">${esc(r.PIC)}</div></td><td>${esc(r.Vendor)}</td><td>${esc(r.ExpiryDate)}<div class="muted">${deadlineLabel}</div></td><td>${esc(r.CycleYears)} tahun</td><td>${money(r.Cost)}</td><td>${levelPill(r._level,st)}</td><td>${statusSummaryHtml('subscriptions',r.ID)}</td><td><details class="task-action-details sub-action-details"><summary title="Buka panel tindakan">${actionTriggerIcon()}</summary><div class="task-action-popup sub-process-popup"><div class="action-popup-title">Status Proses Langganan</div><div class="current-process-box"><span>Status semasa</span><b>${esc(st)}</b><small>${statusHistoryFor('subscriptions',r.ID)[0]?esc(statusHistoryFor('subscriptions',r.ID)[0].Detail):'Belum ada status terkini.'}</small></div><div class="process-select-wrap sub-process-select"><select class="process-select" onchange="if(this.value)quickSubStatus('${esc(r.ID)}',this.value)"><option value="">Pilih status proses...</option><option value="Aktif" ${st==='Aktif'?'selected':''}>Aktif</option><option value="Dalam Proses" ${st==='Dalam Proses'?'selected':''}>Dalam Proses</option><option value="Proses Penyediaan Surat" ${st==='Proses Penyediaan Surat'?'selected':''}>Penyediaan Surat</option><option value="Proses Menunggu Balasan" ${st==='Proses Menunggu Balasan'?'selected':''}>Menunggu Balasan</option><option value="Menunggu" ${st==='Menunggu'?'selected':''}>Menunggu</option><option value="Selesai" ${st==='Selesai'?'selected':''}>Selesai</option></select><button class="status-btn latest latest-single" onclick="openSubLatestStatus('${esc(r.ID)}')">+ Status Terkini</button></div><div class="action-popup-title">Aksi Lain</div><div class="action-icon-row"><button class="action-icon-only" onclick="openEditSub('${esc(r.ID)}')" title="Kemaskini maklumat">🖊️</button><button class="action-icon-only" onclick="openReferenceModal('subscriptions','${esc(r.ID)}','${esc(r.Subscription)}')" title="Lampiran">📎</button><button class="action-icon-only" onclick="printRecord('subscription','${esc(r.ID)}')" title="Cetak rekod">🖨️</button><button class="action-icon-only renew" onclick="renewSub('${esc(r.ID)}')" title="Perbaharui langganan">🔄</button><button class="action-icon-only delete" onclick="deleteSub('${esc(r.ID)}')" title="Padam langganan">🗑️</button></div></div></details></td></tr>`;
   }).join(''):'<tr><td colspan="8" class="empty">Belum ada langganan.</td></tr>';
+}
+function renderHolidays(data){
+  const el=$('#holidayList'),source=$('#holidaySource');if(!el)return;
+  const items=Array.isArray(data)?data:(data.items||[]);
+  if(source)source.textContent='Sumber: '+(data.source||'Google Calendar');
+  if(!items.length){el.innerHTML=`<div class="holiday-empty">🌴 ${esc(data.message||'Belum ada maklumat cuti umum.')}</div>`;return;}
+  el.innerHTML=items.slice(0,2).map(h=>{const parts=String(h.date||'').split('-'),day=parts[2]||'--',month=parts[1]?['JAN','FEB','MAC','APR','MEI','JUN','JUL','OGO','SEP','OKT','NOV','DIS'][Number(parts[1])-1]:'CUTI',days=Number(h.days||0),countdown=days===0?'Hari ini':days===1?'Esok':days+' hari lagi';return `<div class="holiday-item"><div class="holiday-datebox"><b>${esc(day)}</b><span>${esc(month)}</span></div><div class="holiday-info"><b>${esc(h.title||'Cuti Umum')}</b><span>${esc(h.dayLabel||'')} • ${esc(h.dateLabel||h.date||'')}</span></div><span class="holiday-countdown">${esc(countdown)}</span></div>`}).join('');
 }
 
 function renderArchive(tasks,subs){
