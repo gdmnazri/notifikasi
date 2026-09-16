@@ -321,6 +321,23 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
 @media(max-width:760px){.task-compact-head{padding:14px}.task-compact-toolbar{padding:11px 14px;align-items:stretch;flex-direction:column}.task-priority-select{width:100%}.task-filter-row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.task-filter-btn{flex:0 0 auto}.task-compact-row{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;padding:13px 14px 13px 18px}.task-row-main{grid-column:1/-1}.task-compact-row .task-row-meta:nth-of-type(3){grid-column:2;grid-row:2}.task-compact-row .task-row-meta:nth-of-type(4){display:none}.task-row-chevron{position:absolute;right:12px;top:13px}.task-detail-panel{padding:15px}.task-detail-grid{grid-template-columns:1fr 1fr}}
 .task-detail-latest-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
+/* ===== UI V15: TIPOGRAFI GOOGLE-LIKE + SUSUNAN MANUAL ===== */
+html{font-size:16px}
+body{font-family:"Google Sans Text","Google Sans",Roboto,Arial,sans-serif!important;font-size:15px;line-height:1.5;letter-spacing:.005em}
+button,input,select,textarea{font-family:inherit!important;font-size:14px!important}
+.navbtn,.btn{font-size:14px!important}.nav-label{font-size:14px!important}.brand{font-size:19px!important}.brand small{font-size:12px!important}
+.top h1{font-size:29px!important}.top p,.muted,small{font-size:12px!important;line-height:1.5}.section-title h2,.panel-title h2{font-size:17px!important}
+.label,.field label{font-size:13px!important}.metric{font-size:30px!important}.pill{font-size:12px!important;padding:6px 10px!important}
+th,td{font-size:14px!important}.field input,.field select,.field textarea{font-size:15px!important;padding:11px 12px!important}.field textarea{line-height:1.55}
+.focus-item b,.quick-note b,.notification-item b,.rule-item b{font-size:14px!important}.focus-item small,.quick-note p,.notification-item p,.rule-item span{font-size:13px!important}
+.task-compact-head h2{font-size:18px!important}.task-compact-search input,.task-priority-select{height:44px;font-size:14px!important}.task-filter-btn{font-size:13px!important;padding:8px 13px}
+.task-row-title{font-size:15px!important}.task-row-note{font-size:13px!important}.task-row-meta small{font-size:11px!important}.task-row-meta b{font-size:13px!important}.task-row-bell{font-size:12px!important}
+.task-detail-top h3{font-size:19px!important}.task-detail-notes{font-size:14px!important}.task-detail-stat span,.task-detail-label{font-size:11px!important}.task-detail-stat b,.task-detail-latest p{font-size:13px!important}.task-detail-latest b{font-size:12px!important}
+.task-sort-btn{height:44px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:8px 13px;border:1px solid #cbd5e1;border-radius:11px;background:#fff;color:#334155;font-weight:850;white-space:nowrap;transition:.16s ease}.task-sort-btn:hover{border-color:#60a5fa;background:#eff6ff;color:#1d4ed8}.task-sort-btn.active{border-color:#4f46e5;background:linear-gradient(135deg,#2563eb,#6d4cf5);color:#fff;box-shadow:0 7px 16px rgba(79,70,229,.2)}
+.task-compact-row.sorting{grid-template-columns:38px minmax(0,1fr) 78px;cursor:grab;padding-left:14px}.task-compact-row.sorting:active{cursor:grabbing}.task-compact-row.sorting .task-row-meta,.task-compact-row.sorting .task-row-chevron{display:none}.task-compact-row.dragging{opacity:.45;background:#e0e7ff}.task-compact-row.drag-target{box-shadow:inset 0 3px 0 #4f46e5;background:#eef2ff}
+.task-drag-handle{width:32px;height:36px;display:grid;place-items:center;border-radius:9px;background:#eef2ff;color:#4f46e5;font-size:19px;font-weight:900;letter-spacing:-3px}.task-sort-controls{display:flex;gap:5px;justify-content:flex-end}.task-sort-controls button{width:34px;height:34px;padding:0;border:1px solid #dbe5f1;border-radius:9px;background:#fff;color:#334155;font-size:17px!important;font-weight:900}.task-sort-controls button:hover{border-color:#818cf8;background:#eef2ff;color:#4338ca}.task-sort-controls button:disabled{opacity:.3;cursor:not-allowed}
+@media(max-width:760px){body{font-size:14px}.main{padding:15px}.top h1{font-size:24px!important}.task-sort-btn{width:100%}.task-compact-row.sorting{grid-template-columns:36px minmax(0,1fr) 76px}.task-compact-row.sorting .task-row-main{grid-column:auto}.task-detail-grid{grid-template-columns:1fr}.task-detail-stat b{font-size:14px!important}}
+
 </style>
 </head>
 <body>
@@ -410,7 +427,7 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
       </div>
       <div class="card task-compact-card">
         <div class="task-compact-head"><div><h2>Senarai Tugasan</h2><div class="muted">Pilih tugasan untuk melihat butiran dan tindakan.</div></div><div class="section-actions"><button class="info-icon-btn" type="button" onclick="openRuleModal('task')" title="Lihat Rule Notifikasi" aria-label="Lihat Rule Notifikasi">i</button><button class="add-icon-btn" type="button" onclick="openCreateModal('task')" title="Tambah Tugasan" aria-label="Tambah Tugasan">+</button></div></div>
-        <div class="task-compact-toolbar"><label class="task-compact-search"><input id="taskCompactSearch" type="search" placeholder="Cari tugasan, PIC atau status..." autocomplete="off" aria-label="Cari tugasan"></label><select class="task-priority-select" id="taskPriorityFilter" aria-label="Tapis mengikut keutamaan"><option value="all">Semua keutamaan</option><option value="critical">Kritikal</option><option value="Urgent">Urgent</option><option value="Tinggi">Tinggi</option><option value="Normal">Normal</option></select><div class="task-filter-row"><button class="task-filter-btn active" type="button" data-task-filter="all">Semua tarikh</button><button class="task-filter-btn" type="button" data-task-filter="week">7 Hari</button><button class="task-filter-btn" type="button" data-task-filter="overdue">Lewat</button><span class="pill directory-count" id="taskCompactCount">0 tugasan</span></div></div>
+        <div class="task-compact-toolbar"><label class="task-compact-search"><input id="taskCompactSearch" type="search" placeholder="Cari tugasan, PIC atau status..." autocomplete="off" aria-label="Cari tugasan"></label><select class="task-priority-select" id="taskPriorityFilter" aria-label="Tapis mengikut keutamaan"><option value="all">Semua keutamaan</option><option value="critical">Kritikal</option><option value="Urgent">Urgent</option><option value="Tinggi">Tinggi</option><option value="Normal">Normal</option></select><button class="task-sort-btn" id="toggleTaskSort" type="button" title="Susun tugasan mengikut kepentingan"><span>↕</span><b>Susun Sendiri</b></button><div class="task-filter-row"><button class="task-filter-btn active" type="button" data-task-filter="all">Semua tarikh</button><button class="task-filter-btn" type="button" data-task-filter="week">7 Hari</button><button class="task-filter-btn" type="button" data-task-filter="overdue">Lewat</button><span class="pill directory-count" id="taskCompactCount">0 tugasan</span></div></div>
         <div class="task-compact-workspace"><div class="task-compact-list" id="taskCompactRows"></div><aside class="task-detail-panel" id="taskDetailPanel"><div class="task-detail-empty"><span>✓</span><b>Pilih satu tugasan</b><small>Butiran penuh akan dipaparkan di sini.</small></div></aside></div>
       </div>
     </section>
@@ -516,7 +533,11 @@ const APP={
   taskFilter:'all',
   taskPriorityFilter:'all',
   taskSearch:'',
-  selectedTaskId:null
+  selectedTaskId:null,
+  taskSortMode:false,
+  draggedTaskId:null,
+  taskOrderSaveTimer:null,
+  backgroundRefreshTimer:null
 };
 
 const $=s=>document.querySelector(s);
@@ -654,10 +675,35 @@ function applyDashboardData(data){
   try{localStorage.setItem('pkpj_dashboard_cache',JSON.stringify(data))}catch(_){}
 }
 
+function scheduleDashboardRefresh(delay=500){clearTimeout(APP.backgroundRefreshTimer);APP.backgroundRefreshTimer=setTimeout(()=>loadDashboard(true),delay)}
+function applyFastMutation(action,payload){
+  if(!APP.data)return false;
+  const p=payload||{},tasks=APP.data.tasks||[];
+  if(action==='addTask'){
+    const maxOrder=tasks.reduce((max,r)=>Math.max(max,Number(r.SortOrder)||0),0),deadline=isoDate(p.deadline),today=new Date().toISOString().slice(0,10),days=deadline?Math.round((new Date(deadline+'T00:00:00')-new Date(today+'T00:00:00'))/86400000):null;
+    tasks.push({ID:p.id,Task:p.task,Deadline:deadline,StartDate:isoDate(p.startDate)||deadline,Priority:p.priority||'Normal',Status:p.status||'Belum Mula',NextAction:p.nextAction||'',PIC:p.pic||'',Notes:p.notes||'',DailyNotification:p.dailyNotification||'FALSE',NotificationTime:p.notificationTime||'08:00',WorkdaysOnly:p.workdaysOnly||'TRUE',SortOrder:maxOrder+1,_days:days,_level:days!==null&&days<=1?'critical':days!==null&&days<=3?'warning':'normal'});
+    APP.selectedTaskId=String(p.id);renderAll();return true;
+  }
+  if(action==='updateTask'){
+    const r=tasks.find(x=>String(x.ID)===String(p.id));if(!r)return false;
+    Object.assign(r,{Task:p.task??r.Task,Deadline:isoDate(p.deadline)||r.Deadline,StartDate:isoDate(p.startDate)||r.StartDate,Priority:p.priority??r.Priority,Status:p.status??r.Status,NextAction:p.nextAction??r.NextAction,PIC:p.pic??r.PIC,Notes:p.notes??r.Notes,DailyNotification:p.dailyNotification??r.DailyNotification,NotificationTime:p.notificationTime??r.NotificationTime,WorkdaysOnly:p.workdaysOnly??r.WorkdaysOnly});renderAll();return true;
+  }
+  if(action==='updateTaskStatus'){
+    const r=tasks.find(x=>String(x.ID)===String(p.id));if(!r)return false;r.Status=p.status||r.Status;
+    APP.data.statusHistory=APP.data.statusHistory||[];APP.data.statusHistory.unshift({ID:'local-'+Date.now(),Module:'tasks',RecordID:p.id,Status:r.Status,Detail:p.detail||'Status proses ditukar kepada '+r.Status+'.',CreatedAt:'Baru disimpan'});renderAll();return true;
+  }
+  if(action==='deleteTask'){
+    APP.data.tasks=tasks.filter(x=>String(x.ID)!==String(p.id));APP.data.references=(APP.data.references||[]).filter(x=>!(String(x.Module).toLowerCase()==='tasks'&&String(x.RecordID)===String(p.id)));APP.data.statusHistory=(APP.data.statusHistory||[]).filter(x=>!(String(x.Module).toLowerCase()==='tasks'&&String(x.RecordID)===String(p.id)));if(String(APP.selectedTaskId)===String(p.id))APP.selectedTaskId=null;renderAll();return true;
+  }
+  return false;
+}
+
 async function runPost(action,payload,msg){
   try{
     showToast('Menyimpan...');await submitPost(action,payload);
-    const r=await fetchDashboardWithRetry();applyDashboardData(r.data);showToast(msg);return r;
+    const immediate=['uploadReference','deleteReference','checkAlertsNow'].includes(action);
+    if(immediate){const r=await fetchDashboardWithRetry(3,220);applyDashboardData(r.data);showToast(msg);return r;}
+    applyFastMutation(action,payload);scheduleDashboardRefresh();showToast(msg);return {ok:true,result:{saved:true}};
   }catch(e){showToast(e.message,4500);throw e;}
 }
 
@@ -739,17 +785,28 @@ function taskMatchesCompactFilter(r){const days=Number(r?._days),hasDays=r?._day
 function taskStatusOptions(status){return ['Belum Mula','Dalam Proses','Proses Penyediaan Surat','Proses Menunggu Balasan','Menunggu','Selesai'].map(v=>`<option value="${esc(v)}" ${v===status?'selected':''}>${esc(v)}</option>`).join('')}
 function renderTaskDetail(r){const panel=$('#taskDetailPanel');if(!panel)return;if(!r){panel.innerHTML='<div class="task-detail-empty"><span>✓</span><b>Tiada tugasan dipilih</b><small>Pilih tugasan daripada senarai.</small></div>';return}const st=String(r.Status||'Belum Mula'),history=statusHistoryFor('tasks',r.ID),latest=history[0],idArg=esc(JSON.stringify(String(r.ID||''))),titleArg=esc(JSON.stringify(String(r.Task||''))),workdays=String(r.WorkdaysOnly||'TRUE').toUpperCase()==='TRUE',notify=String(r.DailyNotification||'FALSE').toUpperCase()==='TRUE';panel.innerHTML=`<div class="task-detail-shell"><div class="task-detail-top"><div><h3>${esc(r.Task||'Tugasan')}</h3><p class="task-detail-notes">${esc(r.Notes||'Tiada nota tambahan.')}</p></div>${levelPill(r._level||'normal',st)}</div><div class="task-detail-grid"><div class="task-detail-stat"><span>Tarikh Dari</span><b>${esc(formatMalayDate(r.StartDate||'-'))}</b></div><div class="task-detail-stat"><span>Tarikh Hingga</span><b>${esc(formatMalayDate(r.Deadline||'-'))}</b></div><div class="task-detail-stat"><span>PIC</span><b>${esc(r.PIC||'-')}</b></div><div class="task-detail-stat"><span>Keutamaan</span><b>${esc(r.Priority||'Normal')}</b></div></div><div class="task-detail-section"><div class="task-detail-label"><span>Kronologi terkini</span><span>${history.length} rekod</span></div><button type="button" class="task-detail-latest" onclick="openTaskLatestStatus(${idArg})"><span class="task-detail-latest-icon">${historyClockIcon()}</span><span><b>${esc(latest?.CreatedAt||latest?.Status||'Buka Kronologi')}</b><p>${esc(latest?.Detail||'Belum ada catatan. Tekan untuk tambah perkembangan.')}</p></span><small>${history.length}</small></button></div><div class="task-detail-section"><div class="task-detail-label"><span>Notifikasi</span></div><div class="task-detail-stat"><b>${notify?'🔔 '+(workdays?'Hari bekerja':'Setiap hari')+' pada '+displayTime(r.NotificationTime):'Notifikasi tidak diaktifkan'}</b></div></div><div class="task-detail-section"><div class="task-detail-label"><span>Kemas kini proses</span></div><div class="task-detail-status"><select aria-label="Status tugasan" onchange="if(this.value)quickTaskStatus(${idArg},this.value)">${taskStatusOptions(st)}</select><button type="button" onclick="openTaskLatestStatus(${idArg})">+ Kronologi</button></div></div><div class="task-detail-section"><div class="task-detail-label"><span>Aksi</span></div><div class="task-detail-actions"><button class="task-detail-action" type="button" onclick="openEditTask(${idArg})" title="Kemaskini">🖊️</button><button class="task-detail-action" type="button" onclick="openReferenceModal('tasks',${idArg},${titleArg})" title="Lampiran">📎</button><button class="task-detail-action" type="button" onclick="printRecord('task',${idArg})" title="Cetak">🖨️</button><button class="task-detail-action done" type="button" onclick="markTaskDone(${idArg})" title="Tandakan Selesai">✓</button><button class="task-detail-action delete" type="button" onclick="deleteTask(${idArg})" title="Padam">🗑️</button></div></div></div>`}
 window.selectTaskDetail=id=>{APP.selectedTaskId=String(id);renderTasks(APP.data?.tasks||[])};
-window.setTaskFilter=filter=>{APP.taskFilter=filter||'all';$$('[data-task-filter]').forEach(btn=>btn.classList.toggle('active',btn.dataset.taskFilter===APP.taskFilter));renderTasks(APP.data?.tasks||[])};
+window.setTaskFilter=filter=>{APP.taskSortMode=false;APP.taskFilter=filter||'all';$$('[data-task-filter]').forEach(btn=>btn.classList.toggle('active',btn.dataset.taskFilter===APP.taskFilter));renderTasks(APP.data?.tasks||[])};
+function activeTaskOrder(){return (APP.data?.tasks||[]).filter(r=>!taskIsDone(r)).map(r=>String(r.ID))}
+function applyManualTaskOrder(ids){if(!APP.data)return;const tasks=APP.data.tasks||[],map=new Map(tasks.map(r=>[String(r.ID),r])),ordered=ids.map(id=>map.get(String(id))).filter(Boolean),used=new Set(ordered.map(r=>String(r.ID))),remaining=tasks.filter(r=>!taskIsDone(r)&&!used.has(String(r.ID))),done=tasks.filter(taskIsDone);APP.data.tasks=[...ordered,...remaining,...done];APP.data.tasks.filter(r=>!taskIsDone(r)).forEach((r,index)=>{r.SortOrder=index+1})}
+function queueTaskOrderSave(){clearTimeout(APP.taskOrderSaveTimer);const ids=activeTaskOrder();showToast('Susunan dikemas kini. Menyimpan...');APP.taskOrderSaveTimer=setTimeout(async()=>{try{await submitPost('reorderTasks',{ids});showToast('Susunan tugasan telah disimpan.');scheduleDashboardRefresh(700)}catch(e){showToast('Susunan gagal disimpan: '+e.message,5000);loadDashboard(true)}},450)}
+window.moveTaskInOrder=(id,direction)=>{const ids=activeTaskOrder(),from=ids.indexOf(String(id)),to=from+Number(direction);if(from<0||to<0||to>=ids.length)return;[ids[from],ids[to]]=[ids[to],ids[from]];applyManualTaskOrder(ids);APP.selectedTaskId=String(id);renderTasks(APP.data.tasks);queueTaskOrderSave()};
+window.taskDragStart=(event,id)=>{if(!APP.taskSortMode)return;APP.draggedTaskId=String(id);event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/plain',String(id));event.currentTarget.classList.add('dragging')};
+window.taskDragEnd=event=>{event.currentTarget.classList.remove('dragging');$$('.task-compact-row').forEach(row=>row.classList.remove('drag-target'));APP.draggedTaskId=null};
+window.taskDragOver=event=>{if(!APP.taskSortMode)return;event.preventDefault();event.currentTarget.classList.add('drag-target')};
+window.taskDragLeave=event=>event.currentTarget.classList.remove('drag-target');
+window.taskDrop=(event,targetId)=>{if(!APP.taskSortMode)return;event.preventDefault();event.currentTarget.classList.remove('drag-target');const dragged=APP.draggedTaskId||event.dataTransfer.getData('text/plain');if(!dragged||String(dragged)===String(targetId))return;const ids=activeTaskOrder(),from=ids.indexOf(String(dragged)),target=ids.indexOf(String(targetId));if(from<0||target<0)return;ids.splice(from,1);ids.splice(from<target?target-1:target,0,String(dragged));applyManualTaskOrder(ids);APP.selectedTaskId=String(dragged);renderTasks(APP.data.tasks);queueTaskOrderSave()};
+window.toggleTaskSort=()=>{APP.taskSortMode=!APP.taskSortMode;if(APP.taskSortMode){APP.taskFilter='all';APP.taskPriorityFilter='all';APP.taskSearch='';const search=$('#taskCompactSearch'),priority=$('#taskPriorityFilter');if(search)search.value='';if(priority)priority.value='all';$$('[data-task-filter]').forEach(btn=>btn.classList.toggle('active',btn.dataset.taskFilter==='all'));showToast('Mod susun aktif — seret atau guna anak panah.')}else showToast('Mod susun ditutup.');renderTasks(APP.data?.tasks||[])};
 function renderTasks(rows){
   const dash=rows.filter(r=>['critical','warning'].includes(r._level)).slice(0,8);const d=$('#dashTasks');if(d)d.innerHTML=dash.length?dash.map(r=>`<tr><td><b>${esc(r.Task)}</b></td><td>${esc(r.Deadline)}</td><td>${levelPill(r._level,r._level==='critical'?'SEGERA':'AMARAN')}</td><td>${esc(r.PIC)}</td></tr>`).join(''):'<tr><td colspan="4" class="empty">Tiada task mendesak.</td></tr>';
   const el=$('#taskCompactRows');if(!el)return;
   const activeRows=(rows||[]).filter(r=>!taskIsDone(r));
   const term=String(APP.taskSearch||'').trim().toLowerCase();
-  const filtered=activeRows.filter(r=>taskMatchesCompactFilter(r)&&(!term||[r.Task,r.Notes,r.PIC,r.Status,r.Priority,r.NextAction].some(v=>String(v||'').toLowerCase().includes(term))));
+  const filtered=APP.taskSortMode?activeRows:activeRows.filter(r=>taskMatchesCompactFilter(r)&&(!term||[r.Task,r.Notes,r.PIC,r.Status,r.Priority,r.NextAction].some(v=>String(v||'').toLowerCase().includes(term))));
   if(!activeRows.some(r=>String(r.ID)===String(APP.selectedTaskId)))APP.selectedTaskId=activeRows[0]?String(activeRows[0].ID):null;
   if(filtered.length&&!filtered.some(r=>String(r.ID)===String(APP.selectedTaskId)))APP.selectedTaskId=String(filtered[0].ID);
-  setText('#taskCompactCount',filtered.length+' tugasan');
-  el.innerHTML=filtered.length?filtered.map(r=>{const idArg=esc(JSON.stringify(String(r.ID||''))),selected=String(r.ID)===String(APP.selectedTaskId),notify=String(r.DailyNotification||'FALSE').toUpperCase()==='TRUE',workdays=String(r.WorkdaysOnly||'TRUE').toUpperCase()==='TRUE';return `<button type="button" class="task-compact-row ${esc(r._level||'normal')} ${selected?'selected':''}" onclick="selectTaskDetail(${idArg})"><span class="task-row-main"><span class="task-row-title">${esc(r.Task||'Tugasan')}</span><span class="task-row-note">${esc(r.Notes||r.NextAction||'Tiada nota tambahan.')}</span>${notify?`<span class="task-row-bell">🔔 ${workdays?'Hari bekerja':'Setiap hari'} • ${esc(displayTime(r.NotificationTime))}</span>`:''}</span><span class="task-row-meta"><small>Tarikh</small><b>${taskPeriod(r)}</b></span><span class="task-row-meta"><small>Status</small><b>${esc(r.Status||'Belum Mula')}</b></span><span class="task-row-meta"><small>PIC</small><b>${esc(r.PIC||'-')}</b></span><span class="task-row-chevron">›</span></button>`}).join(''):`<div class="task-compact-empty">${term||APP.taskFilter!=='all'||APP.taskPriorityFilter!=='all'?'Tiada tugasan sepadan dengan carian atau penapis.':'Belum ada tugasan aktif.'}</div>`;
+  setText('#taskCompactCount',APP.taskSortMode?'↕ '+filtered.length+' untuk disusun':filtered.length+' tugasan');
+  const sortBtn=$('#toggleTaskSort');if(sortBtn){sortBtn.classList.toggle('active',APP.taskSortMode);const label=sortBtn.querySelector('b');if(label)label.textContent=APP.taskSortMode?'Selesai Susun':'Susun Sendiri'}
+  el.innerHTML=filtered.length?filtered.map((r,index)=>{const idArg=esc(JSON.stringify(String(r.ID||''))),selected=String(r.ID)===String(APP.selectedTaskId),notify=String(r.DailyNotification||'FALSE').toUpperCase()==='TRUE',workdays=String(r.WorkdaysOnly||'TRUE').toUpperCase()==='TRUE',sorting=APP.taskSortMode;return `<div role="button" tabindex="0" draggable="${sorting?'true':'false'}" class="task-compact-row ${esc(r._level||'normal')} ${selected?'selected':''} ${sorting?'sorting':''}" onclick="selectTaskDetail(${idArg})" onkeydown="if(event.key==='Enter'||event.key===' ')selectTaskDetail(${idArg})" ondragstart="taskDragStart(event,${idArg})" ondragend="taskDragEnd(event)" ondragover="taskDragOver(event)" ondragleave="taskDragLeave(event)" ondrop="taskDrop(event,${idArg})">${sorting?'<span class="task-drag-handle" title="Seret untuk susun">⋮⋮</span>':''}<span class="task-row-main"><span class="task-row-title">${esc(r.Task||'Tugasan')}</span><span class="task-row-note">${esc(r.Notes||r.NextAction||'Tiada nota tambahan.')}</span>${notify?`<span class="task-row-bell">🔔 ${workdays?'Hari bekerja':'Setiap hari'} • ${esc(displayTime(r.NotificationTime))}</span>`:''}</span><span class="task-row-meta"><small>Tarikh</small><b>${taskPeriod(r)}</b></span><span class="task-row-meta"><small>Status</small><b>${esc(r.Status||'Belum Mula')}</b></span><span class="task-row-meta"><small>PIC</small><b>${esc(r.PIC||'-')}</b></span>${sorting?`<span class="task-sort-controls"><button type="button" onclick="event.stopPropagation();moveTaskInOrder(${idArg},-1)" title="Naikkan" ${index===0?'disabled':''}>↑</button><button type="button" onclick="event.stopPropagation();moveTaskInOrder(${idArg},1)" title="Turunkan" ${index===filtered.length-1?'disabled':''}>↓</button></span>`:'<span class="task-row-chevron">›</span>'}</div>`}).join(''):`<div class="task-compact-empty">${term||APP.taskFilter!=='all'||APP.taskPriorityFilter!=='all'?'Tiada tugasan sepadan dengan carian atau penapis.':'Belum ada tugasan aktif.'}</div>`;
   renderTaskDetail(filtered.find(r=>String(r.ID)===String(APP.selectedTaskId))||null);
 }
 
@@ -1040,8 +1097,9 @@ function init(){
   safeOn('#openCalendarSettingsBtn','click',()=>{closeNotificationModal();openConfig();document.querySelector('.settingsTab[data-settings="calendar"]')?.click()});
   safeOn('#plannedSms','input',calculatePlan);
   safeOn('#subscriptionDirectorySearch','input',e=>renderSubscriptionDirectory(APP.data?.subscriptions||[],e.currentTarget.value));
-  safeOn('#taskCompactSearch','input',e=>{APP.taskSearch=e.currentTarget.value;renderTasks(APP.data?.tasks||[])});
-  safeOn('#taskPriorityFilter','change',e=>{APP.taskPriorityFilter=e.currentTarget.value;renderTasks(APP.data?.tasks||[])});
+  safeOn('#taskCompactSearch','input',e=>{APP.taskSortMode=false;APP.taskSearch=e.currentTarget.value;renderTasks(APP.data?.tasks||[])});
+  safeOn('#taskPriorityFilter','change',e=>{APP.taskSortMode=false;APP.taskPriorityFilter=e.currentTarget.value;renderTasks(APP.data?.tasks||[])});
+  safeOn('#toggleTaskSort','click',toggleTaskSort);
   $$('[data-task-filter]').forEach(btn=>btn.addEventListener('click',()=>setTaskFilter(btn.dataset.taskFilter)));
   safeOn('#smsCurrentAllocationSetting','input',calculateSmsSettingCapacity);safeOn('#smsNewApprovedSetting','input',calculateSmsSettingCapacity);safeOn('#smsCostSetting','input',calculateSmsSettingCapacity);
 
