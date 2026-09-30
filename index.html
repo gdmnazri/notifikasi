@@ -703,13 +703,13 @@ function openConfig(){
 }
 function closeConfig(){$('#configModal')?.classList.add('hidden');}
 
-function jsonp(action){
+function jsonp(action,timeoutMs=15000){
   return new Promise((resolve,reject)=>{
     if(!configReady())return reject(new Error('Tetapan sambungan belum lengkap.'));
     const cb='pkpj_cb_'+Date.now()+'_'+Math.random().toString(36).slice(2);
     const script=document.createElement('script');
     const cleanup=()=>{delete window[cb];script.remove();clearTimeout(timer)};
-    const timer=setTimeout(()=>{cleanup();reject(new Error('Sambungan Apps Script timeout.'))},15000);
+    const timer=setTimeout(()=>{cleanup();reject(new Error('Sambungan Apps Script timeout.'))},timeoutMs);
     window[cb]=res=>{cleanup();res&&res.ok?resolve(res):reject(new Error(res?.error||'Ralat API'))};
     const u=new URL(APP.apiUrl);u.searchParams.set('action',action);u.searchParams.set('token',APP.token);u.searchParams.set('callback',cb);u.searchParams.set('_',Date.now());
     script.onerror=()=>{cleanup();reject(new Error('Tidak dapat sambung ke Apps Script.'))};
@@ -727,9 +727,12 @@ function submitPost(action,payload){
     let done=false;
     const finish=()=>{if(done)return;done=true;clearTimeout(timer);frame?.removeEventListener('load',onload);form.remove();resolve()};
     const onload=()=>finish();
-    const timeoutMs=action==='syncTaskCalendars'?60000:30000;
+    const timeoutMs=action==='syncTaskCalendars'||action==='testCalendar'?90000:30000;
     const timer=setTimeout(()=>{if(done)return;done=true;frame?.removeEventListener('load',onload);form.remove();reject(new Error('Simpanan mengambil masa terlalu lama. Cuba semula.'))},timeoutMs);
     frame?.addEventListener('load',onload,{once:true});document.body.appendChild(form);form.submit();
+    // Ujian Calendar diproses di belakang. Jangan tunggu respons iframe yang
+    // kadang-kadang disekat atau dilambatkan oleh pelayar; status disemak melalui API ringan.
+    if(action==='testCalendar')setTimeout(finish,1200);
     if(!frame)setTimeout(finish,500);
   });
 }
@@ -745,6 +748,42 @@ async function fetchDashboardWithRetry(retries=4,delay=300){
 function applyDashboardData(data){
   APP.data=data;renderAll();
   try{localStorage.setItem('pkpj_dashboard_cache',JSON.stringify(data))}catch(_){}
+}
+
+async function runCalendarNotificationTest(){
+  const testId=uuid();
+  const delays=[900,1200,1600,2200,2800,3500,4000,4500,5000,5000];
+  beginSaveProgress('Menguji notifikasi Calendar','Menghantar acara ujian ke Google Calendar...');
+  setText('#calendarTestStatus','Menghantar ujian. Sila tunggu, Calendar mungkin mengambil sedikit masa...');
+  try{
+    await submitPost('testCalendar',{testId});
+    setSaveProgress(34,'Permintaan diterima. Menunggu pengesahan Google Calendar...');
+    let lastError=null;
+    for(let attempt=0;attempt<delays.length;attempt++){
+      await wait(delays[attempt]);
+      setSaveProgress(Math.min(94,42+(attempt*6)),`Menyemak Calendar... percubaan ${attempt+1}/${delays.length}`);
+      try{
+        const response=await jsonp('calendarTestStatus',25000);
+        const data=response?.data||{},health=data.calendarHealth||{};
+        if(Number(data.apiVersion||0)<15)throw new Error('Deploy Apps Script V15 sebagai Web App versi baharu dahulu.');
+        if(String(health.lastTestId||'')!==String(testId))continue;
+        if(String(health.lastTestStatus||'').toUpperCase()==='ERROR')throw new Error('Ujian Calendar gagal: '+(health.lastTestMessage||'Ralat tidak diketahui.'));
+        if(String(health.lastTestStatus||'').toUpperCase()==='OK'){
+          APP.data=APP.data||{};APP.data.calendarHealth=health;renderCalendarHealth(health);
+          finishSaveProgress('Acara ujian berjaya dicipta dalam Google Calendar.');
+          showToast('Ujian Calendar berjaya. Popup dijadualkan kira-kira 1 minit lagi.',5000);
+          return true;
+        }
+      }catch(err){
+        lastError=err;
+        if(/Action GET tidak dikenali|Apps Script V15/i.test(String(err.message||'')))throw new Error('Backend lama masih digunakan. Deploy Apps Script V15 dan gunakan URL /exec yang terkini.');
+        if(/Ujian Calendar gagal/i.test(String(err.message||'')))throw err;
+      }
+    }
+    throw new Error(lastError?.message==='Sambungan Apps Script timeout.'?'Calendar masih memproses tetapi pengesahan mengambil terlalu lama. Semak acara ujian dalam Google Calendar, kemudian cuba sekali lagi.':'Calendar belum mengembalikan keputusan ujian. Semak kebenaran Calendar dan deployment Web App.');
+  }catch(err){
+    failSaveProgress(err.message||'Ujian Calendar gagal.');setText('#calendarTestStatus','❌ '+err.message);showToast(err.message,6500);throw err;
+  }
 }
 
 function scheduleDashboardRefresh(delay=500){clearTimeout(APP.backgroundRefreshTimer);APP.backgroundRefreshTimer=setTimeout(()=>loadDashboard(true),delay)}
@@ -844,7 +883,7 @@ function mutationVerification(action,p,data,before){
     return failed.length?{error:failed.length+' tugasan gagal dijadualkan ke Calendar.'}:{ok:true,label:'Semua jadual Calendar telah disahkan.'};
   }
   if(action==='testCalendar'){
-    if(Number(data.apiVersion||0)<14)return {error:'Ujian notifikasi memerlukan Apps Script V14. Deploy V14 dahulu.'};
+    if(Number(data.apiVersion||0)<15)return {error:'Ujian notifikasi memerlukan Apps Script V15. Deploy V15 dahulu.'};
     const health=data.calendarHealth||{};
     if(String(health.lastTestId||'')!==String(p.testId||''))return {ok:false};
     if(String(health.lastTestStatus||'').toUpperCase()==='ERROR')return {error:'Ujian Calendar gagal: '+(health.lastTestMessage||'Ralat tidak diketahui.')};
@@ -1271,7 +1310,7 @@ function init(){
 
   safeOn('#saveSmsSettings','click',async()=>{const current=Number($('#smsCurrentAllocationSetting')?.value||0),approved=Number($('#smsNewApprovedSetting')?.value||0),cost=Number($('#smsCostSetting')?.value||0);if(current<0||approved<0||cost<=0)return showToast('Semak nilai tetapan SMS.');try{await runPost('updateSmsSettings',{currentAllocation:current,newApprovedAllocation:approved,costPerSms:cost},'Tetapan SMS disimpan.')}catch(_){}});
   safeOn('#syncTaskCalendarBtn','click',async()=>{const btn=$('#syncTaskCalendarBtn');if(btn){btn.disabled=true;btn.textContent='Menyusun jadual...';}setText('#calendarTestStatus','Menyegerakkan semua tugasan aktif ke Google Calendar...');try{await runPost('syncTaskCalendars',{},'Semua jadual tugasan telah disemak.');const c=APP.data?.calendarSchedule||{};setText('#calendarTestStatus',c.error?`⚠️ ${c.error} tugasan gagal. Semak status merah pada tugasan.`:`✅ ${c.scheduled||0} tugasan berjaya dijadualkan.`)}catch(e){setText('#calendarTestStatus','❌ '+e.message)}finally{if(btn){btn.disabled=false;btn.textContent='↻ Jadualkan Semua Tugasan';}}});
-  safeOn('#testCalendarBtn','click',async()=>{const testId=uuid();setText('#calendarTestStatus','Menghantar dan mengesahkan ujian...');try{await runPost('testCalendar',{testId},'Ujian Calendar berjaya disahkan.');renderCalendarHealth(APP.data?.calendarHealth)}catch(e){setText('#calendarTestStatus','❌ '+e.message)}});
+  safeOn('#testCalendarBtn','click',async()=>{const btn=$('#testCalendarBtn');if(btn){btn.disabled=true;btn.textContent='⏳ Menguji...';}try{await runCalendarNotificationTest()}catch(_){ }finally{if(btn){btn.disabled=false;btn.textContent='🔔 Uji Notifikasi';}}});
 
   safeOn('#openSmsTotal','click',()=>{if(APP.data?.sms)$('#smsTotalForm [name="total"]').value=APP.data.sms.used;$('#smsTotalModal')?.classList.remove('hidden')});safeOn('#closeSmsTotal','click',()=>$('#smsTotalModal')?.classList.add('hidden'));
   safeOn('#resetSmsBtn','click',async()=>{if(!confirm('Reset semua penggunaan SMS dan kosongkan log?'))return;if(!confirm('Pengesahan terakhir: teruskan reset?'))return;try{await runPost('resetSms',{},'Penggunaan SMS direset.');$('#smsTotalModal')?.classList.add('hidden')}catch(_){}});
