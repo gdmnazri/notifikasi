@@ -361,6 +361,43 @@ body.modal-open{overflow:hidden!important;touch-action:none}
   .toast{left:12px!important;right:12px!important;bottom:82px!important;max-width:none!important;text-align:center}
 }
 
+/* ===== NAVIGASI BAWAH TELEFON V18 ===== */
+@media (max-width:900px), (hover:none) and (pointer:coarse){
+  html,body{max-width:100%;overflow-x:hidden}
+  body{padding-bottom:calc(82px + env(safe-area-inset-bottom))!important}
+  .app{display:block!important;min-height:100dvh}
+  .main{width:100%!important;margin:0!important;padding-bottom:22px!important}
+  .side{
+    position:fixed!important;
+    left:0!important;right:0!important;top:auto!important;bottom:0!important;
+    width:100%!important;height:calc(72px + env(safe-area-inset-bottom))!important;
+    z-index:220!important;
+    display:flex!important;align-items:flex-start!important;gap:5px!important;
+    padding:7px 8px calc(7px + env(safe-area-inset-bottom))!important;
+    overflow-x:auto!important;overflow-y:hidden!important;
+    overscroll-behavior-x:contain;scroll-snap-type:x proximity;
+    background:rgba(7,29,69,.97)!important;
+    border-top:1px solid rgba(255,255,255,.15);
+    box-shadow:0 -12px 32px rgba(15,23,42,.22);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    scrollbar-width:none;
+  }
+  .side::-webkit-scrollbar{display:none}
+  .side .brand,.side .side-foot{display:none!important}
+  .side .navbtn{
+    flex:0 0 72px!important;width:72px!important;height:57px!important;
+    display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+    gap:3px!important;margin:0!important;padding:5px 3px!important;
+    border-radius:14px!important;text-align:center!important;scroll-snap-align:center;
+    color:#cbd5e1!important;background:transparent!important;
+  }
+  .side .navbtn .nav-icon{display:grid!important;place-items:center!important;width:28px!important;height:27px!important;margin:0!important;font-size:20px!important;line-height:1!important}
+  .side .navbtn .nav-label{display:block!important;max-width:68px;margin:0!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px!important;line-height:1.05;font-weight:750}
+  .side .navbtn.active{color:#fff!important;background:linear-gradient(145deg,#1478ff,#6747ee)!important;box-shadow:0 7px 16px rgba(20,120,255,.34)}
+  .side .navbtn:active{transform:scale(.96)}
+  .toast{bottom:calc(88px + env(safe-area-inset-bottom))!important}
+}
+
 </style>
 </head>
 <body>
@@ -599,6 +636,7 @@ function showPage(page){
   $$('.tabpage').forEach(x=>x.classList.remove('active'));
   target.classList.add('active');
   $$('.navbtn[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
+  const activeNav=$(`.navbtn[data-page="${page}"]`);if(activeNav&&window.matchMedia('(max-width:900px), (hover:none) and (pointer:coarse)').matches)activeNav.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
   setText('#pageTitle',{dashboard:'Selamat datang Nazri! 👋',tasks:'Tugasan',notes:'Catatan',subscriptions:'Langganan & Renewal',subscriptionlist:'Senarai Langganan',sms:'SMS Monitor',archive:'Arkib Selesai'}[page]||'Unit IT Monitor');
 }
 
