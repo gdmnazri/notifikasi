@@ -339,6 +339,28 @@ th,td{font-size:14px!important}.field input,.field select,.field textarea{font-s
 .task-drag-handle{width:32px;height:36px;display:grid;place-items:center;border-radius:9px;background:#eef2ff;color:#4f46e5;font-size:19px;font-weight:900;letter-spacing:-3px}.task-sort-controls{display:flex;gap:5px;justify-content:flex-end}.task-sort-controls button{width:34px;height:34px;padding:0;border:1px solid #dbe5f1;border-radius:9px;background:#fff;color:#334155;font-size:17px!important;font-weight:900}.task-sort-controls button:hover{border-color:#818cf8;background:#eef2ff;color:#4338ca}.task-sort-controls button:disabled{opacity:.3;cursor:not-allowed}
 @media(max-width:760px){body{font-size:14px}.main{padding:15px}.top h1{font-size:24px!important}.task-sort-btn{width:100%}.task-compact-row.sorting{grid-template-columns:36px minmax(0,1fr) 76px}.task-compact-row.sorting .task-row-main{grid-column:auto}.task-detail-grid{grid-template-columns:1fr}.task-detail-stat b{font-size:14px!important}}
 
+/* ===== MOBILE POPUP + SAVE PROGRESS V17 ===== */
+body.modal-open{overflow:hidden!important;touch-action:none}
+.save-progress-overlay{position:fixed;inset:0;z-index:240;display:grid;place-items:center;padding:18px;background:rgba(15,23,42,.58);backdrop-filter:blur(4px)}
+.save-progress-card{width:min(350px,calc(100vw - 36px));padding:22px;border:1px solid rgba(255,255,255,.72);border-radius:20px;background:#fff;box-shadow:0 28px 75px rgba(15,23,42,.28);text-align:center}
+.save-progress-icon{width:52px;height:52px;margin:0 auto 11px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(145deg,#2563eb,#6d4cf5);color:#fff;font-size:24px;box-shadow:0 10px 24px rgba(79,70,229,.24)}
+.save-progress-card b{display:block;color:#0f295a;font-size:16px}.save-progress-card p{margin:6px 0 14px;color:#64748b;font-size:13px;line-height:1.45}
+.save-progress-track{height:12px;overflow:hidden;border-radius:999px;background:#e8eef7}.save-progress-fill{height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#2563eb,#7c3aed,#16a34a);transition:width .22s ease}
+.save-progress-percent{display:block;margin-top:9px;color:#1d4ed8;font-size:14px;font-weight:900}.save-progress-overlay.success .save-progress-icon{background:linear-gradient(145deg,#16a34a,#22c55e)}.save-progress-overlay.error .save-progress-icon{background:linear-gradient(145deg,#dc2626,#f97316)}
+@media(max-width:760px){
+  .modal{padding:12px!important;place-items:center!important;align-items:center!important;justify-items:center!important;overflow:hidden!important}
+  .modalbox{width:calc(100vw - 24px)!important;max-width:560px!important;max-height:calc(100dvh - 92px)!important;margin:0 auto!important;padding:16px!important;border-radius:18px!important;overflow-y:auto!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  #editModal .modalbox,#createModal .modalbox{max-height:calc(100dvh - 84px)!important}
+  #editModal .settings-top,#createModal .settings-top{position:sticky;top:-16px;z-index:5;margin:0 -16px 14px;padding:14px 16px;background:rgba(255,255,255,.97);border-bottom:1px solid #e2e8f0;backdrop-filter:blur(8px)}
+  #editModal .modal-actions,#createModal .modal-actions{position:sticky;bottom:-16px;z-index:5;margin:14px -16px -16px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.98);border-top:1px solid #e2e8f0;backdrop-filter:blur(8px)}
+  #editModal .modal-actions .btn,#createModal .modal-actions .btn{min-height:46px;flex:1}
+  .modalbox input,.modalbox select,.modalbox textarea{font-size:16px!important}
+  .task-detail-panel{display:none!important}
+  .task-compact-workspace{display:block!important}
+  .task-compact-row{touch-action:manipulation}
+  .toast{left:12px!important;right:12px!important;bottom:82px!important;max-width:none!important;text-align:center}
+}
+
 </style>
 </head>
 <body>
@@ -518,6 +540,7 @@ th,td{font-size:14px!important}.field input,.field select,.field textarea{font-s
 
 <iframe name="postTarget" class="hidden"></iframe>
 <div class="toast hidden" id="toast"></div>
+<div class="save-progress-overlay hidden" id="saveProgressOverlay" role="status" aria-live="polite" aria-busy="true"><div class="save-progress-card"><div class="save-progress-icon" id="saveProgressIcon">⇧</div><b id="saveProgressTitle">Menyimpan maklumat</b><p id="saveProgressLabel">Sila tunggu sebentar...</p><div class="save-progress-track"><div class="save-progress-fill" id="saveProgressFill"></div></div><span class="save-progress-percent" id="saveProgressPercent">0%</span></div></div>
 
 <script>
 'use strict';
@@ -538,7 +561,10 @@ const APP={
   taskSortMode:false,
   draggedTaskId:null,
   taskOrderSaveTimer:null,
-  backgroundRefreshTimer:null
+  backgroundRefreshTimer:null,
+  saveProgressTimer:null,
+  saveProgressHideTimer:null,
+  saveProgressValue:0
 };
 
 const $=s=>document.querySelector(s);
@@ -554,6 +580,11 @@ const uuid=()=>crypto&&crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-
 function safeOn(selector,event,handler){const el=$(selector);if(el)el.addEventListener(event,handler);}
 function setText(selector,value){const el=$(selector);if(el)el.textContent=value;}
 function showToast(msg,ms=2800){const t=$('#toast');if(!t)return;t.textContent=msg;t.classList.remove('hidden');clearTimeout(t._tm);t._tm=setTimeout(()=>t.classList.add('hidden'),ms);}
+function saveActionLabel(action){return ({addTask:'Menyimpan tugasan',updateTask:'Mengemas kini tugasan',updateTaskStatus:'Mengemas kini status',reorderTasks:'Menyimpan susunan',addNote:'Menyimpan catatan',updateNote:'Mengemas kini catatan',addSubscription:'Menyimpan langganan',updateSubscription:'Mengemas kini langganan',renewSubscription:'Memperbaharui langganan',addSmsUsage:'Menyimpan penggunaan SMS',updateSmsUsage:'Mengemas kini penggunaan SMS',uploadReference:'Memuat naik lampiran',addStatusHistory:'Menyimpan kronologi',syncTaskCalendars:'Menyusun notifikasi Calendar',testCalendar:'Menguji notifikasi Calendar'})[action]||'Menyimpan maklumat'}
+function setSaveProgress(value,label){const overlay=$('#saveProgressOverlay'),fill=$('#saveProgressFill'),percent=$('#saveProgressPercent');APP.saveProgressValue=Math.max(0,Math.min(100,Math.round(Number(value)||0)));if(fill)fill.style.width=APP.saveProgressValue+'%';if(percent)percent.textContent=APP.saveProgressValue+'%';if(label)setText('#saveProgressLabel',label);overlay?.setAttribute('aria-valuenow',String(APP.saveProgressValue))}
+function beginSaveProgress(title,label='Menghantar maklumat dengan selamat...'){clearInterval(APP.saveProgressTimer);clearTimeout(APP.saveProgressHideTimer);const overlay=$('#saveProgressOverlay');overlay?.classList.remove('hidden','success','error');setText('#saveProgressTitle',title||'Menyimpan maklumat');setText('#saveProgressIcon','⇧');setSaveProgress(6,label);APP.saveProgressTimer=setInterval(()=>{if(APP.saveProgressValue>=84)return;const step=APP.saveProgressValue<35?7:APP.saveProgressValue<65?4:2;setSaveProgress(Math.min(84,APP.saveProgressValue+step))},260)}
+function finishSaveProgress(message='Berjaya disimpan.'){clearInterval(APP.saveProgressTimer);const overlay=$('#saveProgressOverlay');overlay?.classList.add('success');setText('#saveProgressIcon','✓');setSaveProgress(100,message);APP.saveProgressHideTimer=setTimeout(()=>overlay?.classList.add('hidden'),650)}
+function failSaveProgress(message='Simpanan gagal. Cuba semula.'){clearInterval(APP.saveProgressTimer);const overlay=$('#saveProgressOverlay');overlay?.classList.add('error');setText('#saveProgressIcon','!');setSaveProgress(100,message);APP.saveProgressHideTimer=setTimeout(()=>overlay?.classList.add('hidden'),1800)}
 function levelPill(level,text){return `<span class="pill ${esc(level)}">${esc(text)}</span>`;}
 function isoDate(v){return v?String(v).slice(0,10):'';}
 function taskPeriod(r){return `${esc(r?.StartDate||'-')} → ${esc(r?.Deadline||'-')}`}
@@ -622,7 +653,7 @@ window.openRuleModal=type=>{
 window.closeRuleModal=()=>$('#ruleModal')?.classList.add('hidden');
 
 function openConfig(){
-  setText('#calendarTestStatus','Belum diuji.');
+  renderCalendarHealth(APP.data?.calendarHealth);
   const u=$('#apiUrl'),t=$('#apiToken');if(u)u.value=APP.apiUrl;if(t)t.value=APP.token;
   if(APP.data&&APP.data.sms){
     $('#smsCurrentAllocationSetting').value=APP.data.sms.currentAllocation;
@@ -702,29 +733,109 @@ function applyFastMutation(action,payload){
 }
 
 async function runPost(action,payload,msg){
+  const before=JSON.parse(JSON.stringify(APP.data||{}));
+  beginSaveProgress(saveActionLabel(action));
   try{
-    showToast('Menyimpan...');await submitPost(action,payload);
-    const immediate=['uploadReference','deleteReference','checkAlertsNow','syncTaskCalendars'].includes(action);
-    if(immediate){const r=await fetchDashboardWithRetry(3,220);applyDashboardData(r.data);showToast(msg);return r;}
-    applyFastMutation(action,payload);scheduleDashboardRefresh();showToast(msg);return {ok:true,result:{saved:true}};
-  }catch(e){showToast(e.message,4500);throw e;}
+    showToast('Menyimpan...');
+    await submitPost(action,payload);
+    setSaveProgress(62,'Mengesahkan rekod pada server...');
+    let latest=null,check={ok:false};
+    for(let attempt=0;attempt<5;attempt++){
+      if(attempt)await wait([250,450,700,950][attempt-1]||950);
+      const response=await fetchDashboardWithRetry(2,180);
+      latest=response.data||{};
+      check=mutationVerification(action,payload,latest,before);
+      setSaveProgress(68+(attempt*6),check.label||'Menyemak simpanan dan notifikasi...');
+      if(check.error)throw new Error(check.error);
+      if(check.ok){applyDashboardData(latest);finishSaveProgress(msg||'Berjaya disimpan.');showToast(msg);return response;}
+    }
+    const version=latest?.apiVersion?String(latest.apiVersion):'tidak dikenal pasti';
+    throw new Error('Simpanan belum dapat disahkan pada server (API '+version+'). Semak URL Web App dan deploy versi Apps Script terbaru.');
+  }catch(e){
+    failSaveProgress(e.message||'Simpanan gagal.');showToast(e.message,6000);throw e;
+  }
+}
+
+function rowById(rows,id){return (rows||[]).find(r=>String(r.ID)===String(id))||null}
+function sameValue(a,b){return String(a??'').trim()===String(b??'').trim()}
+function mutationVerification(action,p,data,before){
+  p=p||{};data=data||{};before=before||{};
+  const tasks=data.tasks||[],subs=data.subscriptions||[],notes=data.notes||[],sms=data.smsLogs||[],refs=data.references||[];
+  const previousRefs=before.references||[],task=rowById(tasks,p.id),sub=rowById(subs,p.id),note=rowById(notes,p.id),log=rowById(sms,p.id);
+  if(action==='addTask'||action==='updateTask'){
+    const r=rowById(tasks,p.id);if(!r)return {ok:false};
+    if(p.task!==undefined&&!sameValue(r.Task,p.task))return {ok:false};
+    if(p.deadline!==undefined&&isoDate(r.Deadline)!==isoDate(p.deadline))return {ok:false};
+    if(p.startDate!==undefined&&isoDate(r.StartDate)!==isoDate(p.startDate))return {ok:false};
+    if(p.dailyNotification!==undefined&&!sameValue(String(r.DailyNotification).toUpperCase(),String(p.dailyNotification).toUpperCase()))return {ok:false};
+    if(String(p.dailyNotification||r.DailyNotification||'FALSE').toUpperCase()==='TRUE'&&!taskIsDone(r)){
+      if(Number(data.apiVersion||0)<14)return {error:'Notifikasi memerlukan Apps Script V14. Deploy fail V14 sebagai Web App versi baharu dahulu.'};
+      const calendarStatus=String(r.CalendarSyncStatus||'');
+      if(calendarStatus.startsWith('ERROR •'))return {error:'Notifikasi gagal dijadualkan: '+calendarStatus.replace(/^ERROR •\s*/, '')};
+      if(!calendarStatus.startsWith('OK •'))return {error:'Tugasan tersimpan tetapi notifikasi tidak aktif: '+(calendarStatus||'Calendar belum dijadualkan. Semak tarikh dan masa tugasan.')};
+    }
+    return {ok:true,label:'Rekod dan notifikasi telah disahkan.'};
+  }
+  if(action==='deleteTask')return {ok:!task};
+  if(action==='updateTaskStatus')return {ok:Boolean(task)&&sameValue(task.Status,p.status)};
+  if(action==='reorderTasks'){
+    const actual=tasks.filter(r=>!taskIsDone(r)).map(r=>String(r.ID)),wanted=(p.ids||[]).map(String);
+    return {ok:wanted.every((id,i)=>actual[i]===id)};
+  }
+  if(action==='addNote'||action==='updateNote')return {ok:Boolean(note)&&(!p.title||sameValue(note.Title,p.title))};
+  if(action==='deleteNote')return {ok:!note};
+  if(action==='addSubscription'||action==='updateSubscription')return {ok:Boolean(sub)&&(!p.subscription||sameValue(sub.Subscription,p.subscription))&&(!p.expiryDate||isoDate(sub.ExpiryDate)===isoDate(p.expiryDate))};
+  if(action==='deleteSubscription')return {ok:!sub};
+  if(action==='updateSubscriptionStatus')return {ok:Boolean(sub)&&sameValue(sub.Status,p.status)};
+  if(action==='renewSubscription'){
+    const old=rowById(before.subscriptions||[],p.id);return {ok:Boolean(sub)&&Boolean(old)&&isoDate(sub.ExpiryDate)!==isoDate(old.ExpiryDate)};
+  }
+  if(action==='addSmsUsage'||action==='updateSmsUsage')return {ok:Boolean(log)&&(!p.campaign||sameValue(log.Campaign,p.campaign))&&(!p.smsSent||Number(log.SMSSent)===Number(p.smsSent))};
+  if(action==='deleteSmsUsage')return {ok:!log};
+  if(action==='setSmsUsedTotal')return {ok:Number(data.sms?.used)===Number(p.total)};
+  if(action==='resetSms')return {ok:Number(data.sms?.used)===0&&sms.length===0};
+  if(action==='updateSmsSettings')return {ok:Number(data.sms?.currentAllocation)===Number(p.currentAllocation)&&Number(data.sms?.newApprovedAllocation)===Number(p.newApprovedAllocation)&&Number(data.sms?.costPerSms)===Number(p.costPerSms)};
+  if(action==='uploadReference'){
+    const oldCount=previousRefs.filter(r=>sameValue(String(r.Module).toLowerCase(),String(p.module).toLowerCase())&&sameValue(r.RecordID,p.recordId)).length;
+    const now=refs.filter(r=>sameValue(String(r.Module).toLowerCase(),String(p.module).toLowerCase())&&sameValue(r.RecordID,p.recordId));
+    return {ok:now.length>oldCount&&now.some(r=>sameValue(r.FileName,p.fileName))};
+  }
+  if(action==='deleteReference')return {ok:!rowById(refs,p.id)};
+  if(action==='syncTaskCalendars'){
+    const failed=tasks.filter(r=>String(r.CalendarSyncStatus||'').startsWith('ERROR •'));
+    return failed.length?{error:failed.length+' tugasan gagal dijadualkan ke Calendar.'}:{ok:true,label:'Semua jadual Calendar telah disahkan.'};
+  }
+  if(action==='testCalendar'){
+    if(Number(data.apiVersion||0)<14)return {error:'Ujian notifikasi memerlukan Apps Script V14. Deploy V14 dahulu.'};
+    const health=data.calendarHealth||{};
+    if(String(health.lastTestId||'')!==String(p.testId||''))return {ok:false};
+    if(String(health.lastTestStatus||'').toUpperCase()==='ERROR')return {error:'Ujian Calendar gagal: '+(health.lastTestMessage||'Ralat tidak diketahui.')};
+    return {ok:String(health.lastTestStatus||'').toUpperCase()==='OK',label:'Acara ujian telah disahkan dalam Calendar.'};
+  }
+  if(action==='checkAlertsNow')return {ok:true};
+  return {ok:true};
 }
 
 async function saveStatusHistory(data){
   const before=actualStatusHistoryFor(data.module,data.recordId).length;
+  beginSaveProgress('Menyimpan kronologi');
   showToast('Menyimpan kronologi...');
-  await submitPost('addStatusHistory',data);
-  let latestData=null,saved=false;
-  for(let attempt=0;attempt<4;attempt++){
-    await wait(attempt?650:250);
-    const response=await jsonp('dashboard');latestData=response.data||{};applyDashboardData(latestData);
-    if(actualStatusHistoryFor(data.module,data.recordId).length>before){saved=true;break;}
+  try{
+    await submitPost('addStatusHistory',data);setSaveProgress(62,'Mengesahkan kronologi pada server...');
+    let latestData=null,saved=false;
+    for(let attempt=0;attempt<5;attempt++){
+      await wait(attempt?650:250);setSaveProgress(68+(attempt*6),'Menyemak rekod kronologi...');
+      const response=await jsonp('dashboard');latestData=response.data||{};applyDashboardData(latestData);
+      if(actualStatusHistoryFor(data.module,data.recordId).length>before){saved=true;break;}
+    }
+    if(!saved){
+      const version=latestData?.apiVersion?String(latestData.apiVersion):'tidak dikenal pasti';
+      throw new Error('Rekod belum diterima oleh Apps Script (API '+version+'). Semak URL Web App yang digunakan pada Tetapan.');
+    }
+    finishSaveProgress('Kronologi berjaya disimpan.');showToast('Kronologi berjaya ditambah.');
+  }catch(err){
+    failSaveProgress(err.message);throw err;
   }
-  if(!saved){
-    const version=latestData?.apiVersion?String(latestData.apiVersion):'tidak dikenal pasti';
-    throw new Error('Rekod belum diterima oleh Apps Script (API '+version+'). Semak URL Web App yang digunakan pada Tetapan.');
-  }
-  showToast('Kronologi berjaya ditambah.');
 }
 
 async function loadDashboard(silent=false){
@@ -738,8 +849,15 @@ function renderAll(){
   const alerts=(d.alerts||[]).filter(a=>String(a.type||'').toLowerCase()!=='note');
   const criticalCount=alerts.filter(a=>a.level==='critical').length,warningCount=alerts.filter(a=>a.level==='warning').length;
   const taskActive=(d.tasks||[]).filter(r=>!['selesai','done','completed','complete'].includes(String(r.Status||'').toLowerCase())).length;const renewSoon=(d.subscriptions||[]).filter(r=>r._level!=='done'&&Number(r._days)>=0&&Number(r._days)<=90).length;setText('#lastUpdate','Ringkasan kerja dan status sistem • Dikemas kini '+d.now);setText('#dashboardFooter','Data dikemas kini pada '+d.now);setText('#mAction',criticalCount+warningCount);setText('#mCriticalMini',criticalCount);setText('#mWarningMini',warningCount);setText('#mTaskActive',taskActive);setText('#mRenewSoon',renewSoon);setText('#mSmsRemaining',num(d.sms.remaining));setText('#smsCapacityMini','Daripada '+num(d.sms.capacity||0)+' SMS');
-  const calendar=d.calendarSchedule||{scheduled:0,error:0,off:0};setText('#calendarSyncSummary',calendar.error?`⚠️ ${calendar.scheduled||0} siap • ${calendar.error} gagal — tekan Jadualkan Semua Tugasan`:`✅ ${calendar.scheduled||0} tugasan telah dijadualkan dalam Calendar`);
+  const calendar=d.calendarSchedule||{scheduled:0,error:0,off:0};setText('#calendarSyncSummary',calendar.error?`⚠️ ${calendar.scheduled||0} siap • ${calendar.error} gagal — tekan Jadualkan Semua Tugasan`:`✅ ${calendar.scheduled||0} tugasan telah dijadualkan dalam Calendar`);renderCalendarHealth(d.calendarHealth);
   renderDashboardFocus(alerts);renderDashboardRenewals(d.subscriptions||[]);renderHolidays(d.holidays||{});renderSms(d.sms||{});const hasUrgent=criticalCount>0;const hasCriticalRenewal=(d.subscriptions||[]).some(r=>r._level==='critical'&&Number(r._days)>=0&&Number(r._days)<=90);$('#actionCard')?.classList.toggle('urgent-card',hasUrgent);$('#focusPanel')?.classList.toggle('urgent-panel',hasUrgent);$('#renewMetricCard')?.classList.toggle('renew-urgent-card',hasCriticalRenewal);renderTasks(d.tasks||[]);renderNotes(d.notes||[]);renderSubs(d.subscriptions||[]);renderSubscriptionDirectory(d.subscriptions||[],$('#subscriptionDirectorySearch')?.value||'');renderArchive(d.tasks||[],d.subscriptions||[]);renderSmsLogs(d.smsLogs||[]);renderNotifications(alerts);handleTabAlert(criticalCount,warningCount);
+}
+
+function renderCalendarHealth(health){
+  const h=health||{};
+  if(!h.lastTestAt)return setText('#calendarTestStatus','Belum diuji. Tekan Uji Notifikasi untuk pengesahan sebenar.');
+  const ok=String(h.lastTestStatus||'').toUpperCase()==='OK';
+  setText('#calendarTestStatus',(ok?'✅ ':'❌ ')+(h.lastTestMessage||h.lastTestStatus)+' • '+h.lastTestAt);
 }
 
 
@@ -789,10 +907,11 @@ function taskMatchesCompactFilter(r){const days=Number(r?._days),hasDays=r?._day
 function taskStatusOptions(status){return ['Belum Mula','Dalam Proses','Proses Penyediaan Surat','Proses Menunggu Balasan','Menunggu','Selesai'].map(v=>`<option value="${esc(v)}" ${v===status?'selected':''}>${esc(v)}</option>`).join('')}
 function renderTaskDetail(r){const panel=$('#taskDetailPanel');if(!panel)return;if(!r){panel.innerHTML='<div class="task-detail-empty"><span>✓</span><b>Tiada tugasan dipilih</b><small>Pilih tugasan daripada senarai.</small></div>';return}const st=String(r.Status||'Belum Mula'),history=statusHistoryFor('tasks',r.ID),latest=history[0],idArg=esc(JSON.stringify(String(r.ID||''))),titleArg=esc(JSON.stringify(String(r.Task||''))),workdays=String(r.WorkdaysOnly||'TRUE').toUpperCase()==='TRUE',notify=String(r.DailyNotification||'FALSE').toUpperCase()==='TRUE';panel.innerHTML=`<div class="task-detail-shell"><div class="task-detail-top"><div><h3>${esc(r.Task||'Tugasan')}</h3><p class="task-detail-notes">${esc(r.Notes||'Tiada nota tambahan.')}</p></div>${levelPill(r._level||'normal',st)}</div><div class="task-detail-grid"><div class="task-detail-stat"><span>Tarikh Dari</span><b>${esc(formatMalayDate(r.StartDate||'-'))}</b></div><div class="task-detail-stat"><span>Tarikh Hingga</span><b>${esc(formatMalayDate(r.Deadline||'-'))}</b></div><div class="task-detail-stat"><span>PIC</span><b>${esc(r.PIC||'-')}</b></div><div class="task-detail-stat"><span>Keutamaan</span><b>${esc(r.Priority||'Normal')}</b></div></div><div class="task-detail-section"><div class="task-detail-label"><span>Kronologi terkini</span><span>${history.length} rekod</span></div><button type="button" class="task-detail-latest" onclick="openTaskLatestStatus(${idArg})"><span class="task-detail-latest-icon">${historyClockIcon()}</span><span><b>${esc(latest?.CreatedAt||latest?.Status||'Buka Kronologi')}</b><p>${esc(latest?.Detail||'Belum ada catatan. Tekan untuk tambah perkembangan.')}</p></span><small>${history.length}</small></button></div><div class="task-detail-section"><div class="task-detail-label"><span>Notifikasi</span></div><div class="task-detail-stat"><b>${notify?'🔔 '+(workdays?'Hari bekerja':'Setiap hari')+' pada '+displayTime(r.NotificationTime):'Notifikasi tidak diaktifkan'}</b>${notify?taskCalendarState(r):''}</div></div><div class="task-detail-section"><div class="task-detail-label"><span>Kemas kini proses</span></div><div class="task-detail-status"><select aria-label="Status tugasan" onchange="if(this.value)quickTaskStatus(${idArg},this.value)">${taskStatusOptions(st)}</select><button type="button" onclick="openTaskLatestStatus(${idArg})">+ Kronologi</button></div></div><div class="task-detail-section"><div class="task-detail-label"><span>Aksi</span></div><div class="task-detail-actions"><button class="task-detail-action" type="button" onclick="openEditTask(${idArg})" title="Kemaskini">🖊️</button><button class="task-detail-action" type="button" onclick="openReferenceModal('tasks',${idArg},${titleArg})" title="Lampiran">📎</button><button class="task-detail-action" type="button" onclick="printRecord('task',${idArg})" title="Cetak">🖨️</button><button class="task-detail-action done" type="button" onclick="markTaskDone(${idArg})" title="Tandakan Selesai">✓</button><button class="task-detail-action delete" type="button" onclick="deleteTask(${idArg})" title="Padam">🗑️</button></div></div></div>`}
 window.selectTaskDetail=id=>{APP.selectedTaskId=String(id);renderTasks(APP.data?.tasks||[])};
+window.openTaskFromList=id=>{if(APP.taskSortMode)return selectTaskDetail(id);if(window.matchMedia('(max-width:760px)').matches)return openEditTask(id);selectTaskDetail(id)};
 window.setTaskFilter=filter=>{APP.taskSortMode=false;APP.taskFilter=filter||'all';$$('[data-task-filter]').forEach(btn=>btn.classList.toggle('active',btn.dataset.taskFilter===APP.taskFilter));renderTasks(APP.data?.tasks||[])};
 function activeTaskOrder(){return (APP.data?.tasks||[]).filter(r=>!taskIsDone(r)).map(r=>String(r.ID))}
 function applyManualTaskOrder(ids){if(!APP.data)return;const tasks=APP.data.tasks||[],map=new Map(tasks.map(r=>[String(r.ID),r])),ordered=ids.map(id=>map.get(String(id))).filter(Boolean),used=new Set(ordered.map(r=>String(r.ID))),remaining=tasks.filter(r=>!taskIsDone(r)&&!used.has(String(r.ID))),done=tasks.filter(taskIsDone);APP.data.tasks=[...ordered,...remaining,...done];APP.data.tasks.filter(r=>!taskIsDone(r)).forEach((r,index)=>{r.SortOrder=index+1})}
-function queueTaskOrderSave(){clearTimeout(APP.taskOrderSaveTimer);const ids=activeTaskOrder();showToast('Susunan dikemas kini. Menyimpan...');APP.taskOrderSaveTimer=setTimeout(async()=>{try{await submitPost('reorderTasks',{ids});showToast('Susunan tugasan telah disimpan.');scheduleDashboardRefresh(700)}catch(e){showToast('Susunan gagal disimpan: '+e.message,5000);loadDashboard(true)}},450)}
+function queueTaskOrderSave(){clearTimeout(APP.taskOrderSaveTimer);const ids=activeTaskOrder();showToast('Susunan dikemas kini. Menyimpan...');APP.taskOrderSaveTimer=setTimeout(async()=>{try{await runPost('reorderTasks',{ids},'Susunan tugasan telah disimpan.')}catch(e){showToast('Susunan gagal disimpan: '+e.message,5000);loadDashboard(true)}},450)}
 window.moveTaskInOrder=(id,direction)=>{const ids=activeTaskOrder(),from=ids.indexOf(String(id)),to=from+Number(direction);if(from<0||to<0||to>=ids.length)return;[ids[from],ids[to]]=[ids[to],ids[from]];applyManualTaskOrder(ids);APP.selectedTaskId=String(id);renderTasks(APP.data.tasks);queueTaskOrderSave()};
 window.taskDragStart=(event,id)=>{if(!APP.taskSortMode)return;APP.draggedTaskId=String(id);event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/plain',String(id));event.currentTarget.classList.add('dragging')};
 window.taskDragEnd=event=>{event.currentTarget.classList.remove('dragging');$$('.task-compact-row').forEach(row=>row.classList.remove('drag-target'));APP.draggedTaskId=null};
@@ -810,7 +929,7 @@ function renderTasks(rows){
   if(filtered.length&&!filtered.some(r=>String(r.ID)===String(APP.selectedTaskId)))APP.selectedTaskId=String(filtered[0].ID);
   setText('#taskCompactCount',APP.taskSortMode?'↕ '+filtered.length+' untuk disusun':filtered.length+' tugasan');
   const sortBtn=$('#toggleTaskSort');if(sortBtn){sortBtn.classList.toggle('active',APP.taskSortMode);const label=sortBtn.querySelector('b');if(label)label.textContent=APP.taskSortMode?'Selesai Susun':'Susun Sendiri'}
-  el.innerHTML=filtered.length?filtered.map((r,index)=>{const idArg=esc(JSON.stringify(String(r.ID||''))),selected=String(r.ID)===String(APP.selectedTaskId),sorting=APP.taskSortMode;return `<div role="button" tabindex="0" draggable="${sorting?'true':'false'}" class="task-compact-row ${esc(r._level||'normal')} ${selected?'selected':''} ${sorting?'sorting':''}" onclick="selectTaskDetail(${idArg})" onkeydown="if(event.key==='Enter'||event.key===' ')selectTaskDetail(${idArg})" ondragstart="taskDragStart(event,${idArg})" ondragend="taskDragEnd(event)" ondragover="taskDragOver(event)" ondragleave="taskDragLeave(event)" ondrop="taskDrop(event,${idArg})">${sorting?'<span class="task-drag-handle" title="Seret untuk susun">⋮⋮</span>':''}<span class="task-row-main"><span class="task-row-title">${esc(r.Task||'Tugasan')}</span><span class="task-row-note">${esc(r.Notes||r.NextAction||'Tiada nota tambahan.')}</span>${taskNotificationBadge(r)}</span><span class="task-row-meta"><small>Tarikh</small><b>${taskPeriod(r)}</b></span><span class="task-row-meta"><small>Status</small><b>${esc(r.Status||'Belum Mula')}</b></span><span class="task-row-meta"><small>PIC</small><b>${esc(r.PIC||'-')}</b></span>${sorting?`<span class="task-sort-controls"><button type="button" onclick="event.stopPropagation();moveTaskInOrder(${idArg},-1)" title="Naikkan" ${index===0?'disabled':''}>↑</button><button type="button" onclick="event.stopPropagation();moveTaskInOrder(${idArg},1)" title="Turunkan" ${index===filtered.length-1?'disabled':''}>↓</button></span>`:'<span class="task-row-chevron">›</span>'}</div>`}).join(''):`<div class="task-compact-empty">${term||APP.taskFilter!=='all'||APP.taskPriorityFilter!=='all'?'Tiada tugasan sepadan dengan carian atau penapis.':'Belum ada tugasan aktif.'}</div>`;
+  el.innerHTML=filtered.length?filtered.map((r,index)=>{const idArg=esc(JSON.stringify(String(r.ID||''))),selected=String(r.ID)===String(APP.selectedTaskId),sorting=APP.taskSortMode;return `<div role="button" tabindex="0" draggable="${sorting?'true':'false'}" class="task-compact-row ${esc(r._level||'normal')} ${selected?'selected':''} ${sorting?'sorting':''}" onclick="openTaskFromList(${idArg})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTaskFromList(${idArg})}" ondragstart="taskDragStart(event,${idArg})" ondragend="taskDragEnd(event)" ondragover="taskDragOver(event)" ondragleave="taskDragLeave(event)" ondrop="taskDrop(event,${idArg})">${sorting?'<span class="task-drag-handle" title="Seret untuk susun">⋮⋮</span>':''}<span class="task-row-main"><span class="task-row-title">${esc(r.Task||'Tugasan')}</span><span class="task-row-note">${esc(r.Notes||r.NextAction||'Tiada nota tambahan.')}</span>${taskNotificationBadge(r)}</span><span class="task-row-meta"><small>Tarikh</small><b>${taskPeriod(r)}</b></span><span class="task-row-meta"><small>Status</small><b>${esc(r.Status||'Belum Mula')}</b></span><span class="task-row-meta"><small>PIC</small><b>${esc(r.PIC||'-')}</b></span>${sorting?`<span class="task-sort-controls"><button type="button" onclick="event.stopPropagation();moveTaskInOrder(${idArg},-1)" title="Naikkan" ${index===0?'disabled':''}>↑</button><button type="button" onclick="event.stopPropagation();moveTaskInOrder(${idArg},1)" title="Turunkan" ${index===filtered.length-1?'disabled':''}>↓</button></span>`:'<span class="task-row-chevron">›</span>'}</div>`}).join(''):`<div class="task-compact-empty">${term||APP.taskFilter!=='all'||APP.taskPriorityFilter!=='all'?'Tiada tugasan sepadan dengan carian atau penapis.':'Belum ada tugasan aktif.'}</div>`;
   renderTaskDetail(filtered.find(r=>String(r.ID)===String(APP.selectedTaskId))||null);
 }
 
@@ -878,7 +997,9 @@ function referenceIcon(name){const ext=String(name||'').split('.').pop().toLower
 function renderReferenceList(){const el=$('#referenceList');if(!el)return;const refs=(APP.data?.references||[]).filter(r=>String(r.Module||'').toLowerCase()===String(APP.referenceModule||'').toLowerCase()&&String(r.RecordID||'')===String(APP.referenceRecordId||''));el.innerHTML=refs.length?refs.map(r=>`<div class="reference-item"><div><b>${referenceIcon(r.FileName)} &nbsp;${esc(r.RefTitle)}</b><div class="muted">${esc(r.FileName)}${r.Notes?' • '+esc(r.Notes):''}</div></div><div class="row-actions"><a class="mini-icon" href="${esc(r.DriveUrl)}" target="_blank" title="Buka lampiran">↗</a><button class="mini-icon delete" onclick="deleteReference('${esc(r.ID)}')" title="Padam lampiran">🗑</button></div></div>`).join(''):'<div class="empty">📎 Belum ada lampiran. Pilih dokumen di atas untuk menambah.</div>'}
 window.deleteReference=async id=>{if(!confirm('Delete lampiran ini?'))return;try{await runPost('deleteReference',{id},'Lampiran dipadam.');renderReferenceList()}catch(_){}};
 
-function openEditModal(title,html,submitHandler){setText('#editModalTitle',title);const f=$('#editForm');if(!f)return;f.innerHTML=html;f.onsubmit=submitHandler;$('#editModal')?.classList.remove('hidden')}
+function syncModalBodyLock(){document.body.classList.toggle('modal-open',$$('.modal').some(modal=>!modal.classList.contains('hidden')))}
+function installModalObserver(){const observer=new MutationObserver(syncModalBodyLock);$$('.modal').forEach(modal=>observer.observe(modal,{attributes:true,attributeFilter:['class']}));syncModalBodyLock()}
+function openEditModal(title,html,submitHandler){setText('#editModalTitle',title);const f=$('#editForm');if(!f)return;f.innerHTML=html;f.onsubmit=submitHandler;const modal=$('#editModal');modal?.classList.remove('hidden');requestAnimationFrame(()=>{const box=modal?.querySelector('.modalbox');if(box)box.scrollTop=0;f.querySelector('input:not([type="hidden"]),select,textarea')?.focus({preventScroll:true})})}
 function closeEditModal(){$('#editModal')?.classList.add('hidden');const f=$('#editForm');if(f){f.innerHTML='';f.onsubmit=null}}
 window.closeEditModal=closeEditModal;
 
@@ -900,8 +1021,6 @@ window.openEditTask=id=>{
     if(saveBtn){saveBtn.disabled=true;saveBtn.textContent='Menyimpan...';}
     try{
       await runPost('updateTask',d,'Tugasan dikemas kini.');
-      const saved=(APP.data?.tasks||[]).find(x=>String(x.ID)===String(d.id));
-      if(Number(APP.data?.apiVersion||0)<13||!saved||String(saved.DailyNotification||'FALSE').toUpperCase()!==String(d.dailyNotification).toUpperCase())throw new Error('Tetapan belum disimpan. Deploy Apps Script V13 dan cuba semula.');
       closeEditModal();
     }catch(err){showToast(err.message,6000);}
     finally{if(saveBtn){saveBtn.disabled=false;saveBtn.textContent='Simpan';}}
@@ -1087,7 +1206,7 @@ async function handleAddForm(form,module,action,titleKey,successMsg){const fd=ne
 
 function init(){
   // Tab mesti sentiasa berfungsi walaupun API rosak.
-  showPage('dashboard');setFaviconStatus('normal');prepareCreatePanels();
+  showPage('dashboard');setFaviconStatus('normal');prepareCreatePanels();installModalObserver();
   try{const cached=JSON.parse(localStorage.getItem('pkpj_dashboard_cache')||'null');if(cached)applyDashboardData(cached)}catch(_){}
 
   safeOn('#openConfig','click',openConfig);safeOn('#closeConfig','click',closeConfig);
@@ -1096,7 +1215,7 @@ function init(){
   safeOn('#closeCreateModal','click',closeCreateModal);safeOn('#closeNotificationModal','click',closeNotificationModal);
   safeOn('#closeHistoryModal','click',closeHistoryModal);safeOn('#cancelHistoryModal','click',closeHistoryModal);
   safeOn('#closeRuleModal','click',closeRuleModal);safeOn('#doneRuleModal','click',closeRuleModal);
-  safeOn('#historyForm','submit',async e=>{e.preventDefault();const form=e.currentTarget,d=Object.fromEntries(new FormData(form));if(!String(d.detail||'').trim())return showToast('Masukkan perkembangan baharu.');if(!configReady()||!APP.data)return showToast('Sambungan data belum tersedia.',4500);try{await saveStatusHistory(d);const timeline=$('#historyTimeline');if(timeline)timeline.innerHTML=chronologyHtml(d.module,d.recordId);form.elements.detail.value=''}catch(err){showToast(err.message,6000)}});
+  safeOn('#historyForm','submit',async e=>{e.preventDefault();const form=e.currentTarget,d=Object.fromEntries(new FormData(form));if(!String(d.detail||'').trim())return showToast('Masukkan perkembangan baharu.');if(!configReady()||!APP.data)return showToast('Sambungan data belum tersedia.',4500);try{await saveStatusHistory(d);form.elements.detail.value='';closeHistoryModal()}catch(err){showToast(err.message,6000)}});
   safeOn('#runAlertCheckBtn','click',async()=>{try{await runPost('checkAlertsNow',{},'Semakan notifikasi selesai.');renderNotifications(APP.data?.alerts||[])}catch(_){}});
   safeOn('#openCalendarSettingsBtn','click',()=>{closeNotificationModal();openConfig();document.querySelector('.settingsTab[data-settings="calendar"]')?.click()});
   safeOn('#plannedSms','input',calculatePlan);
@@ -1109,12 +1228,12 @@ function init(){
 
   $$('.settingsTab').forEach(btn=>btn.addEventListener('click',()=>{$$('.settingsTab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');$$('.settings-pane').forEach(p=>p.classList.toggle('active',p.dataset.settingsPane===btn.dataset.settings))}));
 
-  safeOn('#saveConfig','click',()=>{const u=$('#apiUrl')?.value.trim(),t=$('#apiToken')?.value.trim();if(!u||!t)return showToast('Masukkan URL dan token.');APP.apiUrl=u;APP.token=t;localStorage.setItem('pkpj_api_url',u);localStorage.setItem('pkpj_api_token',t);closeConfig();loadDashboard()});
+  safeOn('#saveConfig','click',async()=>{const u=$('#apiUrl')?.value.trim(),t=$('#apiToken')?.value.trim();if(!u||!t)return showToast('Masukkan URL dan token.');const oldUrl=APP.apiUrl,oldToken=APP.token;beginSaveProgress('Menyimpan tetapan');try{APP.apiUrl=u;APP.token=t;setSaveProgress(55,'Menguji sambungan Apps Script...');const response=await fetchDashboardWithRetry(2,250);localStorage.setItem('pkpj_api_url',u);localStorage.setItem('pkpj_api_token',t);applyDashboardData(response.data);finishSaveProgress('Tetapan dan sambungan disahkan.');closeConfig();showToast('Tetapan sambungan disimpan.')}catch(err){APP.apiUrl=oldUrl;APP.token=oldToken;failSaveProgress(err.message);showToast('Tetapan tidak dapat disahkan: '+err.message,6000)}});
   safeOn('#logoutBtn','click',()=>{if(!confirm('Keluar dan padam sambungan daripada browser ini?'))return;localStorage.removeItem('pkpj_api_url');localStorage.removeItem('pkpj_api_token');localStorage.removeItem('pkpj_dashboard_cache');APP.apiUrl='';APP.token='';APP.data=null;closeConfig();setText('#lastUpdate','Belum disambungkan');showToast('Anda telah keluar.')});
 
   safeOn('#saveSmsSettings','click',async()=>{const current=Number($('#smsCurrentAllocationSetting')?.value||0),approved=Number($('#smsNewApprovedSetting')?.value||0),cost=Number($('#smsCostSetting')?.value||0);if(current<0||approved<0||cost<=0)return showToast('Semak nilai tetapan SMS.');try{await runPost('updateSmsSettings',{currentAllocation:current,newApprovedAllocation:approved,costPerSms:cost},'Tetapan SMS disimpan.')}catch(_){}});
   safeOn('#syncTaskCalendarBtn','click',async()=>{const btn=$('#syncTaskCalendarBtn');if(btn){btn.disabled=true;btn.textContent='Menyusun jadual...';}setText('#calendarTestStatus','Menyegerakkan semua tugasan aktif ke Google Calendar...');try{await runPost('syncTaskCalendars',{},'Semua jadual tugasan telah disemak.');const c=APP.data?.calendarSchedule||{};setText('#calendarTestStatus',c.error?`⚠️ ${c.error} tugasan gagal. Semak status merah pada tugasan.`:`✅ ${c.scheduled||0} tugasan berjaya dijadualkan.`)}catch(e){setText('#calendarTestStatus','❌ '+e.message)}finally{if(btn){btn.disabled=false;btn.textContent='↻ Jadualkan Semua Tugasan';}}});
-  safeOn('#testCalendarBtn','click',async()=>{setText('#calendarTestStatus','Menghantar ujian...');try{await runPost('testCalendar',{},'Permintaan ujian Calendar dihantar.',1300);setText('#calendarTestStatus','✅ Event ujian telah diminta. Semak Google Calendar.')}catch(e){setText('#calendarTestStatus','❌ '+e.message)}});
+  safeOn('#testCalendarBtn','click',async()=>{const testId=uuid();setText('#calendarTestStatus','Menghantar dan mengesahkan ujian...');try{await runPost('testCalendar',{testId},'Ujian Calendar berjaya disahkan.');renderCalendarHealth(APP.data?.calendarHealth)}catch(e){setText('#calendarTestStatus','❌ '+e.message)}});
 
   safeOn('#openSmsTotal','click',()=>{if(APP.data?.sms)$('#smsTotalForm [name="total"]').value=APP.data.sms.used;$('#smsTotalModal')?.classList.remove('hidden')});safeOn('#closeSmsTotal','click',()=>$('#smsTotalModal')?.classList.add('hidden'));
   safeOn('#resetSmsBtn','click',async()=>{if(!confirm('Reset semua penggunaan SMS dan kosongkan log?'))return;if(!confirm('Pengesahan terakhir: teruskan reset?'))return;try{await runPost('resetSms',{},'Penggunaan SMS direset.');$('#smsTotalModal')?.classList.add('hidden')}catch(_){}});
@@ -1126,7 +1245,7 @@ function init(){
   safeOn('#smsUsageForm','submit',async e=>{e.preventDefault();try{await handleAddForm(e.currentTarget,'sms','addSmsUsage','campaign','Penggunaan SMS ditambah.')}catch(_){}});
 
   safeOn('#closeReferenceModal','click',()=>$('#referenceModal')?.classList.add('hidden'));
-  safeOn('#referenceForm','submit',async e=>{e.preventDefault();const form=e.currentTarget,fd=new FormData(form),files=Array.from(form.querySelector('[name="attachments"]')?.files||[]);if(!files.length)return showToast('Pilih sekurang-kurangnya satu lampiran.');if(files.length>3)return showToast('Maksimum 3 lampiran sekali simpan.');const title=String(fd.get('title')||'').trim(),notes=String(fd.get('notes')||'').trim();try{for(let i=0;i<files.length;i++){showToast(`Memuat naik lampiran ${i+1}/${files.length}...`);await uploadRecordAttachment(APP.referenceModule,APP.referenceRecordId,files[i],files.length>1?title+' '+(i+1):title,notes)}form.reset();renderReferenceList();showToast('Semua lampiran berjaya disimpan.')}catch(err){showToast(err.message,4500)}});
+  safeOn('#referenceForm','submit',async e=>{e.preventDefault();const form=e.currentTarget,fd=new FormData(form),files=Array.from(form.querySelector('[name="attachments"]')?.files||[]);if(!files.length)return showToast('Pilih sekurang-kurangnya satu lampiran.');if(files.length>3)return showToast('Maksimum 3 lampiran sekali simpan.');const title=String(fd.get('title')||'').trim(),notes=String(fd.get('notes')||'').trim();try{for(let i=0;i<files.length;i++){showToast(`Memuat naik lampiran ${i+1}/${files.length}...`);await uploadRecordAttachment(APP.referenceModule,APP.referenceRecordId,files[i],files.length>1?title+' '+(i+1):title,notes)}form.reset();renderReferenceList();$('#referenceModal')?.classList.add('hidden');showToast('Semua lampiran berjaya disimpan.')}catch(err){showToast(err.message,4500)}});
   safeOn('#closeEditModal','click',closeEditModal);
 
   if(configReady())loadDashboard(Boolean(APP.data));else openConfig();
