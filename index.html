@@ -814,6 +814,42 @@ th{font-weight:600!important}
   }
 }
 
+/* ===== V25: BADGE TUGASAN BELUM SELESAI ALA WHATSAPP ===== */
+.navbtn[data-page="tasks"] .nav-icon{
+  position:relative!important;
+  overflow:visible!important;
+}
+.task-nav-badge{
+  position:absolute;
+  top:-7px;
+  right:-9px;
+  z-index:3;
+  min-width:21px;
+  height:21px;
+  padding:0 5px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #0f295a;
+  border-radius:999px;
+  background:#ef3340;
+  color:#fff;
+  box-shadow:0 3px 9px rgba(239,51,64,.38);
+  font-size:10px!important;
+  font-weight:800!important;
+  line-height:1;
+}
+@media(max-width:760px){
+  .task-nav-badge{
+    top:-6px;
+    right:-8px;
+    min-width:22px;
+    height:22px;
+    border-color:#102a56;
+    font-size:10.5px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -821,7 +857,7 @@ th{font-weight:600!important}
   <aside class="side">
     <div class="brand"><span class="brand-mark">IT</span><span>PKPJ Monitor<small>Pusat Kawalan Unit IT</small></span></div>
     <button class="navbtn active" data-page="dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5.5 10.5V20h13v-9.5"></path><path d="M9.5 20v-6h5v6"></path></svg></span><span class="nav-label">Dashboard</span></button>
-    <button class="navbtn" data-page="tasks"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 2.5 2.5L16.5 9"></path></svg></span><span class="nav-label">Tugasan</span></button>
+    <button class="navbtn" data-page="tasks"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 2.5 2.5L16.5 9"></path></svg><span class="task-nav-badge hidden" id="taskNavBadge" aria-live="polite">0</span></span><span class="nav-label">Tugasan</span></button>
     <button class="navbtn" data-page="notes"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"></path><path d="M15 3v4h4M9 11h6M9 15h6"></path></svg></span><span class="nav-label">Catatan</span></button>
     <button class="navbtn" data-page="subscriptions"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5"></path><path d="M4 17v-5h5"></path><path d="M6.1 8A7 7 0 0 1 18 6l2 1M18 16a7 7 0 0 1-11.9 2L4 17"></path></svg></span><span class="nav-label">Langganan</span></button>
     <button class="navbtn" data-page="subscriptionlist"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><span class="nav-label">Senarai</span></button>
@@ -1366,11 +1402,21 @@ async function loadDashboard(silent=false){
   catch(e){setText('#lastUpdate','Ralat sambungan');showToast(e.message,4500);}
 }
 
+function updateTaskNavBadge(count){
+  const badge=$('#taskNavBadge');if(!badge)return;
+  const total=Math.max(0,Number(count)||0);
+  badge.textContent=total>99?'99+':String(total);
+  badge.classList.toggle('hidden',total===0);
+  badge.setAttribute('aria-label',total+' tugasan belum selesai');
+  const button=badge.closest('.navbtn');
+  if(button)button.title=total?total+' tugasan belum selesai':'Tiada tugasan belum selesai';
+}
+
 function renderAll(){
   const d=APP.data;if(!d)return;
   const alerts=(d.alerts||[]).filter(a=>String(a.type||'').toLowerCase()!=='note');
   const criticalCount=alerts.filter(a=>a.level==='critical').length,warningCount=alerts.filter(a=>a.level==='warning').length;
-  const taskActive=(d.tasks||[]).filter(r=>!['selesai','done','completed','complete'].includes(String(r.Status||'').toLowerCase())).length;const renewSoon=(d.subscriptions||[]).filter(r=>r._level!=='done'&&Number(r._days)>=0&&Number(r._days)<=90).length;setText('#lastUpdate','Ringkasan kerja dan status sistem • Dikemas kini '+d.now);setText('#dashboardFooter','Data dikemas kini pada '+d.now);setText('#mAction',criticalCount+warningCount);setText('#mCriticalMini',criticalCount);setText('#mWarningMini',warningCount);setText('#mTaskActive',taskActive);setText('#mRenewSoon',renewSoon);setText('#mSmsRemaining',num(d.sms.remaining));setText('#smsCapacityMini','Daripada '+num(d.sms.capacity||0)+' SMS');
+  const taskActive=(d.tasks||[]).filter(r=>!['selesai','done','completed','complete'].includes(String(r.Status||'').toLowerCase())).length;const renewSoon=(d.subscriptions||[]).filter(r=>r._level!=='done'&&Number(r._days)>=0&&Number(r._days)<=90).length;setText('#lastUpdate','Ringkasan kerja dan status sistem • Dikemas kini '+d.now);setText('#dashboardFooter','Data dikemas kini pada '+d.now);setText('#mAction',criticalCount+warningCount);setText('#mCriticalMini',criticalCount);setText('#mWarningMini',warningCount);setText('#mTaskActive',taskActive);updateTaskNavBadge(taskActive);setText('#mRenewSoon',renewSoon);setText('#mSmsRemaining',num(d.sms.remaining));setText('#smsCapacityMini','Daripada '+num(d.sms.capacity||0)+' SMS');
   const health=d.telegramHealth||d.calendarHealth||{},calendar=d.calendarSchedule||{scheduled:0,error:0,off:0};setText('#calendarSyncSummary',health.configured?`✅ Telegram tersambung • ${calendar.scheduled||0} tugasan bernotifikasi`:'⚠️ Telegram belum disambungkan. Jalankan setupTelegram() sekali.');renderCalendarHealth(health);
   renderDashboardFocus(alerts);renderDashboardRenewals(d.subscriptions||[]);renderHolidays(d.holidays||{});renderSms(d.sms||{});const hasUrgent=criticalCount>0;const hasCriticalRenewal=(d.subscriptions||[]).some(r=>r._level==='critical'&&Number(r._days)>=0&&Number(r._days)<=90);$('#actionCard')?.classList.toggle('urgent-card',hasUrgent);$('#focusPanel')?.classList.toggle('urgent-panel',hasUrgent);$('#renewMetricCard')?.classList.toggle('renew-urgent-card',hasCriticalRenewal);renderTasks(d.tasks||[]);renderNotes(d.notes||[]);renderSubs(d.subscriptions||[]);renderSubscriptionDirectory(d.subscriptions||[],$('#subscriptionDirectorySearch')?.value||'');renderArchive(d.tasks||[],d.subscriptions||[]);renderSmsLogs(d.smsLogs||[]);renderNotifications(alerts);handleTabAlert(criticalCount,warningCount);
 }
