@@ -289,7 +289,7 @@ body{background:linear-gradient(180deg,#f8faff 0,#f5f7fb 100%)}
 .side::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-95px;bottom:100px;background:rgba(124,58,237,.24);filter:blur(4px);pointer-events:none}
 .brand{display:flex!important;position:relative;z-index:1;margin:0 4px 24px!important;padding:12px;border:1px solid rgba(255,255,255,.14);border-radius:17px;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);font-size:17px!important;color:#fff}
 .brand::before{display:none!important}.brand-mark{display:grid;place-items:center;flex:0 0 45px;height:45px;border-radius:14px;background:linear-gradient(145deg,#24d2ff,#0b6ff3 55%,#7c3aed);font-size:15px;font-weight:950;box-shadow:0 10px 24px rgba(11,111,243,.35)}
-.brand small{font-size:10px!important;margin-top:5px!important;color:#cfe4ff!important}.navbtn{position:relative;z-index:1;display:flex;align-items:center;min-height:50px;border:1px solid transparent!important}.navbtn .nav-icon{width:34px;height:34px;border-radius:11px;background:rgba(255,255,255,.09);font-size:17px;transition:.18s ease}.navbtn:hover .nav-icon,.navbtn.active .nav-icon{background:rgba(255,255,255,.2);transform:rotate(-4deg) scale(1.04)}.navbtn.active{background:linear-gradient(135deg,#1687ff,#6457f5)!important;border-color:rgba(255,255,255,.22)!important;box-shadow:0 12px 28px rgba(16,95,232,.35)!important}.side-foot{z-index:1}.side-mini{backdrop-filter:blur(10px);background:rgba(255,255,255,.085)!important}
+.brand small{font-size:10px!important;margin-top:5px!important;color:#cfe4ff!important}.navbtn{position:relative;z-index:1;display:flex;align-items:center;min-height:50px;border:1px solid transparent!important}.navbtn .nav-icon{width:34px;height:34px;border-radius:11px;background:rgba(255,255,255,.09);font-size:17px;transition:.18s ease}.nav-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.navbtn:hover .nav-icon,.navbtn.active .nav-icon{background:rgba(255,255,255,.2);transform:rotate(-4deg) scale(1.04)}.navbtn.active{background:linear-gradient(135deg,#1687ff,#6457f5)!important;border-color:rgba(255,255,255,.22)!important;box-shadow:0 12px 28px rgba(16,95,232,.35)!important}.side-foot{z-index:1}.side-mini{backdrop-filter:blur(10px);background:rgba(255,255,255,.085)!important}
 .add-icon-btn{width:46px;height:46px;border:0;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#1687ff,#6848ee);color:#fff;font-size:29px;font-weight:400;line-height:1;box-shadow:0 10px 24px rgba(37,99,235,.25);transition:transform .16s ease,box-shadow .16s ease}.add-icon-btn:hover{transform:translateY(-2px) rotate(4deg);box-shadow:0 14px 28px rgba(104,72,238,.3)}
 .create-card-source{box-shadow:none!important;border:0!important;padding:0!important}.create-card-source .section-title{padding-bottom:12px;border-bottom:1px solid var(--line)}#createModalBody>.create-card-source{display:block!important}.notes-layout,#page-tasks>.forms,#page-subscriptions>.forms,#page-sms>.forms{grid-template-columns:1fr}.notification-bell{position:relative}.notification-badge{position:absolute;right:-6px;top:-7px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;display:grid;place-items:center;background:#ef4444;color:#fff;border:2px solid #fff;font-size:9px;font-weight:900}
 .notification-modalbox{width:min(680px,100%)}.notification-list{display:grid;gap:9px;max-height:55vh;overflow:auto}.notification-item{width:100%;font:inherit;text-align:left;cursor:pointer;display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:11px;align-items:start;padding:12px;border:1px solid var(--line);border-radius:13px;background:#fff}.notification-symbol{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:18px}.notification-item.critical .notification-symbol{background:#fee2e2}.notification-item.warning .notification-symbol{background:#ffedd5}.notification-item b{display:block;font-size:12px}.notification-item p{margin:4px 0 0;color:#64748b;font-size:11px;line-height:1.45}.reference-item{grid-template-columns:42px minmax(0,1fr) auto}.reference-file-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#edf6ff,#ede9fe);font-size:19px}.action-labeled{grid-template-columns:31px auto!important;min-width:110px!important}.action-labeled span{display:grid;place-items:center;width:29px;height:29px;border-radius:9px;background:#eff6ff}.action-labeled.renew span{background:#d1fae5}.action-labeled.delete span{background:#fee2e2}.sub-latest-cell{min-width:190px;max-width:270px}.sub-latest-cell b{display:block;font-size:11px;color:#334155;margin-bottom:4px}.sub-latest-cell span{font-size:12px;color:#475569;line-height:1.45}.upload-progress{font-size:11px;color:#2563eb;font-weight:750;margin-top:5px}
@@ -364,16 +364,16 @@ body.modal-open{overflow:hidden!important;touch-action:none}
 /* ===== NAVIGASI BAWAH TELEFON V18 ===== */
 @media (max-width:900px), (hover:none) and (pointer:coarse){
   html,body{max-width:100%;overflow-x:hidden}
-  body{padding-bottom:calc(82px + env(safe-area-inset-bottom))!important}
+  body{padding-bottom:calc(98px + env(safe-area-inset-bottom))!important}
   .app{display:block!important;min-height:100dvh}
   .main{width:100%!important;margin:0!important;padding-bottom:22px!important}
   .side{
     position:fixed!important;
     left:0!important;right:0!important;top:auto!important;bottom:0!important;
-    width:100%!important;height:calc(72px + env(safe-area-inset-bottom))!important;
+    width:100%!important;height:calc(88px + env(safe-area-inset-bottom))!important;
     z-index:220!important;
-    display:flex!important;align-items:flex-start!important;gap:5px!important;
-    padding:7px 8px calc(7px + env(safe-area-inset-bottom))!important;
+    display:flex!important;align-items:flex-start!important;gap:8px!important;
+    padding:8px 10px calc(8px + env(safe-area-inset-bottom))!important;
     overflow-x:auto!important;overflow-y:hidden!important;
     overscroll-behavior-x:contain;scroll-snap-type:x proximity;
     background:rgba(7,29,69,.97)!important;
@@ -385,18 +385,24 @@ body.modal-open{overflow:hidden!important;touch-action:none}
   .side::-webkit-scrollbar{display:none}
   .side .brand,.side .side-foot{display:none!important}
   .side .navbtn{
-    flex:0 0 72px!important;width:72px!important;height:57px!important;
+    flex:0 0 84px!important;width:84px!important;height:70px!important;
     display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
-    gap:3px!important;margin:0!important;padding:5px 3px!important;
-    border-radius:14px!important;text-align:center!important;scroll-snap-align:center;
+    gap:4px!important;margin:0!important;padding:6px 4px!important;
+    border:1px solid transparent!important;border-radius:17px!important;text-align:center!important;scroll-snap-align:center;
     color:#cbd5e1!important;background:transparent!important;
   }
-  .side .navbtn .nav-icon{display:grid!important;place-items:center!important;width:28px!important;height:27px!important;margin:0!important;font-size:20px!important;line-height:1!important}
-  .side .navbtn .nav-label{display:block!important;max-width:68px;margin:0!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px!important;line-height:1.05;font-weight:750}
-  .side .navbtn.active{color:#fff!important;background:linear-gradient(145deg,#1478ff,#6747ee)!important;box-shadow:0 7px 16px rgba(20,120,255,.34)}
+  .side .navbtn .nav-icon{display:grid!important;place-items:center!important;width:38px!important;height:38px!important;margin:0!important;border-radius:12px!important;background:rgba(255,255,255,.09)!important;font-size:24px!important;line-height:1!important}
+  .side .navbtn .nav-icon svg{width:24px!important;height:24px!important;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .side .navbtn .nav-label{display:block!important;max-width:78px;margin:0!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px!important;line-height:1.1;font-weight:600!important;letter-spacing:0}
+  .side .navbtn.active{color:#fff!important;background:linear-gradient(145deg,#1478ff,#6747ee)!important;border-color:rgba(255,255,255,.2)!important;box-shadow:0 8px 18px rgba(20,120,255,.38)}
+  .side .navbtn.active .nav-icon{background:rgba(255,255,255,.2)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
   .side .navbtn:active{transform:scale(.96)}
-  .toast{bottom:calc(88px + env(safe-area-inset-bottom))!important}
+  .toast{bottom:calc(104px + env(safe-area-inset-bottom))!important}
 }
+@media(max-width:380px){.side .navbtn{flex-basis:80px!important;width:80px!important}}
+
+/* Tajuk modal sudah dipaparkan pada kepala popup; elakkan tajuk berganda. */
+#createModalBody>.create-card-source>.section-title{display:none!important}
 
 /* ===== TYPOGRAFI STANDARD GOOGLE V20 ===== */
 html,body,button,input,select,textarea{
@@ -431,7 +437,7 @@ th{font-weight:600!important}
   .metric,.metric-body .metric{font-size:22px!important}
   .modalbox input,.modalbox select,.modalbox textarea{font-size:16px!important}
   .side .navbtn{font-size:11px!important}
-  .side .navbtn .nav-label{font-size:9px!important;font-weight:500!important}
+  .side .navbtn .nav-label{font-size:10px!important;font-weight:600!important}
 }
 
 /* ===== PENYEMAK NOMBOR TELEFON V21 ===== */
@@ -454,15 +460,15 @@ th{font-weight:600!important}
 <div class="app">
   <aside class="side">
     <div class="brand"><span class="brand-mark">IT</span><span>PKPJ Monitor<small>Pusat Kawalan Unit IT</small></span></div>
-    <button class="navbtn active" data-page="dashboard"><span class="nav-icon">⌂</span><span class="nav-label">Dashboard</span></button>
-    <button class="navbtn" data-page="tasks"><span class="nav-icon">✓</span><span class="nav-label">Tugasan</span></button>
-    <button class="navbtn" data-page="notes"><span class="nav-icon">✎</span><span class="nav-label">Catatan</span></button>
-    <button class="navbtn" data-page="subscriptions"><span class="nav-icon">↻</span><span class="nav-label">Langganan</span></button>
-    <button class="navbtn" data-page="subscriptionlist"><span class="nav-icon">▤</span><span class="nav-label">Senarai Langganan</span></button>
-    <button class="navbtn" data-page="sms"><span class="nav-icon">✉</span><span class="nav-label">SMS</span></button>
-    <button class="navbtn" data-page="phonecheck"><span class="nav-icon">☎</span><span class="nav-label">Semak Telefon</span></button>
-    <button class="navbtn" data-page="archive"><span class="nav-icon">▣</span><span class="nav-label">Arkib Selesai</span></button>
-    <button class="navbtn" id="openConfig"><span class="nav-icon">⚙</span><span class="nav-label">Tetapan</span></button>
+    <button class="navbtn active" data-page="dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5.5 10.5V20h13v-9.5"></path><path d="M9.5 20v-6h5v6"></path></svg></span><span class="nav-label">Dashboard</span></button>
+    <button class="navbtn" data-page="tasks"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 2.5 2.5L16.5 9"></path></svg></span><span class="nav-label">Tugasan</span></button>
+    <button class="navbtn" data-page="notes"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"></path><path d="M15 3v4h4M9 11h6M9 15h6"></path></svg></span><span class="nav-label">Catatan</span></button>
+    <button class="navbtn" data-page="subscriptions"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5"></path><path d="M4 17v-5h5"></path><path d="M6.1 8A7 7 0 0 1 18 6l2 1M18 16a7 7 0 0 1-11.9 2L4 17"></path></svg></span><span class="nav-label">Langganan</span></button>
+    <button class="navbtn" data-page="subscriptionlist"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><span class="nav-label">Senarai</span></button>
+    <button class="navbtn" data-page="sms"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"></path><path d="M8 9h8M8 13h5"></path></svg></span><span class="nav-label">SMS</span></button>
+    <button class="navbtn" data-page="phonecheck"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3H4.5A1.5 1.5 0 0 0 3 4.5C3 13.6 10.4 21 19.5 21a1.5 1.5 0 0 0 1.5-1.5V17l-4-1-1.2 2a15 15 0 0 1-9.8-9.8L8 7z"></path></svg></span><span class="nav-label">Telefon</span></button>
+    <button class="navbtn" data-page="archive"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v14H4zM3 3h18v4H3z"></path><path d="M9 12h6M9 16h4"></path></svg></span><span class="nav-label">Arkib</span></button>
+    <button class="navbtn" id="openConfig"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1z"></path></svg></span><span class="nav-label">Tetapan</span></button>
     <div class="side-foot">
       <div class="side-mini"><b>Status Sistem</b><span><i class="system-dot"></i>Sistem OK</span></div>
     </div>
@@ -526,10 +532,10 @@ th{font-weight:600!important}
           <form class="form" id="taskForm">
             <div class="field"><label>Nama tugasan</label><input name="task" required></div>
             <div class="form-row"><div class="field"><label>Tarikh Dari</label><input name="startDate" type="date" required></div><div class="field"><label>Tarikh Hingga</label><input name="deadline" type="date" required></div></div>
-            <div class="field"><label>Priority</label><select name="priority"><option>Normal</option><option>Tinggi</option><option>Urgent</option></select></div>
+            <div class="field"><label>Keutamaan</label><select name="priority"><option>Normal</option><option>Tinggi</option><option>Urgent</option><option>Kritikal</option></select></div>
             <div class="form-row"><div class="field"><label>Status</label><select name="status"><option>Belum Mula</option><option>Dalam Proses</option><option>Menunggu</option><option>Selesai</option></select></div><div class="field"><label>PIC</label><input name="pic"></div></div>
             <div class="field"><label>Tindakan seterusnya</label><input name="nextAction"></div>
-            <div class="task-notification-box"><div class="field"><label>Notifikasi tugasan</label><select name="dailyNotification"><option value="FALSE">Tidak</option><option value="TRUE">Ya, aktifkan</option></select></div><div class="field"><label>Masa notifikasi</label><input name="notificationTime" type="time" value="08:00"></div><div class="field workday-choice"><label>Hari notifikasi</label><select name="workdaysOnly"><option value="TRUE">Hari bekerja sahaja (Isnin–Jumaat, bukan cuti umum)</option><option value="FALSE">Setiap hari termasuk Sabtu dan Ahad</option></select></div><div class="muted">Jadual terus disimpan ke Google Calendar bagi tempoh Tarikh Dari hingga Tarikh Hingga dan dibuang apabila tugasan selesai.</div></div>
+            <div class="task-notification-box"><div class="field"><label>Notifikasi tugasan</label><select name="dailyNotification"><option value="FALSE">Tidak</option><option value="TRUE">Ya, aktifkan</option></select></div><div class="field"><label>Masa notifikasi</label><input name="notificationTime" type="time" value="08:00"></div><div class="field workday-choice"><label>Hari notifikasi</label><select name="workdaysOnly"><option value="TRUE">Hari bekerja sahaja (Isnin–Jumaat, bukan cuti umum)</option><option value="FALSE">Setiap hari termasuk Sabtu dan Ahad</option></select></div><div class="muted">Peringatan dihantar melalui Telegram dengan butang Buka Sistem. Tugasan selesai tidak akan dihantar lagi.</div></div>
             <div class="field"><label>Nota</label><textarea name="notes"></textarea></div>
             <div class="field"><label>Lampiran PDF (pilihan)</label><input name="attachment" type="file" accept="application/pdf,.pdf"></div>
             <button class="btn primary" type="submit">Simpan Tugasan</button>
@@ -620,7 +626,7 @@ th{font-weight:600!important}
       <div class="card phone-result-card">
         <div class="phone-result-head"><div><h2>Senarai Untuk Disemak</h2><div class="muted" id="phoneResultSummary">Muat naik fail Excel untuk memulakan semakan.</div></div><div class="phone-result-actions"><button class="btn ghost" id="reanalyzePhoneBtn" type="button" disabled>↻ Semak Semula</button><button class="btn primary" id="downloadPhoneExcelBtn" type="button" disabled>⇩ Download Semua Sheet</button></div></div>
         <div class="phone-result-toolbar"><input id="phoneIssueSearch" type="search" placeholder="Cari nombor, nama atau sebab kesalahan..." disabled><select id="phoneIssueFilter" disabled><option value="all">Semua isu</option><option value="invalid">Perlu semakan</option><option value="fixed">Dibetulkan automatik</option><option value="duplicate">Nombor berulang</option></select><span class="pill warning" id="phoneIssueCount">0 rekod</span><div class="row-actions"><button class="mini-icon" id="phonePrevPage" type="button" disabled>‹</button><span class="muted" id="phonePageInfo">0 / 0</span><button class="mini-icon" id="phoneNextPage" type="button" disabled>›</button></div></div>
-        <div class="tablewrap" style="border:0;border-radius:0"><table class="phone-issue-table"><thead><tr><th>Baris Excel</th><th>Nama / Rujukan</th><th>Nombor Asal</th><th>Nombor Bersih</th><th>Status / Sebab</th><th>Aksi</th></tr></thead><tbody id="phoneIssueRows"><tr><td colspan="6" class="phone-empty"><span>☎</span>Belum ada fail untuk disemak.</td></tr></tbody></table></div>
+        <div class="tablewrap" style="border:0;border-radius:0"><table class="phone-issue-table"><thead><tr><th>Baris Excel</th><th>Nama / Rujukan</th><th>No. Kad Pengenalan</th><th>Nombor Asal</th><th>Nombor Bersih</th><th>Status / Sebab</th><th>Aksi</th></tr></thead><tbody id="phoneIssueRows"><tr><td colspan="7" class="phone-empty"><span>☎</span>Belum ada fail untuk disemak.</td></tr></tbody></table></div>
       </div>
     </section>
 
@@ -635,10 +641,10 @@ th{font-weight:600!important}
 </div>
 
 <div class="modal hidden" id="configModal"><div class="modalbox">
-  <div class="settings-top"><div class="settings-tabs"><button class="icon-btn settingsTab active" data-settings="connection" title="Sambungan">↔</button><button class="icon-btn settingsTab" data-settings="smssettings" title="Tetapan SMS">✉</button><button class="icon-btn settingsTab" data-settings="calendar" title="Calendar">◷</button></div><div class="actions"><button class="icon-btn" id="logoutBtn" title="Keluar">↪</button><button class="icon-btn" id="closeConfig" title="Tutup">×</button></div></div>
+  <div class="settings-top"><div class="settings-tabs"><button class="icon-btn settingsTab active" data-settings="connection" title="Sambungan">↔</button><button class="icon-btn settingsTab" data-settings="smssettings" title="Tetapan SMS">✉</button><button class="icon-btn settingsTab" data-settings="calendar" title="Telegram">✈</button></div><div class="actions"><button class="icon-btn" id="logoutBtn" title="Keluar">↪</button><button class="icon-btn" id="closeConfig" title="Tutup">×</button></div></div>
   <div class="settings-pane active" data-settings-pane="connection"><div class="form"><div class="field"><label>Apps Script Web App URL</label><input id="apiUrl" placeholder="https://script.google.com/macros/s/.../exec"></div><div class="field"><label>API Token</label><input id="apiToken" type="password"></div><button class="btn primary" id="saveConfig" type="button">Simpan Sambungan</button></div></div>
   <div class="settings-pane" data-settings-pane="smssettings"><div class="form"><div class="field"><label>Peruntukan SMS Semasa / Sedia Ada (RM)</label><input id="smsCurrentAllocationSetting" type="number" min="0" step="0.01"></div><div class="field"><label>Peruntukan SMS Baru Diluluskan (RM)</label><input id="smsNewApprovedSetting" type="number" min="0" step="0.01"></div><div class="field"><label>Harga 1 SMS (RM)</label><input id="smsCostSetting" type="number" min="0.001" step="0.001"></div><div class="card" style="box-shadow:none"><span class="label">Anggaran Kapasiti</span><div class="metric" id="smsCapacitySetting">0 SMS</div><div class="muted" id="smsSettingInfo"></div></div><button class="btn primary" id="saveSmsSettings" type="button">Simpan Tetapan SMS</button></div></div>
-  <div class="settings-pane" data-settings-pane="calendar"><div class="calendar-notice"><div class="calendar-notice-head"><b>Auto popup Google Calendar</b><br>Jadual tugasan terus dimasukkan ke Calendar semasa butang Simpan ditekan. Dashboard tidak perlu dibuka.</div><div class="calendar-rule critical"><span class="calendar-rule-icon">🚨</span><div><b>Jadual terus semasa Simpan</b><span>Tarikh, masa dan hari bekerja dijadualkan lebih awal supaya notifikasi tidak terlepas.</span></div></div><div class="calendar-rule daily"><span class="calendar-rule-icon">📅</span><div><b>Kemas kini automatik</b><span>Edit tugasan akan menggantikan jadual lama. Tugasan selesai atau dipadam akan membuang jadualnya.</span></div></div><div class="calendar-sync-summary" id="calendarSyncSummary">Belum menerima status jadual.</div><div class="calendar-device-note">Bunyi dikawal oleh tetapan Google Calendar pada telefon dan PC. Pastikan notifikasi, bunyi dan getaran Calendar dibenarkan.</div><div class="calendar-button-row"><button class="btn dark" id="syncTaskCalendarBtn" type="button">↻ Jadualkan Semua Tugasan</button><button class="btn ghost" id="testCalendarBtn" type="button">🔔 Uji Notifikasi</button></div><div class="muted" id="calendarTestStatus">Belum diuji.</div></div></div>
+  <div class="settings-pane" data-settings-pane="calendar"><div class="calendar-notice"><div class="calendar-notice-head"><b>Notifikasi Telegram</b><br>Peringatan dihantar terus ke bot PKPJ Work Monitor walaupun URL sistem tidak dibuka.</div><div class="calendar-rule critical"><span class="calendar-rule-icon">✈️</span><div><b>Telegram jadi loceng sistem</b><span>Mesej mengandungi nama tugasan, tarikh, tindakan dan butang Buka Sistem.</span></div></div><div class="calendar-rule daily"><span class="calendar-rule-icon">🔔</span><div><b>Semakan automatik</b><span>Masa, tempoh tugasan, hari bekerja dan cuti umum disemak setiap 5 minit.</span></div></div><div class="calendar-sync-summary" id="calendarSyncSummary">Telegram belum disemak.</div><div class="calendar-device-note">Pastikan notifikasi, bunyi dan getaran aplikasi Telegram dibenarkan pada telefon.</div><div class="calendar-button-row"><button class="btn dark" id="syncTaskCalendarBtn" type="button">↻ Semak Sambungan</button><button class="btn ghost" id="testCalendarBtn" type="button">🔔 Uji Telegram</button></div><div class="muted" id="calendarTestStatus">Belum diuji.</div></div></div>
 </div></div>
 
 <div class="modal hidden" id="smsTotalModal"><div class="modalbox" style="max-width:440px"><div class="settings-top"><b>Pembetulan Jumlah SMS</b><button class="icon-btn" id="closeSmsTotal">×</button></div><form class="form" id="smsTotalForm"><div class="field"><label>Jumlah SMS telah digunakan setakat ini</label><input name="total" type="number" min="0" step="1" required></div><button class="btn primary" type="submit">Tetapkan Jumlah</button><button class="btn danger" id="resetSmsBtn" type="button">Reset Penggunaan SMS</button></form></div></div>
@@ -647,7 +653,7 @@ th{font-weight:600!important}
 
 <div class="modal hidden" id="createModal"><div class="modalbox"><div class="settings-top"><b id="createModalTitle">Tambah Maklumat</b><button class="icon-btn" id="closeCreateModal">×</button></div><div id="createModalBody"></div></div></div>
 
-<div class="modal hidden" id="notificationModal"><div class="modalbox notification-modalbox"><div class="settings-top"><div><b>Pusat Notifikasi</b><div class="muted">Perkara penting yang memerlukan perhatian anda.</div></div><button class="icon-btn" id="closeNotificationModal">×</button></div><div class="notification-list" id="notificationList"></div><div class="modal-actions"><button class="btn ghost" id="runAlertCheckBtn" type="button">↻ Semak Sekarang</button><button class="btn primary" id="openCalendarSettingsBtn" type="button">⚙ Tetapan Calendar</button></div></div></div>
+<div class="modal hidden" id="notificationModal"><div class="modalbox notification-modalbox"><div class="settings-top"><div><b>Pusat Notifikasi</b><div class="muted">Perkara penting yang memerlukan perhatian anda.</div></div><button class="icon-btn" id="closeNotificationModal">×</button></div><div class="notification-list" id="notificationList"></div><div class="modal-actions"><button class="btn ghost" id="runAlertCheckBtn" type="button">↻ Semak Sekarang</button><button class="btn primary" id="openCalendarSettingsBtn" type="button">⚙ Tetapan Telegram</button></div></div></div>
 
 <div class="modal hidden" id="historyModal"><div class="modalbox history-modalbox"><div class="settings-top"><div><b id="historyModalTitle">Kronologi Status</b><div class="muted" id="historyModalSubtitle">Semua perkembangan disusun daripada yang terkini.</div></div><button class="icon-btn" id="closeHistoryModal">×</button></div><div class="history-compat-warning hidden" id="historyCompatWarning">⚠️ Sambungan data belum tersedia. Semak URL Apps Script dan API Token pada Tetapan.</div><div id="historyTimeline"></div><form class="form history-add-form" id="historyForm"><input name="module" type="hidden"><input name="recordId" type="hidden"><input name="status" type="hidden"><div class="field"><label>Tambah perkembangan baharu</label><textarea name="detail" required placeholder="Tulis perkembangan terkini di sini..."></textarea></div><div class="modal-actions"><button class="btn ghost" id="cancelHistoryModal" type="button">Tutup</button><button class="btn primary" id="saveHistoryBtn" type="submit">+ Tambah Kronologi</button></div></form></div></div>
 
@@ -655,7 +661,7 @@ th{font-weight:600!important}
 
 <div class="modal hidden" id="editModal"><div class="modalbox"><div class="settings-top"><b id="editModalTitle">Kemaskini</b><button class="icon-btn" id="closeEditModal">×</button></div><form class="form" id="editForm"></form></div></div>
 
-<div class="modal hidden" id="phoneFilterModal"><div class="modalbox phone-filter-modalbox"><div class="settings-top"><div><b id="phoneFilterTitle">Data Nombor Telefon</b><div class="muted" id="phoneFilterSubtitle">Semua sheet</div></div><button class="icon-btn" id="closePhoneFilterModal">×</button></div><div class="phone-filter-toolbar"><input id="phoneFilterSearch" type="search" placeholder="Cari sheet, nama, nombor atau sebab..."><span class="pill normal" id="phoneFilterCount">0 rekod</span></div><div class="tablewrap"><table class="phone-filter-table"><thead><tr><th>Sheet</th><th>Baris</th><th>Nama / Rujukan</th><th>Nombor Asal</th><th>Nombor Bersih</th><th>Status / Sebab</th><th>Aksi</th></tr></thead><tbody id="phoneFilterRows"></tbody></table></div><div class="phone-filter-footer"><span class="muted" id="phoneFilterPageInfo">0 / 0</span><div class="phone-filter-pager"><button class="btn ghost" id="phoneFilterPrev" type="button">‹ Sebelum</button><button class="btn ghost" id="phoneFilterNext" type="button">Seterusnya ›</button><button class="btn primary" id="donePhoneFilter" type="button">Tutup</button></div></div></div></div>
+<div class="modal hidden" id="phoneFilterModal"><div class="modalbox phone-filter-modalbox"><div class="settings-top"><div><b id="phoneFilterTitle">Data Nombor Telefon</b><div class="muted" id="phoneFilterSubtitle">Semua sheet</div></div><button class="icon-btn" id="closePhoneFilterModal">×</button></div><div class="phone-filter-toolbar"><input id="phoneFilterSearch" type="search" placeholder="Cari sheet, nama, No. KP, nombor atau sebab..."><span class="pill normal" id="phoneFilterCount">0 rekod</span></div><div class="tablewrap"><table class="phone-filter-table"><thead><tr><th>Sheet</th><th>Baris</th><th>Nama / Rujukan</th><th>No. Kad Pengenalan</th><th>Nombor Asal</th><th>Nombor Bersih</th><th>Status / Sebab</th><th>Aksi</th></tr></thead><tbody id="phoneFilterRows"></tbody></table></div><div class="phone-filter-footer"><span class="muted" id="phoneFilterPageInfo">0 / 0</span><div class="phone-filter-pager"><button class="btn ghost" id="phoneFilterPrev" type="button">‹ Sebelum</button><button class="btn ghost" id="phoneFilterNext" type="button">Seterusnya ›</button><button class="btn primary" id="donePhoneFilter" type="button">Tutup</button></div></div></div></div>
 
 <iframe name="postTarget" class="hidden"></iframe>
 <div class="toast hidden" id="toast"></div>
@@ -693,13 +699,15 @@ const APP={
   phoneRows:[],
   phoneColumn:'',
   phoneNameColumn:'',
+  phoneIcColumn:'',
   phonePage:1,
   phonePageSize:200,
   phoneSheetResults:{},
   phoneAllSheetsChecked:false,
   phonePopupFilter:'total',
   phonePopupPage:1,
-  phonePopupPageSize:100
+  phonePopupPageSize:100,
+  backendWarningShown:false
 };
 
 const $=s=>document.querySelector(s);
@@ -715,7 +723,7 @@ const uuid=()=>crypto&&crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-
 function safeOn(selector,event,handler){const el=$(selector);if(el)el.addEventListener(event,handler);}
 function setText(selector,value){const el=$(selector);if(el)el.textContent=value;}
 function showToast(msg,ms=2800){const t=$('#toast');if(!t)return;t.textContent=msg;t.classList.remove('hidden');clearTimeout(t._tm);t._tm=setTimeout(()=>t.classList.add('hidden'),ms);}
-function saveActionLabel(action){return ({addTask:'Menyimpan tugasan',updateTask:'Mengemas kini tugasan',updateTaskStatus:'Mengemas kini status',reorderTasks:'Menyimpan susunan',addNote:'Menyimpan catatan',updateNote:'Mengemas kini catatan',addSubscription:'Menyimpan langganan',updateSubscription:'Mengemas kini langganan',renewSubscription:'Memperbaharui langganan',addSmsUsage:'Menyimpan penggunaan SMS',updateSmsUsage:'Mengemas kini penggunaan SMS',uploadReference:'Memuat naik lampiran',addStatusHistory:'Menyimpan kronologi',syncTaskCalendars:'Menyusun notifikasi Calendar',testCalendar:'Menguji notifikasi Calendar'})[action]||'Menyimpan maklumat'}
+function saveActionLabel(action){return ({addTask:'Menyimpan tugasan',updateTask:'Mengemas kini tugasan',updateTaskStatus:'Mengemas kini status',reorderTasks:'Menyimpan susunan',addNote:'Menyimpan catatan',updateNote:'Mengemas kini catatan',addSubscription:'Menyimpan langganan',updateSubscription:'Mengemas kini langganan',renewSubscription:'Memperbaharui langganan',addSmsUsage:'Menyimpan penggunaan SMS',updateSmsUsage:'Mengemas kini penggunaan SMS',uploadReference:'Memuat naik lampiran',addStatusHistory:'Menyimpan kronologi',checkTelegramNow:'Menyemak Telegram',testTelegram:'Menguji Telegram'})[action]||'Menyimpan maklumat'}
 function setSaveProgress(value,label){const overlay=$('#saveProgressOverlay'),fill=$('#saveProgressFill'),percent=$('#saveProgressPercent');APP.saveProgressValue=Math.max(0,Math.min(100,Math.round(Number(value)||0)));if(fill)fill.style.width=APP.saveProgressValue+'%';if(percent)percent.textContent=APP.saveProgressValue+'%';if(label)setText('#saveProgressLabel',label);overlay?.setAttribute('aria-valuenow',String(APP.saveProgressValue))}
 function beginSaveProgress(title,label='Menghantar maklumat dengan selamat...'){clearInterval(APP.saveProgressTimer);clearTimeout(APP.saveProgressHideTimer);const overlay=$('#saveProgressOverlay');overlay?.classList.remove('hidden','success','error');setText('#saveProgressTitle',title||'Menyimpan maklumat');setText('#saveProgressIcon','⇧');setSaveProgress(6,label);APP.saveProgressTimer=setInterval(()=>{if(APP.saveProgressValue>=84)return;const step=APP.saveProgressValue<35?7:APP.saveProgressValue<65?4:2;setSaveProgress(Math.min(84,APP.saveProgressValue+step))},260)}
 function finishSaveProgress(message='Berjaya disimpan.'){clearInterval(APP.saveProgressTimer);const overlay=$('#saveProgressOverlay');overlay?.classList.add('success');setText('#saveProgressIcon','✓');setSaveProgress(100,message);APP.saveProgressHideTimer=setTimeout(()=>overlay?.classList.add('hidden'),650)}
@@ -724,7 +732,7 @@ function levelPill(level,text){return `<span class="pill ${esc(level)}">${esc(te
 function isoDate(v){return v?String(v).slice(0,10):'';}
 function taskPeriod(r){return `${esc(r?.StartDate||'-')} → ${esc(r?.Deadline||'-')}`}
 function displayTime(value){const text=String(value||'').trim(),plain=/^(\d{1,2}):(\d{2})(?::\d{2})?\s*(AM|PM)?$/i.exec(text),iso=/T(\d{2}):(\d{2})/.exec(text),m=plain||iso;if(!m)return '08:00';let h=Number(m[1]),minute=Number(m[2]);const meridiem=plain?String(m[3]||'').toUpperCase():'';if(meridiem==='PM'&&h<12)h+=12;if(meridiem==='AM'&&h===12)h=0;if(h>23||minute>59)return '08:00';return String(h).padStart(2,'0')+':'+String(minute).padStart(2,'0')}
-function taskCalendarState(r){if(String(r?.DailyNotification||'FALSE').toUpperCase()!=='TRUE')return '';const status=String(r?.CalendarSyncStatus||'Belum dijadualkan'),kind=status.startsWith('OK •')?'ok':status.startsWith('ERROR •')?'error':'off',icon=kind==='ok'?'✅':kind==='error'?'⚠️':'◷';return `<span class="task-calendar-state ${kind}" title="${esc(status)}">${icon} ${kind==='ok'?'Calendar siap':kind==='error'?'Calendar gagal':'Belum dijadualkan'}</span>`}
+function taskCalendarState(r){if(String(r?.DailyNotification||'FALSE').toUpperCase()!=='TRUE')return '';const status=String(r?.CalendarSyncStatus||'Belum aktif'),kind=status.startsWith('OK •')?'ok':status.startsWith('ERROR •')?'error':'off',icon=kind==='ok'?'✅':kind==='error'?'⚠️':'◷';return `<span class="task-calendar-state ${kind}" title="${esc(status)}">${icon} ${kind==='ok'?'Telegram siap':kind==='error'?'Telegram belum sambung':'Belum aktif'}</span>`}
 function taskNotificationBadge(r){if(String(r?.DailyNotification||'FALSE').toUpperCase()!=='TRUE')return '';const workdays=String(r?.WorkdaysOnly||'TRUE').toUpperCase()==='TRUE';return `<span class="task-notification-badge">🔔 ${workdays?'Hari bekerja':'Setiap hari'} • ${esc(displayTime(r.NotificationTime))}</span>${taskCalendarState(r)}`}
 
 /* NAVIGATION DIHIDUPKAN PALING AWAL - TIDAK BERGANTUNG API */
@@ -783,7 +791,7 @@ window.closeHistoryModal=()=>$('#historyModal')?.classList.add('hidden');
 
 window.openRuleModal=type=>{
   const task=type==='task';setText('#ruleModalTitle',task?'Rule Notifikasi Tugasan':'Rule Pembaharuan Langganan');
-  const rows=task?[['warning','🟠','Amaran','Baki 3 hari atau kurang sebelum Tarikh Hingga.'],['critical','🔴','Kritikal','Tarikh Hingga pada hari ini, esok atau telah lewat.'],['info','🔔','Notifikasi Harian','Pilih masa sendiri dan pilihan hari bekerja sahaja dalam borang tugasan.'],['info','🏖️','Hari Cuti','Sabtu, Ahad dan cuti umum tidak menghasilkan reminder apabila Hari Bekerja dipilih.'],['info','📅','Google Calendar','Bunyi dan getaran mengikut tetapan Calendar pada telefon.']]:[['warning','🟠','Amaran','Langganan berbaki 90 hari atau kurang.'],['critical','🔴','Kritikal','Berbaki 30 hari atau langganan telah tamat.'],['info','🔄','Perbaharui','Ikon perbaharui mengira tarikh tamat seterusnya mengikut kitaran.']];
+  const rows=task?[['warning','🟠','Amaran','Baki 3 hari atau kurang sebelum Tarikh Hingga.'],['critical','🔴','Kritikal','Tarikh Hingga pada hari ini, esok atau telah lewat.'],['info','🔔','Notifikasi Harian','Pilih masa sendiri dan pilihan hari bekerja sahaja dalam borang tugasan.'],['info','🏖️','Hari Cuti','Sabtu, Ahad dan cuti umum tidak menghasilkan reminder apabila Hari Bekerja dipilih.'],['info','✈️','Telegram','Mesej dihantar bersama butang Buka Sistem walaupun URL tidak dibuka.']]:[['warning','🟠','Amaran','Langganan berbaki 90 hari atau kurang.'],['critical','🔴','Kritikal','Berbaki 30 hari atau langganan telah tamat.'],['info','🔄','Perbaharui','Ikon perbaharui mengira tarikh tamat seterusnya mengikut kitaran.']];
   const body=$('#ruleModalBody');if(body)body.innerHTML=rows.map(r=>`<div class="rule-item ${r[0]}"><span class="rule-item-icon">${r[1]}</span><div><b>${r[2]}</b><span>${r[3]}</span></div></div>`).join('');$('#ruleModal')?.classList.remove('hidden');
 };
 window.closeRuleModal=()=>$('#ruleModal')?.classList.add('hidden');
@@ -825,12 +833,11 @@ function submitPost(action,payload){
     let done=false;
     const finish=()=>{if(done)return;done=true;clearTimeout(timer);frame?.removeEventListener('load',onload);form.remove();resolve()};
     const onload=()=>finish();
-    const timeoutMs=action==='syncTaskCalendars'||action==='testCalendar'?90000:30000;
+    const timeoutMs=action==='testTelegram'?45000:30000;
     const timer=setTimeout(()=>{if(done)return;done=true;frame?.removeEventListener('load',onload);form.remove();reject(new Error('Simpanan mengambil masa terlalu lama. Cuba semula.'))},timeoutMs);
     frame?.addEventListener('load',onload,{once:true});document.body.appendChild(form);form.submit();
-    // Ujian Calendar diproses di belakang. Jangan tunggu respons iframe yang
-    // kadang-kadang disekat atau dilambatkan oleh pelayar; status disemak melalui API ringan.
-    if(action==='testCalendar')setTimeout(finish,1200);
+    // Ujian Telegram diproses di belakang dan status disemak melalui API ringan.
+    if(action==='testTelegram')setTimeout(finish,1200);
     if(!frame)setTimeout(finish,500);
   });
 }
@@ -843,45 +850,31 @@ async function fetchDashboardWithRetry(retries=4,delay=300){
   throw lastErr;
 }
 
+function backendApiVersion(data){const n=Number.parseFloat(String(data?.apiVersion||'').replace(/[^0-9.]/g,''));return Number.isFinite(n)?n:0}
+function warnOldBackend(data){if(backendApiVersion(data)>=16||APP.backendWarningShown)return;APP.backendWarningShown=true;showToast('⚠️ Web App Apps Script masih versi lama. Deploy GS V16 Telegram supaya simpanan dan notifikasi berfungsi.',8500)}
 function applyDashboardData(data){
-  APP.data=data;renderAll();
+  APP.data=data;renderAll();warnOldBackend(data);
   try{localStorage.setItem('pkpj_dashboard_cache',JSON.stringify(data))}catch(_){}
 }
 
-async function runCalendarNotificationTest(){
+async function runTelegramNotificationTest(){
   const testId=uuid();
-  const delays=[900,1200,1600,2200,2800,3500,4000,4500,5000,5000];
-  beginSaveProgress('Menguji notifikasi Calendar','Menghantar acara ujian ke Google Calendar...');
-  setText('#calendarTestStatus','Menghantar ujian. Sila tunggu, Calendar mungkin mengambil sedikit masa...');
+  beginSaveProgress('Menguji Telegram','Menghantar mesej ujian kepada bot...');
+  setText('#calendarTestStatus','Menghantar mesej ujian ke Telegram...');
   try{
-    await submitPost('testCalendar',{testId});
-    setSaveProgress(34,'Permintaan diterima. Menunggu pengesahan Google Calendar...');
-    let lastError=null;
-    for(let attempt=0;attempt<delays.length;attempt++){
-      await wait(delays[attempt]);
-      setSaveProgress(Math.min(94,42+(attempt*6)),`Menyemak Calendar... percubaan ${attempt+1}/${delays.length}`);
-      try{
-        const response=await jsonp('calendarTestStatus',25000);
-        const data=response?.data||{},health=data.calendarHealth||{};
-        if(Number(data.apiVersion||0)<15)throw new Error('Deploy Apps Script V15 sebagai Web App versi baharu dahulu.');
-        if(String(health.lastTestId||'')!==String(testId))continue;
-        if(String(health.lastTestStatus||'').toUpperCase()==='ERROR')throw new Error('Ujian Calendar gagal: '+(health.lastTestMessage||'Ralat tidak diketahui.'));
-        if(String(health.lastTestStatus||'').toUpperCase()==='OK'){
-          APP.data=APP.data||{};APP.data.calendarHealth=health;renderCalendarHealth(health);
-          finishSaveProgress('Acara ujian berjaya dicipta dalam Google Calendar.');
-          showToast('Ujian Calendar berjaya. Popup dijadualkan kira-kira 1 minit lagi.',5000);
-          return true;
-        }
-      }catch(err){
-        lastError=err;
-        if(/Action GET tidak dikenali|Apps Script V15/i.test(String(err.message||'')))throw new Error('Backend lama masih digunakan. Deploy Apps Script V15 dan gunakan URL /exec yang terkini.');
-        if(/Ujian Calendar gagal/i.test(String(err.message||'')))throw err;
-      }
+    await submitPost('testTelegram',{testId});
+    setSaveProgress(48,'Permintaan diterima. Menunggu pengesahan Telegram...');
+    for(let attempt=0;attempt<8;attempt++){
+      await wait(attempt<2?850:1300);
+      const response=await jsonp('telegramStatus',20000),data=response?.data||{},health=data.telegramHealth||data.calendarHealth||{};
+      if(Number(data.apiVersion||0)<16)throw new Error('Deploy Apps Script V16 Telegram sebagai Web App versi baharu dahulu.');
+      if(String(health.lastTestId||'')!==String(testId)){setSaveProgress(58+attempt*5,'Menunggu keputusan Telegram...');continue}
+      if(String(health.lastTestStatus||'').toUpperCase()==='ERROR')throw new Error(health.lastTestMessage||'Ujian Telegram gagal.');
+      APP.data=APP.data||{};APP.data.telegramHealth=health;APP.data.calendarHealth=health;renderCalendarHealth(health);
+      finishSaveProgress('Mesej ujian berjaya dihantar.');showToast('✅ Semak bot PKPJ Work Monitor dalam Telegram.',5000);return true;
     }
-    throw new Error(lastError?.message==='Sambungan Apps Script timeout.'?'Calendar masih memproses tetapi pengesahan mengambil terlalu lama. Semak acara ujian dalam Google Calendar, kemudian cuba sekali lagi.':'Calendar belum mengembalikan keputusan ujian. Semak kebenaran Calendar dan deployment Web App.');
-  }catch(err){
-    failSaveProgress(err.message||'Ujian Calendar gagal.');setText('#calendarTestStatus','❌ '+err.message);showToast(err.message,6500);throw err;
-  }
+    throw new Error('Telegram belum mengembalikan keputusan. Pastikan setupTelegram() telah dijalankan.');
+  }catch(err){failSaveProgress(err.message||'Ujian Telegram gagal.');setText('#calendarTestStatus','❌ '+err.message);showToast(err.message,6500);throw err}
 }
 
 function scheduleDashboardRefresh(delay=500){clearTimeout(APP.backgroundRefreshTimer);APP.backgroundRefreshTimer=setTimeout(()=>loadDashboard(true),delay)}
@@ -890,12 +883,12 @@ function applyFastMutation(action,payload){
   const p=payload||{},tasks=APP.data.tasks||[];
   if(action==='addTask'){
     const maxOrder=tasks.reduce((max,r)=>Math.max(max,Number(r.SortOrder)||0),0),deadline=isoDate(p.deadline),today=new Date().toISOString().slice(0,10),days=deadline?Math.round((new Date(deadline+'T00:00:00')-new Date(today+'T00:00:00'))/86400000):null;
-    tasks.push({ID:p.id,Task:p.task,Deadline:deadline,StartDate:isoDate(p.startDate)||deadline,Priority:p.priority||'Normal',Status:p.status||'Belum Mula',NextAction:p.nextAction||'',PIC:p.pic||'',Notes:p.notes||'',DailyNotification:p.dailyNotification||'FALSE',NotificationTime:p.notificationTime||'08:00',WorkdaysOnly:p.workdaysOnly||'TRUE',CalendarSyncStatus:String(p.dailyNotification||'FALSE').toUpperCase()==='TRUE'?'Menyegerak ke Calendar...':'OFF • Notifikasi tugasan tidak aktif',SortOrder:maxOrder+1,_days:days,_level:days!==null&&days<=1?'critical':days!==null&&days<=3?'warning':'normal'});
+    tasks.push({ID:p.id,Task:p.task,Deadline:deadline,StartDate:isoDate(p.startDate)||deadline,Priority:p.priority||'Normal',Status:p.status||'Belum Mula',NextAction:p.nextAction||'',PIC:p.pic||'',Notes:p.notes||'',DailyNotification:p.dailyNotification||'FALSE',NotificationTime:p.notificationTime||'08:00',WorkdaysOnly:p.workdaysOnly||'TRUE',CalendarSyncStatus:String(p.dailyNotification||'FALSE').toUpperCase()==='TRUE'?'OK • Telegram aktif':'OFF • Notifikasi tugasan tidak aktif',SortOrder:maxOrder+1,_days:days,_level:days!==null&&days<=1?'critical':days!==null&&days<=3?'warning':'normal'});
     APP.selectedTaskId=String(p.id);renderAll();return true;
   }
   if(action==='updateTask'){
     const r=tasks.find(x=>String(x.ID)===String(p.id));if(!r)return false;
-    Object.assign(r,{Task:p.task??r.Task,Deadline:isoDate(p.deadline)||r.Deadline,StartDate:isoDate(p.startDate)||r.StartDate,Priority:p.priority??r.Priority,Status:p.status??r.Status,NextAction:p.nextAction??r.NextAction,PIC:p.pic??r.PIC,Notes:p.notes??r.Notes,DailyNotification:p.dailyNotification??r.DailyNotification,NotificationTime:p.notificationTime??r.NotificationTime,WorkdaysOnly:p.workdaysOnly??r.WorkdaysOnly,CalendarSyncStatus:String(p.dailyNotification??r.DailyNotification).toUpperCase()==='TRUE'?'Menyegerak ke Calendar...':'OFF • Notifikasi tugasan tidak aktif'});renderAll();return true;
+    Object.assign(r,{Task:p.task??r.Task,Deadline:isoDate(p.deadline)||r.Deadline,StartDate:isoDate(p.startDate)||r.StartDate,Priority:p.priority??r.Priority,Status:p.status??r.Status,NextAction:p.nextAction??r.NextAction,PIC:p.pic??r.PIC,Notes:p.notes??r.Notes,DailyNotification:p.dailyNotification??r.DailyNotification,NotificationTime:p.notificationTime??r.NotificationTime,WorkdaysOnly:p.workdaysOnly??r.WorkdaysOnly,CalendarSyncStatus:String(p.dailyNotification??r.DailyNotification).toUpperCase()==='TRUE'?'OK • Telegram aktif':'OFF • Notifikasi tugasan tidak aktif'});renderAll();return true;
   }
   if(action==='updateTaskStatus'){
     const r=tasks.find(x=>String(x.ID)===String(p.id));if(!r)return false;r.Status=p.status||r.Status;
@@ -924,8 +917,8 @@ async function runPost(action,payload,msg){
       if(check.error)throw new Error(check.error);
       if(check.ok){applyDashboardData(latest);finishSaveProgress(msg||'Berjaya disimpan.');showToast(msg);return response;}
     }
-    const version=latest?.apiVersion?String(latest.apiVersion):'tidak dikenal pasti';
-    throw new Error('Simpanan belum dapat disahkan pada server (API '+version+'). Semak URL Web App dan deploy versi Apps Script terbaru.');
+    const version=latest?.apiVersion?String(latest.apiVersion):'lama / tidak dikenal pasti';
+    throw new Error('Web App Apps Script belum menggunakan backend V16 Telegram (API '+version+'). Deploy GS V16 sebagai versi baharu.');
   }catch(e){
     failSaveProgress(e.message||'Simpanan gagal.');showToast(e.message,6000);throw e;
   }
@@ -943,13 +936,8 @@ function mutationVerification(action,p,data,before){
     if(p.deadline!==undefined&&isoDate(r.Deadline)!==isoDate(p.deadline))return {ok:false};
     if(p.startDate!==undefined&&isoDate(r.StartDate)!==isoDate(p.startDate))return {ok:false};
     if(p.dailyNotification!==undefined&&!sameValue(String(r.DailyNotification).toUpperCase(),String(p.dailyNotification).toUpperCase()))return {ok:false};
-    if(String(p.dailyNotification||r.DailyNotification||'FALSE').toUpperCase()==='TRUE'&&!taskIsDone(r)){
-      if(Number(data.apiVersion||0)<14)return {error:'Notifikasi memerlukan Apps Script V14. Deploy fail V14 sebagai Web App versi baharu dahulu.'};
-      const calendarStatus=String(r.CalendarSyncStatus||'');
-      if(calendarStatus.startsWith('ERROR •'))return {error:'Notifikasi gagal dijadualkan: '+calendarStatus.replace(/^ERROR •\s*/, '')};
-      if(!calendarStatus.startsWith('OK •'))return {error:'Tugasan tersimpan tetapi notifikasi tidak aktif: '+(calendarStatus||'Calendar belum dijadualkan. Semak tarikh dan masa tugasan.')};
-    }
-    return {ok:true,label:'Rekod dan notifikasi telah disahkan.'};
+    if(Number(data.apiVersion||0)<16)return {error:'Simpanan memerlukan Apps Script V16 Telegram. Deploy fail baharu dahulu.'};
+    return {ok:true,label:'Rekod tugasan telah disahkan. Telegram akan menghantar pada masa dipilih.'};
   }
   if(action==='deleteTask')return {ok:!task};
   if(action==='updateTaskStatus')return {ok:Boolean(task)&&sameValue(task.Status,p.status)};
@@ -976,16 +964,13 @@ function mutationVerification(action,p,data,before){
     return {ok:now.length>oldCount&&now.some(r=>sameValue(r.FileName,p.fileName))};
   }
   if(action==='deleteReference')return {ok:!rowById(refs,p.id)};
-  if(action==='syncTaskCalendars'){
-    const failed=tasks.filter(r=>String(r.CalendarSyncStatus||'').startsWith('ERROR •'));
-    return failed.length?{error:failed.length+' tugasan gagal dijadualkan ke Calendar.'}:{ok:true,label:'Semua jadual Calendar telah disahkan.'};
-  }
-  if(action==='testCalendar'){
-    if(Number(data.apiVersion||0)<15)return {error:'Ujian notifikasi memerlukan Apps Script V15. Deploy V15 dahulu.'};
-    const health=data.calendarHealth||{};
+  if(action==='checkTelegramNow')return {ok:true,label:'Semakan Telegram selesai.'};
+  if(action==='testTelegram'){
+    if(Number(data.apiVersion||0)<16)return {error:'Ujian Telegram memerlukan Apps Script V16.'};
+    const health=data.telegramHealth||data.calendarHealth||{};
     if(String(health.lastTestId||'')!==String(p.testId||''))return {ok:false};
-    if(String(health.lastTestStatus||'').toUpperCase()==='ERROR')return {error:'Ujian Calendar gagal: '+(health.lastTestMessage||'Ralat tidak diketahui.')};
-    return {ok:String(health.lastTestStatus||'').toUpperCase()==='OK',label:'Acara ujian telah disahkan dalam Calendar.'};
+    if(String(health.lastTestStatus||'').toUpperCase()==='ERROR')return {error:'Ujian Telegram gagal: '+(health.lastTestMessage||'Ralat tidak diketahui.')};
+    return {ok:String(health.lastTestStatus||'').toUpperCase()==='OK',label:'Mesej ujian telah dihantar ke Telegram.'};
   }
   if(action==='checkAlertsNow')return {ok:true};
   return {ok:true};
@@ -1024,13 +1009,13 @@ function renderAll(){
   const alerts=(d.alerts||[]).filter(a=>String(a.type||'').toLowerCase()!=='note');
   const criticalCount=alerts.filter(a=>a.level==='critical').length,warningCount=alerts.filter(a=>a.level==='warning').length;
   const taskActive=(d.tasks||[]).filter(r=>!['selesai','done','completed','complete'].includes(String(r.Status||'').toLowerCase())).length;const renewSoon=(d.subscriptions||[]).filter(r=>r._level!=='done'&&Number(r._days)>=0&&Number(r._days)<=90).length;setText('#lastUpdate','Ringkasan kerja dan status sistem • Dikemas kini '+d.now);setText('#dashboardFooter','Data dikemas kini pada '+d.now);setText('#mAction',criticalCount+warningCount);setText('#mCriticalMini',criticalCount);setText('#mWarningMini',warningCount);setText('#mTaskActive',taskActive);setText('#mRenewSoon',renewSoon);setText('#mSmsRemaining',num(d.sms.remaining));setText('#smsCapacityMini','Daripada '+num(d.sms.capacity||0)+' SMS');
-  const calendar=d.calendarSchedule||{scheduled:0,error:0,off:0};setText('#calendarSyncSummary',calendar.error?`⚠️ ${calendar.scheduled||0} siap • ${calendar.error} gagal — tekan Jadualkan Semua Tugasan`:`✅ ${calendar.scheduled||0} tugasan telah dijadualkan dalam Calendar`);renderCalendarHealth(d.calendarHealth);
+  const health=d.telegramHealth||d.calendarHealth||{},calendar=d.calendarSchedule||{scheduled:0,error:0,off:0};setText('#calendarSyncSummary',health.configured?`✅ Telegram tersambung • ${calendar.scheduled||0} tugasan bernotifikasi`:'⚠️ Telegram belum disambungkan. Jalankan setupTelegram() sekali.');renderCalendarHealth(health);
   renderDashboardFocus(alerts);renderDashboardRenewals(d.subscriptions||[]);renderHolidays(d.holidays||{});renderSms(d.sms||{});const hasUrgent=criticalCount>0;const hasCriticalRenewal=(d.subscriptions||[]).some(r=>r._level==='critical'&&Number(r._days)>=0&&Number(r._days)<=90);$('#actionCard')?.classList.toggle('urgent-card',hasUrgent);$('#focusPanel')?.classList.toggle('urgent-panel',hasUrgent);$('#renewMetricCard')?.classList.toggle('renew-urgent-card',hasCriticalRenewal);renderTasks(d.tasks||[]);renderNotes(d.notes||[]);renderSubs(d.subscriptions||[]);renderSubscriptionDirectory(d.subscriptions||[],$('#subscriptionDirectorySearch')?.value||'');renderArchive(d.tasks||[],d.subscriptions||[]);renderSmsLogs(d.smsLogs||[]);renderNotifications(alerts);handleTabAlert(criticalCount,warningCount);
 }
 
 function renderCalendarHealth(health){
   const h=health||{};
-  if(!h.lastTestAt)return setText('#calendarTestStatus','Belum diuji. Tekan Uji Notifikasi untuk pengesahan sebenar.');
+  if(!h.lastTestAt)return setText('#calendarTestStatus',h.configured?'Telegram sudah bersambung. Tekan Uji Telegram untuk pengesahan.':'Telegram belum disambungkan.');
   const ok=String(h.lastTestStatus||'').toUpperCase()==='OK';
   setText('#calendarTestStatus',(ok?'✅ ':'❌ ')+(h.lastTestMessage||h.lastTestStatus)+' • '+h.lastTestAt);
 }
@@ -1174,7 +1159,7 @@ window.deleteReference=async id=>{if(!confirm('Delete lampiran ini?'))return;try
 
 function syncModalBodyLock(){document.body.classList.toggle('modal-open',$$('.modal').some(modal=>!modal.classList.contains('hidden')))}
 function installModalObserver(){const observer=new MutationObserver(syncModalBodyLock);$$('.modal').forEach(modal=>observer.observe(modal,{attributes:true,attributeFilter:['class']}));syncModalBodyLock()}
-function openEditModal(title,html,submitHandler){setText('#editModalTitle',title);const f=$('#editForm');if(!f)return;f.innerHTML=html;f.onsubmit=submitHandler;const modal=$('#editModal');modal?.classList.remove('hidden');requestAnimationFrame(()=>{const box=modal?.querySelector('.modalbox');if(box)box.scrollTop=0;f.querySelector('input:not([type="hidden"]),select,textarea')?.focus({preventScroll:true})})}
+function openEditModal(title,html,submitHandler){setText('#editModalTitle',title);const f=$('#editForm');if(!f)return;f.innerHTML=html;const priority=f.querySelector('select[name="priority"]');if(priority){if(![...priority.options].some(o=>o.value==='Kritikal')){const option=document.createElement('option');option.value='Kritikal';option.textContent='Kritikal';priority.appendChild(option)}const recordId=f.querySelector('[name="id"]')?.value,current=(APP.data?.tasks||[]).find(r=>String(r.ID)===String(recordId));if(current?.Priority)priority.value=current.Priority}f.onsubmit=submitHandler;const modal=$('#editModal');modal?.classList.remove('hidden');requestAnimationFrame(()=>{const box=modal?.querySelector('.modalbox');if(box)box.scrollTop=0;f.querySelector('input:not([type="hidden"]),select,textarea')?.focus({preventScroll:true})})}
 function closeEditModal(){$('#editModal')?.classList.add('hidden');const f=$('#editForm');if(f){f.innerHTML='';f.onsubmit=null}}
 window.closeEditModal=closeEditModal;
 
@@ -1189,7 +1174,7 @@ window.openEditTask=id=>{
   const enabled=String(r.DailyNotification||'FALSE').toUpperCase()==='TRUE';
   const workdays=String(r.WorkdaysOnly||'TRUE').toUpperCase()==='TRUE';
   const start=isoDate(r.StartDate)||isoDate(r.Deadline)||new Date().toISOString().slice(0,10);
-  openEditModal('Kemaskini Tugasan',`<input type="hidden" name="id" value="${esc(r.ID)}"><input type="hidden" name="nextAction" value="${esc(r.NextAction||'')}"><div class="field"><label>Nama Tugasan</label><input name="task" required value="${esc(r.Task)}"></div><div class="form-row"><div class="field"><label>Tarikh Dari</label><input name="startDate" type="date" required value="${esc(start)}"></div><div class="field"><label>Tarikh Hingga</label><input name="deadline" type="date" required value="${esc(isoDate(r.Deadline))}"></div></div><div class="field"><label>Priority</label><select name="priority"><option ${r.Priority==='Normal'?'selected':''}>Normal</option><option ${r.Priority==='Tinggi'?'selected':''}>Tinggi</option><option ${r.Priority==='Urgent'?'selected':''}>Urgent</option></select></div><div class="form-row"><div class="field"><label>Status</label><select name="status"><option ${r.Status==='Belum Mula'?'selected':''}>Belum Mula</option><option ${r.Status==='Dalam Proses'?'selected':''}>Dalam Proses</option><option ${r.Status==='Proses Penyediaan Surat'?'selected':''}>Proses Penyediaan Surat</option><option ${r.Status==='Proses Menunggu Balasan'?'selected':''}>Proses Menunggu Balasan</option><option ${r.Status==='Menunggu'?'selected':''}>Menunggu</option><option ${r.Status==='Selesai'?'selected':''}>Selesai</option></select></div><div class="field"><label>PIC</label><input name="pic" value="${esc(r.PIC)}"></div></div><div class="task-notification-box"><div class="field"><label>Notifikasi tugasan</label><select name="dailyNotification"><option value="FALSE" ${enabled?'':'selected'}>Tidak</option><option value="TRUE" ${enabled?'selected':''}>Ya, aktifkan</option></select></div><div class="field"><label>Masa notifikasi</label><input name="notificationTime" type="time" value="${esc(r.NotificationTime||'08:00')}"></div><div class="field workday-choice"><label>Hari notifikasi</label><select name="workdaysOnly"><option value="TRUE" ${workdays?'selected':''}>Hari bekerja sahaja (Isnin–Jumaat, bukan cuti umum)</option><option value="FALSE" ${workdays?'':'selected'}>Setiap hari termasuk Sabtu dan Ahad</option></select></div><div class="muted">Jadual terus disimpan ke Google Calendar dan dibuang apabila tugasan selesai.</div></div><div class="field"><label>Kronologi Status</label><button class="history-open-btn" type="button" onclick="closeEditModal();openTaskLatestStatus('${esc(r.ID)}')"><span>◷</span><b>Buka Kronologi</b><small>${statusHistoryFor('tasks',r.ID).length} rekod</small></button></div><div class="field"><label>Nota</label><textarea name="notes">${esc(r.Notes)}</textarea></div><div class="muted">Lampiran diurus melalui ikon 📎 pada kolum Aksi.</div><div class="modal-actions"><button class="btn ghost" type="button" onclick="closeEditModal()">Batal</button><button class="btn primary" type="submit">Simpan</button></div>`,async e=>{
+  openEditModal('Kemaskini Tugasan',`<input type="hidden" name="id" value="${esc(r.ID)}"><input type="hidden" name="nextAction" value="${esc(r.NextAction||'')}"><div class="field"><label>Nama Tugasan</label><input name="task" required value="${esc(r.Task)}"></div><div class="form-row"><div class="field"><label>Tarikh Dari</label><input name="startDate" type="date" required value="${esc(start)}"></div><div class="field"><label>Tarikh Hingga</label><input name="deadline" type="date" required value="${esc(isoDate(r.Deadline))}"></div></div><div class="field"><label>Priority</label><select name="priority"><option ${r.Priority==='Normal'?'selected':''}>Normal</option><option ${r.Priority==='Tinggi'?'selected':''}>Tinggi</option><option ${r.Priority==='Urgent'?'selected':''}>Urgent</option></select></div><div class="form-row"><div class="field"><label>Status</label><select name="status"><option ${r.Status==='Belum Mula'?'selected':''}>Belum Mula</option><option ${r.Status==='Dalam Proses'?'selected':''}>Dalam Proses</option><option ${r.Status==='Proses Penyediaan Surat'?'selected':''}>Proses Penyediaan Surat</option><option ${r.Status==='Proses Menunggu Balasan'?'selected':''}>Proses Menunggu Balasan</option><option ${r.Status==='Menunggu'?'selected':''}>Menunggu</option><option ${r.Status==='Selesai'?'selected':''}>Selesai</option></select></div><div class="field"><label>PIC</label><input name="pic" value="${esc(r.PIC)}"></div></div><div class="task-notification-box"><div class="field"><label>Notifikasi tugasan</label><select name="dailyNotification"><option value="FALSE" ${enabled?'':'selected'}>Tidak</option><option value="TRUE" ${enabled?'selected':''}>Ya, aktifkan</option></select></div><div class="field"><label>Masa notifikasi</label><input name="notificationTime" type="time" value="${esc(r.NotificationTime||'08:00')}"></div><div class="field workday-choice"><label>Hari notifikasi</label><select name="workdaysOnly"><option value="TRUE" ${workdays?'selected':''}>Hari bekerja sahaja (Isnin–Jumaat, bukan cuti umum)</option><option value="FALSE" ${workdays?'':'selected'}>Setiap hari termasuk Sabtu dan Ahad</option></select></div><div class="muted">Peringatan dihantar melalui Telegram dan dihentikan apabila tugasan selesai.</div></div><div class="field"><label>Kronologi Status</label><button class="history-open-btn" type="button" onclick="closeEditModal();openTaskLatestStatus('${esc(r.ID)}')"><span>◷</span><b>Buka Kronologi</b><small>${statusHistoryFor('tasks',r.ID).length} rekod</small></button></div><div class="field"><label>Nota</label><textarea name="notes">${esc(r.Notes)}</textarea></div><div class="muted">Lampiran diurus melalui ikon 📎 pada kolum Aksi.</div><div class="modal-actions"><button class="btn ghost" type="button" onclick="closeEditModal()">Batal</button><button class="btn primary" type="submit">Simpan</button></div>`,async e=>{
     e.preventDefault();
     const form=e.currentTarget,d=Object.fromEntries(new FormData(form)),saveBtn=form.querySelector('[type="submit"]');
     if(d.startDate>d.deadline)return showToast('Tarikh Dari tidak boleh selepas Tarikh Hingga.',4500);
@@ -1380,6 +1365,7 @@ function setPhoneProgress(value,label,show=true){const box=$('#phoneProgress'),f
 function phoneHeaderKey(value){return String(value||'').toLowerCase().replace(/[^a-z0-9]/g,'')}
 function isPhoneHeader(value){const k=phoneHeaderKey(value);return ['telefon','notelefon','nombortelefon','phone','phoneno','mobile','mobileno','handphone','hp','nohp','tel','notel','telefonbimbit'].includes(k)||/telefon|phone|mobile|handphone/.test(k)}
 function isNameHeader(value){const k=phoneHeaderKey(value);return ['nama','name','namapenuh','fullname','namapenerima','penerima','pemohon'].includes(k)||/^nama/.test(k)}
+function isIcHeader(value){const k=phoneHeaderKey(value);return ['ic','noic','nric','kp','nokp','mykad','nomykad','kadpengenalan','nokadpengenalan','nomorkadpengenalan','noidentiti','nomboridentiti'].includes(k)||/kadpengenalan|mykad|nric/.test(k)}
 function uniquePhoneHeaders(row,maxCols){const used={};return Array.from({length:maxCols},(_,i)=>{let base=String(row?.[i]??'').trim()||'Kolum '+(i+1);used[base]=(used[base]||0)+1;return used[base]>1?base+' ('+used[base]+')':base})}
 function phoneCellText(value){if(value===null||value===undefined)return '';if(typeof value==='number'&&Number.isFinite(value))return Math.trunc(value).toString();let text=String(value).trim();if(/^[+-]?\d+(?:\.\d+)?e[+-]?\d+$/i.test(text)){const n=Number(text);if(Number.isFinite(n))text=n.toFixed(0)}return text}
 function validatePhoneNumber(value){
@@ -1399,19 +1385,20 @@ function validatePhoneNumber(value){
   const unique=[...new Set(issues)],changed=clean!==original;return {original,clean,valid,baseStatus:valid?(unique.length||changed?'fixed':'valid'):'invalid',issues:unique}
 }
 function resetPhoneResults(message='Pilih kolum nombor telefon dan tekan Semak Sheet Ini.'){
-  APP.phoneRows=[];APP.phonePage=1;const search=$('#phoneIssueSearch'),filter=$('#phoneIssueFilter');if(search)search.value='';if(filter)filter.value='all';['phoneIssueSearch','phoneIssueFilter','reanalyzePhoneBtn'].forEach(id=>{const el=$('#'+id);if(el)el.disabled=true});const download=$('#downloadPhoneExcelBtn');if(download)download.disabled=!APP.phoneAllSheetsChecked;setText('#phoneResultSummary',message);setText('#phoneIssueCount','0 rekod');setText('#phonePageInfo','0 / 0');const body=$('#phoneIssueRows');if(body)body.innerHTML='<tr><td colspan="6" class="phone-empty"><span>☎</span>'+esc(message)+'</td></tr>';renderPhoneStats()
+  APP.phoneRows=[];APP.phonePage=1;const search=$('#phoneIssueSearch'),filter=$('#phoneIssueFilter');if(search)search.value='';if(filter)filter.value='all';['phoneIssueSearch','phoneIssueFilter','reanalyzePhoneBtn'].forEach(id=>{const el=$('#'+id);if(el)el.disabled=true});const download=$('#downloadPhoneExcelBtn');if(download)download.disabled=!APP.phoneAllSheetsChecked;setText('#phoneResultSummary',message);setText('#phoneIssueCount','0 rekod');setText('#phonePageInfo','0 / 0');const body=$('#phoneIssueRows');if(body)body.innerHTML='<tr><td colspan="7" class="phone-empty"><span>☎</span>'+esc(message)+'</td></tr>';renderPhoneStats()
 }
 function detectPhoneHeaderRow(matrix){let best=0,bestScore=-1;matrix.slice(0,20).forEach((row,i)=>{const cells=(row||[]).map(v=>String(v||'').trim()),nonEmpty=cells.filter(Boolean).length,hasPhone=cells.some(isPhoneHeader),score=(hasPhone?100:0)+nonEmpty;if(nonEmpty&&score>bestScore){best=i;bestScore=score}});return best}
 function createPhoneSheetResult(sheetName){
   const sheet=APP.phoneWorkbook?.Sheets?.[sheetName],matrix=sheet?XLSX.utils.sheet_to_json(sheet,{header:1,defval:'',raw:false,blankrows:true}):[];
-  if(!matrix.length)return {sheetName,matrix:[],headerIndex:0,maxCols:0,headers:[],baseRows:[],nameColumn:'',column:'',rows:[],analyzed:false,skipped:true,empty:true};
+  if(!matrix.length)return {sheetName,matrix:[],headerIndex:0,maxCols:0,headers:[],baseRows:[],nameColumn:'',icColumn:'',column:'',rows:[],analyzed:false,skipped:true,empty:true};
   const headerIndex=detectPhoneHeaderRow(matrix),maxCols=Math.max(...matrix.slice(headerIndex).map(r=>(r||[]).length),1),headers=uniquePhoneHeaders(matrix[headerIndex],maxCols);
   const baseRows=matrix.slice(headerIndex+1).map((row,offset)=>({row,offset})).filter(item=>(item.row||[]).some(v=>String(v??'').trim()!=='')).map(item=>{const data={};headers.forEach((h,i)=>data[h]=item.row?.[i]??'');return {data,rowNumber:headerIndex+item.offset+2}});
-  return {sheetName,matrix,headerIndex,maxCols,headers,baseRows,nameColumn:headers.find(isNameHeader)||headers.find(h=>!isPhoneHeader(h))||'',column:headers.find(isPhoneHeader)||'',rows:[],analyzed:false,skipped:false,empty:false}
+  return {sheetName,matrix,headerIndex,maxCols,headers,baseRows,nameColumn:headers.find(isNameHeader)||headers.find(h=>!isPhoneHeader(h)&&!isIcHeader(h))||'',icColumn:headers.find(isIcHeader)||'',column:headers.find(isPhoneHeader)||'',rows:[],analyzed:false,skipped:false,empty:false}
 }
 function ensurePhoneSheetResult(sheetName){if(!APP.phoneSheetResults[sheetName])APP.phoneSheetResults[sheetName]=createPhoneSheetResult(sheetName);return APP.phoneSheetResults[sheetName]}
 function allPhoneRows(){return Object.values(APP.phoneSheetResults||{}).filter(r=>r?.analyzed).flatMap(r=>r.rows||[])}
 function phoneRowName(row){const result=APP.phoneSheetResults?.[row.sheetName];return row.data?.[result?.nameColumn]||'-'}
+function phoneRowIc(row){const result=APP.phoneSheetResults?.[row.sheetName],value=row.data?.[result?.icColumn];return String(value??'').trim().replace(/^['`´’]+/,'')||'-'}
 function phoneStatusMeta(row){if(row.check?.baseStatus==='invalid')return {label:'PERLU SEMAK',pill:'critical'};if(row.duplicate)return {label:'DUPLIKAT',pill:'warning'};if(row.check?.baseStatus==='fixed')return {label:'DIBETULKAN',pill:'normal'};return {label:'BETUL',pill:'normal'}}
 function buildPhoneRowsForResult(result){result.rows=(result.baseRows||[]).map((item,index)=>({index,sheetName:result.sheetName,data:{...item.data},rowNumber:item.rowNumber,original:phoneCellText(item.data[result.column]),current:phoneCellText(item.data[result.column]),check:null,duplicate:false,status:'valid',issue:''}))}
 async function analyzePhoneSheetResult(result,onProgress){
@@ -1427,7 +1414,7 @@ function updatePhoneWorkbookSummary(){
   const names=APP.phoneWorkbook?.SheetNames||[],results=names.map(n=>APP.phoneSheetResults[n]).filter(Boolean),checked=results.filter(r=>r.analyzed).length,skipped=results.filter(r=>r.skipped).map(r=>r.sheetName);let text=names.length?checked+' daripada '+names.length+' sheet mempunyai kolum telefon dan telah disemak.':'';if(skipped.length)text+=' Sheet tanpa kolum telefon dikekalkan: '+skipped.join(', ')+'.';if(APP.phoneAllSheetsChecked&&checked)text+=' Anda boleh download sekali untuk semua sheet.';setText('#phoneWorkbookSummary',text)
 }
 function loadPhoneSheet(sheetName){
-  if(!window.XLSX||!APP.phoneWorkbook)return;const result=ensurePhoneSheetResult(sheetName);APP.phoneSheetName=sheetName;APP.phoneHeaders=result.headers;APP.phoneBaseRows=result.baseRows;APP.phoneNameColumn=result.nameColumn;APP.phoneColumn=result.column;APP.phoneRows=result.rows||[];
+  if(!window.XLSX||!APP.phoneWorkbook)return;const result=ensurePhoneSheetResult(sheetName);APP.phoneSheetName=sheetName;APP.phoneHeaders=result.headers;APP.phoneBaseRows=result.baseRows;APP.phoneNameColumn=result.nameColumn;APP.phoneIcColumn=result.icColumn;APP.phoneColumn=result.column;APP.phoneRows=result.rows||[];
   const select=$('#phoneSheetSelect');if(select&&select.value!==sheetName)select.value=sheetName;const column=$('#phoneColumnSelect');if(column){column.innerHTML=result.headers.length?result.headers.map(h=>`<option value="${esc(h)}">${esc(h)}</option>`).join(''):'<option>Sheet kosong</option>';column.disabled=!result.headers.length;if(result.column)column.value=result.column}
   const analyze=$('#analyzePhoneBtn');if(analyze)analyze.disabled=!result.column;if(result.analyzed)renderPhoneResults();else resetPhoneResults(result.empty?'Sheet ini kosong.':'Tiada kolum telefon dikesan. Pilih kolum yang betul, kemudian tekan Semak Sheet Ini.');updatePhoneWorkbookSummary()
 }
@@ -1443,26 +1430,26 @@ async function readPhoneExcelFile(file){
 async function analyzePhoneRows(){
   const result=ensurePhoneSheetResult(APP.phoneSheetName);if(!APP.phoneColumn)return showToast('Pilih kolum nombor telefon dahulu.',4000);result.column=APP.phoneColumn;result.skipped=false;setPhoneProgress(5,'Menyemak sheet '+result.sheetName+'...');await analyzePhoneSheetResult(result,(i,total)=>setPhoneProgress(8+(i/Math.max(1,total))*78,'Menyemak baris '+(i+1)+' daripada '+total.toLocaleString('en-MY')+'...'));recomputeGlobalPhoneDuplicates();APP.phoneAllSheetsChecked=(APP.phoneWorkbook?.SheetNames||[]).every(n=>{const r=APP.phoneSheetResults[n];return r&&(r.analyzed||r.skipped)});APP.phoneRows=result.rows;APP.phonePage=1;renderPhoneResults();updatePhoneWorkbookSummary();setPhoneProgress(100,'Sheet selesai disemak.');setTimeout(()=>$('#phoneProgress')?.classList.add('hidden'),900);showToast('Sheet '+result.sheetName+' selesai disemak.',3500)
 }
-function phoneIssueRowsFiltered(){const term=String($('#phoneIssueSearch')?.value||'').trim().toLowerCase(),filter=$('#phoneIssueFilter')?.value||'all';return (APP.phoneRows||[]).filter(r=>r.check&&(r.check.baseStatus!=='valid'||r.duplicate)).filter(r=>filter==='all'||(filter==='duplicate'?r.duplicate:r.check.baseStatus===filter)).filter(r=>!term||[r.rowNumber,phoneRowName(r),r.current,r.check.clean,r.issue].some(v=>String(v||'').toLowerCase().includes(term)))}
+function phoneIssueRowsFiltered(){const term=String($('#phoneIssueSearch')?.value||'').trim().toLowerCase(),filter=$('#phoneIssueFilter')?.value||'all';return (APP.phoneRows||[]).filter(r=>r.check&&(r.check.baseStatus!=='valid'||r.duplicate)).filter(r=>filter==='all'||(filter==='duplicate'?r.duplicate:r.check.baseStatus===filter)).filter(r=>!term||[r.rowNumber,phoneRowName(r),phoneRowIc(r),r.current,r.check.clean,r.issue].some(v=>String(v||'').toLowerCase().includes(term)))}
 function renderPhoneStats(){
   const rows=allPhoneRows(),total=rows.length,valid=rows.filter(r=>r.check?.baseStatus==='valid'&&!r.duplicate).length,fixed=rows.filter(r=>r.check?.baseStatus==='fixed').length,invalid=rows.filter(r=>r.check?.baseStatus==='invalid').length,duplicate=rows.filter(r=>r.duplicate).length;$('#phoneStats')?.classList.toggle('hidden',!total);setText('#phoneTotal',total.toLocaleString('en-MY'));setText('#phoneValid',valid.toLocaleString('en-MY'));setText('#phoneFixed',fixed.toLocaleString('en-MY'));setText('#phoneInvalid',invalid.toLocaleString('en-MY'));setText('#phoneDuplicate',duplicate.toLocaleString('en-MY'))
 }
 function renderPhoneResults(){
   const rows=APP.phoneRows||[],invalid=rows.filter(r=>r.check?.baseStatus==='invalid').length;renderPhoneStats();const usable=rows.some(r=>r.check);['phoneIssueSearch','phoneIssueFilter','reanalyzePhoneBtn'].forEach(id=>{const el=$('#'+id);if(el)el.disabled=!usable});const download=$('#downloadPhoneExcelBtn');if(download)download.disabled=!APP.phoneAllSheetsChecked||!allPhoneRows().length;
   const issues=phoneIssueRowsFiltered(),pages=Math.max(1,Math.ceil(issues.length/APP.phonePageSize));APP.phonePage=Math.min(Math.max(1,APP.phonePage),pages);const start=(APP.phonePage-1)*APP.phonePageSize,visible=issues.slice(start,start+APP.phonePageSize);setText('#phoneResultSummary','Sheet '+APP.phoneSheetName+' • '+(invalid?invalid.toLocaleString('en-MY')+' nombor masih perlu diperiksa.':'Tiada nombor tidak sah dalam sheet ini.'));setText('#phoneIssueCount',issues.length.toLocaleString('en-MY')+' rekod');setText('#phonePageInfo',issues.length?APP.phonePage+' / '+pages:'0 / 0');const prev=$('#phonePrevPage'),next=$('#phoneNextPage');if(prev)prev.disabled=APP.phonePage<=1;if(next)next.disabled=APP.phonePage>=pages||!issues.length;
-  const body=$('#phoneIssueRows');if(!body)return;body.innerHTML=visible.length?visible.map(r=>{const meta=phoneStatusMeta(r);return `<tr class="phone-${esc(r.status)}"><td><b>${r.rowNumber}</b></td><td>${esc(phoneRowName(r))}</td><td class="phone-value ${r.status==='invalid'?'phone-problem':''}">${esc(r.current||'(kosong)')}</td><td class="phone-value phone-clean">${esc(r.check.clean||'-')}</td><td class="phone-issue-note">${levelPill(meta.pill,meta.label)}<div style="margin-top:5px">${esc(r.issue)}</div></td><td><button class="mini-icon" type="button" onclick="openPhoneEdit(${r.index})" title="Edit nombor">✎</button></td></tr>`}).join(''):'<tr><td colspan="6" class="phone-empty"><span>✓</span>Tiada rekod sepadan dengan carian atau penapis.</td></tr>'
+  const body=$('#phoneIssueRows');if(!body)return;body.innerHTML=visible.length?visible.map(r=>{const meta=phoneStatusMeta(r);return `<tr class="phone-${esc(r.status)}"><td><b>${r.rowNumber}</b></td><td>${esc(phoneRowName(r))}</td><td class="phone-value">${esc(phoneRowIc(r))}</td><td class="phone-value ${r.status==='invalid'?'phone-problem':''}">${esc(r.current||'(kosong)')}</td><td class="phone-value phone-clean">${esc(r.check.clean||'-')}</td><td class="phone-issue-note">${levelPill(meta.pill,meta.label)}<div style="margin-top:5px">${esc(r.issue)}</div></td><td><button class="mini-icon" type="button" onclick="openPhoneEdit(${r.index})" title="Edit nombor">✎</button></td></tr>`}).join(''):'<tr><td colspan="7" class="phone-empty"><span>✓</span>Tiada rekod sepadan dengan carian atau penapis.</td></tr>'
 }
 function phoneRowsForPopup(){
-  const filter=APP.phonePopupFilter,term=String($('#phoneFilterSearch')?.value||'').trim().toLowerCase();return allPhoneRows().filter(r=>filter==='total'||(filter==='valid'?r.check?.baseStatus==='valid'&&!r.duplicate:filter==='fixed'?r.check?.baseStatus==='fixed':filter==='invalid'?r.check?.baseStatus==='invalid':filter==='duplicate'?r.duplicate:true)).filter(r=>!term||[r.sheetName,r.rowNumber,phoneRowName(r),r.current,r.check?.clean,r.issue].some(v=>String(v||'').toLowerCase().includes(term)))
+  const filter=APP.phonePopupFilter,term=String($('#phoneFilterSearch')?.value||'').trim().toLowerCase();return allPhoneRows().filter(r=>filter==='total'||(filter==='valid'?r.check?.baseStatus==='valid'&&!r.duplicate:filter==='fixed'?r.check?.baseStatus==='fixed':filter==='invalid'?r.check?.baseStatus==='invalid':filter==='duplicate'?r.duplicate:true)).filter(r=>!term||[r.sheetName,r.rowNumber,phoneRowName(r),phoneRowIc(r),r.current,r.check?.clean,r.issue].some(v=>String(v||'').toLowerCase().includes(term)))
 }
 function renderPhoneFilterPopup(){
-  const rows=phoneRowsForPopup(),pages=Math.max(1,Math.ceil(rows.length/APP.phonePopupPageSize));APP.phonePopupPage=Math.min(Math.max(1,APP.phonePopupPage),pages);const start=(APP.phonePopupPage-1)*APP.phonePopupPageSize,visible=rows.slice(start,start+APP.phonePopupPageSize);setText('#phoneFilterCount',rows.length.toLocaleString('en-MY')+' rekod');setText('#phoneFilterPageInfo',rows.length?'Halaman '+APP.phonePopupPage+' / '+pages:'0 / 0');const prev=$('#phoneFilterPrev'),next=$('#phoneFilterNext');if(prev)prev.disabled=APP.phonePopupPage<=1;if(next)next.disabled=APP.phonePopupPage>=pages||!rows.length;const body=$('#phoneFilterRows');if(body)body.innerHTML=visible.length?visible.map(r=>{const meta=phoneStatusMeta(r),encoded=encodeURIComponent(r.sheetName);return `<tr class="phone-${esc(r.status)}"><td><span class="phone-sheet-badge">${esc(r.sheetName)}</span></td><td><b>${r.rowNumber}</b></td><td>${esc(phoneRowName(r))}</td><td class="phone-value">${esc(r.current||'(kosong)')}</td><td class="phone-value phone-clean">${esc(r.check?.clean||'-')}</td><td class="phone-issue-note">${levelPill(meta.pill,meta.label)}<div style="margin-top:5px">${esc(r.issue)}</div></td><td><button class="mini-icon" type="button" onclick="openPhoneEditFromFilter('${esc(encoded)}',${r.index})" title="Edit nombor">✎</button></td></tr>`}).join(''):'<tr><td colspan="7" class="phone-empty"><span>✓</span>Tiada rekod dalam kategori ini.</td></tr>'
+  const rows=phoneRowsForPopup(),pages=Math.max(1,Math.ceil(rows.length/APP.phonePopupPageSize));APP.phonePopupPage=Math.min(Math.max(1,APP.phonePopupPage),pages);const start=(APP.phonePopupPage-1)*APP.phonePopupPageSize,visible=rows.slice(start,start+APP.phonePopupPageSize);setText('#phoneFilterCount',rows.length.toLocaleString('en-MY')+' rekod');setText('#phoneFilterPageInfo',rows.length?'Halaman '+APP.phonePopupPage+' / '+pages:'0 / 0');const prev=$('#phoneFilterPrev'),next=$('#phoneFilterNext');if(prev)prev.disabled=APP.phonePopupPage<=1;if(next)next.disabled=APP.phonePopupPage>=pages||!rows.length;const body=$('#phoneFilterRows');if(body)body.innerHTML=visible.length?visible.map(r=>{const meta=phoneStatusMeta(r),encoded=encodeURIComponent(r.sheetName);return `<tr class="phone-${esc(r.status)}"><td><span class="phone-sheet-badge">${esc(r.sheetName)}</span></td><td><b>${r.rowNumber}</b></td><td>${esc(phoneRowName(r))}</td><td class="phone-value">${esc(phoneRowIc(r))}</td><td class="phone-value">${esc(r.current||'(kosong)')}</td><td class="phone-value phone-clean">${esc(r.check?.clean||'-')}</td><td class="phone-issue-note">${levelPill(meta.pill,meta.label)}<div style="margin-top:5px">${esc(r.issue)}</div></td><td><button class="mini-icon" type="button" onclick="openPhoneEditFromFilter('${esc(encoded)}',${r.index})" title="Edit nombor">✎</button></td></tr>`}).join(''):'<tr><td colspan="8" class="phone-empty"><span>✓</span>Tiada rekod dalam kategori ini.</td></tr>'
 }
 function openPhoneFilterModal(filter){
   if(!allPhoneRows().length)return showToast('Muat naik dan semak fail Excel dahulu.',3500);const titles={total:'Semua Rekod',valid:'Format Betul',fixed:'Dibetulkan Automatik',invalid:'Perlu Semakan',duplicate:'Nombor Berulang'};APP.phonePopupFilter=filter||'total';APP.phonePopupPage=1;const search=$('#phoneFilterSearch');if(search)search.value='';setText('#phoneFilterTitle',titles[APP.phonePopupFilter]||'Data Nombor Telefon');setText('#phoneFilterSubtitle','Data daripada semua sheet yang telah disemak.');renderPhoneFilterPopup();$('#phoneFilterModal')?.classList.remove('hidden')
 }
 function closePhoneFilterModal(){$('#phoneFilterModal')?.classList.add('hidden')}
-window.openPhoneEdit=index=>{const row=APP.phoneRows[index],result=APP.phoneSheetResults?.[APP.phoneSheetName];if(!row||!result)return;const name=phoneRowName(row)||'Baris '+row.rowNumber;openEditModal('Edit Nombor Telefon',`<div class="phone-help"><b>${esc(name)}</b><br>Sheet: ${esc(result.sheetName)} • Baris Excel: ${row.rowNumber}<br>${esc(row.issue)}</div><div class="field"><label>Nombor telefon</label><input name="phone" inputmode="tel" autocomplete="off" required value="${esc(row.current)}" placeholder="Contoh: 0123456789"></div><div class="muted">Gunakan nombor Malaysia bermula 01. Tanda, ruang dan sengkang akan dibuang secara automatik.</div><div class="modal-actions"><button class="btn ghost" type="button" onclick="closeEditModal()">Batal</button><button class="btn primary" type="submit">Simpan & Semak</button></div>`,async e=>{e.preventDefault();const value=String(new FormData(e.currentTarget).get('phone')||'').trim();row.current=value;row.data[result.column]=value;await analyzePhoneSheetResult(result);recomputeGlobalPhoneDuplicates();APP.phoneRows=result.rows;renderPhoneResults();updatePhoneWorkbookSummary();closeEditModal();showToast('Nombor dikemas kini dan disemak semula.')})};
+window.openPhoneEdit=index=>{const row=APP.phoneRows[index],result=APP.phoneSheetResults?.[APP.phoneSheetName];if(!row||!result)return;const name=phoneRowName(row)||'Baris '+row.rowNumber;openEditModal('Edit Nombor Telefon',`<div class="phone-help"><b>${esc(name)}</b><br>No. Kad Pengenalan: <b>${esc(phoneRowIc(row))}</b><br>Sheet: ${esc(result.sheetName)} • Baris Excel: ${row.rowNumber}<br>${esc(row.issue)}</div><div class="field"><label>Nombor telefon</label><input name="phone" inputmode="tel" autocomplete="off" required value="${esc(row.current)}" placeholder="Contoh: 0123456789"></div><div class="muted">Gunakan nombor Malaysia bermula 01. Tanda, ruang dan sengkang akan dibuang secara automatik.</div><div class="modal-actions"><button class="btn ghost" type="button" onclick="closeEditModal()">Batal</button><button class="btn primary" type="submit">Simpan & Semak</button></div>`,async e=>{e.preventDefault();const value=String(new FormData(e.currentTarget).get('phone')||'').trim();row.current=value;row.data[result.column]=value;await analyzePhoneSheetResult(result);recomputeGlobalPhoneDuplicates();APP.phoneRows=result.rows;renderPhoneResults();updatePhoneWorkbookSummary();closeEditModal();showToast('Nombor dikemas kini dan disemak semula.')})};
 window.openPhoneEditFromFilter=(encoded,index)=>{const sheetName=decodeURIComponent(encoded);closePhoneFilterModal();loadPhoneSheet(sheetName);window.openPhoneEdit(index)};
 function uniqueAuditHeaders(headers){const used=new Set(headers),pick=base=>{let name=base,n=2;while(used.has(name))name=base+' '+n++;used.add(name);return name};return [pick('No Telefon Asal'),pick('No Telefon Bersih'),pick('Status Semakan'),pick('Catatan Semakan')]}
 function buildCleanPhoneSheet(result){
@@ -1491,7 +1478,7 @@ function init(){
   safeOn('#closeHistoryModal','click',closeHistoryModal);safeOn('#cancelHistoryModal','click',closeHistoryModal);
   safeOn('#closeRuleModal','click',closeRuleModal);safeOn('#doneRuleModal','click',closeRuleModal);
   safeOn('#historyForm','submit',async e=>{e.preventDefault();const form=e.currentTarget,d=Object.fromEntries(new FormData(form));if(!String(d.detail||'').trim())return showToast('Masukkan perkembangan baharu.');if(!configReady()||!APP.data)return showToast('Sambungan data belum tersedia.',4500);try{await saveStatusHistory(d);form.elements.detail.value='';closeHistoryModal()}catch(err){showToast(err.message,6000)}});
-  safeOn('#runAlertCheckBtn','click',async()=>{try{await runPost('checkAlertsNow',{},'Semakan notifikasi selesai.');renderNotifications(APP.data?.alerts||[])}catch(_){}});
+  safeOn('#runAlertCheckBtn','click',async()=>{try{await runPost('checkTelegramNow',{},'Semakan Telegram selesai.');renderNotifications(APP.data?.alerts||[])}catch(_){}});
   safeOn('#openCalendarSettingsBtn','click',()=>{closeNotificationModal();openConfig();document.querySelector('.settingsTab[data-settings="calendar"]')?.click()});
   safeOn('#plannedSms','input',calculatePlan);
   safeOn('#subscriptionDirectorySearch','input',e=>renderSubscriptionDirectory(APP.data?.subscriptions||[],e.currentTarget.value));
@@ -1507,8 +1494,8 @@ function init(){
   safeOn('#logoutBtn','click',()=>{if(!confirm('Keluar dan padam sambungan daripada browser ini?'))return;localStorage.removeItem('pkpj_api_url');localStorage.removeItem('pkpj_api_token');localStorage.removeItem('pkpj_dashboard_cache');APP.apiUrl='';APP.token='';APP.data=null;closeConfig();setText('#lastUpdate','Belum disambungkan');showToast('Anda telah keluar.')});
 
   safeOn('#saveSmsSettings','click',async()=>{const current=Number($('#smsCurrentAllocationSetting')?.value||0),approved=Number($('#smsNewApprovedSetting')?.value||0),cost=Number($('#smsCostSetting')?.value||0);if(current<0||approved<0||cost<=0)return showToast('Semak nilai tetapan SMS.');try{await runPost('updateSmsSettings',{currentAllocation:current,newApprovedAllocation:approved,costPerSms:cost},'Tetapan SMS disimpan.')}catch(_){}});
-  safeOn('#syncTaskCalendarBtn','click',async()=>{const btn=$('#syncTaskCalendarBtn');if(btn){btn.disabled=true;btn.textContent='Menyusun jadual...';}setText('#calendarTestStatus','Menyegerakkan semua tugasan aktif ke Google Calendar...');try{await runPost('syncTaskCalendars',{},'Semua jadual tugasan telah disemak.');const c=APP.data?.calendarSchedule||{};setText('#calendarTestStatus',c.error?`⚠️ ${c.error} tugasan gagal. Semak status merah pada tugasan.`:`✅ ${c.scheduled||0} tugasan berjaya dijadualkan.`)}catch(e){setText('#calendarTestStatus','❌ '+e.message)}finally{if(btn){btn.disabled=false;btn.textContent='↻ Jadualkan Semua Tugasan';}}});
-  safeOn('#testCalendarBtn','click',async()=>{const btn=$('#testCalendarBtn');if(btn){btn.disabled=true;btn.textContent='⏳ Menguji...';}try{await runCalendarNotificationTest()}catch(_){ }finally{if(btn){btn.disabled=false;btn.textContent='🔔 Uji Notifikasi';}}});
+  safeOn('#syncTaskCalendarBtn','click',async()=>{const btn=$('#syncTaskCalendarBtn');if(btn){btn.disabled=true;btn.textContent='Menyemak...';}try{const response=await jsonp('telegramStatus',20000),health=response?.data?.telegramHealth||response?.data?.calendarHealth||{};APP.data=APP.data||{};APP.data.telegramHealth=health;APP.data.calendarHealth=health;renderCalendarHealth(health);setText('#calendarSyncSummary',health.configured?'✅ Telegram tersambung dengan '+(health.botName||'bot PKPJ'):'⚠️ Jalankan setupTelegram() dalam Apps Script dahulu.')}catch(e){setText('#calendarTestStatus','❌ '+e.message)}finally{if(btn){btn.disabled=false;btn.textContent='↻ Semak Sambungan';}}});
+  safeOn('#testCalendarBtn','click',async()=>{const btn=$('#testCalendarBtn');if(btn){btn.disabled=true;btn.textContent='⏳ Menguji...';}try{await runTelegramNotificationTest()}catch(_){ }finally{if(btn){btn.disabled=false;btn.textContent='🔔 Uji Telegram';}}});
 
   safeOn('#openSmsTotal','click',()=>{if(APP.data?.sms)$('#smsTotalForm [name="total"]').value=APP.data.sms.used;$('#smsTotalModal')?.classList.remove('hidden')});safeOn('#closeSmsTotal','click',()=>$('#smsTotalModal')?.classList.add('hidden'));
   safeOn('#resetSmsBtn','click',async()=>{if(!confirm('Reset semua penggunaan SMS dan kosongkan log?'))return;if(!confirm('Pengesahan terakhir: teruskan reset?'))return;try{await runPost('resetSms',{},'Penggunaan SMS direset.');$('#smsTotalModal')?.classList.add('hidden')}catch(_){}});
