@@ -565,6 +565,255 @@ th{font-weight:600!important}
   }
 }
 
+/* ===== V24: SENARAI TUGASAN TELEFON LEBIH KEMAS ===== */
+@media(max-width:760px){
+  body.mobile-task-page .top{
+    justify-content:flex-end!important;
+    margin-bottom:10px!important;
+  }
+  body.mobile-task-page .top>div:first-child{
+    display:none!important;
+  }
+  body.mobile-task-page .top .actions{
+    width:auto!important;
+    margin-left:auto!important;
+    gap:8px!important;
+  }
+  body.mobile-task-page .top .actions .btn{
+    min-height:40px!important;
+    padding:8px 12px!important;
+    flex:0 0 auto!important;
+  }
+  #page-tasks .task-compact-card{
+    margin-top:0!important;
+    border:1px solid #dce6f2!important;
+    border-radius:20px!important;
+    background:#fff!important;
+    box-shadow:0 12px 34px rgba(15,23,42,.08)!important;
+  }
+  #page-tasks .task-compact-head{
+    padding:13px 13px 12px!important;
+    gap:10px!important;
+    background:linear-gradient(135deg,#f8fbff,#fff)!important;
+  }
+  #page-tasks .task-compact-head h2{
+    font-size:18px!important;
+    color:#0f295a!important;
+  }
+  #page-tasks .task-compact-head .muted{
+    max-width:235px!important;
+    margin-top:3px!important;
+    font-size:11px!important;
+    line-height:1.35!important;
+  }
+  #page-tasks .section-actions{
+    flex:0 0 auto!important;
+    gap:7px!important;
+  }
+  #page-tasks .info-icon-btn,
+  #page-tasks .add-icon-btn{
+    width:40px!important;
+    height:40px!important;
+    border-radius:13px!important;
+  }
+  #page-tasks .add-icon-btn{
+    font-size:25px!important;
+  }
+  #page-tasks .task-compact-toolbar{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 46px!important;
+    gap:8px!important;
+    padding:10px 12px 11px!important;
+    background:#f8fafc!important;
+  }
+  #page-tasks .task-compact-search{
+    grid-column:1/-1!important;
+    min-width:0!important;
+  }
+  #page-tasks .task-compact-search input{
+    height:43px!important;
+    padding:8px 12px 8px 38px!important;
+    border-radius:13px!important;
+    background:#fff!important;
+    font-size:14px!important;
+  }
+  #page-tasks .task-priority-select{
+    grid-column:1!important;
+    width:100%!important;
+    min-width:0!important;
+    height:42px!important;
+    padding:8px 11px!important;
+    border-radius:12px!important;
+    font-size:13px!important;
+  }
+  #page-tasks .task-sort-btn{
+    grid-column:2!important;
+    width:46px!important;
+    min-width:46px!important;
+    height:42px!important;
+    padding:0!important;
+    border-radius:12px!important;
+  }
+  #page-tasks .task-sort-btn span{
+    margin:auto!important;
+    font-size:19px!important;
+  }
+  #page-tasks .task-sort-btn b{
+    display:none!important;
+  }
+  #page-tasks .task-filter-row{
+    grid-column:1/-1!important;
+    width:100%!important;
+    flex-wrap:nowrap!important;
+    gap:6px!important;
+    padding:1px 0 2px!important;
+    overflow-x:auto!important;
+    scrollbar-width:none!important;
+  }
+  #page-tasks .task-filter-row::-webkit-scrollbar{
+    display:none!important;
+  }
+  #page-tasks .task-filter-btn{
+    flex:0 0 auto!important;
+    min-height:32px!important;
+    padding:6px 11px!important;
+    font-size:11px!important;
+    box-shadow:none!important;
+  }
+  #page-tasks #taskCompactCount{
+    flex:0 0 auto!important;
+    min-height:32px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    padding:5px 10px!important;
+    font-size:10px!important;
+    white-space:nowrap!important;
+  }
+  #page-tasks .task-compact-workspace{
+    min-height:0!important;
+    background:#f4f7fb!important;
+  }
+  #page-tasks .task-compact-list{
+    padding:9px!important;
+    border:0!important;
+    background:#f4f7fb!important;
+  }
+  #page-tasks .task-compact-row{
+    grid-template-columns:minmax(0,1fr) minmax(108px,.72fr)!important;
+    gap:10px 12px!important;
+    min-height:0!important;
+    margin:0 0 9px!important;
+    padding:14px 14px 13px 17px!important;
+    border:1px solid #e1e8f1!important;
+    border-radius:15px!important;
+    background:#fff!important;
+    box-shadow:0 5px 16px rgba(15,23,42,.045)!important;
+  }
+  #page-tasks .task-compact-row:last-child{
+    margin-bottom:0!important;
+  }
+  #page-tasks .task-compact-row::before{
+    top:12px!important;
+    bottom:12px!important;
+    width:4px!important;
+    border-radius:0 6px 6px 0!important;
+  }
+  #page-tasks .task-compact-row.selected{
+    border-color:#93c5fd!important;
+    background:linear-gradient(135deg,#eff6ff,#fff)!important;
+    box-shadow:0 7px 20px rgba(37,99,235,.10)!important;
+  }
+  #page-tasks .task-row-main{
+    grid-column:1/-1!important;
+    min-width:0!important;
+    padding-right:24px!important;
+  }
+  #page-tasks .task-row-title{
+    display:-webkit-box!important;
+    overflow:hidden!important;
+    white-space:normal!important;
+    -webkit-line-clamp:2!important;
+    -webkit-box-orient:vertical!important;
+    font-size:15px!important;
+    line-height:1.38!important;
+    color:#102a56!important;
+  }
+  #page-tasks .task-row-note{
+    display:-webkit-box!important;
+    overflow:hidden!important;
+    white-space:normal!important;
+    -webkit-line-clamp:1!important;
+    -webkit-box-orient:vertical!important;
+    margin-top:4px!important;
+    font-size:12px!important;
+    line-height:1.4!important;
+  }
+  #page-tasks .task-notification-badge,
+  #page-tasks .task-calendar-state{
+    margin:7px 5px 0 0!important;
+    padding:4px 7px!important;
+    font-size:9.5px!important;
+    line-height:1.2!important;
+  }
+  #page-tasks .task-compact-row .task-row-meta:nth-of-type(2){
+    grid-column:1!important;
+    grid-row:2!important;
+  }
+  #page-tasks .task-compact-row .task-row-meta:nth-of-type(3){
+    grid-column:2!important;
+    grid-row:2!important;
+  }
+  #page-tasks .task-compact-row .task-row-meta:nth-of-type(4){
+    display:none!important;
+  }
+  #page-tasks .task-row-meta{
+    padding:8px 9px!important;
+    border:1px solid #edf1f6!important;
+    border-radius:10px!important;
+    background:#f8fafc!important;
+  }
+  #page-tasks .task-row-meta small{
+    margin-bottom:3px!important;
+    font-size:9px!important;
+    line-height:1.1!important;
+  }
+  #page-tasks .task-row-meta b{
+    overflow:visible!important;
+    white-space:normal!important;
+    font-size:11.5px!important;
+    line-height:1.35!important;
+  }
+  #page-tasks .task-row-chevron{
+    position:absolute!important;
+    right:13px!important;
+    top:14px!important;
+    width:23px!important;
+    height:23px!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:8px!important;
+    background:#eef4ff!important;
+    color:#2563eb!important;
+    font-size:17px!important;
+  }
+  #page-tasks .task-compact-row.sorting{
+    grid-template-columns:32px minmax(0,1fr) 72px!important;
+    align-items:center!important;
+  }
+  #page-tasks .task-compact-row.sorting .task-row-main{
+    grid-column:auto!important;
+    padding-right:0!important;
+  }
+  #page-tasks .task-compact-empty{
+    min-height:240px!important;
+    margin:0!important;
+    border:1px dashed #cbd5e1!important;
+    border-radius:15px!important;
+    background:#fff!important;
+    font-size:13px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -851,6 +1100,7 @@ function showPage(page){
   const target=$('#page-'+page);
   if(!target)return;
   document.body.classList.toggle('mobile-focus-dashboard',page==='dashboard');
+  document.body.classList.toggle('mobile-task-page',page==='tasks');
   $$('.tabpage').forEach(x=>x.classList.remove('active'));
   target.classList.add('active');
   $$('.navbtn[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
