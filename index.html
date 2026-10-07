@@ -454,6 +454,117 @@ th{font-weight:600!important}
 @media(max-width:1050px){.phone-upload-grid{grid-template-columns:1fr 1fr}.phone-stats{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.phone-hero{align-items:flex-start;padding:15px}.phone-private{display:none}.phone-upload-grid{grid-template-columns:1fr}.phone-stats{grid-template-columns:repeat(2,1fr);gap:8px}.phone-stat{padding:11px}.phone-stat:first-child{grid-column:1/-1}.phone-stat b{font-size:19px}.phone-result-head,.phone-result-toolbar{align-items:stretch;flex-direction:column}.phone-result-actions .btn{flex:1}.phone-result-toolbar input,.phone-result-toolbar select{width:100%}.phone-hero h2{font-size:16px}.phone-filter-toolbar,.phone-filter-footer{align-items:stretch;flex-direction:column}.phone-filter-toolbar input{width:100%}.phone-filter-pager{justify-content:center}}
 
+/* ===== V23: DASHBOARD TELEFON — FOKUS HARI INI SAHAJA ===== */
+@media(max-width:760px){
+  body.mobile-focus-dashboard .top{
+    justify-content:flex-end!important;
+    margin-bottom:10px!important;
+  }
+  body.mobile-focus-dashboard .top>div:first-child{
+    display:none!important;
+  }
+  body.mobile-focus-dashboard .top .actions{
+    width:auto!important;
+    margin-left:auto!important;
+    gap:8px!important;
+  }
+  body.mobile-focus-dashboard .top .actions .btn{
+    min-height:40px!important;
+    padding:8px 13px!important;
+    flex:0 0 auto!important;
+  }
+  #page-dashboard .dashboard-cards,
+  #page-dashboard .dash-main-grid>.sms-premium,
+  #page-dashboard .dashboard-bottom-grid,
+  #page-dashboard .dashboard-footer{
+    display:none!important;
+  }
+  #page-dashboard .dash-main-grid{
+    display:block!important;
+    margin:0!important;
+  }
+  #page-dashboard .focus-panel{
+    width:100%!important;
+    min-height:calc(100dvh - 205px)!important;
+    border-radius:20px!important;
+    background:linear-gradient(180deg,#ffffff 0%,#f8fbff 100%)!important;
+    box-shadow:0 14px 38px rgba(15,23,42,.10)!important;
+  }
+  #page-dashboard .focus-panel .panel-head{
+    padding:18px 16px!important;
+    background:linear-gradient(135deg,#eff6ff,#ffffff)!important;
+    border-bottom:1px solid #dbeafe!important;
+  }
+  #page-dashboard .focus-panel .panel-title{
+    gap:11px!important;
+  }
+  #page-dashboard .focus-panel .title-icon{
+    width:42px!important;
+    height:42px!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:13px!important;
+    background:linear-gradient(145deg,#2563eb,#6d4cf5)!important;
+    color:#fff!important;
+    font-size:21px!important;
+    box-shadow:0 8px 19px rgba(79,70,229,.22)!important;
+  }
+  #page-dashboard .focus-panel .panel-title h2{
+    font-size:20px!important;
+    color:#0f295a!important;
+  }
+  #page-dashboard .focus-panel .panel-head button{
+    min-height:39px!important;
+    padding:9px 12px!important;
+    border:1px solid #bfdbfe!important;
+    background:#fff!important;
+    color:#1d4ed8!important;
+    font-size:12px!important;
+  }
+  #page-dashboard .focus-panel .panel-body{
+    padding:14px!important;
+  }
+  #page-dashboard .focus-panel .focus-list{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+  #page-dashboard .focus-item{
+    min-height:108px!important;
+    padding:16px!important;
+    gap:12px!important;
+    border-radius:15px!important;
+    box-shadow:0 7px 20px rgba(15,23,42,.06)!important;
+  }
+  #page-dashboard .focus-item b{
+    font-size:15px!important;
+    line-height:1.42!important;
+    -webkit-line-clamp:3!important;
+  }
+  #page-dashboard .focus-item small{
+    margin-top:8px!important;
+    font-size:13px!important;
+    line-height:1.5!important;
+  }
+  #page-dashboard .focus-item>.pill{
+    min-width:78px!important;
+    padding:7px 9px!important;
+    font-size:11px!important;
+  }
+  #page-dashboard .focus-empty-wide{
+    min-height:52vh!important;
+    display:grid!important;
+    place-items:center!important;
+    padding:28px!important;
+    border:1px dashed #bfdbfe!important;
+    border-radius:16px!important;
+    background:#f8fbff!important;
+    color:#475569!important;
+    font-size:15px!important;
+    text-align:center!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -739,6 +850,7 @@ function taskNotificationBadge(r){if(String(r?.DailyNotification||'FALSE').toUpp
 function showPage(page){
   const target=$('#page-'+page);
   if(!target)return;
+  document.body.classList.toggle('mobile-focus-dashboard',page==='dashboard');
   $$('.tabpage').forEach(x=>x.classList.remove('active'));
   target.classList.add('active');
   $$('.navbtn[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
