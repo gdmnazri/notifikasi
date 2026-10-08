@@ -1,0 +1,27 @@
+{
+  "id": "/notifikasi/",
+  "name": "PKPJ Work Monitor",
+  "short_name": "PKPJ Monitor",
+  "description": "Pemantauan tugasan, langganan, SMS dan notifikasi Unit IT PKPJ.",
+  "lang": "ms",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f6f8fc",
+  "theme_color": "#0b6ff3",
+  "icons": [
+    {
+      "src": "./app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
