@@ -40,6 +40,7 @@ button,input,select,textarea{font:inherit} button{cursor:pointer}.hidden{display
 .sms-infographic{display:grid;grid-template-columns:190px minmax(0,1fr);align-items:center;gap:22px;margin-bottom:15px;background:radial-gradient(circle at 8% 20%,rgba(37,99,235,.12),transparent 36%),radial-gradient(circle at 93% 18%,rgba(34,197,94,.10),transparent 30%),#fff}.sms-gauge-box{display:grid;place-items:center;gap:8px}.sms-gauge{--pct:100%;--gauge:#22c55e;width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--gauge) var(--pct),#e7edf5 0);display:grid;place-items:center;position:relative}.sms-gauge::after{content:"";position:absolute;inset:17px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 1px #eef2f7}.sms-gauge-inner{position:relative;z-index:2;text-align:center}.sms-gauge-inner strong{font-size:28px;display:block}.sms-gauge-inner span{font-size:10px;color:var(--muted)}.sms-big-balance{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:13px}.sms-big-balance strong{display:block;font-size:32px}.sms-big-balance .remaining{text-align:right;font-size:18px;font-weight:850;color:var(--green)}.sms-stat-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.sms-stat{padding:10px;border:1px solid var(--line);border-radius:10px;background:rgba(248,250,252,.9)}.sms-stat span{display:block;font-size:9px;color:var(--muted)}.sms-stat b{display:block;font-size:12px;margin-top:3px}.planner-result{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.planner-result>div{padding:10px;border-radius:10px;background:#f8fafc}.planner-result b{display:block;margin-top:3px}.statusline{font-size:11px;margin-top:10px}
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.62);display:grid;place-items:center;padding:18px;z-index:100;overflow:auto}.modalbox{width:min(620px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:17px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,.24)}.settings-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.settings-tabs{display:flex;gap:7px}.settingsTab.active{background:#111827;color:#fff;border-color:#111827}.settings-pane{display:none}.settings-pane.active{display:block}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}.reference-list{display:grid;gap:8px;margin-top:14px}.reference-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;background:#f8fafc;border:1px solid var(--line);border-radius:10px}.toast{position:fixed;right:16px;bottom:16px;background:#111827;color:#fff;padding:11px 13px;border-radius:10px;z-index:130;max-width:360px}.empty{text-align:center;color:var(--muted);padding:20px}
 .pwa-panel{display:grid;gap:11px}.pwa-card{padding:14px;border:1px solid #bfdbfe;border-radius:13px;background:linear-gradient(135deg,#eff6ff,#fff)}.pwa-card b{display:block;margin-bottom:5px;color:#0f295a}.pwa-card p{margin:0;color:#52647d;font-size:12px;line-height:1.5}.pwa-actions{display:flex;gap:8px;flex-wrap:wrap}.pwa-actions .btn{flex:1;min-width:150px}.pwa-status{padding:10px 12px;border-radius:10px;background:#f8fafc;color:#475569;font-size:11px;line-height:1.5}
+.sms-reset-trigger{padding:7px 10px!important;border-radius:9px!important;background:#fff1f2!important;color:#b42318!important;border:1px solid #fecaca!important;font-size:11px!important}.sms-reset-note{padding:10px 12px;border:1px solid #bfdbfe;border-radius:10px;background:#eff6ff;color:#334155;font-size:11px;line-height:1.5}.sms-reset-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}.sms-reset-actions .btn{min-width:145px}@media(max-width:520px){.sms-reset-actions{display:grid;grid-template-columns:1fr}.sms-reset-actions .btn{width:100%}}
 
 /* DASHBOARD RINGKAS + CATATAN */
 .focus-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:15px;margin-bottom:15px}
@@ -959,7 +960,7 @@ th{font-weight:600!important}
 
     <section class="tabpage" id="page-sms">
       <div class="card sms-infographic">
-        <div class="sms-gauge-box"><div class="sms-gauge" id="smsGauge"><div class="sms-gauge-inner"><strong id="smsGaugePct">100%</strong><span>BAKI SMS</span></div></div><div class="row-actions"><span class="pill normal" id="smsInfoStatus">NORMAL</span><button class="mini-icon" id="openSmsTotal" title="Pembetulan jumlah SMS">✎</button></div></div>
+        <div class="sms-gauge-box"><div class="sms-gauge" id="smsGauge"><div class="sms-gauge-inner"><strong id="smsGaugePct">100%</strong><span>BAKI SMS</span></div></div><div class="row-actions"><span class="pill normal" id="smsInfoStatus">NORMAL</span><button class="btn sms-reset-trigger" id="openSmsTotal" type="button" title="Reset dan masukkan semula jumlah SMS">↻ Reset SMS</button></div></div>
         <div><div class="sms-big-balance"><div><span class="label">Baki Kredit Semasa</span><strong id="smsBalance2">RM0.00</strong></div><div class="remaining"><span id="smsRemain2">0</span><br><small>SMS masih boleh digunakan</small></div></div><div class="sms-stat-strip"><div class="sms-stat"><span>Peruntukan Semasa</span><b id="smsCurrentAllocation2">RM0.00</b></div><div class="sms-stat"><span>Kelulusan Baru</span><b id="smsNewApproved2">RM0.00</b></div><div class="sms-stat"><span>Jumlah Peruntukan</span><b id="smsStart2">RM0.00</b></div><div class="sms-stat"><span>SMS Digunakan</span><b id="smsUsed2">0</b></div></div></div>
       </div>
       <div class="forms">
@@ -1016,7 +1017,7 @@ th{font-weight:600!important}
   <div class="settings-pane" data-settings-pane="app"><div class="pwa-panel"><div class="pwa-card"><b>📱 Ikon aplikasi di Home Screen</b><p>Pasang sistem sebagai aplikasi supaya ikon PKPJ Monitor muncul pada telefon. Jumlah tugasan belum selesai akan dipaparkan sebagai badge pada ikon jika peranti menyokongnya.</p></div><div class="pwa-actions"><button class="btn primary" id="installPwaBtn" type="button">Pasang Aplikasi</button><button class="btn ghost" id="enablePwaBadgeBtn" type="button">Aktifkan Badge</button></div><div class="pwa-status" id="pwaStatus">Menyemak sokongan telefon...</div></div></div>
 </div></div>
 
-<div class="modal hidden" id="smsTotalModal"><div class="modalbox" style="max-width:440px"><div class="settings-top"><b>Pembetulan Jumlah SMS</b><button class="icon-btn" id="closeSmsTotal">×</button></div><form class="form" id="smsTotalForm"><div class="field"><label>Jumlah SMS telah digunakan setakat ini</label><input name="total" type="number" min="0" step="1" required></div><button class="btn primary" type="submit">Tetapkan Jumlah</button><button class="btn danger" id="resetSmsBtn" type="button">Reset Penggunaan SMS</button></form></div></div>
+<div class="modal hidden" id="smsTotalModal"><div class="modalbox" style="max-width:560px"><div class="settings-top"><div><b>Reset & Masukkan Semula SMS</b><div class="muted">Betulkan amount dan kiraan SMS dalam satu tempat.</div></div><button class="icon-btn" id="closeSmsTotal">×</button></div><form class="form" id="smsTotalForm"><div class="form-row"><div class="field"><label>Peruntukan Semasa (RM)</label><input name="currentAllocation" type="number" min="0" step="0.01" required></div><div class="field"><label>Peruntukan Baru (RM)</label><input name="newApprovedAllocation" type="number" min="0" step="0.01" required></div></div><div class="form-row"><div class="field"><label>Kos 1 SMS (RM)</label><input name="costPerSms" type="number" min="0.001" step="0.001" required></div><div class="field"><label>SMS Telah Digunakan</label><input name="total" type="number" min="0" step="1" required></div></div><div class="sms-reset-note">Rekod kempen dan log penggunaan tidak dipadam. Sistem hanya menggantikan nilai peruntukan, kos SMS dan jumlah penggunaan dengan angka baharu.</div><div class="sms-reset-actions"><button class="btn ghost" id="resetSmsBtn" type="button">Kosongkan Borang</button><button class="btn primary" type="submit">Simpan Nilai Baharu</button></div></form></div></div>
 
 <div class="modal hidden" id="referenceModal"><div class="modalbox"><div class="settings-top"><div><b id="referenceModalTitle">Lampiran Dokumen</b><div class="muted" id="referenceModalSubtitle"></div></div><button class="icon-btn" id="closeReferenceModal">×</button></div><form class="form" id="referenceForm"><div class="field"><label>Tajuk Lampiran *</label><input name="title" required></div><div class="field"><label>Nota</label><input name="notes"></div><div class="field"><label>Dokumen / Gambar *</label><input name="attachments" type="file" multiple accept="application/pdf,image/jpeg,image/png,image/webp,.pdf,.jpg,.jpeg,.png,.webp" required><div class="muted">PDF, JPG, PNG atau WEBP • maksimum 3 fail • 5 MB setiap fail.</div></div><button class="btn primary" type="submit">📎 &nbsp; Simpan Lampiran</button></form><div class="reference-list" id="referenceList"></div></div></div>
 
@@ -1562,6 +1563,40 @@ function renderSmsLogs(rows){const el=$('#smsLogRows');if(!el)return;el.innerHTM
 function calculatePlan(){if(!APP.data?.sms)return;const s=APP.data.sms,p=Math.max(0,Number($('#plannedSms')?.value||0)),cost=p*s.costPerSms,bal=Math.max(0,s.balanceRm-cost),remain=s.costPerSms?Math.floor(bal/s.costPerSms):0,pct=s.capacity?remain/s.capacity*100:0;setText('#planCost',money(cost));setText('#planBalance',money(bal));setText('#planRemaining',num(remain));setText('#planStatus',p>s.remaining?'🚨 Baki SMS tidak mencukupi.':pct<=s.criticalPct?'🔴 Selepas kempen, baki KRITIKAL.':pct<=s.warningPct?'🟠 Selepas kempen, baki AMARAN.':'🟢 Baki masih terkawal.')}
 function calculateSmsSettingCapacity(){const current=Math.max(0,Number($('#smsCurrentAllocationSetting')?.value||0)),approved=Math.max(0,Number($('#smsNewApprovedSetting')?.value||0)),cost=Math.max(0,Number($('#smsCostSetting')?.value||0)),total=current+approved,cap=cost?Math.floor(total/cost):0;setText('#smsCapacitySetting',num(cap)+' SMS');setText('#smsSettingInfo',money(current)+' + '+money(approved)+' = '+money(total))}
 
+function fillSmsResetForm(){
+  const form=$('#smsTotalForm'),sms=APP.data?.sms;if(!form||!sms)return;
+  form.elements.currentAllocation.value=Number(sms.currentAllocation||0);
+  form.elements.newApprovedAllocation.value=Number(sms.newApprovedAllocation||0);
+  form.elements.costPerSms.value=Number(sms.costPerSms||0);
+  form.elements.total.value=Number(sms.used||0);
+}
+async function saveSmsResetSettings(form){
+  const fd=new FormData(form),settings={
+    currentAllocation:Number(fd.get('currentAllocation')),
+    newApprovedAllocation:Number(fd.get('newApprovedAllocation')),
+    costPerSms:Number(fd.get('costPerSms'))
+  },used=Math.floor(Number(fd.get('total')));
+  if(settings.currentAllocation<0||settings.newApprovedAllocation<0||settings.costPerSms<=0||used<0||!Number.isFinite(used))return showToast('Semak semua amount SMS terlebih dahulu.',4500);
+  if(!confirm('Gantikan amount dan jumlah SMS sekarang dengan nilai baharu ini?'))return;
+  beginSaveProgress('Menetapkan semula SMS');
+  try{
+    setSaveProgress(24,'Menyimpan peruntukan dan kos SMS...');
+    await submitPost('updateSmsSettings',settings);
+    setSaveProgress(54,'Menyimpan jumlah SMS yang telah digunakan...');
+    await submitPost('setSmsUsedTotal',{total:used});
+    let latest=null,verified=false;
+    for(let attempt=0;attempt<5;attempt++){
+      if(attempt)await wait([250,450,700,950][attempt-1]||950);
+      setSaveProgress(70+(attempt*5),'Mengesahkan amount baharu pada server...');
+      const response=await fetchDashboardWithRetry(2,180);latest=response.data||{};const sms=latest.sms||{};
+      verified=Number(sms.currentAllocation)===settings.currentAllocation&&Number(sms.newApprovedAllocation)===settings.newApprovedAllocation&&Number(sms.costPerSms)===settings.costPerSms&&Number(sms.used)===used;
+      if(verified)break;
+    }
+    if(!verified)throw new Error('Nilai SMS belum dapat disahkan. Cuba semula selepas refresh.');
+    applyDashboardData(latest);finishSaveProgress('Amount dan jumlah SMS berjaya ditetapkan semula.');$('#smsTotalModal')?.classList.add('hidden');showToast('SMS berjaya direset dengan nilai baharu.',4200);
+  }catch(err){failSaveProgress(err.message);showToast(err.message,6000)}
+}
+
 function setFaviconStatus(status){
   document.querySelectorAll('link[rel~="icon"]').forEach(l=>{if(l.id!=='statusFavicon')l.remove()});
   const colour={normal:'#22c55e',warning:'#f59e0b',critical:'#ef4444'}[status]||'#22c55e';
@@ -1917,9 +1952,9 @@ function init(){
   safeOn('#syncTaskCalendarBtn','click',async()=>{const btn=$('#syncTaskCalendarBtn');if(btn){btn.disabled=true;btn.textContent='Menyemak...';}try{const response=await jsonp('telegramStatus',20000),health=response?.data?.telegramHealth||response?.data?.calendarHealth||{};APP.data=APP.data||{};APP.data.telegramHealth=health;APP.data.calendarHealth=health;renderCalendarHealth(health);setText('#calendarSyncSummary',health.configured?'✅ Telegram tersambung dengan '+(health.botName||'bot PKPJ'):'⚠️ Jalankan setupTelegram() dalam Apps Script dahulu.')}catch(e){setText('#calendarTestStatus','❌ '+e.message)}finally{if(btn){btn.disabled=false;btn.textContent='↻ Semak Sambungan';}}});
   safeOn('#testCalendarBtn','click',async()=>{const btn=$('#testCalendarBtn');if(btn){btn.disabled=true;btn.textContent='⏳ Menguji...';}try{await runTelegramNotificationTest()}catch(_){ }finally{if(btn){btn.disabled=false;btn.textContent='🔔 Uji Telegram';}}});
 
-  safeOn('#openSmsTotal','click',()=>{if(APP.data?.sms)$('#smsTotalForm [name="total"]').value=APP.data.sms.used;$('#smsTotalModal')?.classList.remove('hidden')});safeOn('#closeSmsTotal','click',()=>$('#smsTotalModal')?.classList.add('hidden'));
-  safeOn('#resetSmsBtn','click',async()=>{if(!confirm('Reset semua penggunaan SMS dan kosongkan log?'))return;if(!confirm('Pengesahan terakhir: teruskan reset?'))return;try{await runPost('resetSms',{},'Penggunaan SMS direset.');$('#smsTotalModal')?.classList.add('hidden')}catch(_){}});
-  safeOn('#smsTotalForm','submit',async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget));try{await runPost('setSmsUsedTotal',d,'Jumlah SMS dikemas kini.');$('#smsTotalModal')?.classList.add('hidden')}catch(_){}});
+  safeOn('#openSmsTotal','click',()=>{fillSmsResetForm();$('#smsTotalModal')?.classList.remove('hidden')});safeOn('#closeSmsTotal','click',()=>$('#smsTotalModal')?.classList.add('hidden'));
+  safeOn('#resetSmsBtn','click',()=>{const form=$('#smsTotalForm');if(!form)return;form.reset();Array.from(form.querySelectorAll('input[type="number"]')).forEach(input=>input.value='');form.elements.currentAllocation?.focus();showToast('Borang dikosongkan. Masukkan semua nilai yang betul.',4000)});
+  safeOn('#smsTotalForm','submit',async e=>{e.preventDefault();await saveSmsResetSettings(e.currentTarget)});
 
   safeOn('#noteForm','submit',async e=>{e.preventDefault();const form=e.currentTarget,fd=new FormData(form),files=Array.from(form.querySelector('[name="attachments"]')?.files||[]);if(files.length>3)return showToast('Maksimum 3 lampiran sekali simpan.');const d=Object.fromEntries(fd);delete d.attachments;d.id=uuid();d.status='Aktif';d.priority='Normal';try{await runPost('addNote',d,'Catatan disimpan.');for(const f of files)await uploadRecordAttachment('notes',d.id,f,'Lampiran — '+d.title,d.instruction||'');form.reset();closeCreateModal()}catch(_){}});
   safeOn('#taskForm','submit',async e=>{e.preventDefault();const form=e.currentTarget,start=form.elements.startDate?.value,end=form.elements.deadline?.value;if(start&&end&&start>end)return showToast('Tarikh Dari tidak boleh selepas Tarikh Hingga.',4500);try{await handleAddForm(form,'tasks','addTask','task','Tugasan disimpan.')}catch(_){}});
