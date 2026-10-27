@@ -841,6 +841,61 @@ th{font-weight:600!important}
 .ticket-hero{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px;padding:18px 20px;border:1px solid #c7d2fe;border-radius:17px;background:linear-gradient(135deg,#eff6ff,#eef2ff 55%,#f5f3ff);box-shadow:var(--shadow)}.ticket-hero-main{display:flex;align-items:center;gap:13px}.ticket-hero-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(145deg,#2563eb,#7c3aed);color:#fff;font-size:23px;box-shadow:0 9px 22px rgba(37,99,235,.23)}.ticket-hero h2{margin:0 0 4px;font-size:18px}.ticket-hero p{margin:0;color:#52647d;font-size:12px}.ticket-toolbar{display:flex;align-items:center;gap:9px;margin-bottom:12px}.ticket-toolbar input{flex:1;min-width:180px;border:1px solid #cbd5e1;border-radius:11px;padding:10px 12px;background:#fff}.ticket-toolbar select{min-width:145px;border:1px solid #cbd5e1;border-radius:11px;padding:10px;background:#fff}.ticket-count{white-space:nowrap}.ticket-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.ticket-card{position:relative;padding:15px;border:1px solid #dbe5f1;border-left:5px solid #f59e0b;border-radius:15px;background:#fff;box-shadow:0 7px 19px rgba(15,23,42,.05)}.ticket-card.done{border-left-color:#22c55e;background:#fbfffc}.ticket-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.ticket-card-head h3{margin:0;color:#0f295a;font-size:16px;line-height:1.35;overflow-wrap:anywhere}.ticket-card-head small{display:block;margin-top:4px;color:#94a3b8}.ticket-card-note{min-height:44px;margin:11px 0 0;padding:10px 11px;border-radius:10px;background:#f8fafc;color:#334155;font-size:12.5px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}.ticket-card-note.empty{color:#94a3b8;font-style:italic}.ticket-phone{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:7px 10px;border:1px solid #bfdbfe;border-radius:10px;background:#eff6ff;color:#1d4ed8;text-decoration:none;font-size:12px;font-weight:750}.ticket-phone.empty{border-color:#e2e8f0;background:#f8fafc;color:#94a3b8;pointer-events:none}.ticket-actions{display:flex;align-items:center;gap:7px;margin-top:11px;padding-top:10px;border-top:1px solid #edf2f7}.ticket-action{min-height:37px;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 10px;border:1px solid #dbe5f1;border-radius:10px;background:#fff;color:#334155;font-weight:800;cursor:pointer}.ticket-action.done{border-color:#86efac;background:#ecfdf5;color:#166534}.ticket-action.edit{border-color:#bfdbfe;background:#eff6ff;color:#1d4ed8}.ticket-action.delete{margin-left:auto;border-color:#fecaca;background:#fff1f2;color:#be123c}.ticket-upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ticket-upload-box{padding:12px;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fafc}.ticket-upload-box label{display:block;margin-bottom:6px;color:#334155;font-size:12px;font-weight:700}.ticket-upload-box small{display:block;margin-top:5px;color:#64748b}.ticket-empty{grid-column:1/-1;padding:40px 18px;border:1px dashed #cbd5e1;border-radius:15px;background:#f8fafc;color:#64748b;text-align:center}.ticket-empty span{display:block;margin-bottom:7px;font-size:30px}.ticket-edit-attachments{margin-top:4px}
 @media(max-width:760px){.ticket-hero{align-items:flex-start;padding:14px}.ticket-hero .btn{flex:0 0 auto}.ticket-toolbar{align-items:stretch;flex-direction:column}.ticket-toolbar input,.ticket-toolbar select{width:100%}.ticket-list{grid-template-columns:1fr}.ticket-card{padding:13px}.ticket-actions{flex-wrap:wrap}.ticket-action{flex:1}.ticket-action.delete{margin-left:0;flex:0 0 42px}.ticket-upload-grid{grid-template-columns:1fr}.ticket-nav-badge{top:1px;right:12px;border-color:#0b2454}}
 
+/* ===== V34: PEMBAIKAN PAPARAN & BORANG TELEFON ===== */
+.create-quick-save{display:none}
+.task-add-main b{display:none}.task-add-main span{font-size:23px;line-height:1}
+@media(max-width:760px){
+  body.modal-open{overflow:hidden!important;touch-action:auto!important}
+  .modal{z-index:500!important;padding:10px!important;align-items:center!important;justify-items:center!important;overflow:hidden!important}
+  .modalbox{width:calc(100vw - 20px)!important;max-width:none!important;max-height:calc(100dvh - 20px)!important;margin:0!important;padding:15px!important;border-radius:18px!important;overflow-x:hidden!important;overflow-y:auto!important;touch-action:pan-y!important;overscroll-behavior:contain!important;-webkit-overflow-scrolling:touch!important}
+  #createModal .modalbox,#editModal .modalbox{height:calc(100dvh - 20px)!important;max-height:calc(100dvh - 20px)!important;padding-bottom:calc(24px + env(safe-area-inset-bottom))!important}
+  #createModal .settings-top,#editModal .settings-top{top:-15px!important;margin:-1px -15px 14px!important;padding:13px 15px!important}
+  #createModal .settings-top{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important}
+  #createModal .settings-top>.actions{display:flex!important;align-items:center!important;gap:7px!important}
+  .create-quick-save{display:inline-flex!important;min-height:40px!important;padding:8px 12px!important;border:0!important;border-radius:11px!important;background:#2563eb!important;color:#fff!important;font-size:12px!important;font-weight:800!important}
+  #createModalBody{min-height:0!important;padding-bottom:8px!important}
+  #createModalBody .create-card-source{width:100%!important;display:block!important}
+  #createModalBody form{display:grid!important;gap:12px!important;padding-bottom:12px!important}
+  #createModalBody form>.btn[type="submit"]{width:100%!important;min-height:50px!important;margin-top:5px!important;font-size:15px!important}
+  #createModalBody .task-issues-editor{max-width:100%!important;overflow:hidden!important}
+  #createModalBody .task-issue-head{min-width:0!important}
+  #createModalBody .task-issue-toggle{min-width:0!important}
+  #createModalBody .task-issue-title-display{overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+  .save-progress-overlay{z-index:800!important}
+  .toast{z-index:850!important;bottom:calc(96px + env(safe-area-inset-bottom))!important}
+  .side{z-index:220!important;overflow-x:auto!important;overflow-y:hidden!important}
+  .side .navbtn{flex:0 0 76px!important;width:76px!important}
+  #page-tasks .task-compact-head{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:start!important;gap:10px!important}
+  #page-tasks .task-compact-card{margin-top:0!important;border-radius:18px!important;box-shadow:0 8px 24px rgba(15,23,42,.07)!important}
+  #page-tasks .task-compact-head{padding:15px!important;background:linear-gradient(135deg,#fff,#f3f7ff)!important}
+  #page-tasks .task-compact-head h2{font-size:18px!important;color:#0f295a!important}
+  #page-tasks .task-compact-head .muted{max-width:220px!important;font-size:11px!important}
+  #page-tasks .task-compact-head .section-actions{display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:7px!important}
+  #page-tasks .info-icon-btn{width:42px!important;height:42px!important;border-radius:13px!important;background:#fff!important}
+  #page-tasks .task-add-main{width:auto!important;min-width:91px!important;height:42px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;padding:0 13px!important;border-radius:13px!important;background:linear-gradient(135deg,#1478ff,#6552e8)!important;color:#fff!important;box-shadow:0 8px 18px rgba(37,99,235,.24)!important}
+  #page-tasks .task-add-main span{font-size:21px!important}
+  #page-tasks .task-add-main b{display:inline!important;font-size:12px!important;font-weight:800!important}
+  #page-tasks .unresolved-issues-btn{grid-column:1/-1!important;order:3!important;width:100%!important;min-height:40px!important}
+  #page-tasks .task-compact-toolbar{gap:9px!important;padding:12px 14px 13px!important;background:#fff!important}
+  #page-tasks .task-compact-search input,#page-tasks .task-priority-select{height:43px!important;border-radius:13px!important;background:#f8fafc!important}
+  #page-tasks .task-filter-row{padding:2px 0 3px!important;scrollbar-width:none!important}
+  #page-tasks .task-filter-row::-webkit-scrollbar{display:none!important}
+  #page-tasks .task-filter-btn{min-height:35px!important;padding:7px 12px!important;font-size:11px!important}
+  #page-tasks .task-compact-row{margin:9px 10px 0!important;width:calc(100% - 20px)!important;padding:13px 13px 13px 17px!important;border:1px solid #e4ebf3!important;border-radius:14px!important;box-shadow:0 4px 13px rgba(15,23,42,.045)!important}
+  #page-tasks .task-compact-row:last-child{margin-bottom:10px!important}
+  #page-tasks .task-compact-row::before{top:9px!important;bottom:9px!important;border-radius:0 6px 6px 0!important}
+  #page-tasks .task-row-title{padding-right:26px!important;font-size:14px!important;white-space:normal!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important}
+  #page-tasks .task-row-note{font-size:11.5px!important}
+  #page-tasks .task-row-meta{padding:8px 9px!important;border-radius:10px!important;background:#f8fafc!important}
+  #page-tasks .task-compact-empty{margin:10px!important;border-radius:14px!important}
+  #createModalBody .field{padding:11px!important;border:1px solid #e6edf5!important;border-radius:13px!important;background:#fbfdff!important}
+  #createModalBody .field label{margin-bottom:7px!important;color:#334155!important}
+  #createModalBody .field input,#createModalBody .field select,#createModalBody .field textarea{border-radius:11px!important;background:#fff!important}
+  #createModalBody .task-notification-box{padding:10px!important;border-radius:14px!important}
+  #createModalBody .task-notification-box .field{padding:8px!important;background:rgba(255,255,255,.72)!important}
+  #createModalBody .task-issues-editor{padding:10px!important;border:1px solid #ddd6fe!important;border-radius:14px!important;background:#faf8ff!important}
+}
+
 </style>
 </head>
 <body>
@@ -931,7 +986,7 @@ th{font-weight:600!important}
         </div>
       </div>
       <div class="card task-compact-card">
-        <div class="task-compact-head"><div><h2>Senarai Tugasan</h2><div class="muted">Pilih tugasan untuk melihat butiran dan tindakan.</div></div><div class="section-actions"><button class="unresolved-issues-btn" id="openUnresolvedIssues" type="button" onclick="openUnresolvedIssuesModal()" title="Lihat semua isu tiket yang belum selesai"><span class="issue-btn-icon">!</span><span>Isu Belum Selesai</span><b class="issue-btn-count" id="unresolvedIssueCount">0</b></button><button class="info-icon-btn" type="button" onclick="openRuleModal('task')" title="Lihat Rule Notifikasi" aria-label="Lihat Rule Notifikasi">i</button><button class="add-icon-btn" type="button" onclick="openCreateModal('task')" title="Tambah Tugasan" aria-label="Tambah Tugasan">+</button></div></div>
+        <div class="task-compact-head"><div><h2>Senarai Tugasan</h2><div class="muted">Pilih tugasan untuk melihat butiran dan tindakan.</div></div><div class="section-actions"><button class="unresolved-issues-btn" id="openUnresolvedIssues" type="button" onclick="openUnresolvedIssuesModal()" title="Lihat semua isu tiket yang belum selesai"><span class="issue-btn-icon">!</span><span>Isu Belum Selesai</span><b class="issue-btn-count" id="unresolvedIssueCount">0</b></button><button class="info-icon-btn" type="button" onclick="openRuleModal('task')" title="Lihat Rule Notifikasi" aria-label="Lihat Rule Notifikasi">i</button><button class="add-icon-btn task-add-main" type="button" onclick="openCreateModal('task')" title="Tambah Tugasan" aria-label="Tambah Tugasan"><span>+</span><b>Tambah</b></button></div></div>
         <div class="task-compact-toolbar"><label class="task-compact-search"><input id="taskCompactSearch" type="search" placeholder="Cari tugasan, PIC atau status..." autocomplete="off" aria-label="Cari tugasan"></label><select class="task-priority-select" id="taskPriorityFilter" aria-label="Tapis mengikut keutamaan"><option value="all">Semua keutamaan</option><option value="critical">Kritikal</option><option value="Urgent">Urgent</option><option value="Tinggi">Tinggi</option><option value="Normal">Normal</option></select><button class="task-sort-btn" id="toggleTaskSort" type="button" title="Susun tugasan mengikut kepentingan"><span>↕</span><b>Susun Sendiri</b></button><div class="task-filter-row"><button class="task-filter-btn active" type="button" data-task-filter="all">Semua tarikh</button><button class="task-filter-btn" type="button" data-task-filter="week">7 Hari</button><button class="task-filter-btn" type="button" data-task-filter="overdue">Lewat</button><span class="pill directory-count" id="taskCompactCount">0 tugasan</span></div></div>
         <div class="task-compact-workspace"><div class="task-compact-list" id="taskCompactRows"></div><aside class="task-detail-panel" id="taskDetailPanel"><div class="task-detail-empty"><span>✓</span><b>Pilih satu tugasan</b><small>Butiran penuh akan dipaparkan di sini.</small></div></aside></div>
       </div>
@@ -1064,7 +1119,7 @@ th{font-weight:600!important}
 
 <div class="modal hidden" id="referenceModal"><div class="modalbox"><div class="settings-top"><div><b id="referenceModalTitle">Lampiran Dokumen</b><div class="muted" id="referenceModalSubtitle"></div></div><button class="icon-btn" id="closeReferenceModal">×</button></div><form class="form" id="referenceForm"><div class="field"><label>Tajuk Lampiran *</label><input name="title" required></div><div class="field"><label>Nota</label><input name="notes"></div><div class="field"><label>PDF, Word, Excel atau Gambar *</label><input name="attachments" type="file" multiple accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/jpeg,image/png,image/webp,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv,.pdf,.doc,.docx,.jpg,.jpeg,.png,.webp,.xlsx,.xls,.csv" required><div class="muted">PDF, Word, Excel atau gambar • maksimum 3 fail • 5 MB setiap fail.</div></div><button class="btn primary" type="submit">📎 &nbsp; Simpan Lampiran</button></form><div class="reference-list" id="referenceList"></div></div></div>
 
-<div class="modal hidden" id="createModal"><div class="modalbox"><div class="settings-top"><b id="createModalTitle">Tambah Maklumat</b><button class="icon-btn" id="closeCreateModal">×</button></div><div id="createModalBody"></div></div></div>
+<div class="modal hidden" id="createModal"><div class="modalbox"><div class="settings-top"><b id="createModalTitle">Tambah Maklumat</b><div class="actions"><button class="create-quick-save" id="createModalQuickSave" type="button">✓ Simpan</button><button class="icon-btn" id="closeCreateModal" type="button">×</button></div></div><div id="createModalBody"></div></div></div>
 
 <div class="modal hidden" id="notificationModal"><div class="modalbox notification-modalbox"><div class="settings-top"><div><b>Pusat Notifikasi</b><div class="muted">Perkara penting yang memerlukan perhatian anda.</div></div><button class="icon-btn" id="closeNotificationModal">×</button></div><div class="notification-list" id="notificationList"></div><div class="modal-actions"><button class="btn ghost" id="runAlertCheckBtn" type="button">↻ Semak Sekarang</button><button class="btn primary" id="openCalendarSettingsBtn" type="button">⚙ Tetapan Telegram</button></div></div></div>
 
@@ -1307,7 +1362,7 @@ window.openCreateModal=type=>{
   closeCreateModal();
   const map={task:['taskCreateCard','Tambah Tugasan'],ticket:['ticketCreateCard','Tambah Tiket'],note:['noteCreateCard','Tambah Catatan'],subscription:['subCreateCard','Tambah Langganan'],sms:['smsCreateCard','Tambah Penggunaan SMS']};
   const item=map[type];if(!item)return;const card=$('#'+item[0]);if(!card)return;
-  setText('#createModalTitle',item[1]);$('#createModalBody')?.appendChild(card);card.classList.remove('hidden');APP.activeCreateCard=card;$('#createModal')?.classList.remove('hidden');
+  setText('#createModalTitle',item[1]);$('#createModalBody')?.appendChild(card);card.classList.remove('hidden');APP.activeCreateCard=card;const modal=$('#createModal');modal?.classList.remove('hidden');requestAnimationFrame(()=>{const box=modal?.querySelector('.modalbox');if(box)box.scrollTop=0;card.querySelector('input:not([type="hidden"]),select,textarea')?.focus({preventScroll:true})});
 };
 
 function notificationIcon(type){return {task:'📋',subscription:'🔄',sms:'✉️'}[type]||'🔔'}
@@ -2091,7 +2146,7 @@ function init(){
   safeOn('#openConfig','click',openConfig);safeOn('#closeConfig','click',closeConfig);
   safeOn('#refreshBtn','click',()=>loadDashboard());
   safeOn('#checkAlertBtn','click',openNotificationModal);
-  safeOn('#closeCreateModal','click',closeCreateModal);safeOn('#closeNotificationModal','click',closeNotificationModal);
+  safeOn('#closeCreateModal','click',closeCreateModal);safeOn('#createModalQuickSave','click',()=>{const form=APP.activeCreateCard?.querySelector('form');if(!form)return showToast('Borang tidak dijumpai.');if(typeof form.requestSubmit==='function')form.requestSubmit();else form.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}))});safeOn('#closeNotificationModal','click',closeNotificationModal);
   safeOn('#closeUnresolvedIssuesModal','click',closeUnresolvedIssuesModal);safeOn('#doneUnresolvedIssuesModal','click',closeUnresolvedIssuesModal);
   safeOn('#closeHistoryModal','click',closeHistoryModal);safeOn('#cancelHistoryModal','click',closeHistoryModal);
   safeOn('#closeRuleModal','click',closeRuleModal);safeOn('#doneRuleModal','click',closeRuleModal);
